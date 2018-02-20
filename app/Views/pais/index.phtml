@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<h1 class="h1">
+			<?php $this->getPageTitle();?>
+		</h1>
+	</div>
+
+ <?php foreach ($this->view->pais as $pais): ?>
+ 
+ <div class="row">
+ 	<h3 class="h3"><?php echo($pais->title)?></h3>
+ 	<p class="text-justify"><?php echo($pais->nombre);?></p>
+ 	</hr>
+ </div>
+ <?php endforeach; ?>
+ </div>

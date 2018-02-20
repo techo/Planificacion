@@ -1,0 +1,11 @@
+@import "bootstrap.min.css";
+
+/* Customização do template conforme desejar... */
+
+.row-bottom-20{
+	margin-top: 20px;
+}
+
+.pull-left{
+	float: left;
+}
