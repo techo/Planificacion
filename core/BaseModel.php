@@ -34,4 +34,14 @@ abstract class BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function execute($query)
+    {
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
 }
