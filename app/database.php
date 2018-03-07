@@ -7,7 +7,7 @@ return [
     
     'mysql' => [
         'host' => 'localhost',
-        'database' => 'techo_framework',
+        'database' => 'techo_planificacion',
         'user' => 'root',
         'pass' => 'mysql',
         'charset' => 'utf8',

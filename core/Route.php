@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Core;
 
 class Route
@@ -59,7 +59,7 @@ class Route
         foreach ($this->routes as $route)
         {
             $aRoute = explode('/', $route[0]);
-                       
+            
             for($i = 0; $i < count($aRoute); $i++)
             {
                 if((strpos($aRoute[$i], '{') !== false) && (count($aURL) == count($aRoute)))
@@ -73,11 +73,11 @@ class Route
             
             if($url == $route[0])
             {
-               $found = true;
-               $controller = $route[1];
-               $action     = $route[2];
-               
-               break;
+                $found = true;
+                $controller = $route[1];
+                $action     = $route[2];
+                
+                break;
             }
         }
         
@@ -95,27 +95,27 @@ class Route
             {
                 case 0:
                     $controller->$action($this->getRequest());
-                break;
-                
+                    break;
+                    
                 case 1:
                     $controller->$action($aparam[0], $this->getRequest());
-                break;
-                
+                    break;
+                    
                 case 2:
                     $controller->$action($aparam[0], $aparam[1], $this->getRequest());
-                break;
-                
+                    break;
+                    
                 case 3:
                     $controller->$action($aparam[0], $aparam[1], $aparam[2], $this->getRequest());
-                break;
-                
+                    break;
+                    
                 default:
                     $controller->$action($valor, $this->getRequest());
             }
         }
         else
         {
-           Container::pageNotFound();
+            Container::pageNotFound();
         }
     }
     
