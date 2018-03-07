@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+		<h1 class="h1">
+			<?php $this->getPageTitle();?>
+			<hr align="left" noshade="noshade" size="2" width="80%" />
+		</h1>
+	</div>
+	 <?php foreach ($this->view->tipo as $tipo): ?>
+ 	<div class="row">
+ 		<p class="text-justify"><?php echo('Id: '. $tipo->id);?></p>
+ 		<p class="text-justify"><?php echo('Tipo: '. $tipo->tipo);?></p>
+ 		<hr align="left" noshade="noshade" size="2" width="80%" />
+ 	</div>
+ 	<?php endforeach; ?>
+</div>
