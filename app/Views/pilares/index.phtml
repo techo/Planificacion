@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+		<h1 class="h1">
+			<?php $this->getPageTitle();?>
+			<hr align="left" noshade="noshade" size="2" width="80%" />
+		</h1>
+	</div>
+	 <?php foreach ($this->view->pilar as $pilar): ?>
+ 	<div class="row">
+ 		<p class="text-justify"><?php echo('Id: '. $pilar->id);?></p>
+ 		<p class="text-justify"><?php echo('Pilar: '. $pilar->pilar);?></p>
+ 		<hr align="left" noshade="noshade" size="2" width="80%" />
+ 	</div>
+ 	<?php endforeach; ?>
+</div>
