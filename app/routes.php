@@ -14,4 +14,7 @@ $route[] = ['/tipos', 'TiposController@index'];
 /** Pilares **/
 $route[] = ['/pilares', 'PilaresController@index'];
 
+/** Indicadores **/
+$route[] = ['/indicadores', 'IndicadoresController@index'];
+
 return $route;
