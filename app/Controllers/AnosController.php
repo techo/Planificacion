@@ -8,7 +8,7 @@ class AnosController extends BaseController
 {
     public function index()
     {
-        $this->setPageTitle('Anos');
+        $this->setPageTitle('A&ntilde;os');
         $model = Container::getModel("Ano");
         $this->view->ano = $model->select();
         

@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+		<h1 class="h1">
+			<?php $this->getPageTitle();?>
+			<hr align="left" noshade="noshade" size="2" width="80%" />
+		</h1>
+	</div>
+	 <?php foreach ($this->view->temporalidad as $temporalidad): ?>
+ 	<div class="row">
+ 		<p class="text-justify"><?php echo('Id: '. $temporalidad->id);?></p>
+ 		<p class="text-justify"><?php echo('Temporalidad: '. $temporalidad->temporalidad);?></p>
+ 		<hr align="left" noshade="noshade" size="2" width="80%" />
+ 	</div>
+ 	<?php endforeach; ?>
+</div>
