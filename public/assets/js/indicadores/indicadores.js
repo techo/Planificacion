@@ -1,19 +1,5 @@
 oTemporalidad = new Object();	
 
-$.ajax({
-	type: "POST",
-	url: "/temporalidades/lista",
-	dataType: "json",
-	data: oTemporalidad,
-	success: function(oTemporalidad)
-	{	
-		if(oTemporalidad['values'])
-		{
-			console.log(oTemporalidad['values']);
-		}
-	}
-});
-
 var columnDefs = [
 	{headerName: 'Indicador', field: 'Indicador', editable: false},
     {
@@ -53,6 +39,27 @@ var columnDefs = [
         }
     }
 ];
+
+$.ajax({
+	type: "POST",
+	url: "/temporalidades/lista",
+	dataType: "json",
+	data: oTemporalidad,
+	success: function(oTemporalidad)
+	{	
+		if(oTemporalidad['values'])
+		{
+			console.log(oTemporalidad['values']);
+			
+			columnDefs.forEach(function(o,i) {
+				if(columnDefs[i].field == 'Temporalidad' )  {
+					columnDefs[i].cellEditorParams.values = oTemporalidad['values']
+				}
+			})
+			
+		}
+	}
+});
 
 function getRowData() 
 {
