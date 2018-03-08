@@ -16,4 +16,18 @@ class TemporalidadesController extends BaseController
         $this->renderView('temporalidades/index', 'layout');
     }
     
+    public function GetTemporalidad()
+    {
+        $model = Container::getModel("Temporalidad");
+        $aTemporalidades = $model->select();
+        
+        for($i=0; $i < count($aTemporalidades); $i++)
+        {
+            $temporario = (array)$aTemporalidades[$i];
+            $aTemp[$i]  = $temporario['temporalidad'];
+        }
+        
+        echo json_encode(array("values" => $aTemp));
+    }
+    
 }

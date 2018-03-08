@@ -7,6 +7,7 @@ $route[] = ['/anos', 'AnosController@index'];
 
 /** Temporalidades **/
 $route[] = ['/temporalidades', 'TemporalidadesController@index'];
+$route[] = ['/temporalidades/lista', 'TemporalidadesController@GetTemporalidad'];
 
 /** Tipos **/
 $route[] = ['/tipos', 'TiposController@index'];
