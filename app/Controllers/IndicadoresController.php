@@ -76,6 +76,30 @@ class IndicadoresController extends BaseController
         return $data;
     }
     
+    public function Areas()
+    {
+        $url = 'http://id.techo.org/area?api=true&token='.$_SESSION['Planificacion']['token'];
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]  = $data[$i]['Nombre_Area'];
+        }
+        
+        echo json_encode(array("values" => $aTemp));
+    }
+    
     //Busca Pais en id.techo.org
     public function GetPais($idPais)
     {

@@ -1,4 +1,7 @@
 oTemporalidad = new Object();	
+oTipo         = new Object();	
+oPilar        = new Object();
+oArea         = new Object();
 
 var columnDefs = [
 	{headerName: 'Indicador', field: 'Indicador', editable: false},
@@ -8,7 +11,7 @@ var columnDefs = [
         editable: true,
         cellEditor:'agSelectCellEditor',
         cellEditorParams: {
-            values: ['Anual', 'Semestral', 'Anual']
+            values: []
         }
     },
     {
@@ -17,7 +20,7 @@ var columnDefs = [
         editable: true,
         cellEditor:'agSelectCellEditor',
         cellEditorParams: {
-            values: ['Acumulado', 'Minimo', 'Ultimo']
+            values: []
         }
     },
     {
@@ -26,7 +29,7 @@ var columnDefs = [
         editable: true,
         cellEditor:'agSelectCellEditor',
         cellEditorParams: {
-            values: ['Desarrollo Institucional', 'Promocion de la Conciencia y Accion Social', 'Incidencia en Política']
+            values: []
         }
     },
     {
@@ -35,25 +38,84 @@ var columnDefs = [
         editable: true,
         cellEditor:'agSelectCellEditor',
         cellEditorParams: {
-            values: ['AFF', 'COM', 'DDF']
+            values: []
         }
     }
 ];
 
+//Temporalidad
 $.ajax({
 	type: "POST",
-	url: "/temporalidades/lista",
+	url: "/temporalidades/lista_temporalidad",
 	dataType: "json",
 	data: oTemporalidad,
 	success: function(oTemporalidad)
 	{	
 		if(oTemporalidad['values'])
 		{
-			console.log(oTemporalidad['values']);
-			
 			columnDefs.forEach(function(o,i) {
 				if(columnDefs[i].field == 'Temporalidad' )  {
 					columnDefs[i].cellEditorParams.values = oTemporalidad['values']
+				}
+			})
+			
+		}
+	}
+});
+
+//Tipos
+$.ajax({
+	type: "POST",
+	url: "/tipos/lista_tipos",
+	dataType: "json",
+	data: oTipo,
+	success: function(oTipo)
+	{	
+		if(oTipo['values'])
+		{
+			columnDefs.forEach(function(o,i) {
+				if(columnDefs[i].field == 'Tipo' )  {
+					columnDefs[i].cellEditorParams.values = oTipo['values']
+				}
+			})
+			
+		}
+	}
+});
+
+//Pilar
+$.ajax({
+	type: "POST",
+	url: "/pilares/lista_pilares",
+	dataType: "json",
+	data: oPilar,
+	success: function(oPilar)
+	{	
+		if(oPilar['values'])
+		{
+			columnDefs.forEach(function(o,i) {
+				if(columnDefs[i].field == 'Pilar' )  {
+					columnDefs[i].cellEditorParams.values = oPilar['values']
+				}
+			})
+			
+		}
+	}
+});
+
+//Area
+$.ajax({
+	type: "POST",
+	url: "/indicadores/listaArea",
+	dataType: "json",
+	data: oArea,
+	success: function(oArea)
+	{	
+		if(oArea['values'])
+		{
+			columnDefs.forEach(function(o,i) {
+				if(columnDefs[i].field == 'Area' )  {
+					columnDefs[i].cellEditorParams.values = oArea['values']
 				}
 			})
 			

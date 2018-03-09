@@ -16,4 +16,18 @@ class TiposController extends BaseController
         $this->renderView('tipos/index', 'layout');
     }
     
+    public function GetTipo()
+    {
+        $model = Container::getModel("Tipo");
+        $aTipos = $model->select();
+        
+        for($i=0; $i < count($aTipos); $i++)
+        {
+            $temporario = (array)$aTipos[$i];
+            $aTemp[$i]  = $temporario['tipo'];
+        }
+        
+        echo json_encode(array("values" => $aTemp));
+    }
+    
 }
