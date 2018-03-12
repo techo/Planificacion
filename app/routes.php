@@ -4,6 +4,8 @@ $route[] = ['/', 'HomeController@index'];
 
 /** Anos **/
 $route[] = ['/anos', 'AnosController@index'];
+$route[] = ['/anos/add/', 'AnosController@add'];
+$route[] = ['/anos/save', 'AnosController@save'];
 
 /** Temporalidades **/
 $route[] = ['/temporalidades', 'TemporalidadesController@index'];
@@ -19,6 +21,7 @@ $route[] = ['/pilares/lista_pilares', 'PilaresController@GetPilar'];
 
 /** Indicadores **/
 $route[] = ['/indicadores', 'IndicadoresController@index'];
-$route[] = ['/indicadores/listaArea', 'IndicadoresController@Areas'];
+$route[] = ['/indicadores/lista_area', 'IndicadoresController@Areas'];
+$route[] = ['/indicadores/lista_indicador', 'IndicadoresController@Indicadores'];
 
 return $route;

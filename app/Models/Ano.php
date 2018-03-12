@@ -32,4 +32,30 @@ class Ano extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function GuardarAno($aParam)
+    {
+        $sql  = "";
+        $sql .= "INSERT INTO {$this->table} (";
+        $sql .= "id, ";
+        $sql .= "ano, ";
+        $sql .= "id_creator, ";
+        $sql .= "id_updater, ";
+        $sql .= "date_insert, ";
+        $sql .= "date_update, ";
+        $sql .= "deleted) VALUES (";
+        $sql .= " NULL, ";
+        $sql .= "'". $aParam['ano']."', ";
+        $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= " 0, ";
+        $sql .= " NOW(), ";
+        $sql .= " '0000-00-00 00:00:00', ";
+        $sql .= " 0)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
 }

@@ -2,6 +2,7 @@ oTemporalidad = new Object();
 oTipo         = new Object();	
 oPilar        = new Object();
 oArea         = new Object();
+oIndicador    = new Object();
 
 var columnDefs = [
 	{headerName: 'Indicador', field: 'Indicador', editable: false},
@@ -106,7 +107,7 @@ $.ajax({
 //Area
 $.ajax({
 	type: "POST",
-	url: "/indicadores/listaArea",
+	url: "/indicadores/lista_area",
 	dataType: "json",
 	data: oArea,
 	success: function(oArea)
@@ -125,13 +126,37 @@ $.ajax({
 
 function getRowData() 
 {
-    var rowData = [];
-    for (var i = 0; i < 5; i++) 
+	var rowData = [];
+	
+	for (var i = 0; i < 3; i++) 
     {
         rowData.push({Indicador: 'Toyota', Temporalidad: 'Celica', Tipo: 'Teste', Pilar: 'Sample 22', Area: 'Sample 23'});
     }
-
-    return rowData;
+	
+	return rowData;
+	
+	//Indicadores
+//	$.ajax({
+//		type: "POST",
+//		url: "/indicadores/lista_indicador",
+//		dataType: "json",
+//		data: oIndicador,
+//		success: function(oIndicador)
+//		{	
+//			if(oIndicador['result'])
+//			{
+//				var rowData = [];
+//				var indicadores = oIndicador['result'];
+//				
+//				for (var i = 0; i < indicadores.length; i++) 
+//			    {
+//			        rowData.push(indicadores[i]);
+//			    }
+//				
+//				return rowData;
+//			}
+//		}
+//	});
 }
 
 var gridOptions = {
@@ -140,7 +165,7 @@ var gridOptions = {
     },
     columnDefs: columnDefs,
     rowData: getRowData(),
-    editType: 'fullRow',
+    editType: 'field',
     onCellValueChanged: function(event) {
         console.log('onCellValueChanged: ' + event.colDef.field + ' = ' + event.newValue);
     },

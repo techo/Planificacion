@@ -137,4 +137,29 @@ class IndicadoresController extends BaseController
         
         return $data;
     }
+    
+    public function Indicadores()
+    {
+        $model = Container::getModel("Indicador");
+        $aIndicadores = $model->select();
+        
+        for($i=0; $i < count($aIndicadores); $i++)
+        {
+            $temporario = (array)$aIndicadores[$i];
+            
+            //Get Area
+            $area = $this->GetArea($temporario['id_area']);
+            
+            //Montagem Array
+            $aTemp[$i]['Indicador']    = $temporario['indicador'];
+            $aTemp[$i]['Temporalidad'] = $temporario['temporalidad'];
+            $aTemp[$i]['Tipo']         = $temporario['tipo'];
+            $aTemp[$i]['Pilar']        = $temporario['pilar'];
+            $aTemp[$i]['Area']         = $area['nombre'];
+            
+        }
+        
+        echo json_encode(array("result" => $aTemp));
+        
+    }
 }
