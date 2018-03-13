@@ -46,4 +46,33 @@ class AnosController extends BaseController
         }
     }
     
+    public function show($id)
+    {
+        $model = Container::getModel("Ano");
+        $this->view->ano = $model->search($id);
+        
+        /* Render View Paises */
+        $this->renderView('anos/edit', 'layout');
+    }
+    
+    public function edit($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['id']  = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
+        $aParam['ano'] = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("Ano");
+        $result = $model->ActualizarAno($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
+    }
+    
 }

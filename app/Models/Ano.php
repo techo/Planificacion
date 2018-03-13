@@ -58,4 +58,31 @@ class Ano extends BaseModel
         
         return $result;
     }
+    
+    public function search($id)
+    {
+        $query = "SELECT * FROM {$this->table} WHERE id=:id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function ActualizarAno($aParam)
+    {
+        $sql  = "";
+        $sql .= "UPDATE {$this->table} SET ";
+        $sql .= "ano               = '" . $aParam['ano']."', ";
+        $sql .= "id_updater        = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update       = NOW() ";
+        $sql .= "WHERE id          = '" . $aParam['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
 }

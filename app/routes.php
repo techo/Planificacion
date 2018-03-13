@@ -6,6 +6,8 @@ $route[] = ['/', 'HomeController@index'];
 $route[] = ['/anos', 'AnosController@index'];
 $route[] = ['/anos/add/', 'AnosController@add'];
 $route[] = ['/anos/save', 'AnosController@save'];
+$route[] = ['/anos/show/{id}', 'AnosController@show'];
+$route[] = ['/anos/edit', 'AnosController@edit'];
 
 /** Temporalidades **/
 $route[] = ['/temporalidades', 'TemporalidadesController@index'];
