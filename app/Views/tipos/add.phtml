@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="row">
+		<h1 class="h1">
+			<?php $this->getPageTitle();?>
+			<hr align="left" noshade="noshade" size="2" width="80%" />
+		</h1>
+	</div>
+ 	<div class="row">
+ 		<form role="form">
+			<div class="box-body">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Tipo</label>
+					<input type="nome" class="form-control" id="tipo">
+				</div>
+               <div class="box-footer">
+                   <div class="col-xs-6">
+                   		<a id="guardar-tipo" class="btn btn-block btn-primary"><i></i>Guardar</a>
+                   </div>
+                    <div class="col-xs-6">
+                               		<a class="btn btn-block btn-primary" href="/tipos"><i></i>Cancelar</a>
+                               </div>
+               </div>
+			</div>
+		</form>
+ 	</div>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/tipo/tipo.js""></script>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script>
+	$("#guardar-tipo").click(function() {
+		GuardarTipo();
+	});
+</script>

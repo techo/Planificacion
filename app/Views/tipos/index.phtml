@@ -4,11 +4,14 @@
 			<?php $this->getPageTitle();?>
 			<hr align="left" noshade="noshade" size="2" width="80%" />
 		</h1>
+		<a type="button" href="/tipos/add/"</a> A&ntilde;adir Tipo</a>
+		<hr align="left" noshade="noshade" size="2" width="80%" />
 	</div>
 	 <?php foreach ($this->view->tipo as $tipo): ?>
  	<div class="row">
  		<p class="text-justify"><?php echo('Id: '. $tipo->id);?></p>
  		<p class="text-justify"><?php echo('Tipo: '. $tipo->tipo);?></p>
+ 		<a type="button" href="/tipos/show/<?php echo($tipo->id);?>"</a> Editar Tipo</a>
  		<hr align="left" noshade="noshade" size="2" width="80%" />
  	</div>
  	<?php endforeach; ?>
