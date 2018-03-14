@@ -24,7 +24,7 @@ class TemporalidadesController extends BaseController
     public function add()
     {
         $this->setPageTitle('Temporalidades');
-        $this->renderView('Temporalidades/add', 'layout');
+        $this->renderView('/temporalidades/add', 'layout');
     }
     
     public function save($aParam)
