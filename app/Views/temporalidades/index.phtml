@@ -4,11 +4,14 @@
 			<?php $this->getPageTitle();?>
 			<hr align="left" noshade="noshade" size="2" width="80%" />
 		</h1>
+		<a type="button" href="/temporalidades/add/"</a> A&ntilde;adir Temporalidad</a>
+		<hr align="left" noshade="noshade" size="2" width="80%" />
 	</div>
 	 <?php foreach ($this->view->temporalidad as $temporalidad): ?>
  	<div class="row">
  		<p class="text-justify"><?php echo('Id: '. $temporalidad->id);?></p>
  		<p class="text-justify"><?php echo('Temporalidad: '. $temporalidad->temporalidad);?></p>
+ 		<a type="button" href="/temporalidades/show/<?php echo($temporalidad->id);?>"</a> Editar Temporalidad</a>
  		<hr align="left" noshade="noshade" size="2" width="80%" />
  	</div>
  	<?php endforeach; ?>

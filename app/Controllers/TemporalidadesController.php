@@ -6,6 +6,11 @@ use Core\Container;
 
 class TemporalidadesController extends BaseController
 {
+    public function __construct()
+    {
+        session_start();
+    }
+    
     public function index()
     {
         $this->setPageTitle('Temporalidades');
@@ -14,6 +19,60 @@ class TemporalidadesController extends BaseController
         
         /* Render View Paises */
         $this->renderView('temporalidades/index', 'layout');
+    }
+    
+    public function add()
+    {
+        $this->setPageTitle('Temporalidades');
+        $this->renderView('Temporalidades/add', 'layout');
+    }
+    
+    public function save($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['temporalidad']  = filter_var($aParam['temporalidad'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("Temporalidad");
+        $result = $model->GuardarTemporalidad($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
+    }
+    
+    public function show($id)
+    {
+        $model = Container::getModel("Temporalidad");
+        $this->view->temporalidad = $model->search($id);
+        
+        /* Render View Temporalidades */
+        $this->renderView('temporalidades/edit', 'layout');
+    }
+    
+    public function edit($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['id']  = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
+        $aParam['temporalidad'] = filter_var($aParam['temporalidad'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("Temporalidad");
+        $result = $model->ActualizarTemporalidad($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
     
     public function GetTemporalidad()
