@@ -4,11 +4,14 @@
 			<?php $this->getPageTitle();?>
 			<hr align="left" noshade="noshade" size="2" width="80%" />
 		</h1>
+		<a type="button" href="/pilares/add/"</a> A&ntilde;adir Pilar</a>
+		<hr align="left" noshade="noshade" size="2" width="80%" />
 	</div>
 	 <?php foreach ($this->view->pilar as $pilar): ?>
  	<div class="row">
  		<p class="text-justify"><?php echo('Id: '. $pilar->id);?></p>
  		<p class="text-justify"><?php echo('Pilar: '. $pilar->pilar);?></p>
+ 		<a type="button" href="/pilares/show/<?php echo($pilar->id);?>"</a> Editar Pilar</a>
  		<hr align="left" noshade="noshade" size="2" width="80%" />
  	</div>
  	<?php endforeach; ?>

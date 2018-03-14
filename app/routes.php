@@ -27,6 +27,10 @@ $route[] = ['/tipos/lista_tipos', 'TiposController@GetTipo'];
 
 /** Pilares **/
 $route[] = ['/pilares', 'PilaresController@index'];
+$route[] = ['/pilares/add/', 'PilaresController@add'];
+$route[] = ['/pilares/save', 'PilaresController@save'];
+$route[] = ['/pilares/show/{id}', 'PilaresController@show'];
+$route[] = ['/pilares/edit', 'PilaresController@edit'];
 $route[] = ['/pilares/lista_pilares', 'PilaresController@GetPilar'];
 
 /** Indicadores **/
