@@ -15,12 +15,15 @@ class HomeController extends BaseController
         //Assume o Token Gerado no Login, em desenvolvimento local usa um token fixo
         if($_SERVER['SERVER_NAME'] != 'localhost')
         {
-            $_SESSION['Planificacion']['token']   = $_GET['token'];
-            
-            //Usuario
             if($_GET['token'])
             {
-                $url = 'http://login.techo.org/api?token='. $_GET['token'];
+                $_SESSION['Planificacion']['token']   = $_GET['token'];
+            }
+            
+            //Usuario
+            if($_SESSION['Planificacion']['token'])
+            {
+                $url = 'http://login.techo.org/api?token='. $_SESSION['Planificacion']['token'];
                 
                 $curl = curl_init();
                 curl_setopt($curl, CURLOPT_URL, $url);
