@@ -20,7 +20,7 @@ class HomeController extends BaseController
                 $_SESSION['Planificacion']['token']   = $_GET['token'];
             }
             
-            //Usuario
+            //Session Producao e Local
             if($_SESSION['Planificacion']['token'])
             {
                 $url = 'http://login.techo.org/api?token='. $_SESSION['Planificacion']['token'];
@@ -36,14 +36,37 @@ class HomeController extends BaseController
                 
                 $data = json_decode($output, TRUE);
                 
-                $_SESSION['Planificacion']['Mail']    = $data['email'];
-                $_SESSION['Planificacion']['user_id'] = $data['id'];
+                $_SESSION['Planificacion']['Mail']      = $data['email'];
+                $_SESSION['Planificacion']['user_id']   = $data['id'];
+                $_SESSION['Planificacion']['sede_id']   = $data['id_sede'];
+                $_SESSION['Planificacion']['area_id']   = $data['id_area'];
+                $_SESSION['Planificacion']['cargo_id']  = $data['id_cargo'];
+                $_SESSION['Planificacion']['Name']      = $data['nombre'];
             }
         }
         else
         {
             $_SESSION['Planificacion']['token']   = '7c9b5c9b9baae1227deb96f1c51a7b61';
-            $_SESSION['Planificacion']['user_id'] = '1';
+            
+            $url = 'http://login.techo.org/api?token='. $_SESSION['Planificacion']['token'];
+            
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            
+            $output = curl_exec($curl);
+            curl_close($curl);
+            
+            $data = json_decode($output, TRUE);
+            
+            $_SESSION['Planificacion']['Mail']      = $data['email'];
+            $_SESSION['Planificacion']['user_id']   = $data['id'];
+            $_SESSION['Planificacion']['sede_id']   = $data['id_sede'];
+            $_SESSION['Planificacion']['area_id']   = $data['id_area'];
+            $_SESSION['Planificacion']['cargo_id']  = $data['id_cargo'];
+            $_SESSION['Planificacion']['Name']      = $data['nombre'];
         }
         
         $this->setPageTitle('Home');
