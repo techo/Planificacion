@@ -32,6 +32,7 @@ class TemporalidadesController extends BaseController
         $aParam = (array) $aParam;
         
         $aParam['temporalidad']  = filter_var($aParam['temporalidad'], FILTER_SANITIZE_STRING);
+        $aParam['status']        = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Temporalidad");
         $result = $model->GuardarTemporalidad($aParam);
@@ -59,8 +60,9 @@ class TemporalidadesController extends BaseController
     {
         $aParam = (array) $aParam;
         
-        $aParam['id']  = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
+        $aParam['id']           = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
         $aParam['temporalidad'] = filter_var($aParam['temporalidad'], FILTER_SANITIZE_STRING);
+        $aParam['status']       = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Temporalidad");
         $result = $model->ActualizarTemporalidad($aParam);
@@ -72,6 +74,17 @@ class TemporalidadesController extends BaseController
         else
         {
             echo json_encode(array("results" => false));
+        }
+    }
+    
+    public function delete($id)
+    {
+        $model  = Container::getModel("Temporalidad");
+        $result = $model->delete($id);
+        
+        if($result)
+        {
+            header('Location: /temporalidades');
         }
     }
     

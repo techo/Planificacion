@@ -2,6 +2,7 @@ function GuardarTemporalidad()
 {
 	oData              = new Object();	
 	oData.temporalidad = $('#temporalidad').val();
+	oData.status       = $('#status').val();
 	
 	$.ajax({
 		type: "POST",
@@ -29,6 +30,7 @@ function ActualizarTemporalidad()
 	oData              = new Object();	
 	oData.id           = $('#id').val();
 	oData.temporalidad = $('#temporalidad').val();
+	oData.status       = $('#status').val();
 	
 	$.ajax({
 		type: "POST",

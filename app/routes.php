@@ -15,6 +15,7 @@ $route[] = ['/temporalidades/add', 'TemporalidadesController@add'];
 $route[] = ['/temporalidades/save', 'TemporalidadesController@save'];
 $route[] = ['/temporalidades/show/{id}', 'TemporalidadesController@show'];
 $route[] = ['/temporalidades/edit', 'TemporalidadesController@edit'];
+$route[] = ['/temporalidades/delete/{id}', 'TemporalidadesController@delete'];
 $route[] = ['/temporalidades/lista_temporalidad', 'TemporalidadesController@GetTemporalidad'];
 
 /** Tipos **/
