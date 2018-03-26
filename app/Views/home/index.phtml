@@ -1,16 +1,28 @@
-﻿<div class="container">
-    <div class="row"></div>
-    <div class="row">
-        <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
-            <h1 class="h1 text-center">Sistema de Planificaci&oacute;n</h1>
-            <p>
-               Home...
-               <?php 
-               session_start();
-               echo('<pre>');
-               echo(print_r($_SESSION, true));
-               ?>
-            </p>
-        </div>
-    </div>
+﻿<div id="wrapper">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>Sistema de Planificaci&oacute;n</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">This is</a>
+                        </li>
+                        <li class="active">
+                            <strong>Home</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="big-box animated fadeInRightBig">
+                    <h3 class="font-bold">Sistema de Planificaci&oacute;n</h3>
+                    <div class="error-desc">
+                        <?php 
+                        session_start(); 
+                        echo('<pre>');
+                        echo(print_r($_SESSION, true))
+                        
+                        ?>
+                    </div>
+                </div>
+            </div>
 </div>

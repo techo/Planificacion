@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="row">
+		<h1 class="h1">
+			<?php $this->getPageTitle();?>
+			<hr align="left" noshade="noshade" size="2" width="80%" />
+		</h1>
+	</div>
+ 	<div class="row">
+ 		<form role="form">
+			<div class="box-body">
+				<div class="form-group">
+					<label for="exampleInputEmail1">A&ntilde;o</label>
+					<input type="nome" class="form-control" id="ano">
+				</div>
+               <div class="box-footer">
+                   <div class="col-xs-6">
+                   		<a id="guardar-ano" class="btn btn-block btn-primary"><i></i>Guardar</a>
+                   </div>
+                    <div class="col-xs-6">
+                               		<a class="btn btn-block btn-primary" href="/anos"><i></i>Cancelar</a>
+                               </div>
+               </div>
+			</div>
+		</form>
+ 	</div>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/ano/ano.js""></script>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script>
+	$("#guardar-ano").click(function() {
+		GuardarAno();
+	});
+</script>

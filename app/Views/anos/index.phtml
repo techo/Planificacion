@@ -1,18 +1,51 @@
-<div class="container">
-	<div class="row">
-		<h1 class="h1">
-			<?php $this->getPageTitle();?>
-			<hr align="left" noshade="noshade" size="2" width="80%" />
-		</h1>
-		<a type="button" href="/anos/add"</a> A&ntilde;adir A&ntilde;o</a>
-		<hr align="left" noshade="noshade" size="2" width="80%" />
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>A&ntilde;os</h2>
+		 <ol class="breadcrumb">
+		 	<li>
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <strong>A&ntilde;os</strong>
+            </li>
+		 </ol>
 	</div>
-	 <?php foreach ($this->view->ano as $ano): ?>
- 	<div class="row">
- 		<p class="text-justify"><?php echo('Id: '. $ano->id);?></p>
- 		<p class="text-justify"><?php echo('A&ntilde;o: '. $ano->ano);?></p>
- 		<a type="button" href="/anos/show/<?php echo($ano->id);?>"</a> Editar A&ntilde;o</a>
- 		<hr align="left" noshade="noshade" size="2" width="80%" />
- 	</div>
- 	<?php endforeach; ?>
+	<div class="col-sm-8">
+		<div class="title-action">
+			<a href="/anos/add" class="btn  btn-success btn-lg">Agregar A&ntilde;o</a>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Listado de A&ntilde;os</h5>
+				</div>
+				<div class="ibox-content">
+					<table class="table table-striped table-bordered table-hover dataTables-example" >
+						<thead>
+                    		<tr>
+                                <th>ID</th>
+                                <th>A&ntilde;o</th>
+                                <th>Status</th>
+                                <th>Opções</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+                    	<?php foreach ($this->view->ano as $ano): ?>
+                    		<tr class="gradeX">
+                    		<td><?php echo($ano->id);?></td>
+                    		<td><?php echo($ano->ano);?></td>
+                    		<td>Ativo</td>
+                    		<td class="center"><a href="#" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Editar</a><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-paste"></i> Duplicar</a><a href="#" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
+                    	<?php endforeach; ?>
+                    	</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
