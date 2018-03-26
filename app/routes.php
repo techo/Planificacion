@@ -24,6 +24,7 @@ $route[] = ['/tipos/add', 'TiposController@add'];
 $route[] = ['/tipos/save', 'TiposController@save'];
 $route[] = ['/tipos/show/{id}', 'TiposController@show'];
 $route[] = ['/tipos/edit', 'TiposController@edit'];
+$route[] = ['/tipos/delete/{id}', 'TiposController@delete'];
 $route[] = ['/tipos/lista_tipos', 'TiposController@GetTipo'];
 
 /** Pilares **/

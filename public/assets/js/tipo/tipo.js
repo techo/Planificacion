@@ -2,6 +2,7 @@ function GuardarTipo()
 {
 	oData          = new Object();	
 	oData.tipo     = $('#tipo').val();
+	oData.status   = $('#status').val();
 	
 	$.ajax({
 		type: "POST",
@@ -29,6 +30,7 @@ function ActualizarTipo()
 	oData          = new Object();	
 	oData.id       = $('#id').val();
 	oData.tipo     = $('#tipo').val();
+	oData.status   = $('#status').val();
 	
 	$.ajax({
 		type: "POST",
