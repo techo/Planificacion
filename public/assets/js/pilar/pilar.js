@@ -2,6 +2,7 @@ function GuardarPilar()
 {
 	oData          = new Object();	
 	oData.pilar    = $('#pilar').val();
+	oData.status   = $('#status').val();
 	
 	$.ajax({
 		type: "POST",
@@ -29,6 +30,7 @@ function ActualizarPilar()
 	oData          = new Object();	
 	oData.id       = $('#id').val();
 	oData.pilar    = $('#pilar').val();
+	oData.status   = $('#status').val();
 	
 	$.ajax({
 		type: "POST",

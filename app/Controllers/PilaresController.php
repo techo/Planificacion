@@ -32,6 +32,7 @@ class PilaresController extends BaseController
         $aParam = (array) $aParam;
         
         $aParam['pilar']  = filter_var($aParam['pilar'], FILTER_SANITIZE_STRING);
+        $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Pilar");
         $result = $model->GuardarPilar($aParam);
@@ -59,8 +60,9 @@ class PilaresController extends BaseController
     {
         $aParam = (array) $aParam;
         
-        $aParam['id']    = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
-        $aParam['pilar'] = filter_var($aParam['pilar'], FILTER_SANITIZE_STRING);
+        $aParam['id']     = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
+        $aParam['pilar']  = filter_var($aParam['pilar'], FILTER_SANITIZE_STRING);
+        $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Pilar");
         $result = $model->ActualizarPilar($aParam);
@@ -72,6 +74,17 @@ class PilaresController extends BaseController
         else
         {
             echo json_encode(array("results" => false));
+        }
+    }
+    
+    public function delete($id)
+    {
+        $model  = Container::getModel("Pilar");
+        $result = $model->delete($id);
+        
+        if($result)
+        {
+            header('Location: /temporalidades');
         }
     }
     

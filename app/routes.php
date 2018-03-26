@@ -33,6 +33,7 @@ $route[] = ['/pilares/add', 'PilaresController@add'];
 $route[] = ['/pilares/save', 'PilaresController@save'];
 $route[] = ['/pilares/show/{id}', 'PilaresController@show'];
 $route[] = ['/pilares/edit', 'PilaresController@edit'];
+$route[] = ['/pilares/delete/{id}', 'PilaresController@delete'];
 $route[] = ['/pilares/lista_pilares', 'PilaresController@GetPilar'];
 
 /** Indicadores **/
