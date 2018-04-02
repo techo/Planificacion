@@ -9,6 +9,11 @@ class TiposController extends BaseController
     public function __construct()
     {
         session_start();
+        
+        if(!isset($_SESSION['Planificacion']['token']))
+        {
+            header('Location: http://login.techo.org/');
+        }
     }
     
     public function index()

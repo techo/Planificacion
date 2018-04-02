@@ -69,6 +69,11 @@ class HomeController extends BaseController
             $_SESSION['Planificacion']['Name']      = $data['nombre'];
         }
         
+        if(!isset($_SESSION['Planificacion']['token']))
+        {
+            header('Location: http://login.techo.org/');
+        }
+        
         $this->setPageTitle('Home');
         $this->renderView('home/index', 'layout');
     }

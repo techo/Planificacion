@@ -12,6 +12,11 @@ abstract class BaseController
     public function __construct()
     {
         $this->view = new \stdClass;
+        session_start();
+        if(!isset($_SESSION['Planificacion']['token']))
+        {
+            header('Location: http://login.techo.org/');
+        }
     }
     
   protected function renderView($path, $layoutPath = null)
