@@ -1,13 +1,7 @@
-//Aceptar solamente numericos
-$('#ano').keyup(function() {
-  $(this).val(this.value.replace(/\D/g, ''));
-});
-
 function GuardarAno()
 {
 	oData          = new Object();	
 	oData.ano      = $('#ano').val();
-	oData.status   = $('#status').val();
 	
 	$.ajax({
 		type: "POST",
@@ -35,7 +29,6 @@ function ActualizarAno()
 	oData          = new Object();	
 	oData.id       = $('#id').val();
 	oData.ano      = $('#ano').val();
-	oData.status   = $('#status').val();
 	
 	$.ajax({
 		type: "POST",

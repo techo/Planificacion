@@ -20,7 +20,6 @@ class Ano extends BaseModel
         $sql .= "SELECT ";
         $sql .= "id,";
         $sql .= "ano, ";
-        $sql .= "situation, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -44,7 +43,6 @@ class Ano extends BaseModel
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
         $sql .= "date_update, ";
-        $sql .= "situation, ";
         $sql .= "deleted) VALUES (";
         $sql .= " NULL, ";
         $sql .= "'". $aParam['ano']."', ";
@@ -52,7 +50,6 @@ class Ano extends BaseModel
         $sql .= " 0, ";
         $sql .= " NOW(), ";
         $sql .= " '0000-00-00 00:00:00', ";
-        $sql .= "'". $aParam['status']."', ";
         $sql .= " 0)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -78,7 +75,6 @@ class Ano extends BaseModel
         $sql  = "";
         $sql .= "UPDATE {$this->table} SET ";
         $sql .= "ano               = '" . $aParam['ano']."', ";
-        $sql .= "situation         = '" . $aParam['status']."', ";
         $sql .= "id_updater        = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update       = NOW() ";
         $sql .= "WHERE id          = '" . $aParam['id']."'";
@@ -87,18 +83,6 @@ class Ano extends BaseModel
         $result = $stmt->rowCount();
         $stmt->closeCursor();
         
-        return $result;
-    }
-    
-    public function delete($id)
-    {
-        $query .= "UPDATE {$this->table} SET ";
-        $query .= "deleted = 1 ";
-        $query .= "WHERE id=:id ";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->bindValue(":id", $id);
-        $result = $stmt->execute();
-        $stmt->closeCursor();
         return $result;
     }
 }

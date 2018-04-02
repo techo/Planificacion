@@ -56,7 +56,7 @@ class IndicadoresController extends BaseController
         $this->renderView('indicadores/index', 'layout');
     }
     
-    //Busca Area en id.techo.org
+    //Busca Area en login.techo.org
     public function GetArea($idArea)
     {
         $url = 'http://id.techo.org/area?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idArea;
@@ -94,13 +94,15 @@ class IndicadoresController extends BaseController
         
         for($i=0; $i < count($data); $i++)
         {
-            $aTemp[$i]  = $data[$i]['Nombre_Area'];
+            $aTemp[$i]['id']   = $data[$i]['ID_Area'];
+            $aTemp[$i]['area'] = $data[$i]['Nombre_Area'];
         }
         
-        echo json_encode(array("values" => $aTemp));
+      //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
     }
     
-    //Busca Pais en id.techo.org
+    //Busca Pais en login.techo.org
     public function GetPais($idPais)
     {
         $url = 'http://id.techo.org/pais?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idPais;
@@ -117,6 +119,32 @@ class IndicadoresController extends BaseController
         $data = json_decode($output, true);
         
         return $data;
+    }
+    
+    public function Paises()
+    {
+        $url = 'http://id.techo.org/pais?api=true&token='.$_SESSION['Planificacion']['token'];
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']   = $data[$i]['ID_Pais'];
+            $aTemp[$i]['pais'] = $data[$i]['Nombre_Pais'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
     }
     
     //Busca Sede en id.techo.org
@@ -136,6 +164,57 @@ class IndicadoresController extends BaseController
         $data = json_decode($output, true);
         
         return $data;
+    }
+    
+    //Apos selecionar Pais no Cadastro de Indicadores, lista as sedes do Pais
+    public function Sedes($idPais)
+    {
+        $url = 'http://id.techo.org/sede?api=true&token='.$_SESSION['Planificacion']['token'].'&id_pais='.$idPais;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']   = $data[$i]['id'];
+            $aTemp[$i]['sede'] = $data[$i]['nombre'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
+    }
+    
+    public function SearchSede($idPais)
+    {
+        $id = (array) $idPais;
+        $id = $id['id'];
+        
+        //Busca Area
+        $result = $this->Sedes($id);
+        
+        $html .= '<div class="col-lg-6">';
+        $html .= '<div class="form-group">';
+        $html .= '<label for="sede">Sede</label>';
+        $html .= '<select  id="sede" class="form-control" >';
+        $html .= '<option value="0">-- SELECCIONE --</option>';
+        foreach ($result as $sede)
+        {
+            $html.= '<option value="'.$sede['id'].'">'.$sede['sede'].'</option>';
+        }
+        $html .= '</select>';
+        $html .= '</div>';
+        $html .= '</div>';
+        
+        echo ($html);
     }
     
     public function Indicadores()
@@ -161,5 +240,70 @@ class IndicadoresController extends BaseController
         
         echo json_encode(array("result" => $aTemp));
         
+    }
+    
+    public function add()
+    {
+        $this->setPageTitle('Indicador');
+        $model = Container::getModel("Indicador");
+        //Busca Temporalidad
+        $this->view->temporalidad = $model->ListaTemporalidad();
+        
+        //Busca Tipo
+        $this->view->tipo  = $model->ListaTipo();
+        
+        //Busca Pilar
+        $this->view->pilar = $model->ListaPilar();
+        
+        //Busca Area
+        $area = $this->Areas();
+        
+        //Convert Array en Object
+        for($i=0; $i < count($area); $i++)
+        {
+            $area[$i] = (object) $area[$i];
+        }
+        //Lista Areas
+        $this->view->area  = $area;
+        
+        //Busca Pais
+        $pais = $this->Paises();
+        
+        //Convert Array en Object
+        for($i=0; $i < count($pais); $i++)
+        {
+            $pais[$i] = (object) $pais[$i];
+        }
+        //Lista Paises
+        $this->view->pais = $pais;
+        
+        //Render View
+        $this->renderView('indicadores/add', 'layout');
+    }
+    
+    public function save($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['indicador']    = filter_var($aParam['indicador'], FILTER_SANITIZE_STRING);
+        $aParam['temporalidad'] = filter_var($aParam['temporalidad'], FILTER_SANITIZE_STRING);
+        $aParam['tipo']         = filter_var($aParam['tipo'], FILTER_SANITIZE_STRING);
+        $aParam['pilar']        = filter_var($aParam['pilar'], FILTER_SANITIZE_STRING);
+        $aParam['pais']         = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
+        $aParam['area']         = filter_var($aParam['area'], FILTER_SANITIZE_STRING);
+        $aParam['sede']         = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
+        $aParam['status']       = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("Indicador");
+        $result = $model->GuardarIndicador($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
 }

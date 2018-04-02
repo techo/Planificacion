@@ -2,7 +2,6 @@
 CREATE TABLE indicador (
    id INT(10) NOT NULL AUTO_INCREMENT,
    indicador VARCHAR(255) NOT NULL COMMENT 'Indicador',
-   id_ano INT(10) NOT NULL COMMENT 'Id Ano',
    id_temporalidad INT(10) NOT NULL COMMENT 'Id Temporalidad',
    id_tipo INT(10) NOT NULL COMMENT 'Id Tipo',
    id_pilar INT(10) NOT NULL COMMENT 'Id Pilar',
@@ -15,7 +14,6 @@ CREATE TABLE indicador (
    date_update DATETIME DEFAULT NULL COMMENT 'last date update',
    deleted INT(1) DEFAULT NULL COMMENT 'Deleted',
   PRIMARY KEY (id),
-  FOREIGN KEY (id_ano) REFERENCES ano(id),
   FOREIGN KEY (id_temporalidad) REFERENCES temporalidad(id),
   FOREIGN KEY (id_tipo) REFERENCES tipo(id),
   FOREIGN KEY (id_pilar) REFERENCES pilar(id)

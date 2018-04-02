@@ -10,15 +10,16 @@
 			<div class="box-body">
 				<div class="form-group">
 					<label for="exampleInputEmail1">A&ntilde;o</label>
-					<input type="nome" class="form-control" id="ano">
+					<input type="nome" class="form-control" id="ano" value="<?php echo($this->view->ano->ano);?>">
+					<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->ano->id);?>">
 				</div>
                <div class="box-footer">
                    <div class="col-xs-6">
-                   		<a id="guardar-ano" class="btn btn-block btn-primary"><i></i>Guardar</a>
+                   		<a id="actualizar-ano" class="btn btn-block btn-primary"><i></i>Actualizar</a>
                    </div>
                     <div class="col-xs-6">
-                               		<a class="btn btn-block btn-primary" href="/anos"><i></i>Cancelar</a>
-                               </div>
+                   		<a class="btn btn-block btn-primary" href="/anos"><i></i>Cancelar</a>
+                   </div>
                </div>
 			</div>
 		</form>
@@ -28,7 +29,7 @@
 <script type="text/javascript" src="/assets/js/ano/ano.js""></script>
 <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
 <script>
-	$("#guardar-ano").click(function() {
-		GuardarAno();
+	$("#actualizar-ano").click(function() {
+		ActualizarAno();
 	});
 </script>

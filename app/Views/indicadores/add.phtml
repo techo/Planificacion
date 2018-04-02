@@ -1,0 +1,125 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>A&ntilde;adir Indicador</h2>
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/indicadores">Indicador</a>
+			</li>
+			<li class="active">
+				<strong>A&ntilde;adir Indicador</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>A&ntilde;adir Indicador</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#tab-1"></a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab-1" class="tab-pane active">
+								<div class="panel-body">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<label for="label">Indicador</label>
+											<input type="text" class="form-control" name="indicador" id="indicador">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="temporalidad">Temporalidad</label>
+        	 								<select  id="temporalidad" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php foreach ($this->view->temporalidad as $temporalidad):?>
+                	 									<option value="<?php echo($temporalidad->id);?>"><?php echo($temporalidad->temporalidad);?></option>
+                	 							<?php endforeach; ?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="tipo">Tipo</label>
+        	 								<select  id="tipo" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php foreach ($this->view->tipo as $tipo):?>
+                	 									<option value="<?php echo($tipo->id);?>"><?php echo($tipo->tipo);?></option>
+                	 							<?php endforeach; ?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="pilar">Pilar</label>
+        	 								<select  id="pilar" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php foreach ($this->view->pilar as $pilar):?>
+                	 									<option value="<?php echo($pilar->id);?>"><?php echo($pilar->pilar);?></option>
+                	 							<?php endforeach; ?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="area">&Aacute;rea</label>
+        	 								<select  id="area" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php foreach ($this->view->area as $area):?>
+                	 									<option value="<?php echo($area->id);?>"><?php echo($area->area);?></option>
+                	 							<?php endforeach; ?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="pais">Pa&iacute;s</label>
+        	 								<select  id="pais" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php foreach ($this->view->pais as $pais):?>
+                	 									<option value="<?php echo($pais->id);?>"><?php echo($pais->pais);?></option>
+                	 							<?php endforeach; ?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div id="loadSede">
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="label">Status</label>
+											<select class="form-control" name="status" id="status">
+												<option value="0">-- SELECCIONE --</option>
+                                                <option value="1">Activo</option>
+                                                <option value="2">Inactivo</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="actions clearfix paddingTop-20">
+							<button type="button" id="guardar-indicador" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
+							<a href="/indicadores" class="btn btn-danger btn-lg pull-right">Cancelar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/assets/js/indicadores/indicadores.js""></script>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script>
+	$("#guardar-indicador").click(function() {
+		GuardarIndicador();
+	});
+</script>

@@ -8,6 +8,7 @@ $route[] = ['/anos/add', 'AnosController@add'];
 $route[] = ['/anos/save', 'AnosController@save'];
 $route[] = ['/anos/show/{id}', 'AnosController@show'];
 $route[] = ['/anos/edit', 'AnosController@edit'];
+$route[] = ['/anos/delete/{id}', 'AnosController@delete'];
 
 /** Temporalidades **/
 $route[] = ['/temporalidades', 'TemporalidadesController@index'];
@@ -38,7 +39,8 @@ $route[] = ['/pilares/lista_pilares', 'PilaresController@GetPilar'];
 
 /** Indicadores **/
 $route[] = ['/indicadores', 'IndicadoresController@index'];
-$route[] = ['/indicadores/lista_area', 'IndicadoresController@Areas'];
-$route[] = ['/indicadores/lista_indicador', 'IndicadoresController@Indicadores'];
+$route[] = ['/indicadores/add', 'IndicadoresController@add'];
+$route[] = ['/indicadores/SearchSede', 'IndicadoresController@SearchSede'];
+$route[] = ['/indicadores/save', 'IndicadoresController@save'];
 
 return $route;
