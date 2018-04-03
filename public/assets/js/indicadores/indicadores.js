@@ -59,3 +59,37 @@ function GuardarIndicador()
 		}
 	});
 }
+
+function ActualizarIndicador()
+{
+	oData              = new Object();	
+	oData.id           = $('#id').val();
+	oData.indicador    = $('#indicador').val();
+	oData.temporalidad = $('#temporalidad').val();
+	oData.tipo         = $('#tipo').val();
+	oData.pilar        = $('#pilar').val();
+	oData.pais         = $('#pais').val();
+	oData.area         = $('#area').val();
+	oData.sede         = $('#sede').val();
+	oData.status       = $('#status').val();
+	
+	$.ajax({
+		type: "POST",
+		url: "/indicadores/edit",
+		dataType: "json",
+		data: oData,
+		success: function(oData)
+		{	
+			if(oData['results'])
+			{
+				alert('Actualizado  con éxito.');
+				location.href = "/indicadores";
+			}
+			else
+			{
+				alert('Erro ao Actualizar.');
+				location.href = "/indicadores";
+			}
+		}
+	});
+}

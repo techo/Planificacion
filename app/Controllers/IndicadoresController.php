@@ -311,4 +311,87 @@ class IndicadoresController extends BaseController
             echo json_encode(array("results" => false));
         }
     }
+    
+    public function show($id)
+    {
+        $model = Container::getModel("Indicador");
+        $this->view->indicador    = $model->search($id);
+        $this->view->temporalidad = $model->ListaTemporalidad();
+        $this->view->tipo         = $model->ListaTipo();
+        $this->view->pilar        = $model->ListaPilar();
+        
+        //Busca Area
+        $area = $this->Areas();
+        
+        //Convert Array en Object
+        for($i=0; $i < count($area); $i++)
+        {
+            $area[$i] = (object) $area[$i];
+        }
+        //Lista Areas
+        $this->view->area  = $area;
+        
+        //Busca Pais
+        $pais = $this->Paises();
+        
+        //Convert Array en Object
+        for($i=0; $i < count($pais); $i++)
+        {
+            $pais[$i] = (object) $pais[$i];
+        }
+        //Lista Paises
+        $this->view->pais = $pais;
+        
+        //Busca Sedes
+        $sede = $this->Sedes($this->view->indicador->id_pais);
+        
+        //Convert Array en Object
+        for($i=0; $i < count($sede); $i++)
+        {
+            $sede[$i] = (object) $sede[$i];
+        }
+        //Lista Paises
+        $this->view->sede = $sede;
+        
+        /* Render View Paises */
+        $this->renderView('indicadores/edit', 'layout');
+    }
+    
+    public function edit($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['id']           = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
+        $aParam['indicador']    = filter_var($aParam['indicador'], FILTER_SANITIZE_STRING);
+        $aParam['temporalidad'] = filter_var($aParam['temporalidad'], FILTER_SANITIZE_STRING);
+        $aParam['tipo']         = filter_var($aParam['tipo'], FILTER_SANITIZE_STRING);
+        $aParam['pilar']        = filter_var($aParam['pilar'], FILTER_SANITIZE_STRING);
+        $aParam['pais']         = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
+        $aParam['area']         = filter_var($aParam['area'], FILTER_SANITIZE_STRING);
+        $aParam['sede']         = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
+        $aParam['status']       = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("Indicador");
+        $result = $model->ActualizarIndicador($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
+    }
+    
+    public function delete($id)
+    {
+        $model  = Container::getModel("Indicador");
+        $result = $model->delete($id);
+        
+        if($result)
+        {
+            header('Location: /indicadores');
+        }
+    }
 }

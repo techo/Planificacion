@@ -1,0 +1,225 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Editar Indicador</h2>
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/indicadores">Indicadores</a>
+			</li>
+			<li class="active">
+				<strong>Editar Indicador</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>Editar Indicador</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#tab-1"></a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab-1" class="tab-pane active">
+								<div class="panel-body">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<label for="label">Indicador</label>
+											<input type="text" class="form-control" name="indicador" id="indicador" value="<?php echo($this->view->indicador->indicador);?>">
+										</div>
+									</div>
+									<div class="col-lg-6">
+                                    	<div class="form-group">
+                                    		<label for="temporalidad">Temporalidad</label>
+                                    		<select  id="temporalidad" class="form-control" >
+                                    			<option value="0">-- SELECCIONE --</option>
+                                    			<?php 
+                                    				foreach ($this->view->temporalidad as $temporalidad)
+                                    				{
+                                    				   if($this->view->indicador->id_temporalidad == $temporalidad->id)
+                                    				  {
+                                    					  $ComboTemporalidad.= '<option selected value="'.$temporalidad->id.'">'.$temporalidad->temporalidad.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    					  $ComboTemporalidad.= '<option value="'.$temporalidad->id.'">'.$temporalidad->temporalidad.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboTemporalidad);?>
+                                    		</select>
+                                    	</div>
+                                    </div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="tipo">Tipo</label>
+        	 								<select  id="tipo" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php 
+                                    				foreach ($this->view->tipo as $tipo)
+                                    				{
+                                    				    if($this->view->indicador->id_tipo == $tipo->id)
+                                    				  {
+                                    				      $ComboTipo.= '<option selected value="'.$tipo->id.'">'.$tipo->tipo.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    				      $ComboTipo.= '<option value="'.$tipo->id.'">'.$tipo->tipo.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboTipo);?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="pilar">Pilar</label>
+        	 								<select  id="pilar" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php 
+                                    				foreach ($this->view->pilar as $pilar)
+                                    				{
+                                    				    if($this->view->indicador->id_pilar == $pilar->id)
+                                    				  {
+                                    				      $ComboPilar.= '<option selected value="'.$pilar->id.'">'.$pilar->pilar.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    				      $ComboPilar.= '<option value="'.$pilar->id.'">'.$pilar->pilar.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboPilar);?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="area">&Aacute;rea</label>
+        	 								<select  id="area" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php 
+                                    				foreach ($this->view->area as $area)
+                                    				{
+                                    				    if($this->view->indicador->id_area == $area->id)
+                                    				  {
+                                    				      $ComboArea.= '<option selected value="'.$area->id.'">'.$area->area.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    				      $ComboArea.= '<option value="'.$area->id.'">'.$area->area.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboArea);?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="pais">Pa&iacute;s</label>
+        	 								<select  id="pais" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php 
+                                    				foreach ($this->view->pais as $pais)
+                                    				{
+                                    				    if($this->view->indicador->id_pais == $pais->id)
+                                    				  {
+                                    				      $ComboPais.= '<option selected value="'.$pais->id.'">'.$pais->pais.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    				      $ComboPais.= '<option value="'.$pais->id.'">'.$pais->pais.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboPais);?>
+                	 						</select>
+            	 						</div>
+									</div>
+									<div id="loadSede">
+									<?php
+									if($this->view->indicador->id_pais != 0)
+									   {
+									       $html .= '<div class="col-lg-6">';
+									       $html .= '<div class="form-group">';
+									       $html .= '<label for="sede">Sede</label>';
+									       $html .= '<select  id="sede" class="form-control" >';
+									       $html .= '<option value="0">-- SELECCIONE --</option>';
+									       foreach ($this->view->sede as $sede)
+									       {
+									           if($this->view->indicador->id_sede == $sede->id)
+									           {
+									               $html.= '<option selected value="'.$sede->id.'">'.$sede->sede.'</option>';
+									           }
+									           else
+									           {
+									               $html.= '<option value="'.$sede->id.'">'.$sede->sede.'</option>';
+									           }
+									       }
+									       $html .= '</select>';
+									       $html .= '</div>';
+									       $html .= '</div>';
+									       
+									       echo ($html);
+									   }
+									?>
+									</div>
+									<div class="col-lg-6">
+									 <?php 
+                                            if($this->view->indicador->situation == 0)
+                                            {
+                                                $selecionar = 'selected';
+                                            }
+                                            
+                                            if($this->view->indicador->situation == 1)
+                                            {
+                                                $activo = 'selected';
+                                            }
+                                            
+                                            if($this->view->indicador->situation == 2)
+                                            {
+                                                $inactivo = 'selected';
+                                            }
+                                        ?>
+										<div class="form-group">
+											<label for="label">Status</label>
+											<select class="form-control" name="status" id="status">
+												<option <?php echo ($selecionar);?> value="0">-- Seleccionar --</option>
+                                    	<option <?php echo ($activo);?> value="1">Activo</option>
+                                    	<option <?php echo ($inactivo);?> value="2">Inactivo</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->indicador->id);?>">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="actions clearfix paddingTop-20">
+							<button type="button" id="actualizar-indicador" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
+							<a href="/indicadores" class="btn btn-danger btn-lg pull-right">Cancelar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/assets/js/indicadores/indicadores.js""></script>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script>
+	$("#actualizar-indicador").click(function() {
+		ActualizarIndicador();
+	});
+</script>

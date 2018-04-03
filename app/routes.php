@@ -42,5 +42,8 @@ $route[] = ['/indicadores', 'IndicadoresController@index'];
 $route[] = ['/indicadores/add', 'IndicadoresController@add'];
 $route[] = ['/indicadores/SearchSede', 'IndicadoresController@SearchSede'];
 $route[] = ['/indicadores/save', 'IndicadoresController@save'];
+$route[] = ['/indicadores/show/{id}', 'IndicadoresController@show'];
+$route[] = ['/indicadores/edit', 'IndicadoresController@edit'];
+$route[] = ['/indicadores/delete/{id}', 'IndicadoresController@delete'];
 
 return $route;

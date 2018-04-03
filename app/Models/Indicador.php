@@ -122,4 +122,50 @@ class Indicador extends BaseModel
         return $result;
     }
     
+    public function search($id)
+    {
+        $query = "SELECT * FROM {$this->table} WHERE id=:id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function ActualizarIndicador($aParam)
+    {
+        $sql  = "";
+        $sql .= "UPDATE {$this->table} SET ";
+        $sql .= "indicador       = '" . $aParam['indicador']."', ";
+        $sql .= "id_temporalidad = '" . $aParam['temporalidad']."', ";
+        $sql .= "id_tipo         = '" . $aParam['tipo']."', ";
+        $sql .= "id_pilar        = '" . $aParam['pilar']."', ";
+        $sql .= "id_pais         = '" . $aParam['pais']."', ";
+        $sql .= "id_area         = '" . $aParam['area']."', ";
+        $sql .= "id_sede         = '" . $aParam['sede']."', ";
+        $sql .= "situation       = '" . $aParam['status']."', ";
+        $sql .= "id_updater        = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update       = NOW() ";
+        $sql .= "WHERE id          = '" . $aParam['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
+    
+    public function delete($id)
+    {
+        $query .= "UPDATE {$this->table} SET ";
+        $query .= "deleted = 1 ";
+        $query .= "WHERE id=:id ";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }
