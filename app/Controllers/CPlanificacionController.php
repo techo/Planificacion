@@ -84,4 +84,103 @@ class CPlanificacionController extends BaseController
         
         return $data;
     }
+    
+    public function Paises()
+    {
+        $url = 'http://id.techo.org/pais?api=true&token='.$_SESSION['Planificacion']['token'];
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']   = $data[$i]['ID_Pais'];
+            $aTemp[$i]['pais'] = $data[$i]['Nombre_Pais'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
+    }
+    
+    //Apos selecionar Pais no Cadastro de Indicadores, lista as sedes do Pais
+    public function Sedes($idPais)
+    {
+        $url = 'http://id.techo.org/sede?api=true&token='.$_SESSION['Planificacion']['token'].'&id_pais='.$idPais;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']   = $data[$i]['id'];
+            $aTemp[$i]['sede'] = $data[$i]['nombre'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
+    }
+    
+    public function SearchSede($idPais)
+    {
+        $id = (array) $idPais;
+        $id = $id['id'];
+        
+        //Busca Area
+        $result = $this->Sedes($id);
+        
+        $html .= '<div class="col-lg-6">';
+        $html .= '<div class="form-group">';
+        $html .= '<label for="sede">Sede</label>';
+        $html .= '<select  id="sede" class="form-control" >';
+        $html .= '<option value="0">-- SELECCIONE --</option>';
+        foreach ($result as $sede)
+        {
+            $html.= '<option value="'.$sede['id'].'">'.$sede['sede'].'</option>';
+        }
+        $html .= '</select>';
+        $html .= '</div>';
+        $html .= '</div>';
+        
+        echo ($html);
+    }
+    
+    public function add()
+    {
+        $this->setPageTitle('CPlanificacion');
+        $model = Container::getModel("cplanificacion");
+        
+        //Busca Anos
+        $this->view->ano = $model->ListaAno();
+        
+        //Busca Pais
+        $pais = $this->Paises();
+        
+        //Convert Array en Object
+        for($i=0; $i < count($pais); $i++)
+        {
+            $pais[$i] = (object) $pais[$i];
+        }
+        //Lista Paises
+        $this->view->pais = $pais;
+        
+        $this->renderView('cplanificacion/add', 'layout');
+    }
 }

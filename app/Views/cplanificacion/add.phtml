@@ -1,15 +1,15 @@
 <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2>Nova Meta</h2>
+                    <h2>Crear Planificaci&oacute;n</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="/">Dashboard</a>
+                            <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="/produtos.php">Metas</a>
+                            <a href="/cplanificacion">Listado Planificaci&oacute;n</a>
                         </li>
                         <li class="active">
-                            <strong>Nova Metas</strong>
+                            <strong>Crear Planificaci&oacute;n</strong>
                         </li>
                     </ol>
                 </div>
@@ -20,28 +20,47 @@
                     <div class="col-lg-12">
                         <div class="ibox">
                             <div class="ibox-title">
-                            <h5>Nova Meta</h5>
+                            <h5>Planificaci&oacute;n</h5>
                         </div>
                     <div class="ibox-content">
                         <div class="tabs-container">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab-1"> KPI's</a></li>
-                            <li class=""><a data-toggle="tab" href="#tab-2">Prazos</a></li>
-                            <li class=""><a data-toggle="tab" href="#tab-3">Indice de Excelencia</a></li>
+                            <li class="active"><a data-toggle="tab" href="#tab-1">Indicadores</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-2">Plazos</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
                                 <div class="panel-body">
                                     <div class="col-lg-6">
-                                        <div class="form-group">
-                                        <label for="label">Ano</label>
-                                        <input type="text" class="form-control" name="ano">
-                                        </div>
-                                    </div>
+										<div class="form-group">
+    	 									<label for="ano">A&ntilde;o</label>
+        	 								<select  id="ano" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php foreach ($this->view->ano as $ano):?>
+                	 									<option value="<?php echo($ano->id);?>"><?php echo($ano->ano);?></option>
+                	 							<?php endforeach; ?>
+                	 						</select>
+            	 						</div>
+									</div>
+									
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="pais">Pa&iacute;s</label>
+        	 								<select  id="pais" class="form-control" >
+        	 									<option value="0">-- SELECCIONE --</option>
+                	 							<?php foreach ($this->view->pais as $pais):?>
+                	 									<option value="<?php echo($pais->id);?>"><?php echo($pais->pais);?></option>
+                	 							<?php endforeach; ?>
+                	 						</select>
+            	 						</div>
+									</div>
+									
+									<div id="loadSede">
+									</div>
                                     
                                     <div class="col-lg-12">
                                         <hr>
-                                        <h2>Escolha os KPI's para o ano</h2>
+                                        <h2>Elija los Indicadores para el a&ntilde;o</h2>
                                         <table id="example" class="display" style="width:100%">
                                             <thead>
                                                 <tr>
@@ -200,7 +219,7 @@
                                             </thead>
                                             <tbody>
                                             <tr class="gradeX">
-                                                <td>Janeiro</td>
+                                                <td>Enero</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -215,7 +234,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeC">
-                                                <td>Fevereiro</td>
+                                                <td>Febrero</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -230,7 +249,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Março</td>
+                                                <td>Marzo</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -260,7 +279,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Maio</td>
+                                                <td>Mayo</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -275,7 +294,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Junho</td>
+                                                <td>Junio</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -290,7 +309,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Julho</td>
+                                                <td>Julio</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -320,7 +339,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Setembro</td>
+                                                <td>Septiembre</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -335,7 +354,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Outubro</td>
+                                                <td>Octubre</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -350,7 +369,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Novembro</td>
+                                                <td>Novimbre</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -365,7 +384,7 @@
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
-                                                <td>Dezembro</td>
+                                                <td>Deciembre</td>
                                                 <td>
                                                     <select class="form-control" name="status">
                                                         <option>En edición</option>
@@ -380,173 +399,16 @@
                                                 </td>
                                             </tr>
                                             </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <th>Meses</th>
-                                                <th>Plan</th>
-                                                <th>Real</th>
-                                            </tr>
-                                            </tfoot>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
 
                         </div>
-                            <div id="tab-3" class="tab-pane">
-                                <div class="panel-body">
-                                    <div class="col-lg-12">
-                                        <div class="col-lg-12">
-                                        <hr>
-                                        <h2>Escolha os Indices de Excelencia para o ano</h2>
-                                        <table id="example2" class="display" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Indicador</th>
-                                                    <th>Tipo</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                
-                                            </tbody>
-                                            <tfoot>
-                                            </tfoot>
-                                        </table>
-                                    </div> 
-                                    </div>
-                                </div>
-                            </div>
-
                     </div>
                     <div class="actions clearfix paddingTop-20">
-<button type="button" class="btn btn-success btn-lg pull-right btn-salvar"><i class="fa fa-plus"></i> Salvar</button>
-<button type="button" class="btn btn-danger btn-lg pull-right"><i class="fa fa-trash"></i> Cancelar</button>
+                        <button type="button" id="guardar-planificacion" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
+							<a href="/cplanificacion" class="btn btn-danger btn-lg pull-right">Cancelar</a>
                     </div>
 
                         </div>
@@ -590,13 +452,9 @@
                 },
                 order: [[ 1, 'asc' ]]
             } );
-
-                $('.dataTables-example').dataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-
-            });
         });
 
     </script>
+    <script type="text/javascript" src="/assets/js/cplanificacion/cplanificacion.js""></script>
+    <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+   

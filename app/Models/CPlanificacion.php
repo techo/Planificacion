@@ -61,4 +61,24 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function ListaAno()
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= "id,";
+        $sql .= "ano, ";
+        $sql .= "situation, ";
+        $sql .= "id_creator, ";
+        $sql .= "id_updater, ";
+        $sql .= "date_insert, ";
+        $sql .= "date_update ";
+        $sql .= " FROM ano ";
+        $sql .= "WHERE deleted = 0 ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
 }
