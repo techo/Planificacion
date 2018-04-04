@@ -66,143 +66,28 @@
                                                 <tr>
                                                     <th></th>
                                                     <th>Indicador</th>
+                                                    <th>Temporalidad</th>
                                                     <th>Tipo</th>
+                                                    <th>Pilar Estrat&eacute;gico</th>
+                                                     <th>&Aacute;rea</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PAA - País Auditado Anualmenten</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>PLDV - Promedio Libre Disposición Vivienda</td>
-                                                    <td>DFF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>%FR - Porcentaje de Fondos Restringidos</td>
-                                                    <td>AFF</td>
-                                                </tr>
-                                                
+                                                <?php foreach ($this->view->indicador as $indicador): ?>
+                        							<tr>
+                                            		<td></td>
+                                            		<td><?php echo($indicador->indicador);?></td>
+                                            		<td><?php echo($indicador->temporalidad);?></td>
+                                            		<td><?php echo($indicador->tipo);?></td>
+                                            		<td><?php echo($indicador->pilar);?></td>
+                                            		<td><?php echo($indicador->area);?></td>
+                                            		</tr>
+                                            	<?php endforeach; ?>
                                             </tbody>
                                             <tfoot>
                                             </tfoot>
                                         </table>
                                     </div>
-                            
-
                                 </div>
                             </div>
                             <div id="tab-2" class="tab-pane">
@@ -408,7 +293,7 @@
                     </div>
                     <div class="actions clearfix paddingTop-20">
                         <button type="button" id="guardar-planificacion" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
-							<a href="/cplanificacion" class="btn btn-danger btn-lg pull-right">Cancelar</a>
+						<a href="/cplanificacion" class="btn btn-danger btn-lg pull-right">Cancelar</a>
                     </div>
 
                         </div>

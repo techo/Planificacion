@@ -74,7 +74,39 @@ class CPlanificacion extends BaseModel
         $sql .= "date_insert, ";
         $sql .= "date_update ";
         $sql .= " FROM ano ";
-        $sql .= "WHERE deleted = 0 ";
+        $sql .= "WHERE deleted = 0 AND situation = 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function ListaIndicador()
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= "indicador.id,";
+        $sql .= "indicador.indicador, ";
+        $sql .= "indicador.situation, ";
+        $sql .= "indicador.id_temporalidad, ";
+        $sql .= "temporalidad.temporalidad, ";
+        $sql .= "indicador.id_tipo, ";
+        $sql .= "tipo.tipo, ";
+        $sql .= "indicador.id_pilar, ";
+        $sql .= "pilar.pilar, ";
+        $sql .= "indicador.id_pais, ";
+        $sql .= "indicador.id_area, ";
+        $sql .= "indicador.id_sede, ";
+        $sql .= "indicador.id_creator, ";
+        $sql .= "indicador.id_updater, ";
+        $sql .= "indicador.date_insert, ";
+        $sql .= "indicador.date_update ";
+        $sql .= "FROM indicador ";
+        $sql .= "INNER JOIN temporalidad ON temporalidad.id = indicador.id_temporalidad ";
+        $sql .= "INNER JOIN tipo ON tipo.id = indicador.id_tipo ";
+        $sql .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
+        $sql .= "WHERE indicador.deleted = 0 ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

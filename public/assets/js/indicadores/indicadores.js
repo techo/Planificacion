@@ -73,6 +73,12 @@ function ActualizarIndicador()
 	oData.sede         = $('#sede').val();
 	oData.status       = $('#status').val();
 	
+	//Caso seja para todos os paises, tbm e para todas as sedes
+	if($("#pais").val() == 0)
+	{
+		oData.sede = 0;
+	}
+	
 	$.ajax({
 		type: "POST",
 		url: "/indicadores/edit",

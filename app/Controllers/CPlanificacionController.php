@@ -162,6 +162,26 @@ class CPlanificacionController extends BaseController
         echo ($html);
     }
     
+    //Busca Area en login.techo.org
+    public function GetArea($idArea)
+    {
+        $url = 'http://id.techo.org/area?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idArea;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        return $data;
+    }
+    
     public function add()
     {
         $this->setPageTitle('CPlanificacion');
@@ -180,6 +200,20 @@ class CPlanificacionController extends BaseController
         }
         //Lista Paises
         $this->view->pais = $pais;
+        
+        $this->view->indicador = $model->ListaIndicador();
+        
+        for($i=0; $i < count($this->view->indicador); $i++)
+        {
+            $aKPI[$i] = (array) $this->view->indicador[$i];
+            
+            //Get Area
+            $area = $this->GetArea($aKPI[$i]['id_area']);
+            $aKPI[$i]['area'] = $area['nombre'];
+            
+            $this->view->indicador[$i] = (object) $aKPI[$i];
+            
+        }
         
         $this->renderView('cplanificacion/add', 'layout');
     }
