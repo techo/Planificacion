@@ -65,17 +65,19 @@
                                             <thead>
                                                 <tr>
                                                     <th></th>
+                                                    <th hidden></th>
                                                     <th>Indicador</th>
                                                     <th>Temporalidad</th>
                                                     <th>Tipo</th>
                                                     <th>Pilar Estrat&eacute;gico</th>
-                                                     <th>&Aacute;rea</th>
+                                                    <th>&Aacute;rea</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($this->view->indicador as $indicador): ?>
                         							<tr>
                                             		<td></td>
+                                            		<td hidden><?php echo($indicador->id);?></td>
                                             		<td><?php echo($indicador->indicador);?></td>
                                             		<td><?php echo($indicador->temporalidad);?></td>
                                             		<td><?php echo($indicador->tipo);?></td>
@@ -106,180 +108,180 @@
                                             <tr class="gradeX">
                                                 <td>Enero</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="enero-plan" id="enero-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="enero-real" id="enero-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeC">
                                                 <td>Febrero</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="febrero-plan" id="febrero-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="febrero-real" id="febrero-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Marzo</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="marzo-plan" id="marzo-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="marzo-real" id="marzo-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Abril</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="abril-plan" id="abril-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="abril-real" id="abril-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Mayo</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="mayo-plan" id="mayo-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="mayo-real" id="mayo-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Junio</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="junio-plan" id="junio-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="junio-real" id="junio-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Julio</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="julio-plan" id="julio-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="julio-real" id="julio-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Agosto</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="agosto-plan" id="agosto-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="agosto-real" id="agosto-real">
+                                                      <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Septiembre</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="septiembre-plan" id="septiembre-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="septiembre-real" id="septiembre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Octubre</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="octubre-plan" id="octubre-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="octubre-real" id="octubre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Novimbre</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="noviembre-plan" id="noviembre-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="noviembre-real" id="noviembre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr class="gradeA">
                                                 <td>Deciembre</td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="deciembre-plan" id="deciembre-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="status">
-                                                        <option>En edición</option>
-                                                        <option>Cerrado</option>
+                                                    <select class="form-control" name="deciembre-real" id="deciembre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -304,42 +306,38 @@
 
 <script>
          $(document).ready(function(){
-            $('.chosen-select').chosen({width: "100%"});
-             $(".select2_demo_2").select2();
-
-            //Checkbox KPIS
              $('#example').DataTable( {
             	 "language": {
                      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                  },
                 columnDefs: [ {
                     className: 'select-checkbox',
-                    targets:   0
+                    targets:   0, 
+                    checkboxes: {selectRow: true}
                 } ],
                 select: {
-                    style:    'os',
+                    style:    'multi',
                     selector: 'td:first-child'
                 },
                 order: [[ 1, 'asc' ]]
             } );
 
-            $('#example2').DataTable( {
-           	 "language": {
-                 "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-             },
-                columnDefs: [ {
-                    className: 'select-checkbox',
-                    targets:   0
-                } ],
-                select: {
-                    style:    'os',
-                    selector: 'td:first-child'
-                },
-                order: [[ 1, 'asc' ]]
-            } );
+             var table = $('#example').DataTable();
+
+             $('#example tbody').on( 'click', 'tr', function () {
+                 $(this).toggleClass('selected');
+             } );
+          
+//              $('#button').click( function () {
+//                  console.log(table.rows('.selected').data());
+//              } );
+
+             $("#guardar-planificacion").click(function() {
+          		GuardarPlanificacion(table.rows('.selected').data());
+          	});
+             
         });
 
     </script>
     <script type="text/javascript" src="/assets/js/cplanificacion/cplanificacion.js""></script>
     <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
-   

@@ -184,7 +184,7 @@ class CPlanificacionController extends BaseController
     
     public function add()
     {
-        $this->setPageTitle('CPlanificacion');
+        $this->setPageTitle('Crear Planificacion');
         $model = Container::getModel("cplanificacion");
         
         //Busca Anos
@@ -216,5 +216,32 @@ class CPlanificacionController extends BaseController
         }
         
         $this->renderView('cplanificacion/add', 'layout');
+    }
+    
+    public function save($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $indicadores = explode(',',$aParam['indicadores']);
+        $indicadores = array_filter($indicadores);
+        
+        $aParam['ano']  = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
+        $aParam['pais'] = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
+        $aParam['sede'] = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("Indicador");
+        //Grava Planificacion
+        $result = $model->GuardarPlanificacion($aParam);
+        
+        //Se gravar com Sucesso grava os filhos (Indicadores)
+        if($result)
+        {
+            //Implementar um for para gravar 1 a 1...
+            $result = $model->GuardarDetalheIndicadores($indicadores);
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
 }
