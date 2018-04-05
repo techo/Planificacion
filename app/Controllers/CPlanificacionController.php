@@ -293,6 +293,60 @@ class CPlanificacionController extends BaseController
         //Lista Paises
         $this->view->sede = $sede;
         
+        //Todos Indicadores Cadastrados
+        $this->view->indicador = $model->ListaIndicador();
+        
+        for($i=0; $i < count($this->view->indicador); $i++)
+        {
+            $aKPI[$i] = (array) $this->view->indicador[$i];
+            
+            //Get Area
+            $area = $this->GetArea($aKPI[$i]['id_area']);
+            $aKPI[$i]['area'] = $area['nombre'];
+            
+       //     $this->view->indicador[$i] = (object) $aKPI[$i];
+            
+        }
+        
+        //Lista de Indicadores do Registro em Edicao
+        $aIndicadores = $model->KpisRegistro($this->view->cplanificacion[0]->id);
+        $j = 0;
+        
+        //Verificar quais estao selecionados e quais nao para formar a lista
+        for($i=0; $i < count($aKPI); $i++)
+        {
+            $aTeste = (array) $aIndicadores[$j];
+            
+            if($aKPI[$i]['id'] == $aTeste['id_indicador'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$aKPI[$i]['id'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['indicador'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['temporalidad'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['tipo'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['pilar'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['area'].'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            else 
+            {
+                $html .= '<tr>';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$aKPI[$i]['id'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['indicador'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['temporalidad'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['tipo'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['pilar'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['area'].'</td>';
+                $html .= '</tr>';
+            }
+        }
+        
+        //Devolvo o HTML
+        $this->view->indicadores = $html;
+        
         /* Render View Temporalidades */
         $this->renderView('cplanificacion/edit', 'layout');
     }

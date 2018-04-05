@@ -320,4 +320,56 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function KpisRegistro($idPlanificacion)
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= "indicador.indicador,";
+        $sql .= "temporalidad.temporalidad,";
+        $sql .= "tipo.tipo,";
+        $sql .= "pilar.pilar,";
+        $sql .= "dplanificacion.id,";
+        $sql .= "dplanificacion.id_cplanificacion, ";
+        $sql .= "dplanificacion.id_indicador, ";
+        $sql .= "dplanificacion.enero_plan, ";
+        $sql .= "dplanificacion.enero_real, ";
+        $sql .= "dplanificacion.febrero_plan, ";
+        $sql .= "dplanificacion.febrero_real, ";
+        $sql .= "dplanificacion.marzo_plan, ";
+        $sql .= "dplanificacion.marzo_real, ";
+        $sql .= "dplanificacion.abril_plan, ";
+        $sql .= "dplanificacion.abril_real, ";
+        $sql .= "dplanificacion.mayo_plan, ";
+        $sql .= "dplanificacion.mayo_real, ";
+        $sql .= "dplanificacion.junio_plan, ";
+        $sql .= "dplanificacion.junio_real, ";
+        $sql .= "dplanificacion.julio_plan, ";
+        $sql .= "dplanificacion.julio_real, ";
+        $sql .= "dplanificacion.agosto_plan, ";
+        $sql .= "dplanificacion.agosto_real, ";
+        $sql .= "dplanificacion.septiembre_plan, ";
+        $sql .= "dplanificacion.septiembre_real, ";
+        $sql .= "dplanificacion.octubre_plan, ";
+        $sql .= "dplanificacion.octubre_real, ";
+        $sql .= "dplanificacion.noviembre_plan, ";
+        $sql .= "dplanificacion.noviembre_real, ";
+        $sql .= "dplanificacion.diciembre_plan, ";
+        $sql .= "dplanificacion.diciembre_real, ";
+        $sql .= "dplanificacion.id_creator, ";
+        $sql .= "dplanificacion.id_updater, ";
+        $sql .= "dplanificacion.date_insert, ";
+        $sql .= "dplanificacion.date_update ";
+        $sql .= "FROM dplanificacion ";
+        $sql .= "LEFT JOIN indicador ON indicador.id = dplanificacion.id_indicador ";
+        $sql .= "LEFT JOIN temporalidad ON temporalidad.id = indicador.id_temporalidad ";
+        $sql .= "LEFT JOIN tipo ON tipo.id = indicador.id_tipo ";
+        $sql .= "LEFT JOIN pilar ON pilar.id = indicador.id_pilar ";
+        $sql .= "WHERE dplanificacion.deleted = 0 AND dplanificacion.id_cplanificacion = " . $idPlanificacion;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
 }
