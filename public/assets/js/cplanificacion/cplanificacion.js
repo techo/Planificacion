@@ -28,6 +28,7 @@ function GuardarPlanificacion(indicadores)
 	oData.ano          = $('#ano').val();
 	oData.pais         = $('#pais').val();
 	oData.sede         = $('#sede').val();
+	oData.status       = $('#status').val();
 	
 	//Criar um Array com os Indicadores a serem gravados
 	$(indicadores).each(function(index) 
@@ -74,12 +75,12 @@ function GuardarPlanificacion(indicadores)
 			if(oData['results'])
 			{
 				alert('Grabado con éxito.');
-				location.href = "/indicadores";
+				location.href = "/cplanificacion";
 			}
 			else
 			{
 				alert('Erro ao Grabar.');
-				location.href = "/indicadores";
+				location.href = "/cplanificacion";
 			}
 		}
 	});

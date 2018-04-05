@@ -1,35 +1,395 @@
-<div class="container">
-	<div class="row">
-		<h1 class="h1">
-			<?php $this->getPageTitle();?>
-			<hr align="left" noshade="noshade" size="2" width="80%" />
-		</h1>
-	</div>
- 	<div class="row">
- 		<form role="form">
-			<div class="box-body">
-				<div class="form-group">
-					<label for="exampleInputEmail1">A&ntilde;o</label>
-					<input type="nome" class="form-control" id="ano" value="<?php echo($this->view->ano->ano);?>">
-					<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->ano->id);?>">
-				</div>
-               <div class="box-footer">
-                   <div class="col-xs-6">
-                   		<a id="actualizar-ano" class="btn btn-block btn-primary"><i></i>Actualizar</a>
-                   </div>
-                    <div class="col-xs-6">
-                   		<a class="btn btn-block btn-primary" href="/anos"><i></i>Cancelar</a>
-                   </div>
-               </div>
-			</div>
-		</form>
- 	</div>
-</div>
-<script src="/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/ano/ano.js""></script>
-<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>Editar Planificaci&oacute;n</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/cplanificacion">Listado Planificaci&oacute;n</a>
+                        </li>
+                        <li class="active">
+                            <strong>Editar Planificaci&oacute;n</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                            <h5>Planificaci&oacute;n</h5>
+                        </div>
+                    <div class="ibox-content">
+                        <div class="tabs-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab-1">Indicadores</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-2">Plazos</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="panel-body">
+                                    <div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="ano">A&ntilde;o</label>
+        	 								<select  id="ano" class="form-control" >
+                	 							<?php 
+                	 							   foreach ($this->view->ano as $ano)
+                                    				{
+                                    				  if($this->view->cplanificacion->id_ano == $ano->id)
+                                    				  {
+                                    				      $ComboAno.= '<option selected value="'.$ano->id.'">'.$ano->ano.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    				      $ComboAno.= '<option value="'.$ano->id.'">'.$ano->ano.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboAno);?>
+                	 						</select>
+            	 						</div>
+									</div>
+									
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="pais">Pa&iacute;s</label>
+        	 								<select  id="pais" class="form-control" >
+        	 									<?php 
+                	 							   foreach ($this->view->pais as $pais)
+                                    				{
+                                    				  if($this->view->cplanificacion->id_pais == $pais->id)
+                                    				  {
+                                    				      $ComboPais.= '<option selected value="'.$pais->id.'">'.$pais->pais.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    				      $ComboPais.= '<option value="'.$pais->id.'">'.$pais->pais.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboPais);?>
+                	 						</select>
+            	 						</div>
+									</div>
+									
+									<div class="col-lg-6">
+										<div class="form-group">
+    	 									<label for="sede">Sede</label>
+        	 								<select  id="sede" class="form-control" >
+        	 									<?php 
+                	 							   foreach ($this->view->sede as $sede)
+                                    				{
+                                    				  if($this->view->cplanificacion->id_sede == $sede->id)
+                                    				  {
+                                    				      $ComboSede.= '<option selected value="'.$sede->id.'">'.$sede->sede.'</option>';
+                                    				  }
+                                    				  else
+                                    				  {
+                                    				      $ComboSede.= '<option value="'.$sede->id.'">'.$sede->sede.'</option>';
+                                    				  }
+                                    				}
+                                    			?>
+                                    			<?php echo($ComboSede);?>
+                	 						</select>
+            	 						</div>
+									</div>
+									
+									<div class="col-lg-6">
+									 <?php 
+                                            if($this->view->cplanificacion->situation == 1)
+                                            {
+                                                $activo = 'selected';
+                                            }
+                                            
+                                            if($this->view->cplanificacion->situation == 2)
+                                            {
+                                                $inactivo = 'selected';
+                                            }
+                                        ?>
+										<div class="form-group">
+											<label for="label">Status</label>
+											<select class="form-control" name="status" id="status">
+                                    	<option <?php echo ($activo);?> value="1">Activo</option>
+                                    	<option <?php echo ($inactivo);?> value="2">Inactivo</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->cplanificacion->id);?>">
+										</div>
+									</div>
+                                    <div class="col-lg-12">
+                                        <hr>
+                                        <h2>Elija los Indicadores para el a&ntilde;o</h2>
+                                        <table id="example" class="display" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th hidden></th>
+                                                    <th>Indicador</th>
+                                                    <th>Temporalidad</th>
+                                                    <th>Tipo</th>
+                                                    <th>Pilar Estrat&eacute;gico</th>
+                                                    <th>&Aacute;rea</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               
+                                            </tbody>
+                                            <tfoot>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab-2" class="tab-pane">
+                                <div class="panel-body">
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover dataTables-example" >
+                                            <thead>
+                                            <tr>
+                                                <th>Meses</th>
+                                                <th>Plan</th>
+                                                <th>Real</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="gradeX">
+                                                <td>Enero</td>
+                                                <td>
+                                                    <select class="form-control" name="enero-plan" id="enero-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="enero-real" id="enero-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeC">
+                                                <td>Febrero</td>
+                                                <td>
+                                                    <select class="form-control" name="febrero-plan" id="febrero-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="febrero-real" id="febrero-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Marzo</td>
+                                                <td>
+                                                    <select class="form-control" name="marzo-plan" id="marzo-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="marzo-real" id="marzo-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Abril</td>
+                                                <td>
+                                                    <select class="form-control" name="abril-plan" id="abril-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="abril-real" id="abril-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Mayo</td>
+                                                <td>
+                                                    <select class="form-control" name="mayo-plan" id="mayo-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="mayo-real" id="mayo-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Junio</td>
+                                                <td>
+                                                    <select class="form-control" name="junio-plan" id="junio-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="junio-real" id="junio-real">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Julio</td>
+                                                <td>
+                                                    <select class="form-control" name="julio-plan" id="julio-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="julio-real" id="julio-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Agosto</td>
+                                                <td>
+                                                    <select class="form-control" name="agosto-plan" id="agosto-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="agosto-real" id="agosto-real">
+                                                      <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Septiembre</td>
+                                                <td>
+                                                    <select class="form-control" name="septiembre-plan" id="septiembre-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="septiembre-real" id="septiembre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Octubre</td>
+                                                <td>
+                                                    <select class="form-control" name="octubre-plan" id="octubre-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="octubre-real" id="octubre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Novimbre</td>
+                                                <td>
+                                                    <select class="form-control" name="noviembre-plan" id="noviembre-plan">
+                                                        <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="noviembre-real" id="noviembre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeA">
+                                                <td>Deciembre</td>
+                                                <td>
+                                                    <select class="form-control" name="deciembre-plan" id="deciembre-plan">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="deciembre-real" id="deciembre-real">
+                                                       <option value="1">En edición</option>
+                                                        <option value="2">Cerrado</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                    <div class="actions clearfix paddingTop-20">
+                        <button type="button" id="guardar-planificacion" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
+						<a href="/cplanificacion" class="btn btn-danger btn-lg pull-right">Cancelar</a>
+                    </div>
+
+                        </div>
+                        </div>  
+                </div>
+                </div>
+            </div>
+
 <script>
-	$("#actualizar-ano").click(function() {
-		ActualizarAno();
-	});
-</script>
+         $(document).ready(function(){
+             $('#example').DataTable( {
+            	 "language": {
+                     "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                 },
+                columnDefs: [ {
+                    className: 'select-checkbox',
+                    targets:   0, 
+                    checkboxes: {selectRow: true}
+                } ],
+                select: {
+                    style:    'multi',
+                    selector: 'td:first-child'
+                },
+                order: [[ 1, 'asc' ]]
+            } );
+
+             var table = $('#example').DataTable();
+
+             $('#example tbody').on( 'click', 'tr', function () {
+                 $(this).toggleClass('selected');
+             } );
+          
+//              $('#button').click( function () {
+//                  console.log(table.rows('.selected').data());
+//              } );
+
+             $("#guardar-planificacion").click(function() {
+          		GuardarPlanificacion(table.rows('.selected').data());
+          	});
+             
+        });
+
+    </script>
+    <script type="text/javascript" src="/assets/js/cplanificacion/cplanificacion.js""></script>
+    <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>

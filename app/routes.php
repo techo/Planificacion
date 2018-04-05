@@ -51,5 +51,6 @@ $route[] = ['/cplanificacion', 'CPlanificacionController@index'];
 $route[] = ['/cplanificacion/add', 'CPlanificacionController@add'];
 $route[] = ['/cplanificacion/SearchSede', 'CPlanificacionController@SearchSede'];
 $route[] = ['/cplanificacion/save', 'CPlanificacionController@save'];
+$route[] = ['/cplanificacion/show/{id}', 'CPlanificacionController@show'];
 
 return $route;

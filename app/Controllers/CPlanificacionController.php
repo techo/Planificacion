@@ -222,26 +222,78 @@ class CPlanificacionController extends BaseController
     {
         $aParam = (array) $aParam;
         
+        //Qubra a String em Array para facilitar a gravacao e remove o elemento vazio
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
         
-        $aParam['ano']  = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
-        $aParam['pais'] = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
-        $aParam['sede'] = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
+        $aParam['ano']    = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
+        $aParam['pais']   = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
+        $aParam['sede']   = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
+        $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
-        $model  = Container::getModel("Indicador");
+        $model  = Container::getModel("cplanificacion");
         //Grava Planificacion
         $result = $model->GuardarPlanificacion($aParam);
         
         //Se gravar com Sucesso grava os filhos (Indicadores)
         if($result)
         {
-            //Implementar um for para gravar 1 a 1...
-            $result = $model->GuardarDetalheIndicadores($indicadores);
+            //Id Cabecalho Planificacion
+            $id = $result;
+            
+            for($i=0; $i < count($indicadores); $i++)
+            {
+                $indicador = $indicadores[$i];
+                $result = $model->GuardarDetalheIndicadores($indicador, $id, $aParam['status']);
+            }
+            
+            if($result)
+            {
+                echo json_encode(array("results" => true));
+            }
+            else
+            {
+                echo json_encode(array("results" => false));
+            }
+            
         }
         else
         {
             echo json_encode(array("results" => false));
         }
+    }
+    
+    public function show($id)
+    {
+        $this->setPageTitle('Editar Planificacion');
+        $model = Container::getModel("cplanificacion");
+        
+        $this->view->cplanificacion = $model->search($id);
+        $this->view->ano            = $model->ListaAno();
+        
+        //Busca Pais
+        $pais = $this->Paises();
+        
+        //Convert Array en Object
+        for($i=0; $i < count($pais); $i++)
+        {
+            $pais[$i] = (object) $pais[$i];
+        }
+        //Lista Paises
+        $this->view->pais = $pais;
+        
+        //Busca Sede
+        $sede = $this->Sedes($this->view->cplanificacion[0]->id_pais);
+        
+        //Convert Array en Object
+        for($i=0; $i < count($sede); $i++)
+        {
+            $sede[$i] = (object) $sede[$i];
+        }
+        //Lista Paises
+        $this->view->sede = $sede;
+        
+        /* Render View Temporalidades */
+        $this->renderView('cplanificacion/edit', 'layout');
     }
 }
