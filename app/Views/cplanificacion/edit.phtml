@@ -158,17 +158,295 @@
                                             </thead>
                                             <tbody>
                                             <tr class="gradeX">
+                                             <?php 
+                                                    //Enero Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_enero == 1)
+                                                    {
+                                                        $EneroPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_enero == 2)
+                                                    {
+                                                        $EneroPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Enero Real
+                                                    if($this->view->cplanificacion[0]->edit_real_enero == 1)
+                                                    {
+                                                        $EneroRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_enero == 2)
+                                                    {
+                                                        
+                                                        $EneroRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Febrero Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_febrero == 1)
+                                                    {
+                                                        $FebreroPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_febrero== 2)
+                                                    {
+                                                        $FebreroPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Febrero Real
+                                                    if($this->view->cplanificacion[0]->edit_real_febrero == 1)
+                                                    {
+                                                        $FebreroRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_febrero == 2)
+                                                    {
+                                                        
+                                                        $FebreroRealCerrado = 'selected';
+                                                    }
+
+                                                    //Marzo Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_marzo == 1)
+                                                    {
+                                                        $MarzoPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_marzo == 2)
+                                                    {
+                                                        $MarzoPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Marzo Real
+                                                    if($this->view->cplanificacion[0]->edit_real_marzo == 1)
+                                                    {
+                                                        $MarzoRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_marzo == 2)
+                                                    {
+                                                        
+                                                        $MarzoRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Abril Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_abril == 1)
+                                                    {
+                                                        $AbrilPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_abril == 2)
+                                                    {
+                                                        $AbrilPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Abril Real
+                                                    if($this->view->cplanificacion[0]->edit_real_abril == 1)
+                                                    {
+                                                        $AbrilRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_abril == 2)
+                                                    {
+                                                        
+                                                        $AbrilRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Mayo Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_mayo == 1)
+                                                    {
+                                                        $MayoPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_mayo == 2)
+                                                    {
+                                                        $MayoPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Mayo Real
+                                                    if($this->view->cplanificacion[0]->edit_real_mayo == 1)
+                                                    {
+                                                        $MayoRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_mayo == 2)
+                                                    {
+                                                        
+                                                        $MayoRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Junio Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_junio == 1)
+                                                    {
+                                                        $JunioPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_junio == 2)
+                                                    {
+                                                        $JunioPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Junio Real
+                                                    if($this->view->cplanificacion[0]->edit_real_junio == 1)
+                                                    {
+                                                        $JunioRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_junio == 2)
+                                                    {
+                                                        
+                                                        $JunioRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Julio Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_julio == 1)
+                                                    {
+                                                        $JulioPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_julio == 2)
+                                                    {
+                                                        $JulioPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Julio Real
+                                                    if($this->view->cplanificacion[0]->edit_real_julio == 1)
+                                                    {
+                                                        $JulioRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_julio == 2)
+                                                    {
+                                                        
+                                                        $JulioRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Agosto Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_agosto == 1)
+                                                    {
+                                                        $AgostoPlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_agosto == 2)
+                                                    {
+                                                        $AgostoPlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Agosto Real
+                                                    if($this->view->cplanificacion[0]->edit_real_agosto == 1)
+                                                    {
+                                                        $AgostoRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_agosto == 2)
+                                                    {
+                                                        
+                                                        $AgostoRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Septiembre Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_septiembre == 1)
+                                                    {
+                                                        $SeptiembrePlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_septiembre == 2)
+                                                    {
+                                                        $SeptiembrePlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Septiembre Real
+                                                    if($this->view->cplanificacion[0]->edit_real_septiembre == 1)
+                                                    {
+                                                        $SeptiembreRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_septiembre == 2)
+                                                    {
+                                                        
+                                                        $SeptiembreRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Octubre Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_octubre == 1)
+                                                    {
+                                                        $OctubrePlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_octubre == 2)
+                                                    {
+                                                        $OctubrePlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Octubre Real
+                                                    if($this->view->cplanificacion[0]->edit_real_octubre == 1)
+                                                    {
+                                                        $OctubreRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_octubre == 2)
+                                                    {
+                                                        
+                                                        $OctubreRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Noviembre Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_noviembre == 1)
+                                                    {
+                                                        $NoviembrePlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_noviembre == 2)
+                                                    {
+                                                        $NoviembrePlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Noviembre Real
+                                                    if($this->view->cplanificacion[0]->edit_real_noviembre == 1)
+                                                    {
+                                                        $NoviembreRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_noviembre == 2)
+                                                    {
+                                                        
+                                                        $NoviembreRealCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Diciembre Plan
+                                                    if($this->view->cplanificacion[0]->edit_plan_diciembre == 1)
+                                                    {
+                                                        $DiciembrePlanEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_plan_diciembre == 2)
+                                                    {
+                                                        $DiciembrePlanCerrado = 'selected';
+                                                    }
+                                                    
+                                                    //Diciembre Real
+                                                    if($this->view->cplanificacion[0]->edit_real_diciembre == 1)
+                                                    {
+                                                        $DiciembreRealEdit = 'selected';
+                                                    }
+                                                    
+                                                    if($this->view->cplanificacion[0]->edit_real_diciembre == 2)
+                                                    {
+                                                        
+                                                        $DiciembreRealCerrado = 'selected';
+                                                    }
+                                                    
+                                               ?>
                                                 <td>Enero</td>
                                                 <td>
                                                     <select class="form-control" name="enero-plan" id="enero-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($EneroPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($EneroPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="enero-real" id="enero-real">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($EneroRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($EneroRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -176,14 +454,14 @@
                                                 <td>Febrero</td>
                                                 <td>
                                                     <select class="form-control" name="febrero-plan" id="febrero-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($FebreroPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($FebreroPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="febrero-real" id="febrero-real">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($FebreroRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($FebreroRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -191,14 +469,14 @@
                                                 <td>Marzo</td>
                                                 <td>
                                                     <select class="form-control" name="marzo-plan" id="marzo-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($MarzoPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($MarzoPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="marzo-real" id="marzo-real">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($MarzoRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($MarzoRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -206,14 +484,14 @@
                                                 <td>Abril</td>
                                                 <td>
                                                     <select class="form-control" name="abril-plan" id="abril-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($AbrilPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($AbrilPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="abril-real" id="abril-real">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($AbrilRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($AbrilRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -221,14 +499,14 @@
                                                 <td>Mayo</td>
                                                 <td>
                                                     <select class="form-control" name="mayo-plan" id="mayo-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($MayoPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($AbrilPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="mayo-real" id="mayo-real">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($MayoRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($AbrilRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -236,14 +514,14 @@
                                                 <td>Junio</td>
                                                 <td>
                                                     <select class="form-control" name="junio-plan" id="junio-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($JunioPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($JunioPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="junio-real" id="junio-real">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($JunioRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($JunioRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -251,14 +529,14 @@
                                                 <td>Julio</td>
                                                 <td>
                                                     <select class="form-control" name="julio-plan" id="julio-plan">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($JulioPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($JulioPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="julio-real" id="julio-real">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($JulioRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($JulioRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -266,14 +544,14 @@
                                                 <td>Agosto</td>
                                                 <td>
                                                     <select class="form-control" name="agosto-plan" id="agosto-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($AgostoPlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($AgostoPlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="agosto-real" id="agosto-real">
-                                                      <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                      <option <?php echo ($AgostoRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($AgostoRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -281,14 +559,14 @@
                                                 <td>Septiembre</td>
                                                 <td>
                                                     <select class="form-control" name="septiembre-plan" id="septiembre-plan">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($SeptiembrePlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($SeptiembrePlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="septiembre-real" id="septiembre-real">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($SeptiembreRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($SeptiembreRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -296,14 +574,14 @@
                                                 <td>Octubre</td>
                                                 <td>
                                                     <select class="form-control" name="octubre-plan" id="octubre-plan">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($OctubrePlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($OctubrePlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="octubre-real" id="octubre-real">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($OctubreRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($OctubreRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -311,14 +589,14 @@
                                                 <td>Novimbre</td>
                                                 <td>
                                                     <select class="form-control" name="noviembre-plan" id="noviembre-plan">
-                                                        <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                        <option <?php echo ($NoviembrePlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($NoviembrePlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="noviembre-real" id="noviembre-real">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($NoviembreRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($NoviembreRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -326,14 +604,14 @@
                                                 <td>Deciembre</td>
                                                 <td>
                                                     <select class="form-control" name="deciembre-plan" id="deciembre-plan">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($DiciembrePlanEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($DiciembrePlanCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select class="form-control" name="deciembre-real" id="deciembre-real">
-                                                       <option value="1">En edición</option>
-                                                        <option value="2">Cerrado</option>
+                                                       <option <?php echo ($DiciembreRealEdit);?> value="1">En edición</option>
+                                                        <option <?php echo ($DiciembreRealCerrado);?> value="2">Cerrado</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -346,7 +624,7 @@
                         </div>
                     </div>
                     <div class="actions clearfix paddingTop-20">
-                        <button type="button" id="guardar-planificacion" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
+                        <button type="button" id="actualizar-planificacion" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
 						<a href="/cplanificacion" class="btn btn-danger btn-lg pull-right">Cancelar</a>
                     </div>
 
@@ -393,3 +671,8 @@
     </script>
     <script type="text/javascript" src="/assets/js/cplanificacion/cplanificacion.js""></script>
     <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+    <script>
+	$("#actualizar-planificacion").click(function() {
+		ActualizarPlanificacion();
+	});
+</script>
