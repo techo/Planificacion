@@ -372,4 +372,71 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function ActualizarPlanificacion($aParam)
+    {
+        $sql  = "";
+        $sql .= "UPDATE {$this->table} SET ";
+        $sql .= "id_ano               = '" . $aParam['ano']."', ";
+        $sql .= "id_pais              = '" . $aParam['pais']."', ";
+        $sql .= "id_sede              = '" . $aParam['sede']."', ";
+        $sql .= "edit_plan_enero      = '" . $aParam['eneroplan']."', ";
+        $sql .= "edit_real_enero      = '" . $aParam['eneroreal']."', ";
+        $sql .= "edit_plan_febrero    = '" . $aParam['febreroplan']."', ";
+        $sql .= "edit_real_febrero    = '" . $aParam['febreroreal']."', ";
+        $sql .= "edit_plan_marzo      = '" . $aParam['marzoplan']."', ";
+        $sql .= "edit_real_marzo      = '" . $aParam['marzoreal']."', ";
+        $sql .= "edit_plan_abril      = '" . $aParam['abrilplan']."', ";
+        $sql .= "edit_real_abril      = '" . $aParam['abrilreal']."', ";
+        $sql .= "edit_plan_mayo       = '" . $aParam['mayoplan']."', ";
+        $sql .= "edit_real_mayo       = '" . $aParam['mayoreal']."', ";
+        $sql .= "edit_plan_junio      = '" . $aParam['junioplan']."', ";
+        $sql .= "edit_real_junio      = '" . $aParam['junioreal']."', ";
+        $sql .= "edit_plan_julio      = '" . $aParam['julioplan']."', ";
+        $sql .= "edit_real_julio      = '" . $aParam['julioreal']."', ";
+        $sql .= "edit_plan_agosto     = '" . $aParam['agostoplan']."', ";
+        $sql .= "edit_real_agosto     = '" . $aParam['agostoreal']."', ";
+        $sql .= "edit_plan_septiembre = '" . $aParam['septiembreplan']."', ";
+        $sql .= "edit_real_septiembre = '" . $aParam['septiembrereal']."', ";
+        $sql .= "edit_plan_octubre    = '" . $aParam['octubreplan']."', ";
+        $sql .= "edit_real_octubre    = '" . $aParam['octubrereal']."', ";
+        $sql .= "edit_plan_noviembre  = '" . $aParam['noviembreplan']."', ";
+        $sql .= "edit_real_noviembre  = '" . $aParam['noviembrereal']."', ";
+        $sql .= "edit_plan_diciembre  = '" . $aParam['deciembreplan']."', ";
+        $sql .= "edit_real_diciembre  = '" . $aParam['deciembrereal']."', ";
+        $sql .= "situation            = '" . $aParam['status']."', ";
+        $sql .= "id_updater           = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update          = NOW() ";
+        $sql .= "WHERE id             = '" . $aParam['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
+    
+    public function BuscaIndicadores($idPlanificacion)
+    {
+        $sql  = "";
+        $sql .= "SELECT * ";
+        $sql .= " FROM dplanificacion ";
+        $sql .= "WHERE id_cplanificacion = " . $idPlanificacion . " AND deleted = 0 AND situation = 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function ApagaIndicadores($id)
+    {
+        $sql  = "";
+        $sql .= "DELETE FROM dplanificacion ";
+        $sql .= "WHERE id_cplanificacion = " . $id;
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

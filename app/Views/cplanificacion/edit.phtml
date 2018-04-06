@@ -38,7 +38,7 @@
                 	 							<?php 
                 	 							   foreach ($this->view->ano as $ano)
                                     				{
-                                    				  if($this->view->cplanificacion->id_ano == $ano->id)
+                                    				  if($this->view->cplanificacion[0]->id_ano == $ano->id)
                                     				  {
                                     				      $ComboAno.= '<option selected value="'.$ano->id.'">'.$ano->ano.'</option>';
                                     				  }
@@ -60,7 +60,7 @@
         	 									<?php 
                 	 							   foreach ($this->view->pais as $pais)
                                     				{
-                                    				  if($this->view->cplanificacion->id_pais == $pais->id)
+                                    				  if($this->view->cplanificacion[0]->id_pais == $pais->id)
                                     				  {
                                     				      $ComboPais.= '<option selected value="'.$pais->id.'">'.$pais->pais.'</option>';
                                     				  }
@@ -82,7 +82,7 @@
         	 									<?php 
                 	 							   foreach ($this->view->sede as $sede)
                                     				{
-                                    				  if($this->view->cplanificacion->id_sede == $sede->id)
+                                    				  if($this->view->cplanificacion[0]->id_sede == $sede->id)
                                     				  {
                                     				      $ComboSede.= '<option selected value="'.$sede->id.'">'.$sede->sede.'</option>';
                                     				  }
@@ -100,12 +100,12 @@
 									
 									<div class="col-lg-6">
 									 <?php 
-                                            if($this->view->cplanificacion->situation == 1)
+                                            if($this->view->cplanificacion[0]->situation == 1)
                                             {
                                                 $activo = 'selected';
                                             }
                                             
-                                            if($this->view->cplanificacion->situation == 2)
+                                            if($this->view->cplanificacion[0]->situation == 2)
                                             {
                                                 $inactivo = 'selected';
                                             }
@@ -116,9 +116,6 @@
                                     	<option <?php echo ($activo);?> value="1">Activo</option>
                                     	<option <?php echo ($inactivo);?> value="2">Inactivo</option>
 											</select>
-										</div>
-										<div class="form-group">
-											<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->cplanificacion->id);?>">
 										</div>
 									</div>
                                     <div class="col-lg-12">
@@ -620,7 +617,9 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+											<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->cplanificacion[0]->id);?>">
+										</div>
 
                         </div>
                     </div>
@@ -659,12 +658,8 @@
                  $(this).toggleClass('selected');
              } );
           
-//              $('#button').click( function () {
-//                  console.log(table.rows('.selected').data());
-//              } );
-
-             $("#guardar-planificacion").click(function() {
-          		GuardarPlanificacion(table.rows('.selected').data());
+             $("#actualizar-planificacion").click(function() {
+            	 ActualizarPlanificacion(table.rows('.selected').data());
           	});
              
         });
@@ -672,8 +667,3 @@
     </script>
     <script type="text/javascript" src="/assets/js/cplanificacion/cplanificacion.js""></script>
     <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
-    <script>
-	$("#actualizar-planificacion").click(function() {
-		ActualizarPlanificacion();
-	});
-</script>

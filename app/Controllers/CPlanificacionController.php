@@ -222,7 +222,7 @@ class CPlanificacionController extends BaseController
     {
         $aParam = (array) $aParam;
         
-        //Qubra a String em Array para facilitar a gravacao e remove o elemento vazio
+        //Quebra a String em Array para facilitar a gravacao e remove o elemento vazio
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
         
@@ -349,5 +349,79 @@ class CPlanificacionController extends BaseController
         
         /* Render View Temporalidades */
         $this->renderView('cplanificacion/edit', 'layout');
+    }
+    
+    public function edit($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        //Quebra a String em Array para facilitar a gravacao e remove o elemento vazio
+        $indicadores = explode(',',$aParam['indicadores']);
+        $indicadores = array_filter($indicadores);
+        
+        $aParam['ano']    = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
+        $aParam['pais']   = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
+        $aParam['sede']   = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
+        $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("cplanificacion");
+        //Actualiza Planificacion
+        $result = $model->ActualizarPlanificacion($aParam);
+        
+        //Se gravar com Sucesso grava os filhos (Indicadores)
+        if($result)
+        {
+            //Verificar se os Indicadores ja comecaram a ser planificados, para decidir se pode alterar ou nao
+            $ListaKPI = $model->BuscaIndicadores($aParam['id']);
+            $verifica = true;
+            
+            for($i=0; $i < count($ListaKPI); $i++)
+            {
+                $indicador = (array) $ListaKPI[$i];
+                
+                if($indicador['date_update'] != '0000-00-00 00:00:00')
+                {
+                    $verifica = false;
+                }
+            }
+            
+            //Se esta variavel for false nao podemos alterar os KPIs pois ja comecou a planificar
+            if($verifica)
+            {
+                //Apaga os Anteriores e Cria os Novos
+                for($i=0; $i < count($ListaKPI); $i++)
+                {
+                    $indicador = (array) $ListaKPI[$i];
+                    $model->ApagaIndicadores($aParam['id']);
+                }
+                
+                //Comeca gravar os indicadores atualizados
+                for($i=0; $i < count($indicadores); $i++)
+                {
+                    $indicador = $indicadores[$i];
+                    $result = $model->GuardarDetalheIndicadores($indicador, $aParam['id'], $aParam['status']);
+                }
+                
+                if($result)
+                {
+                    echo json_encode(array("results" => true));
+                }
+                else
+                {
+                    echo json_encode(array("results" => false));
+                }
+                
+            }
+            else
+            {
+                //Retorna para view falando que deu ruim (comecou a planificar)
+                echo json_encode(array("results" => false));
+            }
+        }
+        else
+        {
+            //Erro na gravacao do Cabecalho
+            echo json_encode(array("results" => false));
+        }
     }
 }
