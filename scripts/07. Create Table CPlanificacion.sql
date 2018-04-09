@@ -2,8 +2,6 @@
 CREATE TABLE cplanificacion (
    id INT(10) NOT NULL AUTO_INCREMENT,
    id_ano INT(10) NOT NULL COMMENT 'Id Ano',   
-   id_pais INT(10) DEFAULT NULL COMMENT 'Id pais',
-   id_sede INT(10) DEFAULT NULL COMMENT 'Id Sede',
    edit_plan_enero INT(1) DEFAULT 1 COMMENT 'Edit plan Enero',
    edit_real_enero INT(1) DEFAULT 1 COMMENT 'Edit real Enero',
    edit_plan_febrero INT(1) DEFAULT 1 COMMENT 'Edit plan Febrero',

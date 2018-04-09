@@ -2,6 +2,8 @@
 CREATE TABLE dplanificacion (
    id INT(10) NOT NULL AUTO_INCREMENT,
    id_cplanificacion INT(10) NOT NULL COMMENT 'Id CPlanificacion',   
+   id_pais INT(10) DEFAULT NULL COMMENT 'Id pais',
+   id_sede INT(10) DEFAULT NULL COMMENT 'Id Sede',
    id_indicador INT(10) DEFAULT NULL COMMENT 'Id Indicador',
    enero_plan INT(10) DEFAULT NULL COMMENT 'plan Enero',
    enero_real INT(10) DEFAULT NULL COMMENT 'real Enero',

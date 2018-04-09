@@ -22,13 +22,20 @@ $("#pais").change(function()
 });
 
 
-function GuardarPlanificacion(indicadores)
+function GuardarPlanificacion(indicadores, sedes)
 {
 	oData              = new Object();	
 	oData.ano          = $('#ano').val();
-	oData.pais         = $('#pais').val();
-	oData.sede         = $('#sede').val();
 	oData.status       = $('#status').val();
+	
+	//Criar um Array com as Sedes a serem gravados
+	$(sedes).each(function(index) 
+	{
+		oData.sedes += sedes[index][1] + ',';
+		
+		oData.sedes = oData.sedes.replace('undefined','');
+		
+	});
 	
 	//Criar um Array com os Indicadores a serem gravados
 	$(indicadores).each(function(index) 

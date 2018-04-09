@@ -22,28 +22,7 @@ class CPlanificacionController extends BaseController
         $model = Container::getModel("CPlanificacion");
         $this->view->cplanificacion = $model->select();
         
-        for($i=0; $i < count($this->view->cplanificacion); $i++)
-        {
-            $aKPI[$i] = (array) $this->view->cplanificacion[$i];
-            
-            //Get Pais
-            if($aKPI[$i]['id_pais'])
-            {
-                $pais = $this->GetPais($aKPI[$i]['id_pais']);
-                $aKPI[$i]['pais'] = $pais['nombre'];
-            }
-            
-            //Get Sede
-            if($aKPI[$i]['id_sede'])
-            {
-                $sede = $this->GetSede($aKPI[$i]['id_sede']);
-                $aKPI[$i]['sede'] = $sede[0]['nombre'];
-            }
-            
-            $this->view->cplanificacion[$i] = (object) $aKPI[$i];
-        }
-        
-        /* Render View Paises */
+        /* Render View cplanificacion */
         $this->renderView('cplanificacion/index', 'layout');
     }
     
@@ -190,16 +169,16 @@ class CPlanificacionController extends BaseController
         //Busca Anos
         $this->view->ano = $model->ListaAno();
         
-        //Busca Pais
-        $pais = $this->Paises();
+        //Todas Sedes Cadastradas
+        $sede = $this->TodasSedes();
         
         //Convert Array en Object
-        for($i=0; $i < count($pais); $i++)
+        for($i=0; $i < count($sede); $i++)
         {
-            $pais[$i] = (object) $pais[$i];
+            $sede[$i] = (object) $sede[$i];
         }
         //Lista Paises
-        $this->view->pais = $pais;
+        $this->view->sede = $sede;
         
         $this->view->indicador = $model->ListaIndicador();
         
@@ -222,40 +201,43 @@ class CPlanificacionController extends BaseController
     {
         $aParam = (array) $aParam;
         
+        //Separa os Ids das Sedes
+        $sedes = explode(',',$aParam['sedes']);
+        $sedes = array_filter($sedes);
+        
         //Quebra a String em Array para facilitar a gravacao e remove o elemento vazio
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
         
         $aParam['ano']    = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
-        $aParam['pais']   = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
-        $aParam['sede']   = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
         $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("cplanificacion");
+        
         //Grava Planificacion
         $result = $model->GuardarPlanificacion($aParam);
         
-        //Se gravar com Sucesso grava os filhos (Indicadores)
+        //Id Cabecalho Planificacion
+        $id = $result;
+        
+        //Gravar Pai e Filho na sequencia...
+        for($i=0; $i < count($sedes); $i++)
+        {
+            //Busca Dados do Pais
+            $sede   = $sedes[$i];
+            $aDados = $this->GetSede($sede);
+            $idPais = $aDados[0]['id_pais'];
+
+            for($j=0; $j < count($indicadores); $j++)
+            {
+                $indicador = $indicadores[$j];
+                $result = $model->GuardarDetalheIndicadores($indicador, $id, $aParam['status'], $sede, $idPais);
+            }
+        }
+        
         if($result)
         {
-            //Id Cabecalho Planificacion
-            $id = $result;
-            
-            for($i=0; $i < count($indicadores); $i++)
-            {
-                $indicador = $indicadores[$i];
-                $result = $model->GuardarDetalheIndicadores($indicador, $id, $aParam['status']);
-            }
-            
-            if($result)
-            {
-                echo json_encode(array("results" => true));
-            }
-            else
-            {
-                echo json_encode(array("results" => false));
-            }
-            
+            echo json_encode(array("results" => true));
         }
         else
         {
@@ -423,5 +405,35 @@ class CPlanificacionController extends BaseController
             //Erro na gravacao do Cabecalho
             echo json_encode(array("results" => false));
         }
+    }
+    
+    //Listagem de todas sedes
+    public function TodasSedes()
+    {
+        $url = 'http://id.techo.org/sede?api=true&token='.$_SESSION['Planificacion']['token'];
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']      = $data[$i]['ID_Sede'];
+            $aTemp[$i]['sede']    = $data[$i]['Nombre_Sede'];
+            $aTemp[$i]['id_pais'] = $data[$i]['Pais_ID'];
+            $aTemp[$i]['pais']    = $data[$i]['Pais_Nombre'];
+            $aTemp[$i]['status']  = $data[$i]['Status_Sede'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
     }
 }

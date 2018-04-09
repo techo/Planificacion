@@ -27,6 +27,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#tab-1">Indicadores</a></li>
                             <li class=""><a data-toggle="tab" href="#tab-2">Plazos</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-3">Sedes</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
@@ -43,20 +44,6 @@
             	 						</div>
 									</div>
 									
-									<div class="col-lg-6">
-										<div class="form-group">
-    	 									<label for="pais">Pa&iacute;s</label>
-        	 								<select  id="pais" class="form-control" >
-        	 									<option value="0">-- SELECCIONE --</option>
-                	 							<?php foreach ($this->view->pais as $pais):?>
-                	 									<option value="<?php echo($pais->id);?>"><?php echo($pais->pais);?></option>
-                	 							<?php endforeach; ?>
-                	 						</select>
-            	 						</div>
-									</div>
-									
-									<div id="loadSede">
-									</div>
 									<div class="col-lg-6">
     									<div class="form-group">
     											<label for="label">Status</label>
@@ -299,6 +286,38 @@
                                         </div>
                                     </div>
                                 </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane">
+                                <div class="panel-body">
+                                    <div class="col-lg-12">
+                                        <hr>
+                                        <h2>Elija las Sedes</h2>
+                                        <table id="example-sede" class="display" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th hidden></th>
+                                                    <th>Pa&iacute;s</th>
+                                                    <th>Sede</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($this->view->sede as $sede): ?>
+                        							<tr>
+                                            		<td></td>
+                                            		<td hidden><?php echo($sede->id);?></td>
+                                            		<td><?php echo($sede->pais);?></td>
+                                            		<td><?php echo($sede->sede);?></td>
+                                            		<td><?php ($sede->status== '1' ? $sede->status= 'Activo' : $sede->status= 'Inactivo'); echo($sede->status);?></td>
+                                            		</tr>
+                                            	<?php endforeach; ?>
+                                            </tbody>
+                                            <tfoot>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
 
                         </div>
                     </div>
@@ -315,6 +334,7 @@
 
 <script>
          $(document).ready(function(){
+             //Indicadores
              $('#example').DataTable( {
             	 "language": {
                      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -336,13 +356,36 @@
              $('#example tbody').on( 'click', 'tr', function () {
                  $(this).toggleClass('selected');
              } );
+
+             // Sedes	
+             $('#example-sede').DataTable( {
+            	 "language": {
+                     "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                 },
+                columnDefs: [ {
+                    className: 'select-checkbox',
+                    targets:   0, 
+                    checkboxes: {selectRow: true}
+                } ],
+                select: {
+                    style:    'multi',
+                    selector: 'td:first-child'
+                },
+                order: [[ 1, 'asc' ]]
+            } );
+
+             var table1 = $('#example-sede').DataTable();
+
+             $('#example-sede tbody').on( 'click', 'tr', function () {
+                 $(this).toggleClass('selected');
+             } );
           
 //              $('#button').click( function () {
 //                  console.log(table.rows('.selected').data());
 //              } );
 
              $("#guardar-planificacion").click(function() {
-          		GuardarPlanificacion(table.rows('.selected').data());
+          		GuardarPlanificacion(table.rows('.selected').data(), table1.rows('.selected').data());
           	});
              
         });
@@ -350,3 +393,4 @@
     </script>
     <script type="text/javascript" src="/assets/js/cplanificacion/cplanificacion.js""></script>
     <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+    

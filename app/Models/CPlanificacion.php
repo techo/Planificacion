@@ -21,8 +21,6 @@ class CPlanificacion extends BaseModel
         $sql .= "{$this->table}.id,";
         $sql .= "{$this->table}.id_ano, ";
         $sql .= "ano.ano, ";
-        $sql .= "{$this->table}.id_pais, ";
-        $sql .= "{$this->table}.id_sede, ";
         $sql .= "{$this->table}.edit_plan_enero, ";
         $sql .= "{$this->table}.edit_real_enero, ";
         $sql .= "{$this->table}.edit_plan_febrero, ";
@@ -120,8 +118,6 @@ class CPlanificacion extends BaseModel
         $sql .= "INSERT INTO {$this->table} (";
         $sql .= "id, ";
         $sql .= "id_ano, ";
-        $sql .= "id_pais, ";
-        $sql .= "id_sede, ";
         $sql .= "edit_plan_enero, ";
         $sql .= "edit_real_enero, ";
         $sql .= "edit_plan_febrero, ";
@@ -154,8 +150,6 @@ class CPlanificacion extends BaseModel
         $sql .= "deleted) VALUES (";
         $sql .= " NULL, ";
         $sql .= "'". $aParam['ano']."', ";
-        $sql .= "'". $aParam['pais']."', ";
-        $sql .= "'". $aParam['sede']."', ";
         $sql .= "'". $aParam['eneroplan']."', ";
         $sql .= "'". $aParam['eneroreal']."', ";
         $sql .= "'". $aParam['febreroplan']."', ";
@@ -194,13 +188,15 @@ class CPlanificacion extends BaseModel
         return $result;
     }
     
-    public function GuardarDetalheIndicadores($indicador, $id, $status)
+    public function GuardarDetalheIndicadores($indicador, $id, $status, $idSede, $idPais)
     {
         $sql  = "";
         $sql .= "INSERT INTO dplanificacion (";
         $sql .= "id, ";
         $sql .= "id_cplanificacion, ";
         $sql .= "id_indicador, ";
+        $sql .= "id_pais, ";
+        $sql .= "id_sede, ";
         $sql .= "enero_plan, ";
         $sql .= "enero_real, ";
         $sql .= "febrero_plan, ";
@@ -234,6 +230,8 @@ class CPlanificacion extends BaseModel
         $sql .= " NULL, ";
         $sql .= "'". $id."', ";
         $sql .= "'". $indicador."', ";
+        $sql .= "'". $idPais."', ";
+        $sql .= "'". $idSede."', ";
         $sql .= " NULL, ";
         $sql .= " NULL, ";
         $sql .= " NULL, ";
