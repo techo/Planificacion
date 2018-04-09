@@ -253,30 +253,11 @@ class CPlanificacionController extends BaseController
         $this->view->cplanificacion = $model->search($id);
         $this->view->ano            = $model->ListaAno();
         
-        //Busca Pais
-        $pais = $this->Paises();
-        
-        //Convert Array en Object
-        for($i=0; $i < count($pais); $i++)
-        {
-            $pais[$i] = (object) $pais[$i];
-        }
-        //Lista Paises
-        $this->view->pais = $pais;
-        
-        //Busca Sede
-        $sede = $this->Sedes($this->view->cplanificacion[0]->id_pais);
-        
-        //Convert Array en Object
-        for($i=0; $i < count($sede); $i++)
-        {
-            $sede[$i] = (object) $sede[$i];
-        }
-        //Lista Paises
-        $this->view->sede = $sede;
-        
         //Todos Indicadores Cadastrados
         $this->view->indicador = $model->ListaIndicador();
+        
+        //Todas as Sedes Cadastradas
+        $this->view->sede = $this->TodasSedes();
         
         for($i=0; $i < count($this->view->indicador); $i++)
         {
@@ -293,6 +274,7 @@ class CPlanificacionController extends BaseController
         //Lista de Indicadores do Registro em Edicao
         $aIndicadores = $model->KpisRegistro($this->view->cplanificacion[0]->id);
         $j = 0;
+        $s = 0;
         
         //Verificar quais estao selecionados e quais nao para formar a lista
         for($i=0; $i < count($aKPI); $i++)
@@ -326,8 +308,42 @@ class CPlanificacionController extends BaseController
             }
         }
         
+        //Lista de Indicadores do Registro em Edicao
+        $aDados = $model->LeituraSedes($this->view->cplanificacion[0]->id);
+        
+        for($i=0; $i < count($this->view->sede); $i++)
+        {
+            $aSedes    = (array) $this->view->sede[$i];
+            $aIndicador = (array) $aDados[$s];
+            
+          if($aIndicador['id_sede'] == $aSedes['id'])
+          {
+              $htmlSede .= '<tr class="odd selected">';
+              $htmlSede.= '<td></td>';
+              $htmlSede.= '<td hidden>'.$aSedes['id'].'</td>';
+              $htmlSede.= '<td>'.$aSedes['pais'].'</td>';
+              $htmlSede.= '<td>'.$aSedes['sede'].'</td>';
+              $htmlSede.= '<td>'.($aSedes['status'] == 1 ? $aSedes['status'] = 'Activo' : $aSedes['status'] = 'Inactivo').'</td>';
+              $htmlSede.= '</tr>';
+              $s++;
+          }
+          else
+          {
+              $htmlSede.= '<tr>';
+              $htmlSede.= '<td></td>';
+              $htmlSede.= '<td hidden>'.$aSedes['id'].'</td>';
+              $htmlSede.= '<td>'.$aSedes['pais'].'</td>';
+              $htmlSede.= '<td>'.$aSedes['sede'].'</td>';
+              $htmlSede.= '<td>'.($aSedes['status'] == 1 ? $aSedes['status'] = 'Activo' : $aSedes['status'] = 'Inactivo').'</td>';
+              $htmlSede.= '</tr>';
+          }
+        }
+        
         //Devolvo o HTML
         $this->view->indicadores = $html;
+        
+        //Devolvo o HTML Sedes
+        $this->view->sede = $htmlSede;
         
         /* Render View Temporalidades */
         $this->renderView('cplanificacion/edit', 'layout');

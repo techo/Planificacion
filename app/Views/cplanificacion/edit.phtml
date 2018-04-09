@@ -27,6 +27,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#tab-1">Indicadores</a></li>
                             <li class=""><a data-toggle="tab" href="#tab-2">Plazos</a></li>
+                            <li class=""><a data-toggle="tab" href="#tab-3">Sedes</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
@@ -52,52 +53,6 @@
                 	 						</select>
             	 						</div>
 									</div>
-									
-									<div class="col-lg-6">
-										<div class="form-group">
-    	 									<label for="pais">Pa&iacute;s</label>
-        	 								<select  id="pais" class="form-control" >
-        	 									<?php 
-                	 							   foreach ($this->view->pais as $pais)
-                                    				{
-                                    				  if($this->view->cplanificacion[0]->id_pais == $pais->id)
-                                    				  {
-                                    				      $ComboPais.= '<option selected value="'.$pais->id.'">'.$pais->pais.'</option>';
-                                    				  }
-                                    				  else
-                                    				  {
-                                    				      $ComboPais.= '<option value="'.$pais->id.'">'.$pais->pais.'</option>';
-                                    				  }
-                                    				}
-                                    			?>
-                                    			<?php echo($ComboPais);?>
-                	 						</select>
-            	 						</div>
-									</div>
-									<div id="loadSede">
-										<div class="col-lg-6">
-										<div class="form-group">
-    	 									<label for="sede">Sede</label>
-        	 								<select  id="sede" class="form-control" >
-        	 									<?php 
-                	 							   foreach ($this->view->sede as $sede)
-                                    				{
-                                    				  if($this->view->cplanificacion[0]->id_sede == $sede->id)
-                                    				  {
-                                    				      $ComboSede.= '<option selected value="'.$sede->id.'">'.$sede->sede.'</option>';
-                                    				  }
-                                    				  else
-                                    				  {
-                                    				      $ComboSede.= '<option value="'.$sede->id.'">'.$sede->sede.'</option>';
-                                    				  }
-                                    				}
-                                    			?>
-                                    			<?php echo($ComboSede);?>
-                	 						</select>
-            	 						</div>
-									</div>
-									</div>
-									
 									<div class="col-lg-6">
 									 <?php 
                                             if($this->view->cplanificacion[0]->situation == 1)
@@ -623,6 +578,31 @@
 
                         </div>
                     </div>
+                    <div id="tab-3" class="tab-pane">
+                                <div class="panel-body">
+                                    <div class="col-lg-12">
+                                        <hr>
+                                        <h2>Elija las Sedes</h2>
+                                        <table id="example-sede" class="display" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th hidden></th>
+                                                    <th>Pa&iacute;s</th>
+                                                    <th>Sede</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php echo($this->view->sede);?>
+                                            </tbody>
+                                            <tfoot>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+
+                        </div>
                     <div class="actions clearfix paddingTop-20">
                         <button type="button" id="actualizar-planificacion" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
 						<a href="/cplanificacion" class="btn btn-danger btn-lg pull-right">Cancelar</a>
@@ -655,6 +635,29 @@
              var table = $('#example').DataTable();
 
              $('#example tbody').on( 'click', 'tr', function () {
+                 $(this).toggleClass('selected');
+             } );
+
+             // Sedes	
+             $('#example-sede').DataTable( {
+            	 "language": {
+                     "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                 },
+                columnDefs: [ {
+                    className: 'select-checkbox',
+                    targets:   0, 
+                    checkboxes: {selectRow: true}
+                } ],
+                select: {
+                    style:    'multi',
+                    selector: 'td:first-child'
+                },
+                order: [[ 1, 'asc' ]]
+            } );
+
+             var table1 = $('#example-sede').DataTable();
+
+             $('#example-sede tbody').on( 'click', 'tr', function () {
                  $(this).toggleClass('selected');
              } );
           
