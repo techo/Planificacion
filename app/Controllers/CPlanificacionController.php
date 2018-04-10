@@ -177,7 +177,7 @@ class CPlanificacionController extends BaseController
         {
             $sede[$i] = (object) $sede[$i];
         }
-        //Lista Paises
+        //Lista Sedes
         $this->view->sede = $sede;
         
         $this->view->indicador = $model->ListaIndicador();
@@ -199,6 +199,7 @@ class CPlanificacionController extends BaseController
     
     public function save($aParam)
     {
+        ini_set('max_execution_time', 300);
         $aParam = (array) $aParam;
         
         //Separa os Ids das Sedes

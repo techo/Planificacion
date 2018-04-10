@@ -303,8 +303,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($this->view->sede as $sede): ?>
-                        							<tr>
+                                               		<?php foreach ($this->view->sede as $sede): $sede->status == '1' ? $grid = '<tr class="odd selected">' : $grid = '<tr>'?>
+                        							<?php echo($grid);?>
                                             		<td></td>
                                             		<td hidden><?php echo($sede->id);?></td>
                                             		<td><?php echo($sede->pais);?></td>
