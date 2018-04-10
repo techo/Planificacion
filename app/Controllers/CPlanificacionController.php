@@ -175,8 +175,17 @@ class CPlanificacionController extends BaseController
         //Convert Array en Object
         for($i=0; $i < count($sede); $i++)
         {
-            $sede[$i] = (object) $sede[$i];
+            //Remove da Listagem Oficina Internacional, Europa e EUA
+            if($i != 0 || $i != 19 || $i != 22)
+            {
+                $sede[$i] = (object) $sede[$i];
+            }
         }
+        //Remove da Listagem Oficina Internacional, Europa e EUA
+        unset($sede[0]); // OI
+        unset($sede[19]); // Europa
+        unset($sede[22]); // EUA
+        
         //Lista Sedes
         $this->view->sede = $sede;
         
@@ -335,13 +344,17 @@ class CPlanificacionController extends BaseController
           }
           else
           {
-              $htmlSede.= '<tr>';
-              $htmlSede.= '<td></td>';
-              $htmlSede.= '<td hidden>'.$aSedes['id'].'</td>';
-              $htmlSede.= '<td>'.$aSedes['pais'].'</td>';
-              $htmlSede.= '<td>'.$aSedes['sede'].'</td>';
-              $htmlSede.= '<td>'.($aSedes['status'] == 1 ? $aSedes['status'] = 'Activo' : $aSedes['status'] = 'Inactivo').'</td>';
-              $htmlSede.= '</tr>';
+              //Remove da Listagem Oficina Internacional, Europa e EUA
+              if(($aSedes['id'] != 1) && ($aSedes['id'] != 24) && ($aSedes['id'] != 21))
+              {
+                  $htmlSede.= '<tr>';
+                  $htmlSede.= '<td></td>';
+                  $htmlSede.= '<td hidden>'.$aSedes['id'].'</td>';
+                  $htmlSede.= '<td>'.$aSedes['pais'].'</td>';
+                  $htmlSede.= '<td>'.$aSedes['sede'].'</td>';
+                  $htmlSede.= '<td>'.($aSedes['status'] == 1 ? $aSedes['status'] = 'Activo' : $aSedes['status'] = 'Inactivo').'</td>';
+                  $htmlSede.= '</tr>';
+              }
           }
         }
         
