@@ -199,7 +199,9 @@ class CPlanificacionController extends BaseController
     
     public function save($aParam)
     {
+        //Evitar TimeOut na gravacao
         ini_set('max_execution_time', 300);
+        
         $aParam = (array) $aParam;
         
         //Separa os Ids das Sedes
@@ -312,9 +314,12 @@ class CPlanificacionController extends BaseController
         //Lista de Indicadores do Registro em Edicao
         $aDados = $model->LeituraSedes($this->view->cplanificacion[0]->id);
         
+        //aDados (Local)
+        //$this->view->sede (Todas)
+        
         for($i=0; $i < count($this->view->sede); $i++)
         {
-            $aSedes    = (array) $this->view->sede[$i];
+            $aSedes     = (array) $this->view->sede[$i];
             $aIndicador = (array) $aDados[$s];
             
           if($aIndicador['id_sede'] == $aSedes['id'])
@@ -352,15 +357,20 @@ class CPlanificacionController extends BaseController
     
     public function edit($aParam)
     {
+        //Evitar TimeOut na gravacao
+        ini_set('max_execution_time', 300);
+        
         $aParam = (array) $aParam;
+        
+        //Separa os Ids das Sedes
+        $sedes = explode(',',$aParam['sedes']);
+        $sedes = array_filter($sedes);
         
         //Quebra a String em Array para facilitar a gravacao e remove o elemento vazio
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
         
         $aParam['ano']    = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
-        $aParam['pais']   = filter_var($aParam['pais'], FILTER_SANITIZE_STRING);
-        $aParam['sede']   = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
         $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("cplanificacion");
@@ -394,11 +404,20 @@ class CPlanificacionController extends BaseController
                     $model->ApagaIndicadores($aParam['id']);
                 }
                 
-                //Comeca gravar os indicadores atualizados
-                for($i=0; $i < count($indicadores); $i++)
+                //Comeca a gravar as novas sedes e seus indicadores
+                for($i=0; $i < count($sedes); $i++)
                 {
-                    $indicador = $indicadores[$i];
-                    $result = $model->GuardarDetalheIndicadores($indicador, $aParam['id'], $aParam['status']);
+                    //Busca Dados do Pais
+                    $sede   = $sedes[$i];
+                    
+                    $aDados = $this->GetSede($sede);
+                    $idPais = $aDados[0]['id_pais'];
+                    
+                    for($j=0; $j < count($indicadores); $j++)
+                    {
+                        $indicador = $indicadores[$j];
+                        $result = $model->GuardarDetalheIndicadores($indicador, $aParam['id'], $aParam['status'], $sede, $idPais);
+                    }
                 }
                 
                 if($result)
@@ -409,7 +428,6 @@ class CPlanificacionController extends BaseController
                 {
                     echo json_encode(array("results" => false));
                 }
-                
             }
             else
             {

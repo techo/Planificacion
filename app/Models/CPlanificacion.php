@@ -376,8 +376,6 @@ class CPlanificacion extends BaseModel
         $sql  = "";
         $sql .= "UPDATE {$this->table} SET ";
         $sql .= "id_ano               = '" . $aParam['ano']."', ";
-        $sql .= "id_pais              = '" . $aParam['pais']."', ";
-        $sql .= "id_sede              = '" . $aParam['sede']."', ";
         $sql .= "edit_plan_enero      = '" . $aParam['eneroplan']."', ";
         $sql .= "edit_real_enero      = '" . $aParam['eneroreal']."', ";
         $sql .= "edit_plan_febrero    = '" . $aParam['febreroplan']."', ";
