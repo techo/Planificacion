@@ -164,7 +164,7 @@ class CPlanificacionController extends BaseController
     public function add()
     {
         $this->setPageTitle('Crear Planificacion');
-        $model = Container::getModel("cplanificacion");
+        $model = Container::getModel("CPlanificacion");
         
         //Busca Anos
         $this->view->ano = $model->ListaAno();
@@ -224,7 +224,7 @@ class CPlanificacionController extends BaseController
         $aParam['ano']    = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
         $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
-        $model  = Container::getModel("cplanificacion");
+        $model  = Container::getModel("CPlanificacion");
         
         //Grava Planificacion
         $result = $model->GuardarPlanificacion($aParam);
@@ -260,7 +260,7 @@ class CPlanificacionController extends BaseController
     public function show($id)
     {
         $this->setPageTitle('Editar Planificacion');
-        $model = Container::getModel("cplanificacion");
+        $model = Container::getModel("CPlanificacion");
         
         $this->view->cplanificacion = $model->search($id);
         $this->view->ano            = $model->ListaAno();
@@ -386,7 +386,7 @@ class CPlanificacionController extends BaseController
         $aParam['ano']    = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
         $aParam['status'] = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         
-        $model  = Container::getModel("cplanificacion");
+        $model  = Container::getModel("CPlanificacion");
         //Actualiza Planificacion
         $result = $model->ActualizarPlanificacion($aParam);
         
@@ -488,7 +488,7 @@ class CPlanificacionController extends BaseController
     public function duplicar($id)
     {
         $this->setPageTitle('Duplicar Planificacion');
-        $model = Container::getModel("cplanificacion");
+        $model = Container::getModel("CPlanificacion");
         
         $this->view->cplanificacion = $model->search($id);
         $this->view->ano            = $model->ListaAno();
@@ -595,7 +595,7 @@ class CPlanificacionController extends BaseController
     
     public function delete($id)
     {
-        $model = Container::getModel("cplanificacion");
+        $model = Container::getModel("CPlanificacion");
         $result = $model->delete($id);
         
         if($result)
