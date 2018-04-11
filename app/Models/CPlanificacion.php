@@ -489,4 +489,28 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function delete($id)
+    {
+        $query .= "UPDATE {$this->table} SET ";
+        $query .= "deleted = 1 ";
+        $query .= "WHERE id=:id ";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function deleteIndicador($id)
+    {
+        $query .= "UPDATE dplanificacion SET ";
+        $query .= "deleted = 1 ";
+        $query .= "WHERE id=:id ";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

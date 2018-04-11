@@ -592,4 +592,25 @@ class CPlanificacionController extends BaseController
         /* Render View Temporalidades */
         $this->renderView('cplanificacion/duplicar', 'layout');
     }
+    
+    public function delete($id)
+    {
+        $model = Container::getModel("cplanificacion");
+        $result = $model->delete($id);
+        
+        if($result)
+        {
+            $ListaKPI = $model->BuscaIndicadores($id);
+            
+            for($i=0; $i < count($ListaKPI); $i++)
+            {
+                $aDados   = (array) $ListaKPI[$i];
+                
+                $idKpi = $aDados['id'];
+                $result = $model->deleteIndicador($idKpi);
+            }
+            
+            header('Location: /cplanificacion');
+        }
+    }
 }
