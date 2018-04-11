@@ -484,4 +484,112 @@ class CPlanificacionController extends BaseController
         //  echo json_encode(array("values" => $aTemp));
         return $aTemp;
     }
+    
+    public function duplicar($id)
+    {
+        $this->setPageTitle('Duplicar Planificacion');
+        $model = Container::getModel("cplanificacion");
+        
+        $this->view->cplanificacion = $model->search($id);
+        $this->view->ano            = $model->ListaAno();
+        
+        //Todos Indicadores Cadastrados
+        $this->view->indicador = $model->ListaIndicador();
+        
+        //Todas as Sedes Cadastradas
+        $this->view->sede = $this->TodasSedes();
+        
+        for($i=0; $i < count($this->view->indicador); $i++)
+        {
+            $aKPI[$i] = (array) $this->view->indicador[$i];
+            
+            //Get Area
+            $area = $this->GetArea($aKPI[$i]['id_area']);
+            $aKPI[$i]['area'] = $area['nombre'];
+        }
+        
+        //Lista de Indicadores do Registro em Edicao
+        $aIndicadores = $model->KpisRegistro($this->view->cplanificacion[0]->id);
+        $j = 0;
+        $s = 0;
+        
+        //Verificar quais estao selecionados e quais nao para formar a lista
+        for($i=0; $i < count($aKPI); $i++)
+        {
+            $aTeste = (array) $aIndicadores[$j];
+            
+            if($aKPI[$i]['id'] == $aTeste['id_indicador'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$aKPI[$i]['id'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['indicador'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['temporalidad'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['tipo'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['pilar'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['area'].'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            else
+            {
+                $html .= '<tr>';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$aKPI[$i]['id'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['indicador'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['temporalidad'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['tipo'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['pilar'].'</td>';
+                $html .= '<td>'.$aKPI[$i]['area'].'</td>';
+                $html .= '</tr>';
+            }
+        }
+        
+        //Lista de Indicadores do Registro em Edicao
+        $aDados = $model->LeituraSedes($this->view->cplanificacion[0]->id);
+        
+        //aDados (Local)
+        //$this->view->sede (Todas)
+        
+        for($i=0; $i < count($this->view->sede); $i++)
+        {
+            $aSedes     = (array) $this->view->sede[$i];
+            $aIndicador = (array) $aDados[$s];
+            
+            if($aIndicador['id_sede'] == $aSedes['id'])
+            {
+                $htmlSede .= '<tr class="odd selected">';
+                $htmlSede.= '<td></td>';
+                $htmlSede.= '<td hidden>'.$aSedes['id'].'</td>';
+                $htmlSede.= '<td>'.$aSedes['pais'].'</td>';
+                $htmlSede.= '<td>'.$aSedes['sede'].'</td>';
+                $htmlSede.= '<td>'.($aSedes['status'] == 1 ? $aSedes['status'] = 'Activo' : $aSedes['status'] = 'Inactivo').'</td>';
+                $htmlSede.= '</tr>';
+                $s++;
+            }
+            else
+            {
+                //Remove da Listagem Oficina Internacional, Europa e EUA
+                if(($aSedes['id'] != 1) && ($aSedes['id'] != 24) && ($aSedes['id'] != 21))
+                {
+                    $htmlSede.= '<tr>';
+                    $htmlSede.= '<td></td>';
+                    $htmlSede.= '<td hidden>'.$aSedes['id'].'</td>';
+                    $htmlSede.= '<td>'.$aSedes['pais'].'</td>';
+                    $htmlSede.= '<td>'.$aSedes['sede'].'</td>';
+                    $htmlSede.= '<td>'.($aSedes['status'] == 1 ? $aSedes['status'] = 'Activo' : $aSedes['status'] = 'Inactivo').'</td>';
+                    $htmlSede.= '</tr>';
+                }
+            }
+        }
+        
+        //Devolvo o HTML
+        $this->view->indicadores = $html;
+        
+        //Devolvo o HTML Sedes
+        $this->view->sede = $htmlSede;
+        
+        /* Render View Temporalidades */
+        $this->renderView('cplanificacion/duplicar', 'layout');
+    }
 }
