@@ -46,7 +46,7 @@ $route[] = ['/indicadores/show/{id}', 'IndicadoresController@show'];
 $route[] = ['/indicadores/edit', 'IndicadoresController@edit'];
 $route[] = ['/indicadores/delete/{id}', 'IndicadoresController@delete'];
 
-/** Planificacion **/
+/** Crear Planificacion **/
 $route[] = ['/cplanificacion', 'CPlanificacionController@index'];
 $route[] = ['/cplanificacion/add', 'CPlanificacionController@add'];
 $route[] = ['/cplanificacion/SearchSede', 'CPlanificacionController@SearchSede'];
@@ -55,5 +55,8 @@ $route[] = ['/cplanificacion/show/{id}', 'CPlanificacionController@show'];
 $route[] = ['/cplanificacion/edit', 'CPlanificacionController@edit'];
 $route[] = ['/cplanificacion/duplicar/{id}', 'CPlanificacionController@duplicar'];
 $route[] = ['/cplanificacion/delete/{id}', 'CPlanificacionController@delete'];
+
+/** Planificar ano **/
+$route[] = ['/planificacion', 'PlanificacionController@index'];
 
 return $route;

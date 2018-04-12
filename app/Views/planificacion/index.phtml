@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery Shield UI Demos</title>
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+</head>
+<body class="theme-light">
+<div class="form-group">
+		<label for="ano">A&ntilde;o</label>
+		<select  id="ano" class="form-control" >
+			<option value="0">-- SELECCIONE --</option>
+			<?php foreach ($this->view->ano as $ano):?>
+					<option value="<?php echo($ano->id);?>"><?php echo($ano->ano);?></option>
+			<?php endforeach; ?>
+		</select>
+	</div>
+<br>
+<br>
+<div id="grid"></div>
+<script type="text/javascript" src="/assets/js/planificacion/planificacion.js""></script>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+</body>
+</html>
