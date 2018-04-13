@@ -24,22 +24,27 @@ class PlanificacionController extends BaseController
         //Busca Planificacion
         $this->view->planificacion = $model->select();
         
-        $idPlanificacion = $this->view->planificacion[0]->id;
-        $idSede = $_SESSION['Planificacion']['sede_id'];
-        
-        //Busca Sede e Pais para por dentro do objeto planificacion
-        $aDados = $model->BuscaSedePais($idPlanificacion, $idSede);
-        
-        $aDados = (array) $aDados[0];
-        
-        $pais  = $aDados['id_pais'];
-        $sede = $aDados['id_sede'];
-        
-        $cPais = $this->GetPais($pais);
-        $cSede = $this->GetSede($sede);
-        
-        $this->view->planificacion[0]->pais = $cPais['nombre'];
-        $this->view->planificacion[0]->sede = $cSede[0]['nombre'];
+        for($i=0; $i < count($this->view->planificacion); $i++)
+        {
+            $idPlanificacion = $this->view->planificacion[$i]->id;
+            
+            // Se nao for Oficina Internacional lista apenas da sua SEDE
+            $idSede = $_SESSION['Planificacion']['sede_id'];
+            
+            //Busca Sede e Pais para por dentro do objeto planificacion
+            $aDados = $model->BuscaSedePais($idPlanificacion, $idSede);
+            
+            $aDados = (array) $aDados[0];
+            
+            $pais  = $aDados['id_pais'];
+            $sede = $aDados['id_sede'];
+            
+            $cPais = $this->GetPais($pais);
+            $cSede = $this->GetSede($sede);
+            
+            $this->view->planificacion[$i]->pais = $cPais['nombre'];
+            $this->view->planificacion[$i]->sede = $cSede[0]['nombre'];
+        }
         
         /* Render View Planificacion */
         $this->renderView('planificacion/index', 'layout');

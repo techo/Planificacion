@@ -33,11 +33,11 @@
                     	<tbody>
                     	<?php foreach ($this->view->planificacion as $planificacion): ?>
                     		<tr class="gradeX">
-                    		<td><?php echo($this->view->planificacion[0]->ano);?></td>
-                    		<td><?php echo($this->view->planificacion[0]->pais);?></td>
-                    		<td><?php echo($this->view->planificacion[0]->sede);?></td>
-                    		<td><?php ($this->view->planificacion[0]->situation == '1' ? $this->view->planificacion[0]->situation = 'Activo' : $this->view->planificacion[0]->situation = 'Inactivo'); echo($this->view->planificacion[0]->situation);?></td>
-                    		<td class="center"><a href="/planificacion/show/<?php echo($this->view->planificacion[0]->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Planificar</a><a href="/planificar/visualizar/<?php echo($this->view->planificacion[0]->id);?>" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> Visualizar</a></td>
+                    		<td><?php echo($planificacion->ano);?></td>
+                    		<td><?php echo($planificacion->pais);?></td>
+                    		<td><?php echo($planificacion->sede);?></td>
+                    		<td><?php ($planificacion->situation == '1' ? $planificacion->situation = 'Activo' : $planificacion->situation = 'Inactivo'); echo($planificacion->situation);?></td>
+                    		<td class="center"><a href="/planificacion/show/<?php echo($planificacion->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Planificar</a><a href="/planificar/visualizar/<?php echo($planificacion->id);?>" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> Visualizar</a></td>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>
