@@ -114,7 +114,7 @@ class PlanificacionController extends BaseController
         //Enero Plan
         $aCabec[1]['name'] = 'enero_plan';
         $aCabec[1]['label'] = '01 Plan';
-        $aCabec[1]['datatype'] = 'string';
+        $aCabec[1]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_enero'] == 1)
         {
@@ -128,7 +128,7 @@ class PlanificacionController extends BaseController
         //Enero Real
         $aCabec[2]['name'] = 'enero_real';
         $aCabec[2]['label'] = '01 Real';
-        $aCabec[2]['datatype'] = 'string';
+        $aCabec[2]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_enero'] == 1)
         {
@@ -142,7 +142,7 @@ class PlanificacionController extends BaseController
         //Febrero Plan
         $aCabec[3]['name'] = 'febrero_plan';
         $aCabec[3]['label'] = '02 Plan';
-        $aCabec[3]['datatype'] = 'string';
+        $aCabec[3]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_febrero'] == 1)
         {
@@ -156,7 +156,7 @@ class PlanificacionController extends BaseController
         //Febrero Real
         $aCabec[4]['name'] = 'febrero_real';
         $aCabec[4]['label'] = '02 Real';
-        $aCabec[4]['datatype'] = 'string';
+        $aCabec[4]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_febrero'] == 1)
         {
@@ -170,7 +170,7 @@ class PlanificacionController extends BaseController
         //Marzo Plan
         $aCabec[5]['name'] = 'marzo_plan';
         $aCabec[5]['label'] = '03 Plan';
-        $aCabec[5]['datatype'] = 'string';
+        $aCabec[5]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_marzo'] == 1)
         {
@@ -184,7 +184,7 @@ class PlanificacionController extends BaseController
         //Marzo Real
         $aCabec[6]['name'] = 'marzo_real';
         $aCabec[6]['label'] = '03 Real';
-        $aCabec[6]['datatype'] = 'string';
+        $aCabec[6]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_marzo'] == 1)
         {
@@ -198,7 +198,7 @@ class PlanificacionController extends BaseController
         //Abril Plan
         $aCabec[7]['name'] = 'abril_plan';
         $aCabec[7]['label'] = '04 Plan';
-        $aCabec[7]['datatype'] = 'string';
+        $aCabec[7]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_abril'] == 1)
         {
@@ -212,7 +212,7 @@ class PlanificacionController extends BaseController
         //Abril Real
         $aCabec[8]['name'] = 'abril_real';
         $aCabec[8]['label'] = '04 Real';
-        $aCabec[8]['datatype'] = 'string';
+        $aCabec[8]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_abril'] == 1)
         {
@@ -226,7 +226,7 @@ class PlanificacionController extends BaseController
         //Mayo Plan
         $aCabec[9]['name'] = 'mayo_plan';
         $aCabec[9]['label'] = '05 Plan';
-        $aCabec[9]['datatype'] = 'string';
+        $aCabec[9]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_mayo'] == 1)
         {
@@ -240,7 +240,7 @@ class PlanificacionController extends BaseController
         //Mayo Real
         $aCabec[10]['name'] = 'mayo_real';
         $aCabec[10]['label'] = '05 Real';
-        $aCabec[10]['datatype'] = 'string';
+        $aCabec[10]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_mayo'] == 1)
         {
@@ -254,7 +254,7 @@ class PlanificacionController extends BaseController
         //Junio Plan
         $aCabec[11]['name'] = 'junio_plan';
         $aCabec[11]['label'] = '06 Plan';
-        $aCabec[11]['datatype'] = 'string';
+        $aCabec[11]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_junio'] == 1)
         {
@@ -268,7 +268,7 @@ class PlanificacionController extends BaseController
         //Junio Real
         $aCabec[12]['name'] = 'junio_real';
         $aCabec[12]['label'] = '06 Real';
-        $aCabec[12]['datatype'] = 'string';
+        $aCabec[12]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_junio'] == 1)
         {
@@ -282,7 +282,7 @@ class PlanificacionController extends BaseController
         //Julio Plan
         $aCabec[13]['name'] = 'julio_plan';
         $aCabec[13]['label'] = '07 Plan';
-        $aCabec[13]['datatype'] = 'string';
+        $aCabec[13]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_julio'] == 1)
         {
@@ -296,7 +296,7 @@ class PlanificacionController extends BaseController
         //Julio Real
         $aCabec[14]['name'] = 'julio_real';
         $aCabec[14]['label'] = '07 Real';
-        $aCabec[14]['datatype'] = 'string';
+        $aCabec[14]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_julio'] == 1)
         {
@@ -310,7 +310,7 @@ class PlanificacionController extends BaseController
         //Agosto Plan
         $aCabec[15]['name'] = 'agosto_plan';
         $aCabec[15]['label'] = '08 Plan';
-        $aCabec[15]['datatype'] = 'string';
+        $aCabec[15]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_agosto'] == 1)
         {
@@ -324,7 +324,7 @@ class PlanificacionController extends BaseController
         //Agosto Real
         $aCabec[16]['name'] = 'agosto_real';
         $aCabec[16]['label'] = '08 Real';
-        $aCabec[16]['datatype'] = 'string';
+        $aCabec[16]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_agosto'] == 1)
         {
@@ -338,7 +338,7 @@ class PlanificacionController extends BaseController
         //Septiembre Plan
         $aCabec[17]['name'] = 'septiembre_plan';
         $aCabec[17]['label'] = '09 Plan';
-        $aCabec[17]['datatype'] = 'string';
+        $aCabec[17]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_septiembre'] == 1)
         {
@@ -352,7 +352,7 @@ class PlanificacionController extends BaseController
         //Septiembre Real
         $aCabec[18]['name'] = 'septiembre_real';
         $aCabec[18]['label'] = '09 Real';
-        $aCabec[18]['datatype'] = 'string';
+        $aCabec[18]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_septiembre'] == 1)
         {
@@ -366,7 +366,7 @@ class PlanificacionController extends BaseController
         //Octubre Plan
         $aCabec[19]['name'] = 'octubre_plan';
         $aCabec[19]['label'] = '10 Plan';
-        $aCabec[19]['datatype'] = 'string';
+        $aCabec[19]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_octubre'] == 1)
         {
@@ -380,7 +380,7 @@ class PlanificacionController extends BaseController
         //Octubre Real
         $aCabec[20]['name'] = 'octubre_real';
         $aCabec[20]['label'] = '10 Real';
-        $aCabec[20]['datatype'] = 'string';
+        $aCabec[20]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_octubre'] == 1)
         {
@@ -394,7 +394,7 @@ class PlanificacionController extends BaseController
         //Noviembre Plan
         $aCabec[21]['name'] = 'noviembre_plan';
         $aCabec[21]['label'] = '11 Plan';
-        $aCabec[21]['datatype'] = 'string';
+        $aCabec[21]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_noviembre'] == 1)
         {
@@ -408,7 +408,7 @@ class PlanificacionController extends BaseController
         //Noviembre Real
         $aCabec[22]['name'] = 'noviembre_real';
         $aCabec[22]['label'] = '11 Real';
-        $aCabec[22]['datatype'] = 'string';
+        $aCabec[22]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_noviembre'] == 1)
         {
@@ -422,7 +422,7 @@ class PlanificacionController extends BaseController
         //Diciembre  Plan
         $aCabec[23]['name'] = 'diciembre_plan';
         $aCabec[23]['label'] = '12 Plan';
-        $aCabec[23]['datatype'] = 'string';
+        $aCabec[23]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_plan_diciembre'] == 1)
         {
@@ -436,7 +436,7 @@ class PlanificacionController extends BaseController
         //Diciembre Real
         $aCabec[24]['name'] = 'diciembre_real';
         $aCabec[24]['label'] = '12 Real';
-        $aCabec[24]['datatype'] = 'string';
+        $aCabec[24]['datatype'] = 'integer';
         
         if($aPlanificacion['edit_real_diciembre'] == 1)
         {
