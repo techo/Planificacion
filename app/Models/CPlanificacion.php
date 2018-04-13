@@ -560,4 +560,17 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function BuscaSedePais($idPlanificacion, $idSede)
+    {
+        $sql  = "";
+        $sql .= "SELECT * ";
+        $sql .= " FROM dplanificacion ";
+        $sql .= "WHERE id_cplanificacion = " . $idPlanificacion . " AND deleted = 0 AND situation = 1 AND id_sede = ". $idSede . " GROUP BY id_sede";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

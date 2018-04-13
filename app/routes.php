@@ -58,5 +58,7 @@ $route[] = ['/cplanificacion/delete/{id}', 'CPlanificacionController@delete'];
 
 /** Planificar ano **/
 $route[] = ['/planificacion', 'PlanificacionController@index'];
+$route[] = ['/planificacion/show/{id}', 'PlanificacionController@show'];
+$route[] = ['/planificacion/dados', 'PlanificacionController@carregardados'];
 
 return $route;
