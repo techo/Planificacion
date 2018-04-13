@@ -1,8 +1,11 @@
 window.onload = function() 
 {
 	var metadata = [];
-	oData = new Object();	
-	oData.id   = $('#id').val();	
+	var data = [];
+	oData   = new Object();	
+	oResult = new Object();
+	oData.id   = $('#id').val();
+	oResult.id = $('#id').val();
 	
 	$.ajax({
 		type: "POST",
@@ -16,24 +19,23 @@ window.onload = function()
 				metadata = oData['metadata'];
 				
 				//Criar Ajax data ...
-				
-				var data = [];
-				data.push({id: 1, values: {"indicador":"%CEF - Porcentaje de Cobertura de Egresos Fijos","enero_plan":2,"enero_real":1,"febrero_plan":3,"febrero_real":1,"marzo_plan":10,"marzo_real":2,"abril_plan":16,"abril_real": 5,"mayo_plan":12,"mayo_real": 3,"junio_plan":23,"junio_real": 42}});
-				data.push({id: 4, values: {"name":"Conway","firstname":"Coby","age":47,"height":1.96,"country":"za","email":"coby@conwayinc.com","freelance":true,"lastvisit":"01\/12\/2007"}});
-				data.push({id: 5, values: {"name":"Shannon","firstname":"Rana","age":24,"height":1.56,"country":"nl","email":"ranna.shannon@hotmail.com","freelance":false,"lastvisit":"07\/10\/2009"}});
-				data.push({id: 6, values: {"name":"Benton","firstname":"Jasmine","age":61,"height":1.71,"country":"ca","email":"jasmine.benton@yahoo.com","freelance":false,"lastvisit":"13\/01\/2009"}});
-				data.push({id: 7, values: {"name":"Belletoise","firstname":"André","age":31,"height":1.84,"country":"be","email":"belletoise@kiloutou.be","freelance":true,"lastvisit":""}});
-				data.push({id: 15, values: {"name":"Santa-Maria","firstname":"Martin","age":37,"height":1.80,"country":"br","email":"martin.sm@gmail.com","freelance":false,"lastvisit":"12\/06\/1995"}});
-				data.push({id: 30, values: {"name":"Dieumerci","firstname":"Amédé","age":37,"height":1.81,"country":"ng","email":"dieumerci@gmail.com","freelance":true,"lastvisit":"05\/07\/2009"}});
-				data.push({id: 50,values: {"name":"Morin","firstname":"Wanthus","age":46,"height":1.77,"country":"zw","email":"morin.x@yahoo.jsdata.com","freelance":false,"lastvisit":"04\/03\/2004"}});
-				 
-				editableGrid = new EditableGrid("DemoGridJsData");
-				editableGrid.load({"metadata": metadata, "data": data});
-				editableGrid.renderGrid("tablecontent", "testgrid");
-			}
-			else
-			{
-				
+				$.ajax({
+					type: "POST",
+					url: "/planificacion/listagem",
+					dataType: "json",
+					data: oResult,
+					success: function(oData)
+					{	
+						if(oData['data'])
+						{
+							data = oData['data'];
+						}
+						
+						editableGrid = new EditableGrid("DemoGridJsData");
+						editableGrid.load({"metadata": metadata, "data": data});
+						editableGrid.renderGrid("tablecontent", "testgrid");
+					}
+				});
 			}
 		}
 	});
@@ -130,3 +132,9 @@ Exemplo do JSON metadata
 	
  * */
 
+
+/* Exemplo de data
+ *
+ 	data.push({id: 1, values: {"indicador":"%CEF - Porcentaje de Cobertura de Egresos Fijos","enero_plan":2,"enero_real":1,"febrero_plan":3,"febrero_real":1,"marzo_plan":10,"marzo_real":2,"abril_plan":16,"abril_real": 5,"mayo_plan":12,"mayo_real": 3,"junio_plan":23,"junio_real": 42}});
+	data.push({id: 4, values: {"name":"Conway","firstname":"Coby","age":47,"height":1.96,"country":"za","email":"coby@conwayinc.com","freelance":true,"lastvisit":"01\/12\/2007"}});
+ * */

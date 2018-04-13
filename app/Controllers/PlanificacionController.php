@@ -101,8 +101,6 @@ class PlanificacionController extends BaseController
         
         $model = Container::getModel("CPlanificacion");
         
-        //Implementar Busca dos Indicadores desse ano para listar junto com demas dados
-       
         $aPlanificacion = $model->search($idPlanificacion);
         
         $aPlanificacion = (array) $aPlanificacion[0];
@@ -450,6 +448,52 @@ class PlanificacionController extends BaseController
         }
         
         echo json_encode(array("metadata" => $aCabec));
+        
+    }
+    
+    public function listagem($aParam)
+    {
+        $aParam = (array) $aParam;
+        $idPlanificacion = $aParam['id'];
+        $idSede = $_SESSION['Planificacion']['sede_id'];
+        
+        $model = Container::getModel("CPlanificacion");
+        
+        $aListagem = $model->Listagem($idPlanificacion, $idSede);
+        
+        for($i=0; $i < count($aListagem); $i++)
+        {
+            $Dados = (array) $aListagem[$i];
+            
+            $aIndicador[$i]['id'] = $Dados['id'];
+            $aIndicador[$i]['values']['indicador']       = $Dados['indicador'];
+            $aIndicador[$i]['values']['enero_plan']      = $Dados['enero_plan'] == NULL ? 0 : $Dados['enero_plan'];
+            $aIndicador[$i]['values']['enero_real']      = $Dados['enero_real'] == NULL ? 0 : $Dados['enero_real'];
+            $aIndicador[$i]['values']['febrero_plan']    = $Dados['febrero_plan'] == NULL ? 0 : $Dados['febrero_plan'];
+            $aIndicador[$i]['values']['febrero_real']    = $Dados['febrero_real'] == NULL ? 0 : $Dados['febrero_real'];
+            $aIndicador[$i]['values']['marzo_plan']      = $Dados['marzo_plan'] == NULL ? 0 : $Dados['marzo_plan'];
+            $aIndicador[$i]['values']['marzo_real']      = $Dados['marzo_real'] == NULL ? 0 : $Dados['marzo_real'];
+            $aIndicador[$i]['values']['abril_plan']      = $Dados['abril_plan'] == NULL ? 0 : $Dados['abril_plan'];
+            $aIndicador[$i]['values']['abril_real']      = $Dados['abril_real'] == NULL ? 0 : $Dados['abril_real'];
+            $aIndicador[$i]['values']['mayo_plan']       = $Dados['mayo_plan'] == NULL ? 0 : $Dados['mayo_plan'];
+            $aIndicador[$i]['values']['mayo_real']       = $Dados['mayo_real'] == NULL ? 0 : $Dados['mayo_real'];
+            $aIndicador[$i]['values']['junio_plan']      = $Dados['junio_plan'] == NULL ? 0 : $Dados['junio_plan'];
+            $aIndicador[$i]['values']['junio_real']      = $Dados['junio_real'] == NULL ? 0 : $Dados['junio_real'];
+            $aIndicador[$i]['values']['julio_plan']      = $Dados['julio_plan'] == NULL ? 0 : $Dados['julio_plan'];
+            $aIndicador[$i]['values']['julio_real']      = $Dados['julio_real'] == NULL ? 0 : $Dados['julio_real'];
+            $aIndicador[$i]['values']['agosto_plan']     = $Dados['agosto_plan'] == NULL ? 0 : $Dados['agosto_plan'];
+            $aIndicador[$i]['values']['agosto_real']     = $Dados['agosto_real'] == NULL ? 0 : $Dados['agosto_real'];
+            $aIndicador[$i]['values']['septiembre_plan'] = $Dados['septiembre_plan'] == NULL ? 0 : $Dados['septiembre_plan'];
+            $aIndicador[$i]['values']['septiembre_real'] = $Dados['septiembre_real'] == NULL ? 0 : $Dados['septiembre_real'];
+            $aIndicador[$i]['values']['octubre_plan']    = $Dados['octubre_plan'] == NULL ? 0 : $Dados['octubre_plan'];
+            $aIndicador[$i]['values']['octubre_real']    = $Dados['octubre_real'] == NULL ? 0 : $Dados['octubre_real'];
+            $aIndicador[$i]['values']['noviembre_plan']  = $Dados['noviembre_plan'] == NULL ? 0 : $Dados['noviembre_plan'];
+            $aIndicador[$i]['values']['noviembre_real']  = $Dados['noviembre_real'] == NULL ? 0 : $Dados['noviembre_real'];
+            $aIndicador[$i]['values']['diciembre_plan']  = $Dados['diciembre_plan'] == NULL ? 0 : $Dados['diciembre_plan'];
+            $aIndicador[$i]['values']['diciembre_real']  = $Dados['diciembre_real'] == NULL ? 0 : $Dados['diciembre_real'];
+        }
+        
+        echo json_encode(array("data" => $aIndicador));
         
     }
 }
