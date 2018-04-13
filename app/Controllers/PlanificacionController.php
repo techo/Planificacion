@@ -109,7 +109,7 @@ class PlanificacionController extends BaseController
         $aCabec[0]['name'] = 'indicador';
         $aCabec[0]['label'] = 'Indicador';
         $aCabec[0]['datatype'] = 'string';
-        $aCabec[0]['editable'] = 'false';
+        $aCabec[0]['editable'] = false;
         
         //Enero Plan
         $aCabec[1]['name'] = 'enero_plan';
@@ -118,333 +118,333 @@ class PlanificacionController extends BaseController
         
         if($aPlanificacion['edit_plan_enero'] == 1)
         {
-            $aCabec[1]['editable'] = 'true';
+            $aCabec[1]['editable'] = true;
         }
         else
         {
-            $aCabec[1]['editable'] = 'false';
+            $aCabec[1]['editable'] = false;
         }
         
         //Enero Real
-        $aCabec[1]['name'] = 'enero_real';
-        $aCabec[1]['label'] = '01 Real';
-        $aCabec[1]['datatype'] = 'string';
+        $aCabec[2]['name'] = 'enero_real';
+        $aCabec[2]['label'] = '01 Real';
+        $aCabec[2]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_enero'] == 1)
         {
-            $aCabec[1]['editable'] = 'true';
+            $aCabec[2]['editable'] = true;
         }
         else
         {
-            $aCabec[1]['editable'] = 'false';
+            $aCabec[2]['editable'] = false;
         }
         
         //Febrero Plan
-        $aCabec[2]['name'] = 'febrero_plan';
-        $aCabec[2]['label'] = '02 Plan';
-        $aCabec[2]['datatype'] = 'string';
+        $aCabec[3]['name'] = 'febrero_plan';
+        $aCabec[3]['label'] = '02 Plan';
+        $aCabec[3]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_febrero'] == 1)
         {
-            $aCabec[2]['editable'] = 'true';
+            $aCabec[3]['editable'] = true;
         }
         else
         {
-            $aCabec[2]['editable'] = 'false';
+            $aCabec[3]['editable'] = false;
         }
         
         //Febrero Real
-        $aCabec[3]['name'] = 'febrero_real';
-        $aCabec[3]['label'] = '02 Real';
-        $aCabec[3]['datatype'] = 'string';
+        $aCabec[4]['name'] = 'febrero_real';
+        $aCabec[4]['label'] = '02 Real';
+        $aCabec[4]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_febrero'] == 1)
         {
-            $aCabec[3]['editable'] = 'true';
+            $aCabec[4]['editable'] = true;
         }
         else
         {
-            $aCabec[3]['editable'] = 'false';
+            $aCabec[4]['editable'] = false;
         }
         
         //Marzo Plan
-        $aCabec[4]['name'] = 'marzo_plan';
-        $aCabec[4]['label'] = '03 Plan';
-        $aCabec[4]['datatype'] = 'string';
+        $aCabec[5]['name'] = 'marzo_plan';
+        $aCabec[5]['label'] = '03 Plan';
+        $aCabec[5]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_marzo'] == 1)
         {
-            $aCabec[4]['editable'] = 'true';
+            $aCabec[5]['editable'] = true;
         }
         else
         {
-            $aCabec[4]['editable'] = 'false';
+            $aCabec[5]['editable'] = false;
         }
         
         //Marzo Real
-        $aCabec[5]['name'] = 'marzo_real';
-        $aCabec[5]['label'] = '03 Real';
-        $aCabec[5]['datatype'] = 'string';
+        $aCabec[6]['name'] = 'marzo_real';
+        $aCabec[6]['label'] = '03 Real';
+        $aCabec[6]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_marzo'] == 1)
         {
-            $aCabec[5]['editable'] = 'true';
+            $aCabec[6]['editable'] = true;
         }
         else
         {
-            $aCabec[5]['editable'] = 'false';
+            $aCabec[6]['editable'] = false;
         }
         
         //Abril Plan
-        $aCabec[6]['name'] = 'abril_plan';
-        $aCabec[6]['label'] = '04 Plan';
-        $aCabec[6]['datatype'] = 'string';
+        $aCabec[7]['name'] = 'abril_plan';
+        $aCabec[7]['label'] = '04 Plan';
+        $aCabec[7]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_abril'] == 1)
         {
-            $aCabec[6]['editable'] = 'true';
+            $aCabec[7]['editable'] = true;
         }
         else
         {
-            $aCabec[6]['editable'] = 'false';
+            $aCabec[7]['editable'] = false;
         }
         
         //Abril Real
-        $aCabec[7]['name'] = 'abril_real';
-        $aCabec[7]['label'] = '04 Real';
-        $aCabec[7]['datatype'] = 'string';
+        $aCabec[8]['name'] = 'abril_real';
+        $aCabec[8]['label'] = '04 Real';
+        $aCabec[8]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_abril'] == 1)
         {
-            $aCabec[7]['editable'] = 'true';
+            $aCabec[8]['editable'] = true;
         }
         else
         {
-            $aCabec[7]['editable'] = 'false';
+            $aCabec[8]['editable'] = false;
         }
         
         //Mayo Plan
-        $aCabec[8]['name'] = 'mayo_plan';
-        $aCabec[8]['label'] = '05 Plan';
-        $aCabec[8]['datatype'] = 'string';
+        $aCabec[9]['name'] = 'mayo_plan';
+        $aCabec[9]['label'] = '05 Plan';
+        $aCabec[9]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_mayo'] == 1)
         {
-            $aCabec[8]['editable'] = 'true';
+            $aCabec[9]['editable'] = true;
         }
         else
         {
-            $aCabec[8]['editable'] = 'false';
+            $aCabec[9]['editable'] = false;
         }
         
         //Mayo Real
-        $aCabec[9]['name'] = 'mayo_real';
-        $aCabec[9]['label'] = '05 Real';
-        $aCabec[9]['datatype'] = 'string';
+        $aCabec[10]['name'] = 'mayo_real';
+        $aCabec[10]['label'] = '05 Real';
+        $aCabec[10]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_mayo'] == 1)
         {
-            $aCabec[9]['editable'] = 'true';
+            $aCabec[10]['editable'] = true;
         }
         else
         {
-            $aCabec[9]['editable'] = 'false';
+            $aCabec[10]['editable'] = false;
         }
         
         //Junio Plan
-        $aCabec[10]['name'] = 'junio_plan';
-        $aCabec[10]['label'] = '06 Plan';
-        $aCabec[10]['datatype'] = 'string';
+        $aCabec[11]['name'] = 'junio_plan';
+        $aCabec[11]['label'] = '06 Plan';
+        $aCabec[11]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_junio'] == 1)
         {
-            $aCabec[10]['editable'] = 'true';
+            $aCabec[11]['editable'] = true;
         }
         else
         {
-            $aCabec[10]['editable'] = 'false';
+            $aCabec[11]['editable'] = false;
         }
         
         //Junio Real
-        $aCabec[11]['name'] = 'junio_real';
-        $aCabec[11]['label'] = '06 Real';
-        $aCabec[11]['datatype'] = 'string';
+        $aCabec[12]['name'] = 'junio_real';
+        $aCabec[12]['label'] = '06 Real';
+        $aCabec[12]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_junio'] == 1)
         {
-            $aCabec[11]['editable'] = 'true';
+            $aCabec[12]['editable'] = true;
         }
         else
         {
-            $aCabec[11]['editable'] = 'false';
+            $aCabec[12]['editable'] = false;
         }
         
         //Julio Plan
-        $aCabec[12]['name'] = 'julio_plan';
-        $aCabec[12]['label'] = '07 Plan';
-        $aCabec[12]['datatype'] = 'string';
+        $aCabec[13]['name'] = 'julio_plan';
+        $aCabec[13]['label'] = '07 Plan';
+        $aCabec[13]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_julio'] == 1)
         {
-            $aCabec[12]['editable'] = 'true';
+            $aCabec[13]['editable'] = true;
         }
         else
         {
-            $aCabec[12]['editable'] = 'false';
+            $aCabec[13]['editable'] = false;
         }
         
         //Julio Real
-        $aCabec[13]['name'] = 'julio_real';
-        $aCabec[13]['label'] = '07 Real';
-        $aCabec[13]['datatype'] = 'string';
+        $aCabec[14]['name'] = 'julio_real';
+        $aCabec[14]['label'] = '07 Real';
+        $aCabec[14]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_julio'] == 1)
         {
-            $aCabec[13]['editable'] = 'true';
+            $aCabec[14]['editable'] = true;
         }
         else
         {
-            $aCabec[13]['editable'] = 'false';
+            $aCabec[14]['editable'] = false;
         }
         
         //Agosto Plan
-        $aCabec[14]['name'] = 'agosto_plan';
-        $aCabec[14]['label'] = '08 Plan';
-        $aCabec[14]['datatype'] = 'string';
+        $aCabec[15]['name'] = 'agosto_plan';
+        $aCabec[15]['label'] = '08 Plan';
+        $aCabec[15]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_agosto'] == 1)
         {
-            $aCabec[14]['editable'] = 'true';
+            $aCabec[15]['editable'] = true;
         }
         else
         {
-            $aCabec[14]['editable'] = 'false';
+            $aCabec[15]['editable'] = false;
         }
         
         //Agosto Real
-        $aCabec[15]['name'] = 'agosto_real';
-        $aCabec[15]['label'] = '08 Real';
-        $aCabec[15]['datatype'] = 'string';
+        $aCabec[16]['name'] = 'agosto_real';
+        $aCabec[16]['label'] = '08 Real';
+        $aCabec[16]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_agosto'] == 1)
         {
-            $aCabec[15]['editable'] = 'true';
+            $aCabec[16]['editable'] = true;
         }
         else
         {
-            $aCabec[15]['editable'] = 'false';
+            $aCabec[16]['editable'] = false;
         }
         
         //Septiembre Plan
-        $aCabec[16]['name'] = 'septiembre_plan';
-        $aCabec[16]['label'] = '09 Plan';
-        $aCabec[16]['datatype'] = 'string';
+        $aCabec[17]['name'] = 'septiembre_plan';
+        $aCabec[17]['label'] = '09 Plan';
+        $aCabec[17]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_septiembre'] == 1)
         {
-            $aCabec[16]['editable'] = 'true';
+            $aCabec[17]['editable'] = true;
         }
         else
         {
-            $aCabec[16]['editable'] = 'false';
+            $aCabec[17]['editable'] = false;
         }
         
         //Septiembre Real
-        $aCabec[17]['name'] = 'septiembre_real';
-        $aCabec[17]['label'] = '09 Real';
-        $aCabec[17]['datatype'] = 'string';
+        $aCabec[18]['name'] = 'septiembre_real';
+        $aCabec[18]['label'] = '09 Real';
+        $aCabec[18]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_septiembre'] == 1)
         {
-            $aCabec[17]['editable'] = 'true';
+            $aCabec[18]['editable'] = true;
         }
         else
         {
-            $aCabec[17]['editable'] = 'false';
+            $aCabec[18]['editable'] = false;
         }
         
         //Octubre Plan
-        $aCabec[18]['name'] = 'octubre_plan';
-        $aCabec[18]['label'] = '10 Plan';
-        $aCabec[18]['datatype'] = 'string';
+        $aCabec[19]['name'] = 'octubre_plan';
+        $aCabec[19]['label'] = '10 Plan';
+        $aCabec[19]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_octubre'] == 1)
         {
-            $aCabec[18]['editable'] = 'true';
+            $aCabec[19]['editable'] = true;
         }
         else
         {
-            $aCabec[18]['editable'] = 'false';
+            $aCabec[19]['editable'] = false;
         }
         
         //Octubre Real
-        $aCabec[19]['name'] = 'octubre_real';
-        $aCabec[19]['label'] = '10 Real';
-        $aCabec[19]['datatype'] = 'string';
+        $aCabec[20]['name'] = 'octubre_real';
+        $aCabec[20]['label'] = '10 Real';
+        $aCabec[20]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_octubre'] == 1)
         {
-            $aCabec[19]['editable'] = 'true';
+            $aCabec[20]['editable'] = true;
         }
         else
         {
-            $aCabec[19]['editable'] = 'false';
+            $aCabec[20]['editable'] = false;
         }
         
         //Noviembre Plan
-        $aCabec[20]['name'] = 'noviembre_plan';
-        $aCabec[20]['label'] = '11 Plan';
-        $aCabec[20]['datatype'] = 'string';
+        $aCabec[21]['name'] = 'noviembre_plan';
+        $aCabec[21]['label'] = '11 Plan';
+        $aCabec[21]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_noviembre'] == 1)
         {
-            $aCabec[20]['editable'] = 'true';
+            $aCabec[21]['editable'] = true;
         }
         else
         {
-            $aCabec[20]['editable'] = 'false';
+            $aCabec[21]['editable'] = false;
         }
         
         //Noviembre Real
-        $aCabec[21]['name'] = 'noviembre_real';
-        $aCabec[21]['label'] = '11 Real';
-        $aCabec[21]['datatype'] = 'string';
+        $aCabec[22]['name'] = 'noviembre_real';
+        $aCabec[22]['label'] = '11 Real';
+        $aCabec[22]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_noviembre'] == 1)
         {
-            $aCabec[21]['editable'] = 'true';
+            $aCabec[22]['editable'] = true;
         }
         else
         {
-            $aCabec[21]['editable'] = 'false';
+            $aCabec[22]['editable'] = false;
         }
         
         //Diciembre  Plan
-        $aCabec[22]['name'] = 'diciembre_plan';
-        $aCabec[22]['label'] = '12 Plan';
-        $aCabec[22]['datatype'] = 'string';
+        $aCabec[23]['name'] = 'diciembre_plan';
+        $aCabec[23]['label'] = '12 Plan';
+        $aCabec[23]['datatype'] = 'string';
         
         if($aPlanificacion['edit_plan_diciembre'] == 1)
         {
-            $aCabec[22]['editable'] = 'true';
+            $aCabec[23]['editable'] = true;
         }
         else
         {
-            $aCabec[22]['editable'] = 'false';
+            $aCabec[23]['editable'] = false;
         }
         
         //Diciembre Real
-        $aCabec[23]['name'] = 'diciembre_real';
-        $aCabec[23]['label'] = '12 Real';
-        $aCabec[23]['datatype'] = 'string';
+        $aCabec[24]['name'] = 'diciembre_real';
+        $aCabec[24]['label'] = '12 Real';
+        $aCabec[24]['datatype'] = 'string';
         
         if($aPlanificacion['edit_real_diciembre'] == 1)
         {
-            $aCabec[23]['editable'] = 'true';
+            $aCabec[24]['editable'] = true;
         }
         else
         {
-            $aCabec[23]['editable'] = 'false';
+            $aCabec[24]['editable'] = false;
         }
         
         echo json_encode(array("metadata" => $aCabec));
