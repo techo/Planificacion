@@ -21,23 +21,20 @@ class PlanificacionController extends BaseController
         $this->setPageTitle('Planificaci&oacute;n');
         $model = Container::getModel("CPlanificacion");
         
+        // Se nao for Oficina Internacional lista apenas da sua SEDE
+        $idSede = $_SESSION['Planificacion']['sede_id'];
+        
         //Busca Planificacion
-        $this->view->planificacion = $model->select();
+        $this->view->planificacion = $model->selectExpefica($idSede);
         
         for($i=0; $i < count($this->view->planificacion); $i++)
         {
             $idPlanificacion = $this->view->planificacion[$i]->id;
             
-            // Se nao for Oficina Internacional lista apenas da sua SEDE
-            $idSede = $_SESSION['Planificacion']['sede_id'];
-            
-            //Busca Sede e Pais para por dentro do objeto planificacion
-            $aDados = $model->BuscaSedePais($idPlanificacion, $idSede);
-            
             $aDados = (array) $aDados[0];
             
-            $pais  = $aDados['id_pais'];
-            $sede = $aDados['id_sede'];
+            $pais  = $this->view->planificacion[$i]->id_pais;
+            $sede = $this->view->planificacion[$i]->id_sede;
             
             $cPais = $this->GetPais($pais);
             $cSede = $this->GetSede($sede);

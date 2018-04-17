@@ -43,28 +43,20 @@ window.onload = function()
 	CellEditor.prototype.edit = function(rowIndex, columnIndex, element, value) 
 	{
 		
-	  	// tag element and remember all the things we need to apply/cancel edition
 	  	element.isEditing = true;
 	  	element.rowIndex = rowIndex; 
 	  	element.columnIndex = columnIndex;
 	  	
-	  	// call the specialized getEditor method
 	  	var editorInput = this.getEditor(element, value);
 	  	if (!editorInput) return false;
 	  	
-	  	// give access to the cell editor and element from the editor widget
 	  	editorInput.element = element;
 	  	editorInput.celleditor = this;
 	  
-	  	// listen to pressed keys
-	  	// - tab does not work with onkeyup (it's too late)
-	  	// - on Safari escape does not work with onkeypress
-	  	// - with onkeydown everything is fine (but don't forget to return false)
 	  	editorInput.onkeydown = function(event) {
 	  
 	  		event = event || window.event;
 	  		
-	  		// ENTER or TAB: apply value
 	  		if (event.keyCode == 13 || event.keyCode == 9) {
 	  			this.onblur = null; 
 	  			this.celleditor.applyEditing(this.element, this.celleditor.getEditorValue(this));
@@ -87,15 +79,12 @@ window.onload = function()
 	  		}
 	  	};
 	  
-	  	// if simultaneous edition is not allowed, we cancel edition when focus is lost
 	  	if (!this.editablegrid.allowSimultaneousEdition) editorInput.onblur = this.editablegrid.saveOnBlur ?
 	  			function(event) { this.onblur = null; this.celleditor.applyEditing(this.element, this.celleditor.getEditorValue(this)); } :
 	  			function(event) { this.onblur = null; this.celleditor.cancelEditing(this.element); };
 	  
-	  	// display the resulting editor widget
 	  	this.displayEditor(element, editorInput);
 	  	
-	  	// give focus to the created editor
 	  	editorInput.focus();
 	};
 	
@@ -130,11 +119,10 @@ Exemplo do JSON metadata
 //	metadata.push({ name: "diciembre_plan", label: "12 Plan", datatype: "integer", editable: true});
 //	metadata.push({ name: "diciembre_real", label: "12 Real", datatype: "integer", editable: true});
 	
- * */
+ */
 
 
 /* Exemplo de data
- *
  	data.push({id: 1, values: {"indicador":"%CEF - Porcentaje de Cobertura de Egresos Fijos","enero_plan":2,"enero_real":1,"febrero_plan":3,"febrero_real":1,"marzo_plan":10,"marzo_real":2,"abril_plan":16,"abril_real": 5,"mayo_plan":12,"mayo_real": 3,"junio_plan":23,"junio_real": 42}});
 	data.push({id: 4, values: {"name":"Conway","firstname":"Coby","age":47,"height":1.96,"country":"za","email":"coby@conwayinc.com","freelance":true,"lastvisit":"01\/12\/2007"}});
  * */
