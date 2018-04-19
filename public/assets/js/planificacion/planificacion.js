@@ -4,8 +4,12 @@ window.onload = function()
 	var data = [];
 	oData   = new Object();	
 	oResult = new Object();
-	oData.id   = $('#id').val();
-	oResult.id = $('#id').val();
+	oData.id     = $('#id').val();
+	oData.pais   = $('#pais').val();
+	oData.sede   = $('#sede').val();
+	oResult.id   = $('#id').val();
+	oResult.pais = $('#pais').val();
+	oResult.sede = $('#sede').val();
 	
 	$.ajax({
 		type: "POST",

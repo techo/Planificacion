@@ -631,7 +631,7 @@ class CPlanificacion extends BaseModel
         return $result;
     }
     
-    public function Listagem($idPlanificacion, $idSede)
+    public function Listagem($idPlanificacion, $idSede, $idPais = 0)
     {
         $sql  = "";
         $sql .= "SELECT ";
@@ -640,6 +640,10 @@ class CPlanificacion extends BaseModel
         $sql .= " FROM dplanificacion ";
         $sql .= "INNER JOIN indicador indicador ON indicador.id = dplanificacion.id_indicador ";
         $sql .= "WHERE dplanificacion.id_cplanificacion = " . $idPlanificacion . " AND dplanificacion.deleted = 0 AND dplanificacion.situation = 1 AND dplanificacion.id_sede = ". $idSede;
+        if($idPais != 0)
+        {
+            $sql .= " AND dplanificacion.id_pais = " . $idPais;
+        }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

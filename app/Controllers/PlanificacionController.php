@@ -456,12 +456,23 @@ class PlanificacionController extends BaseController
     public function listagem($aParam)
     {
         $aParam = (array) $aParam;
+        
         $idPlanificacion = $aParam['id'];
         $idSede = $_SESSION['Planificacion']['sede_id'];
         
         $model = Container::getModel("CPlanificacion");
         
-        $aListagem = $model->Listagem($idPlanificacion, $idSede);
+        //Se for sede Oficina Internacional, buscar o id do registro
+        if($idSede == '1')
+        {
+            $aIndicadores = $model->BuscaIndicadores($idPlanificacion, $aParam['sede'], $aParam['pais']);
+            
+            $idSede = $aParam['sede'];
+            $idPais = $aParam['pais'];
+            
+        }
+        
+        $aListagem = $model->Listagem($idPlanificacion, $idSede, $idPais);
         
         for($i=0; $i < count($aListagem); $i++)
         {

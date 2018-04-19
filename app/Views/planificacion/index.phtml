@@ -37,7 +37,7 @@
                     		<td><?php echo($planificacion->pais);?></td>
                     		<td><?php echo($planificacion->sede);?></td>
                     		<td><?php ($planificacion->situation == '1' ? $planificacion->situation = 'Activo' : $planificacion->situation = 'Inactivo'); echo($planificacion->situation);?></td>
-                    		<td class="center"><a href="/planificacion/show/<?php echo($planificacion->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Planificar</a><a href="/planificar/visualizar/<?php echo($planificacion->id);?>" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> Visualizar</a></td>
+                    		<td class="center"><a href="/planificacion/show/<?php echo($planificacion->id);?>?pais=<?php echo($planificacion->id_pais);?>&sede=<?php echo($planificacion->id_sede);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Planificar</a><a href="/planificar/visualizar/<?php echo($planificacion->id);?>" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> Visualizar</a></td>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>
