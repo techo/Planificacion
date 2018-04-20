@@ -688,4 +688,16 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function AtualizaIndicador($aParam)
+    {
+        $sql  = "";
+        $sql .= "UPDATE dplanificacion SET ";
+        $sql .= "{$aParam['coluna']} = '".$aParam['valor']."' ";
+        $sql .= "WHERE id            = '" . $aParam['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

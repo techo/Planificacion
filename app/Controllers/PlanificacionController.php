@@ -509,4 +509,23 @@ class PlanificacionController extends BaseController
         echo json_encode(array("data" => $aIndicador));
         
     }
+    
+    public function atualiza($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $model = Container::getModel("CPlanificacion");
+        
+        $aRet = $model->AtualizaIndicador($aParam);
+        
+        if($aRet)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
+    }
+        
 }

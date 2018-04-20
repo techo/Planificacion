@@ -71,6 +71,22 @@ window.onload = function()
 	  		var valor  = (this.celleditor.getEditorValue(this));
 	  		
 	  		//Implementar Update de Dados
+	  		oIndicador   = new Object();
+	  		oIndicador.id     = id;
+	  		oIndicador.coluna = coluna;
+	  		oIndicador.valor  = valor;
+	  		
+	  		//Implementar Update de Dados
+	  		$.ajax({
+				type: "POST",
+				url: "/planificacion/atualiza",
+				dataType: "json",
+				data: oIndicador,
+				success: function(oData)
+				{	
+					alert('Gravou com Sucesso');
+				}
+			});
 	  		
 	  			return false;
 	  		}
