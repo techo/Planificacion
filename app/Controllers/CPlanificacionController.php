@@ -444,8 +444,17 @@ class CPlanificacionController extends BaseController
             }
             else
             {
-                //Retorna para view falando que deu ruim (comecou a planificar)
-                echo json_encode(array("results" => false));
+                //Significa que comecou a planificar, atualizo somente Status e Prazos
+                $aRet = $model->AtualizaDados($aParam);
+                
+                if($aRet)
+                {
+                    echo json_encode(array("results" => true));
+                }
+                else
+                {
+                    echo json_encode(array("results" => false));
+                }
             }
         }
         else
