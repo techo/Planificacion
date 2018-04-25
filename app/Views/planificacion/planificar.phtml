@@ -14,7 +14,7 @@
 		<style>
 			body { font-family:'lucida grande', tahoma, verdana, arial, sans-serif; font-size:11px; white-space: nowrap}
 			h1 { font-size: 10px; }
-			a { color: #548dc4; text-decoration: none; }
+			a { color: #548dc4; text-decoration: none; } <!-- #c46454 -->
 			a:hover { text-decoration: underline; }
 			table.testgrid { border-collapse: collapse; border: 1px solid #CCB; width: 800px; }
 			table.testgrid td, table.testgrid th { padding: 6px; border: 1px solid #E0E0E0; }
@@ -29,6 +29,7 @@
 	</head>
 	
 	<body>
+		<input type="text" id="searchField" placeholder="search..."/>
 		<div id="tablecontent"></div>
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->planificacion[0]->id);?>">

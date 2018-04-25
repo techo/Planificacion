@@ -38,6 +38,14 @@ window.onload = function()
 						editableGrid = new EditableGrid("DemoGridJsData");
 						editableGrid.load({"metadata": metadata, "data": data});
 						editableGrid.renderGrid("tablecontent", "testgrid");
+						
+						var searchField = document.getElementById('searchField');
+						searchField.addEventListener(
+						    'keyup',
+						    function (){
+						    	editableGrid.filter(searchField.value);
+						    }
+						);
 					}
 				});
 			}
@@ -58,6 +66,20 @@ window.onload = function()
 	  	editorInput.celleditor = this;
 	  
 	  	editorInput.onkeydown = function(event) {
+	  		
+	  		//Qualquer coisa que escrweve Grava
+	  		if(editorInput.onblur)
+  			{
+  			 	//Implementar AQUI TA COM PROBLEMA O VALOR
+	  			var linha1 = editorInput.celleditor.editablegrid.lastSelectedRowIndex;
+	  			var coluna1 = editorInput.celleditor.column.name;
+	  			var coluna2 = editorInput.celleditor.column.columnIndex;
+	  			var id1     = editorInput.celleditor.editablegrid.data[linha1].id;
+	  			var valor1  = editorInput.celleditor.editablegrid.data[linha1].columns[coluna2];
+	  			
+	  			console.log(this.celleditor.formatValue(this));
+		  		
+  			}
 	  
 	  		event = event || window.event;
 	  		
@@ -108,6 +130,9 @@ window.onload = function()
 	  	editorInput.focus();
 	};
 	
+	CellEditor.prototype.getEditorValue = function(editorInput) {
+		  	return editorInput.value;
+		  };
 } 
 
 /* 
