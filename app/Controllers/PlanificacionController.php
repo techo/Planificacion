@@ -85,6 +85,26 @@ class PlanificacionController extends BaseController
         return $data;
     }
     
+    //Busca Area en login.techo.org
+    public function GetArea($idArea)
+    {
+        $url = 'http://id.techo.org/area?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idArea;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        return $data;
+    }
+    
     public function show($id)
     {
         $this->setPageTitle('Planificar a&ntilde;o');
@@ -113,40 +133,24 @@ class PlanificacionController extends BaseController
         $aCabec[0]['datatype'] = 'string';
         $aCabec[0]['editable'] = false;
         
+        //Pilar
+        $aCabec[1]['name'] = 'pilar';
+        $aCabec[1]['label'] = 'Pilar';
+        $aCabec[1]['datatype'] = 'string';
+        $aCabec[1]['editable'] = false;
+        
+        //Area
+        $aCabec[2]['name'] = 'area';
+        $aCabec[2]['label'] = 'Area';
+        $aCabec[2]['datatype'] = 'string';
+        $aCabec[2]['editable'] = false;
+        
         //Enero Plan
-        $aCabec[1]['name'] = 'enero_plan';
-        $aCabec[1]['label'] = '01 Plan';
-        $aCabec[1]['datatype'] = 'integer';
-        
-        if($aPlanificacion['edit_plan_enero'] == 1)
-        {
-            $aCabec[1]['editable'] = true;
-        }
-        else
-        {
-            $aCabec[1]['editable'] = false;
-        }
-        
-        //Enero Real
-        $aCabec[2]['name'] = 'enero_real';
-        $aCabec[2]['label'] = '01 Real';
-        $aCabec[2]['datatype'] = 'integer';
-        
-        if($aPlanificacion['edit_real_enero'] == 1)
-        {
-            $aCabec[2]['editable'] = true;
-        }
-        else
-        {
-            $aCabec[2]['editable'] = false;
-        }
-        
-        //Febrero Plan
-        $aCabec[3]['name'] = 'febrero_plan';
-        $aCabec[3]['label'] = '02 Plan';
+        $aCabec[3]['name'] = 'enero_plan';
+        $aCabec[3]['label'] = '01 Plan';
         $aCabec[3]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_febrero'] == 1)
+        if($aPlanificacion['edit_plan_enero'] == 1)
         {
             $aCabec[3]['editable'] = true;
         }
@@ -155,12 +159,12 @@ class PlanificacionController extends BaseController
             $aCabec[3]['editable'] = false;
         }
         
-        //Febrero Real
-        $aCabec[4]['name'] = 'febrero_real';
-        $aCabec[4]['label'] = '02 Real';
+        //Enero Real
+        $aCabec[4]['name'] = 'enero_real';
+        $aCabec[4]['label'] = '01 Real';
         $aCabec[4]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_febrero'] == 1)
+        if($aPlanificacion['edit_real_enero'] == 1)
         {
             $aCabec[4]['editable'] = true;
         }
@@ -169,12 +173,12 @@ class PlanificacionController extends BaseController
             $aCabec[4]['editable'] = false;
         }
         
-        //Marzo Plan
-        $aCabec[5]['name'] = 'marzo_plan';
-        $aCabec[5]['label'] = '03 Plan';
+        //Febrero Plan
+        $aCabec[5]['name'] = 'febrero_plan';
+        $aCabec[5]['label'] = '02 Plan';
         $aCabec[5]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_marzo'] == 1)
+        if($aPlanificacion['edit_plan_febrero'] == 1)
         {
             $aCabec[5]['editable'] = true;
         }
@@ -183,12 +187,12 @@ class PlanificacionController extends BaseController
             $aCabec[5]['editable'] = false;
         }
         
-        //Marzo Real
-        $aCabec[6]['name'] = 'marzo_real';
-        $aCabec[6]['label'] = '03 Real';
+        //Febrero Real
+        $aCabec[6]['name'] = 'febrero_real';
+        $aCabec[6]['label'] = '02 Real';
         $aCabec[6]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_marzo'] == 1)
+        if($aPlanificacion['edit_real_febrero'] == 1)
         {
             $aCabec[6]['editable'] = true;
         }
@@ -197,12 +201,12 @@ class PlanificacionController extends BaseController
             $aCabec[6]['editable'] = false;
         }
         
-        //Abril Plan
-        $aCabec[7]['name'] = 'abril_plan';
-        $aCabec[7]['label'] = '04 Plan';
+        //Marzo Plan
+        $aCabec[7]['name'] = 'marzo_plan';
+        $aCabec[7]['label'] = '03 Plan';
         $aCabec[7]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_abril'] == 1)
+        if($aPlanificacion['edit_plan_marzo'] == 1)
         {
             $aCabec[7]['editable'] = true;
         }
@@ -211,12 +215,12 @@ class PlanificacionController extends BaseController
             $aCabec[7]['editable'] = false;
         }
         
-        //Abril Real
-        $aCabec[8]['name'] = 'abril_real';
-        $aCabec[8]['label'] = '04 Real';
+        //Marzo Real
+        $aCabec[8]['name'] = 'marzo_real';
+        $aCabec[8]['label'] = '03 Real';
         $aCabec[8]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_abril'] == 1)
+        if($aPlanificacion['edit_real_marzo'] == 1)
         {
             $aCabec[8]['editable'] = true;
         }
@@ -225,12 +229,12 @@ class PlanificacionController extends BaseController
             $aCabec[8]['editable'] = false;
         }
         
-        //Mayo Plan
-        $aCabec[9]['name'] = 'mayo_plan';
-        $aCabec[9]['label'] = '05 Plan';
+        //Abril Plan
+        $aCabec[9]['name'] = 'abril_plan';
+        $aCabec[9]['label'] = '04 Plan';
         $aCabec[9]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_mayo'] == 1)
+        if($aPlanificacion['edit_plan_abril'] == 1)
         {
             $aCabec[9]['editable'] = true;
         }
@@ -239,12 +243,12 @@ class PlanificacionController extends BaseController
             $aCabec[9]['editable'] = false;
         }
         
-        //Mayo Real
-        $aCabec[10]['name'] = 'mayo_real';
-        $aCabec[10]['label'] = '05 Real';
+        //Abril Real
+        $aCabec[10]['name'] = 'abril_real';
+        $aCabec[10]['label'] = '04 Real';
         $aCabec[10]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_mayo'] == 1)
+        if($aPlanificacion['edit_real_abril'] == 1)
         {
             $aCabec[10]['editable'] = true;
         }
@@ -253,12 +257,12 @@ class PlanificacionController extends BaseController
             $aCabec[10]['editable'] = false;
         }
         
-        //Junio Plan
-        $aCabec[11]['name'] = 'junio_plan';
-        $aCabec[11]['label'] = '06 Plan';
+        //Mayo Plan
+        $aCabec[11]['name'] = 'mayo_plan';
+        $aCabec[11]['label'] = '05 Plan';
         $aCabec[11]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_junio'] == 1)
+        if($aPlanificacion['edit_plan_mayo'] == 1)
         {
             $aCabec[11]['editable'] = true;
         }
@@ -267,12 +271,12 @@ class PlanificacionController extends BaseController
             $aCabec[11]['editable'] = false;
         }
         
-        //Junio Real
-        $aCabec[12]['name'] = 'junio_real';
-        $aCabec[12]['label'] = '06 Real';
+        //Mayo Real
+        $aCabec[12]['name'] = 'mayo_real';
+        $aCabec[12]['label'] = '05 Real';
         $aCabec[12]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_junio'] == 1)
+        if($aPlanificacion['edit_real_mayo'] == 1)
         {
             $aCabec[12]['editable'] = true;
         }
@@ -281,12 +285,12 @@ class PlanificacionController extends BaseController
             $aCabec[12]['editable'] = false;
         }
         
-        //Julio Plan
-        $aCabec[13]['name'] = 'julio_plan';
-        $aCabec[13]['label'] = '07 Plan';
+        //Junio Plan
+        $aCabec[13]['name'] = 'junio_plan';
+        $aCabec[13]['label'] = '06 Plan';
         $aCabec[13]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_julio'] == 1)
+        if($aPlanificacion['edit_plan_junio'] == 1)
         {
             $aCabec[13]['editable'] = true;
         }
@@ -295,12 +299,12 @@ class PlanificacionController extends BaseController
             $aCabec[13]['editable'] = false;
         }
         
-        //Julio Real
-        $aCabec[14]['name'] = 'julio_real';
-        $aCabec[14]['label'] = '07 Real';
+        //Junio Real
+        $aCabec[14]['name'] = 'junio_real';
+        $aCabec[14]['label'] = '06 Real';
         $aCabec[14]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_julio'] == 1)
+        if($aPlanificacion['edit_real_junio'] == 1)
         {
             $aCabec[14]['editable'] = true;
         }
@@ -309,12 +313,12 @@ class PlanificacionController extends BaseController
             $aCabec[14]['editable'] = false;
         }
         
-        //Agosto Plan
-        $aCabec[15]['name'] = 'agosto_plan';
-        $aCabec[15]['label'] = '08 Plan';
+        //Julio Plan
+        $aCabec[15]['name'] = 'julio_plan';
+        $aCabec[15]['label'] = '07 Plan';
         $aCabec[15]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_agosto'] == 1)
+        if($aPlanificacion['edit_plan_julio'] == 1)
         {
             $aCabec[15]['editable'] = true;
         }
@@ -323,12 +327,12 @@ class PlanificacionController extends BaseController
             $aCabec[15]['editable'] = false;
         }
         
-        //Agosto Real
-        $aCabec[16]['name'] = 'agosto_real';
-        $aCabec[16]['label'] = '08 Real';
+        //Julio Real
+        $aCabec[16]['name'] = 'julio_real';
+        $aCabec[16]['label'] = '07 Real';
         $aCabec[16]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_agosto'] == 1)
+        if($aPlanificacion['edit_real_julio'] == 1)
         {
             $aCabec[16]['editable'] = true;
         }
@@ -337,12 +341,12 @@ class PlanificacionController extends BaseController
             $aCabec[16]['editable'] = false;
         }
         
-        //Septiembre Plan
-        $aCabec[17]['name'] = 'septiembre_plan';
-        $aCabec[17]['label'] = '09 Plan';
+        //Agosto Plan
+        $aCabec[17]['name'] = 'agosto_plan';
+        $aCabec[17]['label'] = '08 Plan';
         $aCabec[17]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_septiembre'] == 1)
+        if($aPlanificacion['edit_plan_agosto'] == 1)
         {
             $aCabec[17]['editable'] = true;
         }
@@ -351,12 +355,12 @@ class PlanificacionController extends BaseController
             $aCabec[17]['editable'] = false;
         }
         
-        //Septiembre Real
-        $aCabec[18]['name'] = 'septiembre_real';
-        $aCabec[18]['label'] = '09 Real';
+        //Agosto Real
+        $aCabec[18]['name'] = 'agosto_real';
+        $aCabec[18]['label'] = '08 Real';
         $aCabec[18]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_septiembre'] == 1)
+        if($aPlanificacion['edit_real_agosto'] == 1)
         {
             $aCabec[18]['editable'] = true;
         }
@@ -365,12 +369,12 @@ class PlanificacionController extends BaseController
             $aCabec[18]['editable'] = false;
         }
         
-        //Octubre Plan
-        $aCabec[19]['name'] = 'octubre_plan';
-        $aCabec[19]['label'] = '10 Plan';
+        //Septiembre Plan
+        $aCabec[19]['name'] = 'septiembre_plan';
+        $aCabec[19]['label'] = '09 Plan';
         $aCabec[19]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_octubre'] == 1)
+        if($aPlanificacion['edit_plan_septiembre'] == 1)
         {
             $aCabec[19]['editable'] = true;
         }
@@ -379,12 +383,12 @@ class PlanificacionController extends BaseController
             $aCabec[19]['editable'] = false;
         }
         
-        //Octubre Real
-        $aCabec[20]['name'] = 'octubre_real';
-        $aCabec[20]['label'] = '10 Real';
+        //Septiembre Real
+        $aCabec[20]['name'] = 'septiembre_real';
+        $aCabec[20]['label'] = '09 Real';
         $aCabec[20]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_octubre'] == 1)
+        if($aPlanificacion['edit_real_septiembre'] == 1)
         {
             $aCabec[20]['editable'] = true;
         }
@@ -393,12 +397,12 @@ class PlanificacionController extends BaseController
             $aCabec[20]['editable'] = false;
         }
         
-        //Noviembre Plan
-        $aCabec[21]['name'] = 'noviembre_plan';
-        $aCabec[21]['label'] = '11 Plan';
+        //Octubre Plan
+        $aCabec[21]['name'] = 'octubre_plan';
+        $aCabec[21]['label'] = '10 Plan';
         $aCabec[21]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_noviembre'] == 1)
+        if($aPlanificacion['edit_plan_octubre'] == 1)
         {
             $aCabec[21]['editable'] = true;
         }
@@ -407,12 +411,12 @@ class PlanificacionController extends BaseController
             $aCabec[21]['editable'] = false;
         }
         
-        //Noviembre Real
-        $aCabec[22]['name'] = 'noviembre_real';
-        $aCabec[22]['label'] = '11 Real';
+        //Octubre Real
+        $aCabec[22]['name'] = 'octubre_real';
+        $aCabec[22]['label'] = '10 Real';
         $aCabec[22]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_noviembre'] == 1)
+        if($aPlanificacion['edit_real_octubre'] == 1)
         {
             $aCabec[22]['editable'] = true;
         }
@@ -421,12 +425,12 @@ class PlanificacionController extends BaseController
             $aCabec[22]['editable'] = false;
         }
         
-        //Diciembre  Plan
-        $aCabec[23]['name'] = 'diciembre_plan';
-        $aCabec[23]['label'] = '12 Plan';
+        //Noviembre Plan
+        $aCabec[23]['name'] = 'noviembre_plan';
+        $aCabec[23]['label'] = '11 Plan';
         $aCabec[23]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_plan_diciembre'] == 1)
+        if($aPlanificacion['edit_plan_noviembre'] == 1)
         {
             $aCabec[23]['editable'] = true;
         }
@@ -435,18 +439,46 @@ class PlanificacionController extends BaseController
             $aCabec[23]['editable'] = false;
         }
         
-        //Diciembre Real
-        $aCabec[24]['name'] = 'diciembre_real';
-        $aCabec[24]['label'] = '12 Real';
+        //Noviembre Real
+        $aCabec[24]['name'] = 'noviembre_real';
+        $aCabec[24]['label'] = '11 Real';
         $aCabec[24]['datatype'] = 'integer';
         
-        if($aPlanificacion['edit_real_diciembre'] == 1)
+        if($aPlanificacion['edit_real_noviembre'] == 1)
         {
             $aCabec[24]['editable'] = true;
         }
         else
         {
             $aCabec[24]['editable'] = false;
+        }
+        
+        //Diciembre  Plan
+        $aCabec[25]['name'] = 'diciembre_plan';
+        $aCabec[25]['label'] = '12 Plan';
+        $aCabec[25]['datatype'] = 'integer';
+        
+        if($aPlanificacion['edit_plan_diciembre'] == 1)
+        {
+            $aCabec[25]['editable'] = true;
+        }
+        else
+        {
+            $aCabec[25]['editable'] = false;
+        }
+        
+        //Diciembre Real
+        $aCabec[26]['name'] = 'diciembre_real';
+        $aCabec[26]['label'] = '12 Real';
+        $aCabec[26]['datatype'] = 'integer';
+        
+        if($aPlanificacion['edit_real_diciembre'] == 1)
+        {
+            $aCabec[26]['editable'] = true;
+        }
+        else
+        {
+            $aCabec[26]['editable'] = false;
         }
         
         echo json_encode(array("metadata" => $aCabec));
@@ -478,8 +510,18 @@ class PlanificacionController extends BaseController
         {
             $Dados = (array) $aListagem[$i];
             
+            //Buscar Pilar
+            $aPilar = $model->GetPilar($Dados['id_pilar']);
+            $cPilar = $aPilar[0]->pilar;
+            
+            //Busca Area
+            $aArea = $this->GetArea($Dados['id_area']);
+            $cArea = $aArea['codigo'];
+            
             $aIndicador[$i]['id'] = $Dados['id'];
             $aIndicador[$i]['values']['indicador']       = $Dados['indicador'];
+            $aIndicador[$i]['values']['pilar']           = $cPilar;
+            $aIndicador[$i]['values']['area']            = $cArea;
             $aIndicador[$i]['values']['enero_plan']      = $Dados['enero_plan'] == NULL ? 0 : $Dados['enero_plan'];
             $aIndicador[$i]['values']['enero_real']      = $Dados['enero_real'] == NULL ? 0 : $Dados['enero_real'];
             $aIndicador[$i]['values']['febrero_plan']    = $Dados['febrero_plan'] == NULL ? 0 : $Dados['febrero_plan'];

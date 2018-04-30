@@ -631,12 +631,27 @@ class CPlanificacion extends BaseModel
         return $result;
     }
     
+    public function GetPilar($idPilar)
+    {
+        $sql  = "";
+        $sql .= "SELECT * ";
+        $sql .= " FROM Pilar ";
+        $sql .= "WHERE id = " .$idPilar;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
     public function Listagem($idPlanificacion, $idSede, $idPais = 0)
     {
         $sql  = "";
         $sql .= "SELECT ";
         $sql .= "dplanificacion.*, ";
-        $sql .= "indicador.indicador ";
+        $sql .= "indicador.indicador, ";
+        $sql .= "indicador.id_pilar, ";
+        $sql .= "indicador.id_area ";
         $sql .= " FROM dplanificacion ";
         $sql .= "INNER JOIN indicador indicador ON indicador.id = dplanificacion.id_indicador ";
         $sql .= "WHERE dplanificacion.id_cplanificacion = " . $idPlanificacion . " AND dplanificacion.deleted = 0 AND dplanificacion.situation = 1 AND dplanificacion.id_sede = ". $idSede;
