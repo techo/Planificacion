@@ -67,20 +67,43 @@ window.onload = function()
 	  
 	  	editorInput.onkeydown = function(event) {
 	  		
-	  		//Qualquer coisa que escrweve Grava
-	  		if(editorInput.onblur)
-  			{
-  			 	//Implementar AQUI TA COM PROBLEMA O VALOR
-	  			var linha1 = editorInput.celleditor.editablegrid.lastSelectedRowIndex;
-	  			var coluna1 = editorInput.celleditor.column.name;
-	  			var coluna2 = editorInput.celleditor.column.columnIndex;
-	  			var id1     = editorInput.celleditor.editablegrid.data[linha1].id;
-	  			var valor1  = editorInput.celleditor.editablegrid.data[linha1].columns[coluna2];
+	  		$( "td" )
+	  		  .focusout(function() {
+	  			  
+	  			$('#save1').show();
+	  			setTimeout(function(){
+		  			//Implementar AQUI TA COM PROBLEMA O VALOR
+			  			var linha1 = editorInput.celleditor.editablegrid.lastSelectedRowIndex;
+			  			var coluna1 = editorInput.celleditor.column.name;
+			  			var coluna2 = editorInput.celleditor.column.columnIndex;
+			  			var id1     = editorInput.celleditor.editablegrid.data[linha1].id;
+			  			var valor1  = editorInput.celleditor.editablegrid.data[linha1].columns[coluna2];
+			  			
+			  			
+			  		  	//Implementar Update de Dados
+			  		  		oIndicador   = new Object();
+			  		  		oIndicador.id     = id1;
+			  		  		oIndicador.coluna = coluna1;
+			  		  		oIndicador.valor  = valor1;
+			  		  		
+			  		  	$.ajax({
+							type: "POST",
+							url: "/planificacion/atualiza",
+							dataType: "json",
+							data: oIndicador,
+							success: function(oData)
+							{	
+								$('#save1').hide();
+								$('#save2').show();
+								console.log('Gravou com Sucesso');
+							}
+						});
+			  		  	
+		  	  		}, 500);
 	  			
-	  			console.log(this.celleditor.formatValue(this));
-		  		
-  			}
-	  
+	  				$('#save2').hide();
+	  		  })
+
 	  		event = event || window.event;
 	  		
 	  		if (event.keyCode == 13 || event.keyCode == 9) {
@@ -106,10 +129,12 @@ window.onload = function()
 				data: oIndicador,
 				success: function(oData)
 				{	
-					alert('Gravou com Sucesso');
+					$('#save1').hide();
+					$('#save2').show();
+					console.log('Gravou com Sucesso');
 				}
 			});
-	  		
+	  			$('#save2').hide();
 	  			return false;
 	  		}
 	  		
