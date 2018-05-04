@@ -15,6 +15,32 @@
 </head>
 
 <body>
+    <div class="panel-body">
+        <div class="col-lg-3">
+    		<div class="form-group">
+    			<label for="ano">A&ntilde;o</label>
+    			<select  id="ano" class="form-control" >
+    				<option value="0">-- SELECCIONE --</option>
+    				<?php foreach ($this->view->ano as $ano):?>
+    						<option value="<?php echo($ano->id);?>"><?php echo($ano->ano);?></option>
+    				<?php endforeach; ?>
+    			</select>
+    		</div>
+    	</div>
+    	<div class="col-lg-3">
+    		<div class="form-group">
+    			<label for="ano">Pa&iacute;s</label>
+    			<select  id="ano" class="form-control" >
+    				<option value="0">-- SELECCIONE --</option>
+    				<?php  foreach ($this->view->paises as $paises):?>
+    						<option value="<?php echo($paises['id']);?>"><?php echo($paises['pais']);?></option>
+    				<?php endforeach; ?>
+    			</select>
+    		</div>
+    	</div>
+    	<div id="sedes"></div>
+    </div>
+    <br><br>
 	<div id="container" style="width: 60%; margin: 0 auto; width: 60%;">
 		<canvas id="canvas"></canvas>
 	</div>
@@ -61,7 +87,7 @@
 					},
 					title: {
 						display: true,
-						text: 'Planificacion TECHO'
+						text: 'Resultado Trismestral'
 					}
 				}
 			});
