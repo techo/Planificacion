@@ -63,4 +63,7 @@ $route[] = ['/planificacion/dados', 'PlanificacionController@carregardados'];
 $route[] = ['/planificacion/listagem', 'PlanificacionController@listagem'];
 $route[] = ['/planificacion/atualiza', 'PlanificacionController@atualiza'];
 
+/** TInforme - Informe por trimestre **/
+$route[] = ['/tinforme', 'TInformeController@index'];
+
 return $route;

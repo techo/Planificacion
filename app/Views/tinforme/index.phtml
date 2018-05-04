@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Ejemplo Planificacion</title>
+	<script src="/assets/js/Chart.bundle.js"></script>
+	<script src="/assets/js/utils.js"></script>
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
+</head>
+
+<body>
+	<div id="container" style="width: 60%; margin: 0 auto; width: 60%;">
+		<canvas id="canvas"></canvas>
+	</div>
+	<script>
+		var MONTHS = ['1T', '2T', '3T', '4T'];
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: ['1T', '2T', '3T', '4T'],
+			datasets: [{
+				label: 'Plan',
+				backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: [
+					80,
+					50,
+					49,
+					30
+				]
+			}, {
+				label: 'Real',
+				backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.blue,
+				borderWidth: 1,
+				data: [
+					50,
+					75,
+					48,
+					15
+				]
+			}]
+
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Planificacion TECHO'
+					}
+				}
+			});
+
+		};
+
+		
+
+	</script>
+</body>
+
+</html>
