@@ -27,18 +27,9 @@
     			</select>
     		</div>
     	</div>
-    	<div class="col-lg-3">
-    		<div class="form-group">
-    			<label for="ano">Pa&iacute;s</label>
-    			<select  id="ano" class="form-control" >
-    				<option value="0">-- SELECCIONE --</option>
-    				<?php  foreach ($this->view->paises as $paises):?>
-    						<option value="<?php echo($paises['id']);?>"><?php echo($paises['pais']);?></option>
-    				<?php endforeach; ?>
-    			</select>
-    		</div>
-    	</div>
-    	<div id="sedes"></div>
+    	<div id="loadPais"></div>
+    	<div id="loadSede"></div>
+    	<div id="loadIndicador"></div>
     </div>
     <br><br>
 	<div id="container" style="width: 60%; margin: 0 auto; width: 60%;">
@@ -97,6 +88,7 @@
 		
 
 	</script>
+	<script type="text/javascript" src="/assets/js/tinformes/tinformes.js""></script>
 </body>
 
 </html>
