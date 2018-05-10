@@ -36,8 +36,173 @@ window.onload = function()
 						}
 						
 						editableGrid = new EditableGrid("DemoGridJsData");
+						
 						editableGrid.load({"metadata": metadata, "data": data});
 						editableGrid.renderGrid("tablecontent", "testgrid");
+						
+						//Indicador
+						if(editableGrid.columns[0]['editable'] == false)
+						{
+							$( ".editablegrid-indicador" ).removeClass( "editablegrid-indicador" ).addClass( "editablegrid-indicador No-Edit" );
+						}
+						//Pilar
+						if(editableGrid.columns[1]['editable'] == false)
+						{
+							$( ".editablegrid-pilar" ).removeClass( "editablegrid-pilar" ).addClass( "editablegrid-pilar No-Edit" );
+						}
+						
+						//Area
+						if(editableGrid.columns[2]['editable'] == false)
+						{
+							$( ".editablegrid-area" ).removeClass( "editablegrid-area" ).addClass( "editablegrid-area No-Edit" );
+						}
+						
+						//01 Plan
+						if(editableGrid.columns[3]['editable'] == false)
+						{
+							$( ".editablegrid-enero_plan" ).removeClass( "editablegrid-enero_plan" ).addClass( "editablegrid-enero_plan No-Edit" );
+						}
+						
+						//01 Real
+						if(editableGrid.columns[4]['editable'] == false)
+						{
+							$( ".editablegrid-enero_real" ).removeClass( "editablegrid-enero_real" ).addClass( "editablegrid-enero_real No-Edit" );
+						}
+						
+						//02 Plan
+						if(editableGrid.columns[5]['editable'] == false)
+						{
+							$( ".editablegrid-febrero_plan" ).removeClass( "editablegrid-febrero_plan" ).addClass( "editablegrid-febrero_plan No-Edit" );
+						}
+						
+						//02 Real
+						if(editableGrid.columns[6]['editable'] == false)
+						{
+							$( ".editablegrid-febrero_real" ).removeClass( "editablegrid-febrero_real" ).addClass( "editablegrid-febrero_real No-Edit" );
+						}
+						
+						//03 Plan
+						if(editableGrid.columns[7]['editable'] == false)
+						{
+							$( ".editablegrid-marzo_plan" ).removeClass( "editablegrid-marzo_plan" ).addClass( "editablegrid-marzo_plan No-Edit" );
+						}
+						
+						//03 Real
+						if(editableGrid.columns[8]['editable'] == false)
+						{
+							$( ".editablegrid-marzo_real" ).removeClass( "editablegrid-marzo_real" ).addClass( "editablegrid-marzo_real No-Edit" );
+						}
+						
+						//04 Plan
+						if(editableGrid.columns[9]['editable'] == false)
+						{
+							$( ".editablegrid-abril_plan" ).removeClass( "editablegrid-abril_plan" ).addClass( "editablegrid-abril_plan No-Edit" );
+						}
+						
+						//04 Real
+						if(editableGrid.columns[10]['editable'] == false)
+						{
+							$( ".editablegrid-abril_real" ).removeClass( "editablegrid-abril_real" ).addClass( "editablegrid-abril_real No-Edit" );
+						}
+						
+						//05 Plan
+						if(editableGrid.columns[11]['editable'] == false)
+						{
+							$( ".editablegrid-mayo_plan" ).removeClass( "editablegrid-mayo_plan" ).addClass( "editablegrid-mayo_plan No-Edit" );
+						}
+						
+						//05 Real
+						if(editableGrid.columns[12]['editable'] == false)
+						{
+							$( ".editablegrid-mayo_real" ).removeClass( "editablegrid-mayo_real" ).addClass( "editablegrid-mayo_real No-Edit" );
+						}
+						
+						//06 Plan
+						if(editableGrid.columns[13]['editable'] == false)
+						{
+							$( ".editablegrid-junio_plan" ).removeClass( "editablegrid-junio_plan" ).addClass( "editablegrid-junio_plan No-Edit" );
+						}
+						
+						//06 Real
+						if(editableGrid.columns[14]['editable'] == false)
+						{
+							$( ".editablegrid-junio_real" ).removeClass( "editablegrid-junio_real" ).addClass( "editablegrid-junio_real No-Edit" );
+						}
+						
+						//07 Plan
+						if(editableGrid.columns[15]['editable'] == false)
+						{
+							$( ".editablegrid-julio_plan" ).removeClass( "editablegrid-julio_plan" ).addClass( "editablegrid-julio_plan No-Edit" );
+						}
+						
+						//07 Real
+						if(editableGrid.columns[16]['editable'] == false)
+						{
+							$( ".editablegrid-julio_real" ).removeClass( "editablegrid-julio_real" ).addClass( "editablegrid-julio_real No-Edit" );
+						}
+						
+						//08 Plan
+						if(editableGrid.columns[17]['editable'] == false)
+						{
+							$( ".editablegrid-agosto_plan" ).removeClass( "editablegrid-agosto_plan" ).addClass( "editablegrid-agosto_plan No-Edit" );
+						}
+						
+						//08 Real
+						if(editableGrid.columns[18]['editable'] == false)
+						{
+							$( ".editablegrid-agosto_real" ).removeClass( "editablegrid-agosto_real" ).addClass( "editablegrid-agosto_real No-Edit" );
+						}
+						
+						//09 Plan
+						if(editableGrid.columns[19]['editable'] == false)
+						{
+							$( ".editablegrid-septiembre_plan" ).removeClass( "editablegrid-septiembre_plan" ).addClass( "editablegrid-septiembre_plan No-Edit" );
+						}
+						
+						//09 Real
+						if(editableGrid.columns[20]['editable'] == false)
+						{
+							$( ".editablegrid-septiembre_real" ).removeClass( "editablegrid-septiembre_real" ).addClass( "editablegrid-septiembre_real No-Edit" );
+						}
+						
+						//10 Plan
+						if(editableGrid.columns[21]['editable'] == false)
+						{
+							$( ".editablegrid-octubre_plan" ).removeClass( "editablegrid-octubre_plan" ).addClass( "editablegrid-octubre_plan No-Edit" );
+						}
+						
+						//10 Real
+						if(editableGrid.columns[22]['editable'] == false)
+						{
+							$( ".editablegrid-octubre_real" ).removeClass( "editablegrid-octubre_real" ).addClass( "editablegrid-octubre_real No-Edit" );
+						}
+						
+						//11 Plan
+						if(editableGrid.columns[23]['editable'] == false)
+						{
+							$( ".editablegrid-noviembre_plan" ).removeClass( "editablegrid-noviembre_plan" ).addClass( "editablegrid-noviembre_plan No-Edit" );
+						}
+						
+						//11 Real
+						if(editableGrid.columns[24]['editable'] == false)
+						{
+							$( ".editablegrid-noviembre_real" ).removeClass( "editablegrid-noviembre_real" ).addClass( "editablegrid-noviembre_real No-Edit" );
+						}
+						
+						//12 Plan
+						if(editableGrid.columns[25]['editable'] == false)
+						{
+							$( ".editablegrid-diciembre_plan" ).removeClass( "editablegrid-diciembre_plan" ).addClass( "editablegrid-diciembre_plan No-Edit" );
+						}
+						
+						//12 Real
+						if(editableGrid.columns[26]['editable'] == false)
+						{
+							$( ".editablegrid-diciembre_real" ).removeClass( "editablegrid-diciembre_real" ).addClass( "editablegrid-diciembre_real No-Edit" );
+						}
+						
+						
+						//console.log(editableGrid.columns[4]['editable']);
 						
 						var searchField = document.getElementById('searchField');
 						searchField.addEventListener(
@@ -54,7 +219,6 @@ window.onload = function()
 	
 	CellEditor.prototype.edit = function(rowIndex, columnIndex, element, value) 
 	{
-		
 	  	element.isEditing = true;
 	  	element.rowIndex = rowIndex; 
 	  	element.columnIndex = columnIndex;
