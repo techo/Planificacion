@@ -69,7 +69,11 @@ $("#loadSede").change(function()
 
 $("#loadIndicador").change(function() 
 	{
-		
+		//Essa parte e para nao bugar o charts com varios graficos
+		document.getElementById("container").innerHTML = '&nbsp;';
+		document.getElementById("container").innerHTML = '<canvas id="canvas"></canvas>';
+		var ctx = document.getElementById("canvas").getContext("2d");
+	
 		if($("#indicador").val() != 0)
 		  {
 			  var plan = 0;
