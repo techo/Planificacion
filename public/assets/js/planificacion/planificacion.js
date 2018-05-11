@@ -259,7 +259,6 @@ window.onload = function()
 							{	
 								$('#save1').hide();
 								$('#save2').show();
-								console.log('Gravou com Sucesso');
 							}
 						});
 			  		  	
@@ -295,7 +294,6 @@ window.onload = function()
 				{	
 					$('#save1').hide();
 					$('#save2').show();
-					console.log('Gravou com Sucesso');
 				}
 			});
 	  			$('#save2').hide();

@@ -30,7 +30,7 @@
                     		<tr>
                                 <th>Temporalidad</th>
                                 <th>Status</th>
-                                <th>Opções</th>
+                                <th>Opciones</th>
                     		</tr>
                     	</thead>
                     	<tbody>
@@ -47,3 +47,34 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+    $('.dataTables-example').dataTable({
+   	 "language": {
+         "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+     },
+        pageLength: 25,
+        responsive: true,
+        dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+            { extend: 'copy'},
+            {extend: 'excel', title: 'ExampleFile'},
+            {extend: 'pdf', title: 'ExampleFile'},
+
+            {extend: 'print',
+             customize: function (win){
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size', '10px');
+
+                    $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+            }
+            }
+        ]
+
+    });
+
+});
+
+</script>
