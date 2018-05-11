@@ -20,6 +20,50 @@
 			table.testgrid td, table.testgrid th { padding: 1px; border: 1px solid #E0E0E0; }
 			table.testgrid th { background: #E5E5E5; text-align: left; }
 			input.invalid { background: red; color: #FDFDFD; }
+            #tablecontent {
+                overflow-x: scroll;
+                overflow-y: hidden;
+                white-space: nowrap;
+            }
+            .testgrid thead tr a {
+                font-size:12px;
+                padding: 0 1px;
+            }
+            .editablegrid-indicador, .editablegrid-pilar, .number {
+                font-size: 13px;
+                padding: 5px!important;
+            }
+            #searchField {
+                margin: 9px 0px 6px 0px;
+                padding: 10px;
+                display: inline-block;
+                width: 320px;
+            }
+            .testgrid tbody {
+                max-height: 500px;
+                overflow-x: scroll;
+                overflow-y: hidden;
+            }
+            .testgrid tbody tr {
+                background: #fff;
+            }
+            .testgrid tbody tr:hover, .testgrid tbody tr:hover .editablegrid-indicador {
+                background: #f5f5f5;
+            }
+            .number.No-Edit {
+                background: #dedede;
+                color: #909394;
+                cursor: not-allowed;
+            }
+            .editablegrid-indicador {
+                width: 400px;
+                position: absolute;
+                background: #fff;
+                margin-left: -1px;
+            }
+            .editablegrid-pilar {
+                padding-left:400px!important;
+            }
 		</style>
 		
 		<script>
