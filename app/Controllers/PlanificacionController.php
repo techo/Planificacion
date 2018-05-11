@@ -512,6 +512,7 @@ class PlanificacionController extends BaseController
             
             //Buscar Pilar
             $aPilar = $model->GetPilar($Dados['id_pilar']);
+            
             $cPilar = $aPilar[0]->pilar;
             
             //Busca Area

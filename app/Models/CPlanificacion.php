@@ -635,7 +635,7 @@ class CPlanificacion extends BaseModel
     {
         $sql  = "";
         $sql .= "SELECT * ";
-        $sql .= " FROM Pilar ";
+        $sql .= " FROM pilar ";
         $sql .= "WHERE id = " .$idPilar;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
