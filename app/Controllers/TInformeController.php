@@ -218,4 +218,65 @@ class TInformeController extends BaseController
       //  echo json_encode(array("real" => $T1Real. ',' . $T2Real. ',' . $T3Real. ',' . $T4Real));
     }
     
+    public function mensual()
+    {
+        $this->setPageTitle('Informe Mensual');
+        $model = Container::getModel("TInforme");
+        
+        //Busca Anos
+        $this->view->ano = $model->ListAnos();
+        
+        /* Render View Paises */
+        $this->renderView('tinforme/mensual', 'layout');
+    }
+    
+    public function CarregaMensal($aDados)
+    {
+        //Buscar Paises Planificados neste ano
+        $aDados         = (array) $aDados;
+        
+        $idplanificacion = $aDados['cplanificacion'];
+        $pais            = $aDados['idPais'];
+        $sede            = $aDados['idSede'];
+        $indicador       = $aDados['idIndicador'];
+        
+        $model = Container::getModel("TInforme");
+        
+        //Busca Trismestre
+        $result = $model->BuscaMensual($idplanificacion, $pais, $sede, $indicador);
+        
+        //Dados para o Chart Plan
+        $EneroPlan      = $result[0]->enero_plan;
+        $FebreroPlan    = $result[0]->febrero_plan;
+        $MarzoPlan      = $result[0]->marzo_plan;
+        $AbrilPlan      = $result[0]->abril_plan;
+        $MayoPlan       = $result[0]->mayo_plan;
+        $JunioPlan      = $result[0]->junio_plan;
+        $JulioPlan      = $result[0]->julio_plan;
+        $AgostoPlan     = $result[0]->agosto_plan;
+        $SeptiembrePlan = $result[0]->septiembre_plan;
+        $OctubrePlan    = $result[0]->octubre_plan;
+        $NoviembrePlan  = $result[0]->noviembre_plan;
+        $DiciembrePlan  = $result[0]->diciembre_plan;
+        
+        //Dados para o Chart Real
+        $EneroReal      = $result[0]->enero_real;
+        $FebreroReal    = $result[0]->febrero_real;
+        $MarzoReal      = $result[0]->marzo_real;
+        $AbrilReal      = $result[0]->abril_real;
+        $MayoReal       = $result[0]->mayo_real;
+        $JunioReal      = $result[0]->junio_real;
+        $JulioReal      = $result[0]->julio_real;
+        $AgostoReal     = $result[0]->agosto_real;
+        $SeptiembreReal = $result[0]->septiembre_real;
+        $OctubreReal    = $result[0]->octubre_real;
+        $NoviembreReal  = $result[0]->noviembre_real;
+        $DiciembreReal  = $result[0]->diciembre_real;
+        
+        //tudo junto pq deu merda separado
+        echo json_encode(array("plan" => $EneroPlan. ',' . $FebreroPlan. ',' . $MarzoPlan. ',' . $AbrilPlan. ',' . $MayoPlan. ',' . $JunioPlan. ',' . $JulioPlan. ',' . $AgostoPlan. ',' .$SeptiembrePlan. ',' .$OctubrePlan. ',' .$NoviembrePlan. ',' .$DiciembrePlan. ',' .
+            $EneroReal. ',' .$FebreroReal. ',' .$MarzoReal. ',' .$AbrilReal. ',' .$MayoReal. ',' .$JunioReal. ',' .$JulioReal. ',' .$AgostoReal. ',' .$SeptiembreReal. ',' .$OctubreReal. ',' .$NoviembreReal. ',' .$DiciembreReal));
+        //  echo json_encode(array("real" => $T1Real. ',' . $T2Real. ',' . $T3Real. ',' . $T4Real));
+    }
+    
 }
