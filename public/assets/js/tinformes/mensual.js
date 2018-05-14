@@ -2,6 +2,8 @@ $("#ano").change(function()
 {
 	  if($("#ano").val() != 0)
 	  {
+		  $('#container').hide();
+		  $('#loading-techo').show();
 		  oData    = new Object();	
 		  oData.id = $('#ano').val();
 		  
@@ -14,6 +16,9 @@ $("#ano").change(function()
 				{	
 					$('#loadPais').html(resp);
 					$('#loadPais').show();
+					$("#sedes").val("0");
+					$("#indicador").val("0");
+					$('#loading-techo').hide();
 				}
 			});
 			
@@ -24,6 +29,10 @@ $("#loadPais").change(function()
 {
 	  if($("#pais").val() != 0)
 	  {
+		  $('#container').hide();
+		  $('#loading-techo').show();
+		  $("#sedes").val("0");
+		  $("#indicador").val("0");
 		  oData    = new Object();	
 		  oData.cplanificacion = $('#ano').val();
 		  oData.idPais         = $('#pais').val();
@@ -37,6 +46,7 @@ $("#loadPais").change(function()
 				{	
 					$('#loadSede').html(resp);
 					$('#loadSede').show();
+					$('#loading-techo').hide();
 				}
 			});
 			
@@ -47,6 +57,8 @@ $("#loadSede").change(function()
 {
 	  if($("#sede").val() != 0)
 	  {
+		  $('#container').hide();
+		  $('#loading-techo').show();
 		  oData    = new Object();	
 		  oData.cplanificacion = $('#ano').val();
 		  oData.idPais         = $('#pais').val();
@@ -61,6 +73,7 @@ $("#loadSede").change(function()
 				{	
 					$('#loadIndicador').html(resp);
 					$('#loadIndicador').show();
+					$('#loading-techo').hide();
 				}
 			});
 			
@@ -78,6 +91,8 @@ $("#loadIndicador").change(function()
 		  {
 			  var plan = 0;
 			  var real = 0;
+			  
+			  $('#loading-techo').show();
 			  
 			  oData    = new Object();	
 			  oData.cplanificacion = $('#ano').val();
@@ -126,6 +141,9 @@ $("#loadIndicador").change(function()
 						var real10 = res[21];
 						var real11 = res[22];
 						var real12 = res[23];
+						
+						$('#loading-techo').hide();
+						$('#container').show();
 						
 						//Dados do Grid
 						  var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril','Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];

@@ -2,6 +2,7 @@ $("#ano").change(function()
 {
 	  if($("#ano").val() != 0)
 	  {
+		  $('#loading-techo').show();
 		  oData    = new Object();	
 		  oData.id = $('#ano').val();
 		  
@@ -14,6 +15,9 @@ $("#ano").change(function()
 				{	
 					$('#loadPais').html(resp);
 					$('#loadPais').show();
+					$("#sedes").val("0");
+					$("#indicador").val("0");
+					$('#loading-techo').hide();
 				}
 			});
 			
@@ -24,6 +28,9 @@ $("#loadPais").change(function()
 {
 	  if($("#pais").val() != 0)
 	  {
+		  $('#loading-techo').show();
+		  $("#sedes").val("0");
+		  $("#indicador").val("0");
 		  oData    = new Object();	
 		  oData.cplanificacion = $('#ano').val();
 		  oData.idPais         = $('#pais').val();
@@ -37,6 +44,7 @@ $("#loadPais").change(function()
 				{	
 					$('#loadSede').html(resp);
 					$('#loadSede').show();
+					$('#loading-techo').hide();
 				}
 			});
 			
@@ -47,6 +55,7 @@ $("#loadSede").change(function()
 {
 	  if($("#sede").val() != 0)
 	  {
+		  $('#loading-techo').show();
 		  oData    = new Object();	
 		  oData.cplanificacion = $('#ano').val();
 		  oData.idPais         = $('#pais').val();
@@ -61,6 +70,7 @@ $("#loadSede").change(function()
 				{	
 					$('#loadIndicador').html(resp);
 					$('#loadIndicador').show();
+					$('#loading-techo').hide();
 				}
 			});
 			
@@ -79,6 +89,7 @@ $("#loadIndicador").change(function()
 			  var plan = 0;
 			  var real = 0;
 			  
+			  $('#loading-techo').show();
 			  oData    = new Object();	
 			  oData.cplanificacion = $('#ano').val();
 			  oData.idPais         = $('#pais').val();
@@ -97,8 +108,7 @@ $("#loadIndicador").change(function()
 						//Plan
 						var res = plan.split(",");
 						
-						console.log(res);
-						
+						$('#loading-techo').hide();
 						
 						var plan1 = res[0];
 						var plan2 = res[1];
