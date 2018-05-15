@@ -1,66 +1,46 @@
-<!doctype html>
 <html>
-
-<head>
-	<title>Informe Anual</title>
-	<script src="/assets/js/Chart.bundle.js"></script>
-	<script src="/assets/js/utils.js"></script>
-	<style>
-	canvas {
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
-	</style>
-</head>
-
-<body>
-    <div class="panel-body">
-        <div class="col-lg-3">
-    		<div class="form-group">
-    			<label for="ano">A&ntilde;o</label>
-    			<select  id="ano" class="form-control" >
-    				<option value="0">-- SELECCIONE --</option>
-    				<?php foreach ($this->view->ano as $ano):?>
-    						<option value="<?php echo($ano->id);?>"><?php echo($ano->ano);?></option>
-    				<?php endforeach; ?>
-    			</select>
-    		</div>
-    	</div>
-    	<div id="loadPais"></div>
-    	<div id="loadSede"></div>
-    	<div id="loadIndicador"></div>
-    </div>
-    <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Aqui vai o Nome</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                            <div id="container" style="width: 60%; margin: 0 auto; width: 60%;">
-                        		<canvas id="canvas"></canvas>
-                        	</div>
-                    </div>
-                </div>
-            </div>
-            <div id="loading-techo">
-            	<div class="loading"><img src="/loading.gif"></div>
-            </div>
+	<head>
+		<title>Informe Anual</title>
+		<script src="/assets/js/Chart.bundle.js"></script>
+		<script src="/assets/js/utils.js"></script>
+		<style>
+            canvas 
+            {
+        		-moz-user-select: none;
+        		-webkit-user-select: none;
+        		-ms-user-select: none;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="panel-body">
+			<div class="col-lg-3">
+				<div class="form-group">
+					<label for="ano">A&ntilde;o</label>
+					<select  id="ano" class="form-control" >
+						<option value="0">-- SELECCIONE --</option>
+						<?php foreach ($this->view->ano as $ano):?>
+    					<option value="<?php echo($ano->id);?>"><?php echo($ano->ano);?></option>
+    					<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+			<div id="loadPais"></div>
+    		<div id="loadSede"></div>
+    		<div id="loadIndicador"></div>
+		</div>
+		<div id="container" style="width: 60%; margin: 0 auto; width: 60%;">
+        	<canvas id="canvas"></canvas>
+        </div>
+        <div id="loading-techo">
+        	<div class="loading"><img src="/loading.gif"></div>
+        </div>
+	</body>
 	<script type="text/javascript" src="/assets/js/tinformes/anual.js""></script>
-</body>
-<script>
-    $(document).ready(function() {
+	<script>
+    $(document).ready(function() 
+   	{
     	$('#loading-techo').hide();
     });
 </script>
-
-
 </html>
