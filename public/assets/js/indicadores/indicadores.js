@@ -48,13 +48,25 @@ function GuardarIndicador()
 		{	
 			if(oData['results'])
 			{
-				alert('Grabado con éxito.');
-				location.href = "/indicadores";
+				$.confirm({
+				    content: "Grabado con éxito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/indicadores";
+				        }
+				    }
+				});
 			}
 			else
 			{
-				alert('Erro ao Grabar.');
-				location.href = "/indicadores";
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/indicadores";
+				        }
+				    }
+				});
 			}
 		}
 	});
@@ -88,13 +100,25 @@ function ActualizarIndicador()
 		{	
 			if(oData['results'])
 			{
-				alert('Actualizado  con éxito.');
-				location.href = "/indicadores";
+				$.confirm({
+				    content: "Grabado con éxito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/indicadores";
+				        }
+				    }
+				});
 			}
 			else
 			{
-				alert('Erro ao Actualizar.');
-				location.href = "/indicadores";
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/indicadores";
+				        }
+				    }
+				});
 			}
 		}
 	});

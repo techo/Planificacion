@@ -13,13 +13,25 @@ function GuardarTipo()
 		{	
 			if(oData['results'])
 			{
-				alert('Grabado con éxito.');
-				location.href = "/tipos";
+				$.confirm({
+				    content: "Grabado con éxito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/tipos";
+				        }
+				    }
+				});
 			}
 			else
 			{
-				alert('Erro ao Grabar.');
-				location.href = "/tipos";
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/tipos";
+				        }
+				    }
+				});
 			}
 		}
 	});
@@ -41,13 +53,26 @@ function ActualizarTipo()
 		{	
 			if(oData['results'])
 			{
-				alert('Actualizado  con éxito.');
-				location.href = "/tipos";
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/tipos";
+				        }
+				    }
+				});
 			}
 			else
 			{
-				alert('Erro ao Actualizar.');
-				location.href = "/tipos";
+
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/tipos";
+				        }
+				    }
+				});
 			}
 		}
 	});

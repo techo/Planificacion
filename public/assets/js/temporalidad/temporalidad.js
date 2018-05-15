@@ -13,13 +13,25 @@ function GuardarTemporalidad()
 		{	
 			if(oData['results'])
 			{
-				alert('Grabado con éxito.');
-				location.href = "/temporalidades";
+				$.confirm({
+				    content: "Grabado con éxito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/temporalidades";
+				        }
+				    }
+				});
 			}
 			else
 			{
-				alert('Erro ao Grabar.');
-				location.href = "/temporalidades";
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/temporalidades";
+				        }
+				    }
+				});
 			}
 		}
 	});
@@ -41,13 +53,25 @@ function ActualizarTemporalidad()
 		{	
 			if(oData['results'])
 			{
-				alert('Actualizado  con éxito.');
-				location.href = "/temporalidades";
+				$.confirm({
+				    content: "Grabado con éxito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/temporalidades";
+				        }
+				    }
+				});
 			}
 			else
 			{
-				alert('Erro ao Actualizar.');
-				location.href = "/temporalidades";
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/temporalidades";
+				        }
+				    }
+				});
 			}
 		}
 	});
