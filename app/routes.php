@@ -74,4 +74,8 @@ $route[] = ['/tinforme/CarregaTrimestre', 'TInformeController@CarregaTrimestre']
 $route[] = ['/tinforme/mensual', 'TInformeController@mensual'];
 $route[] = ['/tinforme/CarregaMensal', 'TInformeController@CarregaMensal'];
 
+/** TInforme - Informe por Mes **/
+$route[] = ['/tinforme/anual', 'TInformeController@anual'];
+$route[] = ['/tinforme/CarregaAnual', 'TInformeController@CarregaAnual'];
+
 return $route;

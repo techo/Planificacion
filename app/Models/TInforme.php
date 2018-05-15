@@ -80,6 +80,7 @@ class TInforme extends BaseModel
         return $result;
     }
     
+    // 3 Querys Iguais para caso necessite uma modificacao expecifica em cada relatorio
     public function BuscaTrimestre($idplanificacion, $idpais, $idsede, $idIndicador)
     {
         $sql  = "";
@@ -97,6 +98,22 @@ class TInforme extends BaseModel
     }
     
     public function BuscaMensual($idplanificacion, $idpais, $idsede, $idIndicador)
+    {
+        $sql  = "";
+        $sql .= "SELECT  ";
+        $sql .= "dplanificacion.*,  ";
+        $sql .= "indicador.indicador  ";
+        $sql .= " FROM dplanificacion ";
+        $sql .= " INNER JOIN indicador on indicador.id = dplanificacion.id_indicador ";
+        $sql .= "WHERE dplanificacion.situation = 1 and id_cplanificacion = ". $idplanificacion . " and dplanificacion.id_pais = " . $idpais."  and dplanificacion.id_sede = ". $idsede . " and id_indicador =" . $idIndicador;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function BuscaAnual($idplanificacion, $idpais, $idsede, $idIndicador)
     {
         $sql  = "";
         $sql .= "SELECT  ";

@@ -276,7 +276,47 @@ class TInformeController extends BaseController
         //tudo junto pq deu merda separado
         echo json_encode(array("plan" => $EneroPlan. ',' . $FebreroPlan. ',' . $MarzoPlan. ',' . $AbrilPlan. ',' . $MayoPlan. ',' . $JunioPlan. ',' . $JulioPlan. ',' . $AgostoPlan. ',' .$SeptiembrePlan. ',' .$OctubrePlan. ',' .$NoviembrePlan. ',' .$DiciembrePlan. ',' .
             $EneroReal. ',' .$FebreroReal. ',' .$MarzoReal. ',' .$AbrilReal. ',' .$MayoReal. ',' .$JunioReal. ',' .$JulioReal. ',' .$AgostoReal. ',' .$SeptiembreReal. ',' .$OctubreReal. ',' .$NoviembreReal. ',' .$DiciembreReal));
-        //  echo json_encode(array("real" => $T1Real. ',' . $T2Real. ',' . $T3Real. ',' . $T4Real));
+    }
+    
+    public function anual()
+    {
+        $this->setPageTitle('Informe Anual');
+        $model = Container::getModel("TInforme");
+        
+        //Busca Anos
+        $this->view->ano = $model->ListAnos();
+        
+        /* Render View Paises */
+        $this->renderView('tinforme/anual', 'layout');
+    }
+    
+    public function CarregaAnual($aDados)
+    {
+        //Buscar Paises Planificados neste ano
+        $aDados         = (array) $aDados;
+        
+        $idplanificacion = $aDados['cplanificacion'];
+        $pais            = $aDados['idPais'];
+        $sede            = $aDados['idSede'];
+        $indicador       = $aDados['idIndicador'];
+        
+        $model = Container::getModel("TInforme");
+        
+        //Busca Anual
+        $result = $model->BuscaAnual($idplanificacion, $pais, $sede, $indicador);
+        
+        //Dados para o Chart Plan
+        $aPlanificado = $result[0]->enero_plan + $result[0]->febrero_plan + $result[0]->marzo_plan + $result[0]->abril_plan + $result[0]->mayo_plan + 
+                        $result[0]->junio_plan + $result[0]->julio_plan + $result[0]->agosto_plan  + $result[0]->septiembre_plan + $result[0]->octubre_plan +
+                        $result[0]->noviembre_plan + $result[0]->diciembre_plan;
+                
+        //Dados para o Chart Real
+        $aRealizado  = $result[0]->enero_real + $result[0]->febrero_real + $result[0]->marzo_real + $result[0]->abril_real + $result[0]->mayo_real + 
+                       $result[0]->junio_real + $result[0]->julio_real + $result[0]->agosto_real + $result[0]->septiembre_real + $result[0]->octubre_real + 
+                       $result[0]->noviembre_real + $result[0]->diciembre_real;
+               
+        //tudo junto pq deu merda separado
+        echo json_encode(array("plan" => $aPlanificado. ',' . $aRealizado));
     }
     
 }
