@@ -38,7 +38,7 @@
                     		<tr class="gradeX">
                     		<td><?php echo($pilar->pilar);?></td>
                     		<td><?php ($pilar->situation == '1' ? $pilar->situation = 'Activo' : $pilar->situation = 'Inactivo'); echo($pilar->situation);?></td>
-                    		<td class="center"><a href="/pilares/show/<?php echo($pilar->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Editar</a><a href="/pilares/delete/<?php echo($pilar->id);?>" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
+                    		<td class="center"><a href="/pilares/show/<?php echo($pilar->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($pilar->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>
@@ -47,6 +47,7 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
 <script>
 $(document).ready(function(){
     $('.dataTables-example').dataTable({
@@ -76,5 +77,27 @@ $(document).ready(function(){
     });
 
 });
+
+function Delete(id)
+{
+	var id = id
+    $.confirm({
+        content: 'Est\u00E1 seguro de que desea borrar este pilar',
+        buttons: {
+            specialKey: {
+                text: 'S\u00ED',
+                action: function(){
+                	window.location.replace("/pilares/delete/"+id);
+                }
+            },
+            alphabet: {
+                text: 'No',
+                action: function(){
+                    return;
+                }
+            }
+        }
+    });
+}
 
 </script>
