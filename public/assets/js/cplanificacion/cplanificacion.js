@@ -1,5 +1,7 @@
 function GuardarPlanificacion(indicadores, sedes)
 {
+	$('#loading-techo').show();
+	 
 	oData              = new Object();	
 	oData.ano          = $('#ano').val();
 	oData.status       = $('#status').val();
@@ -57,6 +59,7 @@ function GuardarPlanificacion(indicadores, sedes)
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -68,6 +71,7 @@ function GuardarPlanificacion(indicadores, sedes)
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
@@ -83,6 +87,8 @@ function GuardarPlanificacion(indicadores, sedes)
 
 function ActualizarPlanificacion(indicadores, sedes)
 {
+	$('#loading-techo').show();
+	
 	oData          = new Object();	
 	oData.id       = $('#id').val();
 	oData.ano      = $('#ano').val();
@@ -141,6 +147,7 @@ function ActualizarPlanificacion(indicadores, sedes)
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -152,6 +159,7 @@ function ActualizarPlanificacion(indicadores, sedes)
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {

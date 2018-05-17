@@ -71,6 +71,9 @@
 							<a href="/anos" class="btn btn-danger btn-lg pull-right">Cancelar</a>
 						</div>
 					</div>
+					<div id="loading-techo">
+                        	<div class="loading"><img src="/loading.gif"></div>
+                        </div>
 				</div>
 			</div>
 		</div>
@@ -78,6 +81,11 @@
 </div>
 <script type="text/javascript" src="/assets/js/ano/ano.js""></script>
 <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script>
+    $(document).ready(function() {
+    	$('#loading-techo').hide();
+    });
+</script>
 <script>
 	$("#actualizar-ano").click(function() {
 		ActualizarAno();

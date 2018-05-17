@@ -5,6 +5,7 @@ $('#ano').keyup(function() {
 
 function GuardarAno()
 {
+	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.ano      = $('#ano').val();
 	oData.status   = $('#status').val();
@@ -18,6 +19,7 @@ function GuardarAno()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -29,6 +31,7 @@ function GuardarAno()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
@@ -44,6 +47,7 @@ function GuardarAno()
 
 function ActualizarAno()
 {
+	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.id       = $('#id').val();
 	oData.ano      = $('#ano').val();
@@ -58,6 +62,7 @@ function ActualizarAno()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -69,6 +74,7 @@ function ActualizarAno()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {

@@ -1,5 +1,6 @@
 function GuardarTipo()
 {
+	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.tipo     = $('#tipo').val();
 	oData.status   = $('#status').val();
@@ -13,6 +14,7 @@ function GuardarTipo()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -24,6 +26,7 @@ function GuardarTipo()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
@@ -39,6 +42,7 @@ function GuardarTipo()
 
 function ActualizarTipo()
 {
+	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.id       = $('#id').val();
 	oData.tipo     = $('#tipo').val();
@@ -53,6 +57,7 @@ function ActualizarTipo()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
@@ -64,7 +69,7 @@ function ActualizarTipo()
 			}
 			else
 			{
-
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {

@@ -1,5 +1,6 @@
 function GuardarPilar()
 {
+	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.pilar    = $('#pilar').val();
 	oData.status   = $('#status').val();
@@ -13,7 +14,7 @@ function GuardarPilar()
 		{	
 			if(oData['results'])
 			{
-
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -25,6 +26,7 @@ function GuardarPilar()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
@@ -40,6 +42,7 @@ function GuardarPilar()
 
 function ActualizarPilar()
 {
+	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.id       = $('#id').val();
 	oData.pilar    = $('#pilar').val();
@@ -54,6 +57,7 @@ function ActualizarPilar()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -65,6 +69,7 @@ function ActualizarPilar()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {

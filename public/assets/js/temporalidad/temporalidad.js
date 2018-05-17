@@ -1,5 +1,6 @@
 function GuardarTemporalidad()
 {
+	$('#loading-techo').show();
 	oData              = new Object();	
 	oData.temporalidad = $('#temporalidad').val();
 	oData.status       = $('#status').val();
@@ -13,6 +14,7 @@ function GuardarTemporalidad()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -24,6 +26,7 @@ function GuardarTemporalidad()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
@@ -39,6 +42,7 @@ function GuardarTemporalidad()
 
 function ActualizarTemporalidad()
 {
+	$('#loading-techo').show();
 	oData              = new Object();	
 	oData.id           = $('#id').val();
 	oData.temporalidad = $('#temporalidad').val();
@@ -53,6 +57,7 @@ function ActualizarTemporalidad()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -64,6 +69,7 @@ function ActualizarTemporalidad()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {

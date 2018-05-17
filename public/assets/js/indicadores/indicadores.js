@@ -23,6 +23,7 @@ $("#pais").change(function()
 
 function GuardarIndicador()
 {
+	$('#loading-techo').show();
 	oData              = new Object();	
 	oData.indicador    = $('#indicador').val();
 	oData.temporalidad = $('#temporalidad').val();
@@ -48,6 +49,7 @@ function GuardarIndicador()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -59,6 +61,7 @@ function GuardarIndicador()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
@@ -74,6 +77,7 @@ function GuardarIndicador()
 
 function ActualizarIndicador()
 {
+	$('#loading-techo').show();
 	oData              = new Object();	
 	oData.id           = $('#id').val();
 	oData.indicador    = $('#indicador').val();
@@ -100,6 +104,7 @@ function ActualizarIndicador()
 		{	
 			if(oData['results'])
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Grabado con éxito.",
 				    buttons: {
@@ -111,6 +116,7 @@ function ActualizarIndicador()
 			}
 			else
 			{
+				$('#loading-techo').hide();
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
