@@ -18,7 +18,7 @@ class CPlanificacionController extends BaseController
     
     public function index()
     {
-        $this->setPageTitle('Create Planificacion');
+        $this->setPageTitle('Crear Planificacion');
         $model = Container::getModel("CPlanificacion");
         $this->view->cplanificacion = $model->select();
         
