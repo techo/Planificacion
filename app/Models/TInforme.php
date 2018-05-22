@@ -128,4 +128,20 @@ class TInforme extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function BuscaMonitoreo($idplanificacion, $idpais, $idsede)
+    {
+        $sql  = "";
+        $sql .= "SELECT  ";
+        $sql .= "dplanificacion.*,  ";
+        $sql .= "indicador.indicador  ";
+        $sql .= " FROM dplanificacion ";
+        $sql .= " INNER JOIN indicador on indicador.id = dplanificacion.id_indicador ";
+        $sql .= "WHERE dplanificacion.situation = 1 and id_cplanificacion = ". $idplanificacion . " and dplanificacion.id_pais = " . $idpais."  and dplanificacion.id_sede = ". $idsede;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

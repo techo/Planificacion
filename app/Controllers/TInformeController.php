@@ -319,4 +319,235 @@ class TInformeController extends BaseController
         echo json_encode(array("plan" => $aPlanificado. ',' . $aRealizado));
     }
     
+    public function Monitoreo()
+    {
+        $this->setPageTitle('Monitoreo KPIs');
+        $model = Container::getModel("TInforme");
+        
+        //Busca Anos
+        $this->view->ano = $model->ListAnos();
+        
+        /* Render View Paises */
+        $this->renderView('tinforme/monitoreo', 'layout');
+    }
+    
+    public function BuscaValoresMonitoreo($aDados)
+    {
+        $aDados = (array) $aDados;
+        
+        $idplanificacion = $aDados['cplanificacion']; // sei qual planificacao pelo ano
+        $pais            = $aDados['idPais'];
+        $sede            = $aDados['idSede'];
+        
+        $model = Container::getModel("TInforme");
+        
+        //Busca Anual
+        $result = $model->BuscaMonitoreo($idplanificacion, $pais, $sede);
+        
+        for($i=0; $i < count($result); $i++)
+        {
+            $result[$i] = (array) $result[$i];
+            
+            //Plan Anual
+            $result[$i]['plan_anual'] = $result[$i]['enero_plan']      + 
+                                        $result[$i]['febrero_plan']    + 
+                                        $result[$i]['marzo_plan']      + 
+                                        $result[$i]['abril_plan']      + 
+                                        $result[$i]['mayo_plan']       +
+                                        $result[$i]['junio_plan']      + 
+                                        $result[$i]['julio_plan']      +
+                                        $result[$i]['agosto_plan']     +
+                                        $result[$i]['septiembre_plan'] +
+                                        $result[$i]['octubre_plan']    +
+                                        $result[$i]['noviembre_plan']  +
+                                        $result[$i]['diciembre_plan'];
+            
+            // Real Anual
+            $result[$i]['real_anual'] = $result[$i]['enero_real']      +
+                                        $result[$i]['febrero_real']    +
+                                        $result[$i]['marzo_real']      +
+                                        $result[$i]['abril_real']      +
+                                        $result[$i]['mayo_real']       +
+                                        $result[$i]['junio_real']      +
+                                        $result[$i]['julio_real']      +
+                                        $result[$i]['agosto_real']     +
+                                        $result[$i]['septiembre_real'] +
+                                        $result[$i]['octubre_real']    +
+                                        $result[$i]['noviembre_real']  +
+                                        $result[$i]['diciembre_real'];
+            
+            //RP Anual
+            $result[$i]['rp_anual']   = $result[$i]['plan_anual'] / $result[$i]['real_anual'];
+            
+            //Plan Trimestre 1
+            $result[$i]['plan_t1']    = $result[$i]['enero_plan']    +
+                                        $result[$i]['febrero_plan']  +
+                                        $result[$i]['marzo_plan'];
+             
+            //Real Trimestre 1
+            $result[$i]['real_t1']    = $result[$i]['enero_real']    +
+                                        $result[$i]['febrero_real']  +
+                                        $result[$i]['marzo_real'];
+            
+             //RP Trimestre 1
+             $result[$i]['rp_t1']     = $result[$i]['plan_t1'] /  $result[$i]['real_t1'];
+             
+             //Plan Trimestre 2
+             $result[$i]['plan_t2']   =  $result[$i]['abril_plan']      +
+                                         $result[$i]['mayo_plan']       +
+                                         $result[$i]['junio_plan'];
+             
+             //Real Trimestre 2
+             $result[$i]['real_t2']   =  $result[$i]['abril_real']      +
+                                         $result[$i]['mayo_real']       +
+                                         $result[$i]['junio_real'];
+             
+             //RP Trimestre 2
+             $result[$i]['rp_t2']     = $result[$i]['plan_t2'] /  $result[$i]['real_t2'];
+             
+             //Plan Trimestre 3
+             $result[$i]['plan_t3']   =  $result[$i]['julio_plan']        +
+                                         $result[$i]['agosto_plan']       +
+                                         $result[$i]['septiembre_plan'];
+             
+             //Real Trimestre 3
+             $result[$i]['real_t3']   =  $result[$i]['abril_real']      +
+                                         $result[$i]['mayo_real']       +
+                                         $result[$i]['junio_real'];
+             
+             //RP Trimestre 3
+             $result[$i]['rp_t3']     = $result[$i]['plan_t3'] /  $result[$i]['real_t3'];
+             
+             //Plan Trimestre 4
+             $result[$i]['plan_t4']   =  $result[$i]['octubre_plan']        +
+                                         $result[$i]['noviembre_plan']      +
+                                         $result[$i]['diciembre_plan'];
+             
+             //Real Trimestre 4
+             $result[$i]['real_t4']   =  $result[$i]['octubre_real']    +
+                                         $result[$i]['noviembre_real']  +
+                                         $result[$i]['diciembre_real'];
+             
+             //RP Trimestre 4
+             $result[$i]['rp_t4']     = $result[$i]['plan_t4'] /  $result[$i]['real_t4'];
+             
+             //Plan Semestre 1
+             $result[$i]['plan_s1']   =  $result[$i]['enero_plan']      +
+                                         $result[$i]['febrero_plan']    +
+                                         $result[$i]['marzo_plan']      +
+                                         $result[$i]['abril_plan']      +
+                                         $result[$i]['mayo_plan']       +
+                                         $result[$i]['junio_plan'];
+             
+             //Real Semestre 1
+             $result[$i]['real_s1']   =  $result[$i]['enero_real']      +
+                                         $result[$i]['febrero_real']    +
+                                         $result[$i]['marzo_real']      +
+                                         $result[$i]['abril_real']      +
+                                         $result[$i]['mayo_real']       +
+                                         $result[$i]['junio_real'];
+             
+             //RP Semestre 1
+             $result[$i]['rp_s1']      = $result[$i]['plan_s1'] /  $result[$i]['real_s1'];
+             
+             //Plan Semestre 2
+             $result[$i]['plan_s2']   =  $result[$i]['julio_plan']      +
+                                         $result[$i]['agosto_plan']     +
+                                         $result[$i]['septiembre_plan'] +
+                                         $result[$i]['octubre_plan']    +
+                                         $result[$i]['noviembre_plan']  +
+                                         $result[$i]['diciembre_plan'];
+             
+             //Real Semestre 2
+             $result[$i]['real_s2']   =  $result[$i]['julio_real']      +
+                                         $result[$i]['agosto_real']     +
+                                         $result[$i]['septiembre_real'] +
+                                         $result[$i]['octubre_real']    +
+                                         $result[$i]['noviembre_real']  +
+                                         $result[$i]['diciembre_real'];
+             
+             //RP Semestre 2
+             $result[$i]['rp_s1']      = $result[$i]['plan_s2'] /  $result[$i]['real_s2'];
+                                       
+            
+            $this->view->indicadores[$i] = (object) $result[$i];
+        }
+        
+        //Montar Grid Monitoreo KPIs
+        $html  = '';
+        $html .= '<div  class="wrapper wrapper-content animated fadeInRight">';
+        $html .= '<div class="row">';
+        $html .= '<div class="col-lg-12">';
+        $html .= '<div class="ibox float-e-margins">';
+        $html .= '<div class="ibox-title">';
+        $html .= '<h5>Monitoreo de KPIs</h5>';
+        $html .= '</div>';
+        $html .= '<div class="ibox-content">';
+        $html .= '<table class="table table-striped table-bordered table-hover dataTables-example" >';
+        $html .= '<thead>';
+        $html .= '<tr>';
+        $html .= '<th>Indicador</th>';
+        $html .= '<th>Plan Anual</th>';
+        $html .= '<th>Real Anual </th>';
+        $html .= '<th>% (R/P) Anual</th>';
+        $html .= '<th>Plan T1</th>';
+        $html .= '<th>Real T1</th>';
+        $html .= '<th>% (R/P) T1</th>';
+        $html .= '<th>Plan T2</th>';
+        $html .= '<th>Real T2</th>';
+        $html .= '<th>% (R/P) T2</th>';
+        $html .= '<th>Plan T3</th>';
+        $html .= '<th>Real T3</th>';
+        $html .= '<th>% (R/P) T3</th>';
+        $html .= '<th>Plan T4</th>';
+        $html .= '<th>Real T4</th>';
+        $html .= '<th>% (R/P) T4</th>';
+        $html .= '<th>Plan S1</th>';
+        $html .= '<th>Real S1</th>';
+        $html .= '<th>% (R/P) S1</th>';
+        $html .= '<th>Plan S2</th>';
+        $html .= '<th>Real S2</th>';
+        $html .= '<th>% (R/P) S2</th>';
+        $html .= '</tr>';
+        $html .= '</thead>';
+        $html .= '<tbody>';
+        
+        foreach ($this->view->indicadores as $indicadores)
+        {
+            $html .= '<tr class="gradeX">';
+            $html .= '<td>' . $indicadores->indicador . '</td>';
+            $html .= '<td>' . $indicadores->plan_anual. '</td>';
+            $html .= '<td>' . $indicadores->real_anual. '</td>';
+            $html .= '<td>' . number_format($indicadores->rp_anual, 2, '.', ' '). '</td>';
+            $html .= '<td>' . $indicadores->plan_t1. '</td>';
+            $html .= '<td>' . $indicadores->real_t1. '</td>';
+            $html .= '<td>' . number_format($indicadores->rp_t1, 2, '.', ' '). '</td>';
+            $html .= '<td>' . $indicadores->plan_t2. '</td>';
+            $html .= '<td>' . $indicadores->real_t2. '</td>';
+            $html .= '<td>' . number_format($indicadores->rp_t2, 2, '.', ' '). '</td>';
+            $html .= '<td>' . $indicadores->plan_t3. '</td>';
+            $html .= '<td>' . $indicadores->real_t3. '</td>';
+            $html .= '<td>' . number_format($indicadores->rp_t3, 2, '.', ' '). '</td>';
+            $html .= '<td>' . $indicadores->plan_t4. '</td>';
+            $html .= '<td>' . $indicadores->real_t4. '</td>';
+            $html .= '<td>' . number_format($indicadores->rp_t4, 2, '.', ' '). '</td>';
+            $html .= '<td>' . $indicadores->plan_s1. '</td>';
+            $html .= '<td>' . $indicadores->real_s1. '</td>';
+            $html .= '<td>' . number_format($indicadores->rp_s1, 2, '.', ' '). '</td>';
+            $html .= '<td>' . $indicadores->plan_s2. '</td>';
+            $html .= '<td>' . $indicadores->real_s2. '</td>';
+            $html .= '<td>' . number_format($indicadores->rp_s2, 2, '.', ' '). '</td>';
+        }
+        
+        $html .= '</tbody>';
+        $html .= '</table>';
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '</div>';
+               
+        echo ($html);
+    }
+    
 }
