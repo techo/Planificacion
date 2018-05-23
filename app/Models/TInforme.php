@@ -42,7 +42,12 @@ class TInforme extends BaseModel
         $sql  = "";
         $sql .= "SELECT * ";
         $sql .= " FROM dplanificacion ";
-        $sql .= "WHERE dplanificacion.situation = 1 and id_cplanificacion = ". $idplanificacion . " GROUP BY id_pais";
+        $sql .= "WHERE dplanificacion.situation = 1 and id_cplanificacion = ". $idplanificacion;
+        if($_SESSION['Planificacion']['pais_id'] != 5)
+        {
+            $sql  .= " and dplanificacion.id_pais = ". $_SESSION['Planificacion']['pais_id'];
+        }
+        $sql  .= " GROUP BY id_pais";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
