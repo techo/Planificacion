@@ -651,6 +651,7 @@ class CPlanificacion extends BaseModel
         $sql .= "dplanificacion.*, ";
         $sql .= "indicador.indicador, ";
         $sql .= "indicador.id_pilar, ";
+        $sql .= "indicador.formato, ";
         $sql .= "indicador.id_area ";
         $sql .= " FROM dplanificacion ";
         $sql .= "INNER JOIN indicador indicador ON indicador.id = dplanificacion.id_indicador ";

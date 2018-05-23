@@ -38,6 +38,46 @@ window.onload = function()
 						editableGrid = new EditableGrid("DemoGridJsData");
 						
 						editableGrid.load({"metadata": metadata, "data": data});
+						
+						//Exibe os Formatos dos Campos
+						editableGrid.data.forEach(function(o,i) {
+							if(editableGrid.data[i].formato == '%' )  
+							{
+								j = 3;
+								while (j < 27) {
+									editableGrid.data[i].columns[j] = editableGrid.data[i].columns[j] + ' ' + editableGrid.data[i].formato;
+								    j++;
+								}
+								//console.log("Value for '" + editableGrid.getColumnName(editableGrid.columns[3].name) + "' in row " + editableGrid.data[0].originalIndex + " has changed from '" + 10 + "' to '" + 20 + "'");
+							}
+							
+							if(editableGrid.data[i].formato == '$' )  
+							{
+								j = 3;
+								while (j < 27) {
+									editableGrid.data[i].columns[j] = editableGrid.data[i].formato + ' ' + editableGrid.data[i].columns[j];
+								    j++;
+								}
+							}
+							
+							if(editableGrid.data[i].formato == '#' )  
+							{
+								j = 3;
+								while (j < 27) {
+									editableGrid.data[i].columns[j] = editableGrid.data[i].columns[j];
+								    j++;
+								}
+								
+							}
+						})
+						
+//						if(editableGrid.data[0].columns[0] == 'Voluntarios/as movilizados/as en Colecta')
+//						{
+//							editableGrid.setCellRenderer("enero_plan", new CellRenderer({
+//								render: function(cell, value) { new NumberCellRenderer().render(cell, value ? value + " %" : ""); }
+//								}));
+//						}
+						
 						editableGrid.renderGrid("tablecontent", "testgrid");
 						
 						//Indicador
