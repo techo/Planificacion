@@ -298,6 +298,7 @@ class IndicadoresController extends BaseController
         $aParam['area']         = filter_var($aParam['area'], FILTER_SANITIZE_STRING);
         $aParam['sede']         = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
         $aParam['status']       = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
+        $aParam['formato']      = filter_var($aParam['formato'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Indicador");
         $result = $model->GuardarIndicador($aParam);
@@ -370,6 +371,7 @@ class IndicadoresController extends BaseController
         $aParam['area']         = filter_var($aParam['area'], FILTER_SANITIZE_STRING);
         $aParam['sede']         = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
         $aParam['status']       = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
+        $aParam['formato']      = filter_var($aParam['formato'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Indicador");
         $result = $model->ActualizarIndicador($aParam);

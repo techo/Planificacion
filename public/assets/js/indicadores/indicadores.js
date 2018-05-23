@@ -33,6 +33,7 @@ function GuardarIndicador()
 	oData.area         = $('#area').val();
 	oData.sede         = $('#sede').val();
 	oData.status       = $('#status').val();
+	oData.formato      = $('#formato').val();
 	
 	//Caso seja para todos os paises, tbm e para todas as sedes
 	if($("#pais").val() == 0)
@@ -88,6 +89,7 @@ function ActualizarIndicador()
 	oData.area         = $('#area').val();
 	oData.sede         = $('#sede').val();
 	oData.status       = $('#status').val();
+	oData.formato      = $('#formato').val();
 	
 	//Caso seja para todos os paises, tbm e para todas as sedes
 	if($("#pais").val() == 0)

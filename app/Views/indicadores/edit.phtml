@@ -30,11 +30,44 @@
 						<div class="tab-content">
 							<div id="tab-1" class="tab-pane active">
 								<div class="panel-body">
-									<div class="col-lg-12">
+									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="label">Indicador</label>
 											<input type="text" class="form-control" name="indicador" id="indicador" value="<?php echo($this->view->indicador->indicador);?>">
 										</div>
+									</div>
+									<div class="col-lg-6">
+									<?php 
+                                                    
+        									if($this->view->indicador->formato == '')
+        									{
+        									    $selecionarZero = 'selected';
+        									}
+									
+                                            if($this->view->indicador->formato == '$')
+                                            {
+                                                $dolar = 'selected';
+                                            }
+                                            
+                                            if($this->view->indicador->formato == '%')
+                                            {
+                                                $porcentagem = 'selected';
+                                            }
+                                            
+                                            if($this->view->indicador->formato == '#')
+                                            {
+                                                $numeral = 'selected';
+                                            }
+                                        ?>
+										<div class="form-group">
+    	 									<label for="formato">Formato</label>
+        	 								<select  id="formato" class="form-control" >
+        	 									<option <?php echo ($selecionarZero);?> value="0">-- Seleccionar --</option>
+                                    			<option <?php echo ($dolar);?> value="$">$ - Dolar</option>
+                                    			<option <?php echo ($porcentagem);?> value="%">% - Porcentaje</option>
+                                    			<option <?php echo ($numeral);?> value="#"># - Numeral</option>
+                	 						</select>
+            	 						</div>
 									</div>
 									<div class="col-lg-6">
                                     	<div class="form-group">
@@ -195,8 +228,8 @@
 											<label for="label">Status</label>
 											<select class="form-control" name="status" id="status">
 												<option <?php echo ($selecionar);?> value="0">-- Seleccionar --</option>
-                                    	<option <?php echo ($activo);?> value="1">Activo</option>
-                                    	<option <?php echo ($inactivo);?> value="2">Inactivo</option>
+                                    			<option <?php echo ($activo);?> value="1">Activo</option>
+                                    			<option <?php echo ($inactivo);?> value="2">Inactivo</option>
 											</select>
 										</div>
 										<div class="form-group">

@@ -38,7 +38,7 @@ class Indicador extends BaseModel
         $sql .= "INNER JOIN temporalidad ON temporalidad.id = {$this->table}.id_temporalidad ";
         $sql .= "INNER JOIN tipo ON tipo.id = {$this->table}.id_tipo ";
         $sql .= "INNER JOIN pilar ON pilar.id = {$this->table}.id_pilar ";
-        $sql .= "WHERE {$this->table}.deleted = 0 ";
+        $sql .= "WHERE {$this->table}.deleted = 0";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -94,6 +94,7 @@ class Indicador extends BaseModel
         $sql .= "id_pais, ";
         $sql .= "id_area, ";
         $sql .= "id_sede, ";
+        $sql .= "formato, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -108,6 +109,7 @@ class Indicador extends BaseModel
         $sql .= "'". $aParam['pais']."', ";
         $sql .= "'". $aParam['area']."', ";
         $sql .= "'". $aParam['sede']."', ";
+        $sql .= "'". $aParam['formato']."', ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
@@ -144,6 +146,7 @@ class Indicador extends BaseModel
         $sql .= "id_pais         = '" . $aParam['pais']."', ";
         $sql .= "id_area         = '" . $aParam['area']."', ";
         $sql .= "id_sede         = '" . $aParam['sede']."', ";
+        $sql .= "formato         = '" . $aParam['formato']."', ";
         $sql .= "situation       = '" . $aParam['status']."', ";
         $sql .= "id_updater        = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update       = NOW() ";
