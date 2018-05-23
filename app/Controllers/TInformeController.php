@@ -487,6 +487,7 @@ class TInformeController extends BaseController
         $html .= '<thead>';
         $html .= '<tr>';
         $html .= '<th>Indicador</th>';
+        $html .= '<th>Tipo</th>';
         $html .= '<th>Plan Anual</th>';
         $html .= '<th>Real Anual </th>';
         $html .= '<th>% (R/P) Anual</th>';
@@ -516,6 +517,7 @@ class TInformeController extends BaseController
         {
             $html .= '<tr class="gradeX">';
             $html .= '<td>' . $indicadores->indicador . '</td>';
+            $html .= '<td>' . $indicadores->tipo. '</td>';
             $html .= '<td>' . $indicadores->plan_anual. '</td>';
             $html .= '<td>' . $indicadores->real_anual. '</td>';
             $html .= '<td>' . number_format($indicadores->rp_anual, 2, '.', ' '). '</td>';
