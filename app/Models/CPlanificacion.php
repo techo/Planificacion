@@ -709,7 +709,9 @@ class CPlanificacion extends BaseModel
     {
         $sql  = "";
         $sql .= "UPDATE dplanificacion SET ";
-        $sql .= "{$aParam['coluna']} = '".$aParam['valor']."' ";
+        $sql .= "{$aParam['coluna']} = '".$aParam['valor']."', ";
+        $sql .= "id_updater = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update = NOW() ";
         $sql .= "WHERE id            = '" . $aParam['id']."'";
         $stmt = $this->pdo->prepare($sql);
         $result = $stmt->execute();
