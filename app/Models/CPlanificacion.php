@@ -644,6 +644,34 @@ class CPlanificacion extends BaseModel
         return $result;
     }
     
+    public function BuscaIndicador($aParam)
+    {
+        $sql  = "";
+        $sql .= "SELECT * ";
+        $sql .= " FROM dplanificacion ";
+        $sql .= "WHERE id = " .$aParam['id'];
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function BuscaTipo($idTipo)
+    {
+        $sql  = "";
+        $sql .= "SELECT indicador.*, ";
+        $sql .= "tipo.tipo ";
+        $sql .= " FROM indicador ";
+        $sql .= "INNER JOIN tipo tipo ON tipo.id = indicador.id_tipo ";
+        $sql .= "WHERE indicador.id = " .$idTipo;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
     public function Listagem($idPlanificacion, $idSede, $idPais = 0)
     {
         $sql  = "";
@@ -651,10 +679,13 @@ class CPlanificacion extends BaseModel
         $sql .= "dplanificacion.*, ";
         $sql .= "indicador.indicador, ";
         $sql .= "indicador.id_pilar, ";
+        $sql .= "indicador.id_temporalidad, ";
+        $sql .= "temporalidad.temporalidad, ";
         $sql .= "indicador.formato, ";
         $sql .= "indicador.id_area ";
         $sql .= " FROM dplanificacion ";
         $sql .= "INNER JOIN indicador indicador ON indicador.id = dplanificacion.id_indicador ";
+        $sql .= "INNER JOIN temporalidad temporalidad ON temporalidad.id = indicador.id_temporalidad ";
         $sql .= "WHERE dplanificacion.id_cplanificacion = " . $idPlanificacion . " AND dplanificacion.deleted = 0 AND dplanificacion.situation = 1 AND dplanificacion.id_sede = ". $idSede;
         if($idPais != 0)
         {
@@ -713,6 +744,40 @@ class CPlanificacion extends BaseModel
         $sql .= "id_updater = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update = NOW() ";
         $sql .= "WHERE id            = '" . $aParam['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function GravaAcumulados($aValores)
+    {
+        $sql  = "";
+        $sql .= "UPDATE dplanificacion SET ";
+        $sql .= "acumulado_plan_anual = '".$aValores[0]['acumulado_plan_anual']."', ";
+        $sql .= "acumulado_real_anual = '".$aValores[0]['acumulado_real_anual']."', ";
+        $sql .= "acumulado_rp_anual   = '".$aValores[0]['acumulado_rp_anual']."', ";
+        $sql .= "acumulado_plan_t1    = '".$aValores[0]['acumulado_plan_t1']."', ";
+        $sql .= "acumulado_real_t1    = '".$aValores[0]['acumulado_real_t1']."', ";
+        $sql .= "acumulado_rp_t1      = '".$aValores[0]['acumulado_rp_t1']."', ";
+        $sql .= "acumulado_plan_t2    = '".$aValores[0]['acumulado_plan_t2']."', ";
+        $sql .= "acumulado_real_t2    = '".$aValores[0]['acumulado_real_t2']."', ";
+        $sql .= "acumulado_rp_t2      = '".$aValores[0]['acumulado_rp_t2']."', ";
+        $sql .= "acumulado_plan_t3    = '".$aValores[0]['acumulado_plan_t3']."', ";
+        $sql .= "acumulado_real_t3    = '".$aValores[0]['acumulado_real_t3']."', ";
+        $sql .= "acumulado_rp_t3      = '".$aValores[0]['acumulado_rp_t3']."', ";
+        $sql .= "acumulado_plan_t4    = '".$aValores[0]['acumulado_plan_t4']."', ";
+        $sql .= "acumulado_real_t4    = '".$aValores[0]['acumulado_real_t4']."', ";
+        $sql .= "acumulado_rp_t4      = '".$aValores[0]['acumulado_rp_t4']."', ";
+        $sql .= "acumulado_plan_s1    = '".$aValores[0]['acumulado_plan_s1']."', ";
+        $sql .= "acumulado_real_s1    = '".$aValores[0]['acumulado_real_s1']."', ";
+        $sql .= "acumulado_rp_s1      = '".$aValores[0]['acumulado_rp_s1']."', ";
+        $sql .= "acumulado_plan_s2    = '".$aValores[0]['acumulado_plan_s2']."', ";
+        $sql .= "acumulado_real_s2    = '".$aValores[0]['acumulado_real_s2']."', ";
+        $sql .= "acumulado_rp_s2      = '".$aValores[0]['acumulado_rp_s2']."', ";
+        $sql .= "id_updater = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update = NOW() ";
+        $sql .= "WHERE id            = '" . $aValores[0]['id']."'";
         $stmt = $this->pdo->prepare($sql);
         $result = $stmt->execute();
         $stmt->closeCursor();

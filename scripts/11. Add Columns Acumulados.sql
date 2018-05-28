@@ -1,0 +1,23 @@
+ALTER TABLE dplanificacion 
+  ADD COLUMN acumulado_plan_anual DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Plan Anual' AFTER diciembre_real,
+  ADD COLUMN acumulado_real_anual DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Real Anual' AFTER acumulado_plan_anual,
+  ADD COLUMN acumulado_rp_anual DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado RP Anual' AFTER acumulado_real_anual,
+  ADD COLUMN acumulado_plan_t1 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Plan Trimestre 1' AFTER acumulado_rp_anual,
+  ADD COLUMN acumulado_real_t1 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Real Trimestre 1' AFTER acumulado_plan_t1,
+  ADD COLUMN acumulado_rp_t1 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado RP Trimestre 1' AFTER acumulado_real_t1,
+  ADD COLUMN acumulado_plan_t2 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Plan Trimestre 2' AFTER acumulado_rp_t1,
+  ADD COLUMN acumulado_real_t2 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Real Trimestre 2' AFTER acumulado_plan_t2,
+  ADD COLUMN acumulado_rp_t2 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado RP Trimestre 2' AFTER acumulado_real_t2,
+  ADD COLUMN acumulado_plan_t3 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_rp_t2,
+  ADD COLUMN acumulado_real_t3 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_plan_t3,
+  ADD COLUMN acumulado_rp_t3 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_real_t3,
+  ADD COLUMN acumulado_plan_t4 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_rp_t3,
+  ADD COLUMN acumulado_real_t4 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_plan_t4,
+  ADD COLUMN acumulado_rp_t4 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_real_t4,
+  ADD COLUMN acumulado_plan_s1 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Plan Semestre 1' AFTER acumulado_rp_t4,
+  ADD COLUMN acumulado_real_s1 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Real Semestre 1' AFTER acumulado_plan_s1,
+  ADD COLUMN acumulado_rp_s1 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_real_s1,
+  ADD COLUMN acumulado_plan_s2 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Plan Semestre 2' AFTER acumulado_rp_s1,
+  ADD COLUMN acumulado_real_s2 DECIMAL(10,2) DEFAULT NULL COMMENT 'Acumulado Real Semestre 2' AFTER acumulado_plan_s2,
+  ADD COLUMN acumulado_rp_s2 DECIMAL(10,2) DEFAULT NULL COMMENT 'valores calculados' AFTER acumulado_real_s2
+
