@@ -817,4 +817,88 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function BuscaPlan($id)
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= "dplanificacion.enero_plan, ";
+        $sql .= "dplanificacion.febrero_plan, ";
+        $sql .= "dplanificacion.marzo_plan, ";
+        $sql .= "dplanificacion.abril_plan, ";
+        $sql .= "dplanificacion.mayo_plan, ";
+        $sql .= "dplanificacion.junio_plan, ";
+        $sql .= "dplanificacion.julio_plan, ";
+        $sql .= "dplanificacion.agosto_plan, ";
+        $sql .= "dplanificacion.septiembre_plan, ";
+        $sql .= "dplanificacion.octubre_plan, ";
+        $sql .= "dplanificacion.noviembre_plan, ";
+        $sql .= "dplanificacion.diciembre_plan ";
+        $sql .= " FROM dplanificacion ";
+        $sql .= "WHERE dplanificacion.id = " .$id;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function BuscaReal($id)
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= "dplanificacion.enero_real, ";
+        $sql .= "dplanificacion.febrero_real, ";
+        $sql .= "dplanificacion.marzo_real, ";
+        $sql .= "dplanificacion.abril_real, ";
+        $sql .= "dplanificacion.mayo_real, ";
+        $sql .= "dplanificacion.junio_real, ";
+        $sql .= "dplanificacion.julio_real, ";
+        $sql .= "dplanificacion.agosto_real, ";
+        $sql .= "dplanificacion.septiembre_real, ";
+        $sql .= "dplanificacion.octubre_real, ";
+        $sql .= "dplanificacion.noviembre_real, ";
+        $sql .= "dplanificacion.diciembre_real ";
+        $sql .= " FROM dplanificacion ";
+        $sql .= "WHERE dplanificacion.id = " .$id;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function GravaMinimo($aValores)
+    {
+        $sql  = "";
+        $sql .= "UPDATE dplanificacion SET ";
+        $sql .= "minimo_plan_anual = '".$aValores[0]['minimo_plan_anual']."', ";
+        $sql .= "minimo_real_anual = '".$aValores[0]['minimo_real_anual']."', ";
+        $sql .= "minimo_rp_anual   = '".$aValores[0]['minimo_rp_anual']."', ";
+        $sql .= "minimo_plan_t1    = '".$aValores[0]['minimo_plan_t1']."', ";
+        $sql .= "minimo_real_t1    = '".$aValores[0]['minimo_real_t1']."', ";
+        $sql .= "minimo_rp_t1      = '".$aValores[0]['minimo_rp_t1']."', ";
+        $sql .= "minimo_plan_t2    = '".$aValores[0]['minimo_plan_t2']."', ";
+        $sql .= "minimo_real_t2    = '".$aValores[0]['minimo_real_t2']."', ";
+        $sql .= "minimo_rp_t2      = '".$aValores[0]['minimo_rp_t2']."', ";
+        $sql .= "minimo_plan_t3    = '".$aValores[0]['minimo_plan_t3']."', ";
+        $sql .= "minimo_real_t3    = '".$aValores[0]['minimo_real_t3']."', ";
+        $sql .= "minimo_rp_t3      = '".$aValores[0]['minimo_rp_t3']."', ";
+        $sql .= "minimo_plan_t4    = '".$aValores[0]['minimo_plan_t4']."', ";
+        $sql .= "minimo_real_t4    = '".$aValores[0]['minimo_real_t4']."', ";
+        $sql .= "minimo_rp_t4      = '".$aValores[0]['minimo_rp_t4']."', ";
+        $sql .= "minimo_plan_s1    = '".$aValores[0]['minimo_plan_s1']."', ";
+        $sql .= "minimo_real_s1    = '".$aValores[0]['minimo_real_s1']."', ";
+        $sql .= "minimo_rp_s1      = '".$aValores[0]['minimo_rp_s1']."', ";
+        $sql .= "minimo_plan_s2    = '".$aValores[0]['minimo_plan_s2']."', ";
+        $sql .= "minimo_real_s2    = '".$aValores[0]['minimo_real_s2']."', ";
+        $sql .= "minimo_rp_s2      = '".$aValores[0]['minimo_rp_s2']."', ";
+        $sql .= "id_updater = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update = NOW() ";
+        $sql .= "WHERE id            = '" . $aValores[0]['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
 }
