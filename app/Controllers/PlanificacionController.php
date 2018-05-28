@@ -782,9 +782,27 @@ class PlanificacionController extends BaseController
                 $Plan = $model->BuscaPlan($aParam['id']);
                 $Plan =  (array) $Plan[0];
                 
+                //Remover os NULL
+                foreach($Plan as $k=>$v)
+                {
+                    if($v == '')
+                    {
+                        unset($Plan[$k]);
+                    }
+                }
+                
                 //Metodo que busca os Reais
                 $Real = $model->BuscaReal($aParam['id']);
                 $Real =  (array) $Real[0];
+                
+                //Remover os NULL
+                foreach($Real as $k=>$v)
+                {
+                    if($v == '')
+                    {
+                        unset($Real[$k]);
+                    }
+                }
                 
                 //Menor valor de todos Planejados
                 $nMin = min($Plan);
