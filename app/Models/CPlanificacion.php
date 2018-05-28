@@ -783,4 +783,38 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function GravaPromedio($aValores)
+    {
+        $sql  = "";
+        $sql .= "UPDATE dplanificacion SET ";
+        $sql .= "promedio_plan_anual = '".$aValores[0]['promedio_plan_anual']."', ";
+        $sql .= "promedio_real_anual = '".$aValores[0]['promedio_real_anual']."', ";
+        $sql .= "promedio_rp_anual   = '".$aValores[0]['promedio_rp_anual']."', ";
+        $sql .= "promedio_plan_t1    = '".$aValores[0]['promedio_plan_t1']."', ";
+        $sql .= "promedio_real_t1    = '".$aValores[0]['promedio_real_t1']."', ";
+        $sql .= "promedio_rp_t1      = '".$aValores[0]['promedio_rp_t1']."', ";
+        $sql .= "promedio_plan_t2    = '".$aValores[0]['promedio_plan_t2']."', ";
+        $sql .= "promedio_real_t2    = '".$aValores[0]['promedio_real_t2']."', ";
+        $sql .= "promedio_rp_t2      = '".$aValores[0]['promedio_rp_t2']."', ";
+        $sql .= "promedio_plan_t3    = '".$aValores[0]['promedio_plan_t3']."', ";
+        $sql .= "promedio_real_t3    = '".$aValores[0]['promedio_real_t3']."', ";
+        $sql .= "promedio_rp_t3      = '".$aValores[0]['promedio_rp_t3']."', ";
+        $sql .= "promedio_plan_t4    = '".$aValores[0]['promedio_plan_t4']."', ";
+        $sql .= "promedio_real_t4    = '".$aValores[0]['promedio_real_t4']."', ";
+        $sql .= "promedio_rp_t4      = '".$aValores[0]['promedio_rp_t4']."', ";
+        $sql .= "promedio_plan_s1    = '".$aValores[0]['promedio_plan_s1']."', ";
+        $sql .= "promedio_real_s1    = '".$aValores[0]['promedio_real_s1']."', ";
+        $sql .= "promedio_rp_s1      = '".$aValores[0]['promedio_rp_s1']."', ";
+        $sql .= "promedio_plan_s2    = '".$aValores[0]['promedio_plan_s2']."', ";
+        $sql .= "promedio_real_s2    = '".$aValores[0]['promedio_real_s2']."', ";
+        $sql .= "promedio_rp_s2      = '".$aValores[0]['promedio_rp_s2']."', ";
+        $sql .= "id_updater = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update = NOW() ";
+        $sql .= "WHERE id            = '" . $aValores[0]['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

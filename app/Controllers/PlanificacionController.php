@@ -670,6 +670,85 @@ class PlanificacionController extends BaseController
                 $aRetVal = $model->GravaAcumulados($aValores);
                 
             }
+            
+            //Recalcular e gravar o Promedio deste Indicador
+            if($tipo == 'Promedio')
+            {
+                //Zera Valores para refazer o calculo de todos
+                $aValores[0]['promedio_plan_anual'] = 0;
+                $aValores[0]['promedio_real_anual'] = 0;
+                $aValores[0]['promedio_rp_anual']   = 0;
+                $aValores[0]['promedio_plan_t1']    = 0;
+                $aValores[0]['promedio_real_t1']    = 0;
+                $aValores[0]['promedio_rp_t1']      = 0;
+                $aValores[0]['promedio_plan_t2']    = 0;
+                $aValores[0]['promedio_real_t2']    = 0;
+                $aValores[0]['promedio_rp_t2']      = 0;
+                $aValores[0]['promedio_plan_t3']    = 0;
+                $aValores[0]['promedio_real_t3']    = 0;
+                $aValores[0]['promedio_rp_t3']      = 0;
+                $aValores[0]['promedio_plan_t4']    = 0;
+                $aValores[0]['promedio_real_t4']    = 0;
+                $aValores[0]['promedio_rp_t4']      = 0;
+                $aValores[0]['promedio_plan_s1']    = 0;
+                $aValores[0]['promedio_real_s1']    = 0;
+                $aValores[0]['promedio_rp_s1']      = 0;
+                $aValores[0]['promedio_plan_s2']    = 0;
+                $aValores[0]['promedio_real_s2']    = 0;
+                $aValores[0]['promedio_rp_s2']      = 0;
+                
+                //Inicio calculos
+                
+                //Promedio Plan Anual
+                $aValores[0]['promedio_plan_anual'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan + $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan + $aDados[0]->julio_plan + $aDados[0]->agosto_plan +
+                $aDados[0]->septiembre_plan + $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan / 12 ;
+                
+                $aValores[0]['promedio_real_anual'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real + $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real + $aDados[0]->julio_real + $aDados[0]->agosto_real+
+                $aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real / 12;
+                
+                $aValores[0]['promedio_rp_anual'] = $aValores[0]['promedio_plan_anual'] / $aValores[0]['promedio_real_anual'];
+                
+                $aValores[0]['promedio_plan_t1'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan / 3;
+                
+                $aValores[0]['promedio_real_t1'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real / 3;
+                
+                $aValores[0]['promedio_rp_t1'] = $aValores[0]['promedio_plan_t1'] / $aValores[0]['promedio_real_t1'];
+                
+                $aValores[0]['promedio_plan_t2'] = $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan / 3;
+                
+                $aValores[0]['promedio_real_t2'] = $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real / 3;
+                
+                $aValores[0]['promedio_rp_t2'] = $aValores[0]['promedio_plan_t2'] / $aValores[0]['promedio_real_t2'];
+                
+                $aValores[0]['promedio_plan_t3'] = $aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan / 3;
+                
+                $aValores[0]['promedio_real_t3'] = $aDados[0]->julio_real + $aDados[0]->agosto_real + $aDados[0]->septiembre_real / 3;
+                
+                $aValores[0]['promedio_rp_t3'] = $aValores[0]['promedio_plan_t3'] / $aValores[0]['promedio_real_t3'];
+                
+                $aValores[0]['promedio_plan_t4'] = $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan / 3;
+                
+                $aValores[0]['promedio_real_t4'] = $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real / 3;
+                
+                $aValores[0]['promedio_rp_t4'] = $aValores[0]['promedio_plan_t4'] / $aValores[0]['promedio_real_t4'];
+                
+                $aValores[0]['promedio_plan_s1'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan + $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan / 6;
+                
+                $aValores[0]['promedio_real_s1'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real + $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real / 6;
+                
+                $aValores[0]['promedio_rp_s1'] = $aValores[0]['promedio_plan_s1'] / $aValores[0]['promedio_real_s1'];
+                
+                $aValores[0]['promedio_plan_s2'] = $aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan + $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan / 6;
+                
+                $aValores[0]['promedio_real_s2'] = $aDados[0]->julio_real + $aDados[0]->agosto_real +$aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real / 6;
+                
+                $aValores[0]['promedio_rp_s2'] = $aValores[0]['promedio_plan_s2'] / $aValores[0]['promedio_real_s2'];
+                
+                $aValores[0]['id'] = $aParam['id'];
+                
+                //Metodo que grava os Acumulados
+                $aRetVal = $model->GravaPromedio($aValores);
+            }
         }
         
         if($aRetVal)
