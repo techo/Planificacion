@@ -1007,6 +1007,262 @@ class PlanificacionController extends BaseController
                 $aRetVal = $model->GravaMinimo($aValores);
                 
             }
+            
+            //Recalcular e gravar o Maximo deste Indicador
+            if($tipo == 'Maximo')
+            {
+                //Zera Valores para refazer o calculo de todos
+                $aValores[0]['maximo_plan_anual'] = 0;
+                $aValores[0]['maximo_real_anual'] = 0;
+                $aValores[0]['maximo_rp_anual']   = 0;
+                $aValores[0]['maximo_plan_t1']    = 0;
+                $aValores[0]['maximo_real_t1']    = 0;
+                $aValores[0]['maximo_rp_t1']      = 0;
+                $aValores[0]['maximo_plan_t2']    = 0;
+                $aValores[0]['maximo_real_t2']    = 0;
+                $aValores[0]['maximo_rp_t2']      = 0;
+                $aValores[0]['maximo_plan_t3']    = 0;
+                $aValores[0]['maximo_real_t3']    = 0;
+                $aValores[0]['maximo_rp_t3']      = 0;
+                $aValores[0]['maximo_plan_t4']    = 0;
+                $aValores[0]['maximo_real_t4']    = 0;
+                $aValores[0]['maximo_rp_t4']      = 0;
+                $aValores[0]['maximo_plan_s1']    = 0;
+                $aValores[0]['maximo_real_s1']    = 0;
+                $aValores[0]['maximo_rp_s1']      = 0;
+                $aValores[0]['maximo_plan_s2']    = 0;
+                $aValores[0]['maximo_real_s2']    = 0;
+                $aValores[0]['maximo_rp_s2']      = 0;
+                
+                //Inicio calculos
+                //Metodo que busca os Planejados
+                $Plan = $model->BuscaPlan($aParam['id']);
+                $Plan =  (array) $Plan[0];
+                
+                //Remover os NULL
+                foreach($Plan as $k=>$v)
+                {
+                    if($v == '')
+                    {
+                        unset($Plan[$k]);
+                    }
+                }
+                
+                //Metodo que busca os Reais
+                $Real = $model->BuscaReal($aParam['id']);
+                $Real =  (array) $Real[0];
+                
+                //Remover os NULL
+                foreach($Real as $k=>$v)
+                {
+                    if($v == '')
+                    {
+                        unset($Real[$k]);
+                    }
+                }
+                
+                //Menor valor de todos Planejados
+                $nMaxPlan = max($Plan);
+                
+                //Menor Valor de todos Reais
+                $nMinPlan = max($Real);
+                
+                //Minimo Plan Anual
+                $aValores[0]['maximo_plan_anual'] = $nMaxPlan;
+                $aValores[0]['maximo_real_anual'] = $nMinPlan;
+                $aValores[0]['maximo_rp_anual']   = $aValores[0]['maximo_plan_anual'] / $aValores[0]['maximo_real_anual'];
+                
+                //Encontrar menor Plan do T1
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'enero_plan' || $k == 'febrero_plan' || $k == 'marzo_plan')
+                    {
+                        $aPlanT1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Encontrar menor Real do T1
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'enero_real' || $k == 'febrero_real' || $k == 'marzo_real')
+                    {
+                        $aRealT1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Trimestre 1
+                $aValores[0]['maximo_plan_t1']    = max($aPlanT1);
+                $aValores[0]['maximo_real_t1']    = max($aRealT1);
+                $aValores[0]['maximo_rp_t1']      = $aValores[0]['maximo_plan_t1'] / $aValores[0]['maximo_real_t1'];
+                
+                //Encontrar menor Plan do T2
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'abril_plan' || $k == 'mayo_plan' || $k == 'junio_plan')
+                    {
+                        $aPlanT2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Encontrar menor Real do T2
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'abril_real' || $k == 'mayo_real' || $k == 'junio_real')
+                    {
+                        $aRealT2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Trimestre 2
+                $aValores[0]['maximo_plan_t2']    = max($aPlanT2);
+                $aValores[0]['maximo_real_t2']    = max($aRealT2);
+                $aValores[0]['maximo_rp_t2']      = $aValores[0]['maximo_plan_t2'] / $aValores[0]['maximo_real_t2'];
+                
+                //Encontrar menor Plan do T3
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'julio_plan' || $k == 'agosto_plan' || $k == 'septiembre_plan')
+                    {
+                        $aPlanT3[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Encontrar menor Real do T3
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'julio_real' || $k == 'agosto_real' || $k == 'septiembre_real')
+                    {
+                        $aRealT3[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Trimestre 3
+                $aValores[0]['maximo_plan_t3']    = max($aPlanT3);
+                $aValores[0]['maximo_real_t3']    = max($aRealT3);
+                $aValores[0]['maximo_rp_t3']      = $aValores[0]['maximo_plan_t3'] / $aValores[0]['maximo_real_t3'];
+                
+                //Encontrar menor Plan do T4
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'octubre_plan' || $k == 'noviembre_plan' || $k == 'diciembre_plan')
+                    {
+                        $aPlanT4[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Encontrar menor Real do T4
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'octubre_real' || $k == 'noviembre_real' || $k == 'diciembre_real')
+                    {
+                        $aRealT4[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Trimestre 4
+                $aValores[0]['maximo_plan_t4']    = max($aPlanT4);
+                $aValores[0]['maximo_real_t4']    = max($aRealT4);
+                $aValores[0]['maximo_rp_t4']      = $aValores[0]['maximo_plan_t4'] / $aValores[0]['maximo_real_t4'];
+                
+                //Encontrar menor Plan do S1
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'enero_plan' || $k == 'febrero_plan' || $k == 'marzo_plan' || $k == 'abril_plan' || $k == 'mayo_plan' || $k == 'junio_plan')
+                    {
+                        $aPlanS1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Encontrar menor Real do S1
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'enero_real' || $k == 'febrero_real' || $k == 'marzo_real' || $k == 'abril_real' || $k == 'mayo_real' || $k == 'junio_real')
+                    {
+                        $aRealS1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Semestre 1
+                $aValores[0]['maximo_plan_s1']    = max($aPlanS1);
+                $aValores[0]['maximo_real_s1']    = max($aRealS1);
+                $aValores[0]['maximo_rp_s1']      = $aValores[0]['maximo_plan_s1'] / $aValores[0]['maximo_real_s1'];
+                
+                //Encontrar menor Plan do S2
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'julio_plan' || $k == 'agosto_plan' || $k == 'septiembre_plan' || $k == 'octubre_plan' || $k == 'noviembre_plan' || $k == 'diciembre_plan')
+                    {
+                        $aPlanS2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Encontrar menor Real do S2
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'julio_real' || $k == 'agosto_real' || $k == 'septiembre_real' || $k == 'octubre_real' || $k == 'noviembre_real' || $k == 'diciembre_real')
+                    {
+                        $aRealS2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Semestre 2
+                $aValores[0]['maximo_plan_s2']    = max($aPlanS2);
+                $aValores[0]['maximo_real_s2']    = max($aRealS2);
+                $aValores[0]['maximo_rp_s2']      = $aValores[0]['maximo_plan_s2'] / $aValores[0]['maximo_real_s2'];
+                
+                $aValores[0]['id'] = $aParam['id'];
+                
+                //Metodo que grava os Maximos
+                $aRetVal = $model->GravaMaximos($aValores);
+            }
         }
         
         if($aRetVal)
