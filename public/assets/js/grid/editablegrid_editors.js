@@ -256,7 +256,7 @@ TextCellEditor.prototype.getEditor = function(element, value)
 {
 	// create and initialize text field
 	var htmlInput = document.createElement("input"); 
-	htmlInput.setAttribute("type", "text");
+	htmlInput.setAttribute("type", "number");
 	if (this.maxLength > 0) htmlInput.setAttribute("maxlength", this.maxLength);
 
 	if (this.fieldSize > 0) htmlInput.setAttribute("size", this.fieldSize);
