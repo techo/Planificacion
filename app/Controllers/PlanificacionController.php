@@ -1068,9 +1068,18 @@ class PlanificacionController extends BaseController
                 $nMinPlan = max($Real);
                 
                 //Minimo Plan Anual
-                $aValores[0]['maximo_plan_anual'] = $nMaxPlan;
-                $aValores[0]['maximo_real_anual'] = $nMinPlan;
-                $aValores[0]['maximo_rp_anual']   = $aValores[0]['maximo_plan_anual'] / $aValores[0]['maximo_real_anual'];
+                $aValores[0]['maximo_plan_anual'] = $nMaxPlan ? $nMaxPlan : 'NULL';
+                $aValores[0]['maximo_real_anual'] = $nMinPlan ? $nMinPlan : 'NULL';
+                
+                if($aValores[0]['maximo_real_anual'] == 'NULL' || $aValores[0]['maximo_real_anual'] == 'NULL')
+                {
+                    $aValores[0]['maximo_rp_anual']  = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['maximo_rp_anual']   = $aValores[0]['maximo_plan_anual'] / $aValores[0]['maximo_real_anual'];
+                }
+                
                 
                 //Encontrar menor Plan do T1
                 foreach($Plan as $k=>$v)
@@ -1099,9 +1108,17 @@ class PlanificacionController extends BaseController
                 }
                 
                 //Trimestre 1
-                $aValores[0]['maximo_plan_t1']    = max($aPlanT1);
-                $aValores[0]['maximo_real_t1']    = max($aRealT1);
-                $aValores[0]['maximo_rp_t1']      = $aValores[0]['maximo_plan_t1'] / $aValores[0]['maximo_real_t1'];
+                $aValores[0]['maximo_plan_t1']    = max($aPlanT1) ? max($aPlanT1) : 'NULL';
+                $aValores[0]['maximo_real_t1']    = max($aRealT1) ? max($aRealT1) : 'NULL';
+                
+                if($aValores[0]['maximo_plan_t1'] == 'NULL' || $aValores[0]['maximo_real_t1'] == 'NULL')
+                {
+                    $aValores[0]['maximo_rp_t1'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['maximo_rp_t1']      = $aValores[0]['maximo_plan_t1'] / $aValores[0]['maximo_real_t1'];
+                }
                 
                 //Encontrar menor Plan do T2
                 foreach($Plan as $k=>$v)
@@ -1130,9 +1147,17 @@ class PlanificacionController extends BaseController
                 }
                 
                 //Trimestre 2
-                $aValores[0]['maximo_plan_t2']    = max($aPlanT2);
-                $aValores[0]['maximo_real_t2']    = max($aRealT2);
-                $aValores[0]['maximo_rp_t2']      = $aValores[0]['maximo_plan_t2'] / $aValores[0]['maximo_real_t2'];
+                $aValores[0]['maximo_plan_t2']    = max($aPlanT2) ? max($aPlanT2) : 'NULL';
+                $aValores[0]['maximo_real_t2']    = max($aRealT2) ? max($aRealT2) : 'NULL';
+                
+                if($aValores[0]['maximo_plan_t2'] == 'NULL' || $aValores[0]['maximo_real_t2'] == 'NULL')
+                {
+                    $aValores[0]['maximo_rp_t2'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['maximo_rp_t2'] = $aValores[0]['maximo_plan_t2'] / $aValores[0]['maximo_real_t2'];
+                }
                 
                 //Encontrar menor Plan do T3
                 foreach($Plan as $k=>$v)
@@ -1161,9 +1186,17 @@ class PlanificacionController extends BaseController
                 }
                 
                 //Trimestre 3
-                $aValores[0]['maximo_plan_t3']    = max($aPlanT3);
-                $aValores[0]['maximo_real_t3']    = max($aRealT3);
-                $aValores[0]['maximo_rp_t3']      = $aValores[0]['maximo_plan_t3'] / $aValores[0]['maximo_real_t3'];
+                $aValores[0]['maximo_plan_t3']    = max($aPlanT3) ? max($aPlanT3) : 'NULL';
+                $aValores[0]['maximo_real_t3']    = max($aRealT3) ? max($aRealT3) : 'NULL';
+                
+                if($aValores[0]['maximo_plan_t3'] == 'NULL' || $aValores[0]['maximo_real_t3'] == 'NULL')
+                {
+                    $aValores[0]['maximo_rp_t3'] = 'NULL';
+                }
+                else 
+                {
+                    $aValores[0]['maximo_rp_t3'] = $aValores[0]['maximo_plan_t3'] / $aValores[0]['maximo_real_t3'];
+                }
                 
                 //Encontrar menor Plan do T4
                 foreach($Plan as $k=>$v)
@@ -1192,9 +1225,17 @@ class PlanificacionController extends BaseController
                 }
                 
                 //Trimestre 4
-                $aValores[0]['maximo_plan_t4']    = max($aPlanT4);
-                $aValores[0]['maximo_real_t4']    = max($aRealT4);
-                $aValores[0]['maximo_rp_t4']      = $aValores[0]['maximo_plan_t4'] / $aValores[0]['maximo_real_t4'];
+                $aValores[0]['maximo_plan_t4']    = max($aPlanT4) ? max($aPlanT4) : 'NULL';
+                $aValores[0]['maximo_real_t4']    = max($aRealT4) ? max($aRealT4) : 'NULL';
+                
+                if($aValores[0]['maximo_plan_t4'] == 'NULL' || $aValores[0]['maximo_real_t4'] == 'NULL')
+                {
+                    $aValores[0]['maximo_rp_t4'] = 'NULL';
+                }
+                else 
+                {
+                    $aValores[0]['maximo_rp_t4'] = $aValores[0]['maximo_plan_t4'] / $aValores[0]['maximo_real_t4'];
+                }
                 
                 //Encontrar menor Plan do S1
                 foreach($Plan as $k=>$v)
@@ -1223,9 +1264,17 @@ class PlanificacionController extends BaseController
                 }
                 
                 //Semestre 1
-                $aValores[0]['maximo_plan_s1']    = max($aPlanS1);
-                $aValores[0]['maximo_real_s1']    = max($aRealS1);
-                $aValores[0]['maximo_rp_s1']      = $aValores[0]['maximo_plan_s1'] / $aValores[0]['maximo_real_s1'];
+                $aValores[0]['maximo_plan_s1']    = max($aPlanS1) ? max($aPlanS1) : 'NULL';
+                $aValores[0]['maximo_real_s1']    = max($aRealS1) ? max($aRealS1) : 'NULL';
+                
+                if($aValores[0]['maximo_plan_s1'] == 'NULL' || $aValores[0]['maximo_real_s1'] == 'NULL')
+                {
+                    $aValores[0]['maximo_rp_s1'] = 'NULL';
+                }
+                else 
+                {
+                    $aValores[0]['maximo_rp_s1'] = $aValores[0]['maximo_plan_s1'] / $aValores[0]['maximo_real_s1'];
+                }
                 
                 //Encontrar menor Plan do S2
                 foreach($Plan as $k=>$v)
@@ -1254,10 +1303,19 @@ class PlanificacionController extends BaseController
                 }
                 
                 //Semestre 2
-                $aValores[0]['maximo_plan_s2']    = max($aPlanS2);
-                $aValores[0]['maximo_real_s2']    = max($aRealS2);
-                $aValores[0]['maximo_rp_s2']      = $aValores[0]['maximo_plan_s2'] / $aValores[0]['maximo_real_s2'];
+                $aValores[0]['maximo_plan_s2']    = max($aPlanS2) ? max($aPlanS2) : 'NULL';
+                $aValores[0]['maximo_real_s2']    = max($aRealS2) ? max($aRealS2) : 'NULL';
                 
+                if($aValores[0]['maximo_plan_s2'] == 'NULL' || $aValores[0]['maximo_real_s2'] == 'NULL')
+                {
+                    $aValores[0]['maximo_rp_s2'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['maximo_rp_s2'] = $aValores[0]['maximo_plan_s2'] / $aValores[0]['maximo_real_s2'];
+                }
+                
+               
                 $aValores[0]['id'] = $aParam['id'];
                 
                 //Metodo que grava os Maximos
