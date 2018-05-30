@@ -638,7 +638,13 @@ class PlanificacionController extends BaseController
                 $aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real;
                 
                 //Acumulado % (R/P) Anual
-                $aValores[0]['acumulado_rp_anual'] = $aValores[0]['acumulado_plan_anual'] / $aValores[0]['acumulado_real_anual'];
+                $aValores[0]['acumulado_rp_anual'] = $aValores[0]['acumulado_real_anual'] / $aValores[0]['acumulado_plan_anual'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['acumulado_rp_anual'])
+                {
+                    $aValores[0]['acumulado_rp_anual'] = 0;
+                }
                 
                 //Acumulado Plan T1
                 $aValores[0]['acumulado_plan_t1'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan;
@@ -647,7 +653,13 @@ class PlanificacionController extends BaseController
                 $aValores[0]['acumulado_real_t1'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real;
                 
                 //Acumulado % (R/P) T1
-                $aValores[0]['acumulado_rp_t1'] = $aValores[0]['acumulado_plan_t1'] / $aValores[0]['acumulado_real_t1'];
+                $aValores[0]['acumulado_rp_t1'] = $aValores[0]['acumulado_real_t1'] / $aValores[0]['acumulado_plan_t1'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['acumulado_rp_t1'])
+                {
+                    $aValores[0]['acumulado_rp_t1'] = 0;
+                }
                 
                 //Acumulado Plan T2
                 $aValores[0]['acumulado_plan_t2'] = $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan;
@@ -656,7 +668,13 @@ class PlanificacionController extends BaseController
                 $aValores[0]['acumulado_real_t2'] = $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real;
                 
                 //Acumulado % (R/P) T2
-                $aValores[0]['acumulado_rp_t2'] = $aValores[0]['acumulado_plan_t2'] / $aValores[0]['acumulado_real_t2'];
+                $aValores[0]['acumulado_rp_t2'] = $aValores[0]['acumulado_real_t2'] / $aValores[0]['acumulado_plan_t2'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['acumulado_rp_t2'])
+                {
+                    $aValores[0]['acumulado_rp_t2'] = 0;
+                }
                 
                 //Acumulado Plan T3
                 $aValores[0]['acumulado_plan_t3'] = $aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan;
@@ -665,7 +683,13 @@ class PlanificacionController extends BaseController
                 $aValores[0]['acumulado_real_t3'] = $aDados[0]->julio_real + $aDados[0]->agosto_real + $aDados[0]->septiembre_real;
                 
                 //Acumulado % (R/P) T3
-                $aValores[0]['acumulado_rp_t3'] = $aValores[0]['acumulado_plan_t3'] / $aValores[0]['acumulado_real_t3'];
+                $aValores[0]['acumulado_rp_t3'] = $aValores[0]['acumulado_real_t3'] / $aValores[0]['acumulado_plan_t3'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['acumulado_rp_t3'])
+                {
+                    $aValores[0]['acumulado_rp_t3'] = 0;
+                }
                 
                 //Acumulado Plan T4
                 $aValores[0]['acumulado_plan_t4'] = $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan;
@@ -674,7 +698,13 @@ class PlanificacionController extends BaseController
                 $aValores[0]['acumulado_real_t4'] = $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real;
                 
                 //Acumulado % (R/P) T4
-                $aValores[0]['acumulado_rp_t4'] = $aValores[0]['acumulado_plan_t4'] / $aValores[0]['acumulado_real_t4'];
+                $aValores[0]['acumulado_rp_t4'] = $aValores[0]['acumulado_real_t4'] / $aValores[0]['acumulado_plan_t4'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['acumulado_rp_t4'])
+                {
+                    $aValores[0]['acumulado_rp_t4'] = 0;
+                }
                 
                 //Acumulado Plan S1
                 $aValores[0]['acumulado_plan_s1'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan + $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan;
@@ -683,7 +713,13 @@ class PlanificacionController extends BaseController
                 $aValores[0]['acumulado_real_s1'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real + $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real;
                 
                 //Acumulado % (R/P) S1
-                $aValores[0]['acumulado_rp_s1'] = $aValores[0]['acumulado_plan_s1'] / $aValores[0]['acumulado_real_s1'];
+                $aValores[0]['acumulado_rp_s1'] = $aValores[0]['acumulado_real_s1'] / $aValores[0]['acumulado_plan_s1'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['acumulado_rp_s1'])
+                {
+                    $aValores[0]['acumulado_rp_s1'] = 0;
+                }
                 
                 //Acumulado Plan S2
                 $aValores[0]['acumulado_plan_s2'] = $aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan + $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan;
@@ -692,7 +728,13 @@ class PlanificacionController extends BaseController
                 $aValores[0]['acumulado_real_s2'] = $aDados[0]->julio_real + $aDados[0]->agosto_real +$aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real;
                 
                 //Acumulado % (R/P) S2
-                $aValores[0]['acumulado_rp_s2'] = $aValores[0]['acumulado_plan_s2'] / $aValores[0]['acumulado_real_s2'];
+                $aValores[0]['acumulado_rp_s2'] = $aValores[0]['acumulado_real_s2'] / $aValores[0]['acumulado_plan_s2'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['acumulado_rp_s2'])
+                {
+                    $aValores[0]['acumulado_rp_s2'] = 0;
+                }
                 
                 $aValores[0]['id'] = $aParam['id'];
                 
