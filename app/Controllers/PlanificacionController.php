@@ -565,10 +565,40 @@ class PlanificacionController extends BaseController
         if($aRet)
         {
             //Verificar Tipo do Indicador
-            $aDados        = $model->BuscaIndicador($aParam);
+            $aDados = $model->BuscaIndicador($aParam);
+            
             $idIndicador   = $aDados[0]->id_indicador;
             $aTipo         = $model->BuscaTipo($idIndicador);
             $tipo          = $aTipo[0]->tipo;
+            
+            //troca NULL por Zero
+            //Plan 
+            $aDados[0]->enero_plan      = $aDados[0]->enero_plan ? $aDados[0]->enero_plan : 0;
+            $aDados[0]->febrero_plan    = $aDados[0]->febrero_plan ? $aDados[0]->febrero_plan : 0;
+            $aDados[0]->marzo_plan      = $aDados[0]->marzo_plan? $aDados[0]->marzo_plan : 0;
+            $aDados[0]->abril_plan      = $aDados[0]->abril_plan ? $aDados[0]->abril_plan : 0;
+            $aDados[0]->mayo_plan       = $aDados[0]->mayo_plan ? $aDados[0]->mayo_plan : 0;
+            $aDados[0]->junio_plan      = $aDados[0]->junio_plan ? $aDados[0]->junio_plan : 0;
+            $aDados[0]->julio_plan      = $aDados[0]->julio_plan ? $aDados[0]->julio_plan : 0;
+            $aDados[0]->agosto_plan     = $aDados[0]->agosto_plan ? $aDados[0]->agosto_plan : 0;
+            $aDados[0]->septiembre_plan = $aDados[0]->septiembre_plan ? $aDados[0]->septiembre_plan: 0;
+            $aDados[0]->octubre_plan    = $aDados[0]->octubre_plan ? $aDados[0]->octubre_plan : 0;
+            $aDados[0]->noviembre_plan  = $aDados[0]->noviembre_plan ? $aDados[0]->noviembre_plan : 0;
+            $aDados[0]->diciembre_plan  = $aDados[0]->diciembre_plan ? $aDados[0]->diciembre_plan: 0;
+            
+            //Real
+            $aDados[0]->enero_real      = $aDados[0]->enero_real ? $aDados[0]->enero_real : 0;
+            $aDados[0]->febrero_real    = $aDados[0]->febrero_real ? $aDados[0]->febrero_real : 0;
+            $aDados[0]->marzo_real      = $aDados[0]->marzo_real ? $aDados[0]->marzo_real : 0;
+            $aDados[0]->abril_real      = $aDados[0]->abril_real ? $aDados[0]->abril_real : 0;
+            $aDados[0]->mayo_real       = $aDados[0]->mayo_real  ? $aDados[0]->mayo_real : 0;
+            $aDados[0]->junio_real      = $aDados[0]->junio_real ? $aDados[0]->junio_real : 0;
+            $aDados[0]->julio_real      = $aDados[0]->julio_real ? $aDados[0]->julio_real : 0;
+            $aDados[0]->agosto_real     = $aDados[0]->agosto_real ? $aDados[0]->agosto_real : 0;
+            $aDados[0]->septiembre_real = $aDados[0]->septiembre_real ? $aDados[0]->septiembre_real: 0;
+            $aDados[0]->octubre_real    = $aDados[0]->octubre_real ? $aDados[0]->octubre_real : 0;
+            $aDados[0]->noviembre_real  = $aDados[0]->noviembre_real ? $aDados[0]->noviembre_real : 0;
+            $aDados[0]->diciembre_real  = $aDados[0]->diciembre_real ? $aDados[0]->diciembre_real : 0;
             
             //Recalcular e gravar os Acumulados deste Indicador
             if($tipo == 'Acumulado')
@@ -700,49 +730,86 @@ class PlanificacionController extends BaseController
                 //Inicio calculos
                 
                 //Promedio Plan Anual
-                $aValores[0]['promedio_plan_anual'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan + $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan + $aDados[0]->julio_plan + $aDados[0]->agosto_plan +
-                $aDados[0]->septiembre_plan + $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan / 12 ;
+                $aValores[0]['promedio_plan_anual'] = ($aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan + $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan + $aDados[0]->julio_plan + $aDados[0]->agosto_plan +
+                $aDados[0]->septiembre_plan + $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan) / 12 ;
                 
-                $aValores[0]['promedio_real_anual'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real + $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real + $aDados[0]->julio_real + $aDados[0]->agosto_real+
-                $aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real / 12;
+                $aValores[0]['promedio_real_anual'] = ($aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real + $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real + $aDados[0]->julio_real + $aDados[0]->agosto_real+
+                $aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real) / 12;
                 
-                $aValores[0]['promedio_rp_anual'] = $aValores[0]['promedio_plan_anual'] / $aValores[0]['promedio_real_anual'];
+                $aValores[0]['promedio_rp_anual'] = $aValores[0]['promedio_real_anual'] / $aValores[0]['promedio_plan_anual'];
                 
-                $aValores[0]['promedio_plan_t1'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan / 3;
+                $aValores[0]['promedio_plan_t1'] = ($aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan) / 3;
                 
-                $aValores[0]['promedio_real_t1'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real / 3;
+                $aValores[0]['promedio_real_t1'] = ($aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real) / 3;
                 
-                $aValores[0]['promedio_rp_t1'] = $aValores[0]['promedio_plan_t1'] / $aValores[0]['promedio_real_t1'];
+                $aValores[0]['promedio_rp_t1'] = $aValores[0]['promedio_real_t1'] / $aValores[0]['promedio_plan_t1'];
                 
-                $aValores[0]['promedio_plan_t2'] = $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan / 3;
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['promedio_rp_t1'])
+                {
+                    $aValores[0]['promedio_rp_t1'] = 0;
+                }
                 
-                $aValores[0]['promedio_real_t2'] = $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real / 3;
+                $aValores[0]['promedio_plan_t2'] = ($aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan) / 3;
                 
-                $aValores[0]['promedio_rp_t2'] = $aValores[0]['promedio_plan_t2'] / $aValores[0]['promedio_real_t2'];
+                $aValores[0]['promedio_real_t2'] = ($aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real) / 3;
                 
-                $aValores[0]['promedio_plan_t3'] = $aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan / 3;
+                $aValores[0]['promedio_rp_t2'] = $aValores[0]['promedio_real_t2'] / $aValores[0]['promedio_plan_t2'];
                 
-                $aValores[0]['promedio_real_t3'] = $aDados[0]->julio_real + $aDados[0]->agosto_real + $aDados[0]->septiembre_real / 3;
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['promedio_rp_t2'])
+                {
+                    $aValores[0]['promedio_rp_t2'] = 0;
+                }
                 
-                $aValores[0]['promedio_rp_t3'] = $aValores[0]['promedio_plan_t3'] / $aValores[0]['promedio_real_t3'];
+                $aValores[0]['promedio_plan_t3'] = ($aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan) / 3;
                 
-                $aValores[0]['promedio_plan_t4'] = $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan / 3;
+                $aValores[0]['promedio_real_t3'] = ($aDados[0]->julio_real + $aDados[0]->agosto_real + $aDados[0]->septiembre_real) / 3;
                 
-                $aValores[0]['promedio_real_t4'] = $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real / 3;
+                $aValores[0]['promedio_rp_t3'] = $aValores[0]['promedio_real_t3'] / $aValores[0]['promedio_plan_t3'];
                 
-                $aValores[0]['promedio_rp_t4'] = $aValores[0]['promedio_plan_t4'] / $aValores[0]['promedio_real_t4'];
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['promedio_rp_t3'])
+                {
+                    $aValores[0]['promedio_rp_t3'] = 0;
+                }
                 
-                $aValores[0]['promedio_plan_s1'] = $aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan + $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan / 6;
+                $aValores[0]['promedio_plan_t4'] = ($aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan) / 3;
                 
-                $aValores[0]['promedio_real_s1'] = $aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real + $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real / 6;
+                $aValores[0]['promedio_real_t4'] = ($aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real) / 3;
                 
-                $aValores[0]['promedio_rp_s1'] = $aValores[0]['promedio_plan_s1'] / $aValores[0]['promedio_real_s1'];
+                $aValores[0]['promedio_rp_t4'] = $aValores[0]['promedio_real_t4'] / $aValores[0]['promedio_plan_t4'];
                 
-                $aValores[0]['promedio_plan_s2'] = $aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan + $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan / 6;
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['promedio_rp_t4'])
+                {
+                    $aValores[0]['promedio_rp_t4'] = 0;
+                }
                 
-                $aValores[0]['promedio_real_s2'] = $aDados[0]->julio_real + $aDados[0]->agosto_real +$aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real / 6;
                 
-                $aValores[0]['promedio_rp_s2'] = $aValores[0]['promedio_plan_s2'] / $aValores[0]['promedio_real_s2'];
+                $aValores[0]['promedio_plan_s1'] = ($aDados[0]->enero_plan + $aDados[0]->febrero_plan + $aDados[0]->marzo_plan + $aDados[0]->abril_plan + $aDados[0]->mayo_plan + $aDados[0]->junio_plan) / 6;
+                
+                $aValores[0]['promedio_real_s1'] = ($aDados[0]->enero_real + $aDados[0]->febrero_real + $aDados[0]->marzo_real + $aDados[0]->abril_real + $aDados[0]->mayo_real + $aDados[0]->junio_real) / 6;
+                
+                $aValores[0]['promedio_rp_s1'] = $aValores[0]['promedio_real_s1'] / $aValores[0]['promedio_plan_s1'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['promedio_rp_s1'])
+                {
+                    $aValores[0]['promedio_rp_s1'] = 0;
+                }
+                
+                $aValores[0]['promedio_plan_s2'] = ($aDados[0]->julio_plan + $aDados[0]->agosto_plan + $aDados[0]->septiembre_plan + $aDados[0]->octubre_plan + $aDados[0]->noviembre_plan + $aDados[0]->diciembre_plan) / 6;
+                
+                $aValores[0]['promedio_real_s2'] = ($aDados[0]->julio_real + $aDados[0]->agosto_real +$aDados[0]->septiembre_real + $aDados[0]->octubre_real + $aDados[0]->noviembre_real + $aDados[0]->diciembre_real) / 6;
+                
+                $aValores[0]['promedio_rp_s2'] = $aValores[0]['promedio_real_s2'] / $aValores[0]['promedio_plan_s2'];
+                
+                //Caso seja 0.00 / 0.00
+                if(!$aValores[0]['promedio_rp_s2'])
+                {
+                    $aValores[0]['promedio_rp_s2'] = 0;
+                }
                 
                 $aValores[0]['id'] = $aParam['id'];
                 
