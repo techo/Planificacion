@@ -944,4 +944,38 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function GravaUltimo($aValores)
+    {
+        $sql  = "";
+        $sql .= "UPDATE dplanificacion SET ";
+        $sql .= "ultimo_plan_anual = ".$aValores[0]['ultimo_plan_anual'].", ";
+        $sql .= "ultimo_real_anual = ".$aValores[0]['ultimo_real_anual'].", ";
+        $sql .= "ultimo_rp_anual   = ".$aValores[0]['ultimo_rp_anual'].", ";
+        $sql .= "ultimo_plan_t1    = ".$aValores[0]['ultimo_plan_t1'].", ";
+        $sql .= "ultimo_real_t1    = ".$aValores[0]['ultimo_real_t1'].", ";
+        $sql .= "ultimo_rp_t1      = ".$aValores[0]['ultimo_rp_t1'].", ";
+        $sql .= "ultimo_plan_t2    = ".$aValores[0]['ultimo_plan_t2'].", ";
+        $sql .= "ultimo_real_t2    = ".$aValores[0]['ultimo_real_t2'].", ";
+        $sql .= "ultimo_rp_t2      = ".$aValores[0]['ultimo_rp_t2'].", ";
+        $sql .= "ultimo_plan_t3    = ".$aValores[0]['ultimo_plan_t3'].", ";
+        $sql .= "ultimo_real_t3    = ".$aValores[0]['ultimo_real_t3'].", ";
+        $sql .= "ultimo_rp_t3      = ".$aValores[0]['ultimo_rp_t3'].", ";
+        $sql .= "ultimo_plan_t4    = ".$aValores[0]['ultimo_plan_t4'].", ";
+        $sql .= "ultimo_real_t4    = ".$aValores[0]['ultimo_real_t4'].", ";
+        $sql .= "ultimo_rp_t4      = ".$aValores[0]['ultimo_rp_t4'].", ";
+        $sql .= "ultimo_plan_s1    = ".$aValores[0]['ultimo_plan_s1'].", ";
+        $sql .= "ultimo_real_s1    = ".$aValores[0]['ultimo_real_s1'].", ";
+        $sql .= "ultimo_rp_s1      = ".$aValores[0]['ultimo_rp_s1'].", ";
+        $sql .= "ultimo_plan_s2    = ".$aValores[0]['ultimo_plan_s2'].", ";
+        $sql .= "ultimo_real_s2    = ".$aValores[0]['ultimo_real_s2'].", ";
+        $sql .= "ultimo_rp_s2      = ".$aValores[0]['ultimo_rp_s2'].", ";
+        $sql .= "id_updater = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update = NOW() ";
+        $sql .= "WHERE id            = '" . $aValores[0]['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

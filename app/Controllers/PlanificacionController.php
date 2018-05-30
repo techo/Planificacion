@@ -1531,6 +1531,477 @@ class PlanificacionController extends BaseController
                 //Metodo que grava os Maximos
                 $aRetVal = $model->GravaMaximos($aValores);
             }
+            
+            //Recalcular e gravar o Ultimo deste Indicador
+            if($tipo == 'Ultimo')
+            {
+                //Zera Valores para refazer o calculo de todos
+                $aValores[0]['ultimo_plan_anual'] = 0;
+                $aValores[0]['ultimo_real_anual'] = 0;
+                $aValores[0]['ultimo_rp_anual']   = 0;
+                $aValores[0]['ultimo_plan_t1']    = 0;
+                $aValores[0]['ultimo_real_t1']    = 0;
+                $aValores[0]['ultimo_rp_t1']      = 0;
+                $aValores[0]['ultimo_plan_t2']    = 0;
+                $aValores[0]['ultimo_real_t2']    = 0;
+                $aValores[0]['ultimo_rp_t2']      = 0;
+                $aValores[0]['ultimo_plan_t3']    = 0;
+                $aValores[0]['ultimo_real_t3']    = 0;
+                $aValores[0]['ultimo_rp_t3']      = 0;
+                $aValores[0]['ultimo_plan_t4']    = 0;
+                $aValores[0]['ultimo_real_t4']    = 0;
+                $aValores[0]['ultimo_rp_t4']      = 0;
+                $aValores[0]['ultimo_plan_s1']    = 0;
+                $aValores[0]['ultimo_real_s1']    = 0;
+                $aValores[0]['ultimo_rp_s1']      = 0;
+                $aValores[0]['ultimo_plan_s2']    = 0;
+                $aValores[0]['ultimo_real_s2']    = 0;
+                $aValores[0]['ultimo_rp_s2']      = 0;
+                
+                //Inicio calculos
+                //Metodo que busca os Planejados
+                $Plan = $model->BuscaPlan($aParam['id']);
+                $Plan =  (array) $Plan[0];
+                
+                //Remover os NULL
+                foreach($Plan as $k=>$v)
+                {
+                    if($v == '')
+                    {
+                        unset($Plan[$k]);
+                    }
+                }
+                //Troca index para pegar o ultimo mes preenchido
+                $j = 0;
+                foreach($Plan as $k=>$v)
+                {
+                    $aPlanejado[$j]['value'] = $v;
+                    $aPlanejado[$j]['month'] = $k;
+                    $j++;
+                }
+                
+                //Metodo que busca os Reais
+                $Real = $model->BuscaReal($aParam['id']);
+                $Real =  (array) $Real[0];
+                
+                //Remover os NULL
+                foreach($Real as $k=>$v)
+                {
+                    if($v == '')
+                    {
+                        unset($Real[$k]);
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $i = 0;
+                foreach($Real as $k=>$v)
+                {
+                    $aRealizado[$i]['value'] = $v;
+                    $aRealizado[$i]['month'] = $k;
+                    $i++;
+                }
+                
+                //Captura o ultimo planejado e real
+                $plan = end($aPlanejado);
+                $real = end($aRealizado);
+                
+                //Ultimo Plan Anual
+                $aValores[0]['ultimo_plan_anual'] = $plan['value'] ? $plan['value'] : 'NULL';
+                $aValores[0]['ultimo_real_anual'] = $real['value'] ? $real['value'] : 'NULL';
+                
+                if($aValores[0]['ultimo_plan_anual'] == 'NULL' || $aValores[0]['ultimo_real_anual'] == 'NULL')
+                {
+                    $aValores[0]['ultimo_rp_anual']  = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['ultimo_rp_anual']   = $aValores[0]['ultimo_real_anual'] / $aValores[0]['ultimo_plan_anual'];
+                }
+                
+                //Encontrar Ultimo Plan do T1
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'enero_plan' || $k == 'febrero_plan' || $k == 'marzo_plan')
+                    {
+                        $aPlanT1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $x = 0;
+                foreach($aPlanT1 as $k=>$v)
+                {
+                    $aPlanejadoT1[$x]['value'] = $v;
+                    $aPlanejadoT1[$x]['month'] = $k;
+                    $x++;
+                }
+                
+                //Captura o ultimo planejado T1
+                $ultimoPlan = end($aPlanejadoT1);
+                
+                //Encontrar Ultimo Real do T1
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'enero_real' || $k == 'febrero_real' || $k == 'marzo_real')
+                    {
+                        $aRealT1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $y = 0;
+                foreach($aRealT1 as $k=>$v)
+                {
+                    $aRealizadoT1[$y]['value'] = $v;
+                    $aRealizadoT1[$y]['month'] = $k;
+                    $y++;
+                }
+                
+                //Captura o ultimo Realizado T1
+                $ultimoReal = end($aRealizadoT1);
+                
+                //Trimestre 1
+                $aValores[0]['ultimo_plan_t1']    = $ultimoPlan['value'] ? $ultimoPlan['value'] : 'NULL';
+                $aValores[0]['ultimo_real_t1']    = $ultimoReal['value'] ? $ultimoReal['value'] : 'NULL';
+                
+                if($aValores[0]['ultimo_plan_t1'] == 'NULL' || $aValores[0]['ultimo_real_t1'] == 'NULL')
+                {
+                    $aValores[0]['ultimo_rp_t1'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['ultimo_rp_t1'] = $aValores[0]['ultimo_real_t1'] / $aValores[0]['ultimo_plan_t1'];
+                }
+                
+                //Encontrar Ultimo  Plan do T2
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'abril_plan' || $k == 'mayo_plan' || $k == 'junio_plan')
+                    {
+                        $aPlanT2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $x = 0;
+                foreach($aPlanT2 as $k=>$v)
+                {
+                    $aPlanejadoT2[$x]['value'] = $v;
+                    $aPlanejadoT2[$x]['month'] = $k;
+                    $x++;
+                }
+                
+                //Captura o ultimo planejado T2
+                $ultimoPlanT2 = end($aPlanejadoT2);
+                
+                //Encontrar Ultimo Real do T2
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'abril_real' || $k == 'mayo_real' || $k == 'junio_real')
+                    {
+                        $aRealT2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $y = 0;
+                foreach($aRealT2 as $k=>$v)
+                {
+                    $aRealizadoT2[$y]['value'] = $v;
+                    $aRealizadoT2[$y]['month'] = $k;
+                    $y++;
+                }
+                
+                //Captura o ultimo Realizado T2
+                $ultimoRealT2 = end($aRealizadoT2);
+                
+                //Trimestre 2
+                $aValores[0]['ultimo_plan_t2']    = $ultimoPlanT2['value'] ? $ultimoPlanT2['value'] : 'NULL';
+                $aValores[0]['ultimo_real_t2']    = $ultimoRealT2['value'] ? $ultimoRealT2['value'] : 'NULL';
+                
+                if($aValores[0]['ultimo_plan_t2'] == 'NULL' || $aValores[0]['ultimo_real_t2'] == 'NULL')
+                {
+                    $aValores[0]['ultimo_rp_t2'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['ultimo_rp_t2'] = $aValores[0]['ultimo_real_t2'] / $aValores[0]['ultimo_plan_t2'];
+                }
+                
+                //Encontrar Ultimo Plan do T3
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'julio_plan' || $k == 'agosto_plan' || $k == 'septiembre_plan')
+                    {
+                        $aPlanT3[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $x = 0;
+                foreach($aPlanT3 as $k=>$v)
+                {
+                    $aPlanejadoT3[$x]['value'] = $v;
+                    $aPlanejadoT3[$x]['month'] = $k;
+                    $x++;
+                }
+                
+                //Captura o ultimo planejado T3
+                $ultimoPlanT3 = end($aPlanejadoT3);
+                
+                //Encontrar menor Real do T3
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'julio_real' || $k == 'agosto_real' || $k == 'septiembre_real')
+                    {
+                        $aRealT3[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $y = 0;
+                foreach($aRealT3 as $k=>$v)
+                {
+                    $aRealizadoT3[$y]['value'] = $v;
+                    $aRealizadoT3[$y]['month'] = $k;
+                    $y++;
+                }
+                
+                //Captura o ultimo Realizado T3
+                $ultimoRealT3 = end($aRealizadoT3);
+                
+                //Trimestre 3
+                $aValores[0]['ultimo_plan_t3']    = $ultimoPlanT3['value'] ? $ultimoPlanT3['value'] : 'NULL';
+                $aValores[0]['ultimo_real_t3']    = $ultimoRealT3['value'] ? $ultimoRealT3['value'] : 'NULL';
+                
+                if($aValores[0]['ultimo_plan_t3'] == 'NULL' || $aValores[0]['ultimo_real_t3'] == 'NULL')
+                {
+                    $aValores[0]['ultimo_rp_t3'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['ultimo_rp_t3'] = $aValores[0]['ultimo_real_t3'] / $aValores[0]['ultimo_plan_t3'];
+                }
+                
+                //Encontrar menor Plan do T4
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'octubre_plan' || $k == 'noviembre_plan' || $k == 'diciembre_plan')
+                    {
+                        $aPlanT4[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $x = 0;
+                foreach($aPlanT4 as $k=>$v)
+                {
+                    $aPlanejadoT4[$x]['value'] = $v;
+                    $aPlanejadoT4[$x]['month'] = $k;
+                    $x++;
+                }
+                
+                //Captura o ultimo planejado T4
+                $ultimoPlanT4 = end($aPlanejadoT4);
+                
+                //Encontrar menor Real do T4
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'octubre_real' || $k == 'noviembre_real' || $k == 'diciembre_real')
+                    {
+                        $aRealT4[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $y = 0;
+                foreach($aRealT4 as $k=>$v)
+                {
+                    $aRealizadoT4[$y]['value'] = $v;
+                    $aRealizadoT4[$y]['month'] = $k;
+                    $y++;
+                }
+                
+                //Captura o ultimo Realizado T4
+                $ultimoRealT4 = end($aRealizadoT4);
+                
+                //Trimestre 4
+                $aValores[0]['ultimo_plan_t4']    = $ultimoPlanT4['value'] ? $ultimoPlanT4['value'] : 'NULL';
+                $aValores[0]['ultimo_real_t4']    = $ultimoRealT4['value'] ? $ultimoRealT4['value'] : 'NULL';
+                
+                if($aValores[0]['ultimo_plan_t4'] == 'NULL' || $aValores[0]['ultimo_real_t4'] == 'NULL')
+                {
+                    $aValores[0]['ultimo_rp_t4'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['ultimo_rp_t4'] = $aValores[0]['ultimo_real_t4'] / $aValores[0]['ultimo_plan_t4'];
+                }
+                
+                //Encontrar Ultimo Plan do S1
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'enero_plan' || $k == 'febrero_plan' || $k == 'marzo_plan' || $k == 'abril_plan' || $k == 'mayo_plan' || $k == 'junio_plan')
+                    {
+                        $aPlanS1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $x = 0;
+                foreach($aPlanS1 as $k=>$v)
+                {
+                    $aPlanejadoS1[$x]['value'] = $v;
+                    $aPlanejadoS1[$x]['month'] = $k;
+                    $x++;
+                }
+                
+                //Captura o ultimo planejado S1
+                $ultimoPlanS1 = end($aPlanejadoS1);
+                
+                //Encontrar Ultimo Real do S1
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'enero_real' || $k == 'febrero_real' || $k == 'marzo_real' || $k == 'abril_real' || $k == 'mayo_real' || $k == 'junio_real')
+                    {
+                        $aRealS1[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $y = 0;
+                foreach($aRealS1 as $k=>$v)
+                {
+                    $aRealizadoS1[$y]['value'] = $v;
+                    $aRealizadoS1[$y]['month'] = $k;
+                    $y++;
+                }
+                
+                //Captura o ultimo Realizado S1
+                $ultimoRealS1 = end($aRealizadoS1);
+                
+                //Semestre 1
+                $aValores[0]['ultimo_plan_s1']    = $ultimoPlanS1['value'] ? $ultimoPlanS1['value'] : 'NULL';
+                $aValores[0]['ultimo_real_s1']    = $ultimoRealS1['value'] ? $ultimoRealS1['value'] : 'NULL';
+                
+                if($aValores[0]['ultimo_plan_s1'] == 'NULL' || $aValores[0]['ultimo_real_s1'] == 'NULL')
+                {
+                    $aValores[0]['ultimo_rp_s1'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['ultimo_rp_s1'] = $aValores[0]['ultimo_real_s1'] / $aValores[0]['ultimo_plan_s1'];
+                }
+                
+                //Encontrar menor Plan do S2
+                foreach($Plan as $k=>$v)
+                {
+                    if($k == 'julio_plan' || $k == 'agosto_plan' || $k == 'septiembre_plan' || $k == 'octubre_plan' || $k == 'noviembre_plan' || $k == 'diciembre_plan')
+                    {
+                        $aPlanS2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $x = 0;
+                foreach($aPlanS2 as $k=>$v)
+                {
+                    $aPlanejadoS2[$x]['value'] = $v;
+                    $aPlanejadoS2[$x]['month'] = $k;
+                    $x++;
+                }
+                
+                //Captura o ultimo planejado S1
+                $ultimoPlanS2 = end($aPlanejadoS2);
+                
+                //Encontrar menor Real do S2
+                foreach($Real as $k=>$v)
+                {
+                    if($k == 'julio_real' || $k == 'agosto_real' || $k == 'septiembre_real' || $k == 'octubre_real' || $k == 'noviembre_real' || $k == 'diciembre_real')
+                    {
+                        $aRealS2[$k] = $v;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                //Troca index para pegar o ultimo mes preenchido
+                $y = 0;
+                foreach($aRealS2 as $k=>$v)
+                {
+                    $aRealizadoS2[$y]['value'] = $v;
+                    $aRealizadoS2[$y]['month'] = $k;
+                    $y++;
+                }
+                
+                //Captura o ultimo Realizado S1
+                $ultimoRealS2 = end($aRealizadoS2);
+                
+                //Semestre 2
+                $aValores[0]['ultimo_plan_s2']    = $ultimoPlanS2['value'] ? $ultimoPlanS2['value'] : 'NULL';
+                $aValores[0]['ultimo_real_s2']    = $ultimoRealS2['value'] ? $ultimoRealS2['value'] : 'NULL';
+                
+                if($aValores[0]['ultimo_plan_s2'] == 'NULL' || $aValores[0]['ultimo_real_s2'] == 'NULL')
+                {
+                    $aValores[0]['ultimo_rp_s2'] = 'NULL';
+                }
+                else
+                {
+                    $aValores[0]['ultimo_rp_s2'] = $aValores[0]['ultimo_real_s2'] / $aValores[0]['ultimo_plan_s2'];
+                }
+                
+                $aValores[0]['id'] = $aParam['id'];
+                
+                //Metodo que grava os Maximos
+                $aRetVal = $model->GravaUltimo($aValores);
+            }
         }
         
         if($aRetVal)
