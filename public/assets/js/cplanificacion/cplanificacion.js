@@ -172,3 +172,16 @@ function ActualizarPlanificacion(indicadores, sedes)
 		}
 	});
 }
+
+
+function Desmarcar()
+{
+	$(".form-control option[value="+ 100 +"]").attr("selected",true);
+	
+	var table = $('#example-sede');
+	table.find('tbody').each(function(indice){
+	    $(this).find('tr').each(function(indice){
+	    	$(this).removeClass();
+	    });
+	});
+}
