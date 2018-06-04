@@ -276,7 +276,6 @@ window.onload = function()
 	  			  
 	  			$('#save1').show();
 	  			setTimeout(function(){
-		  			//Implementar AQUI TA COM PROBLEMA O VALOR
 			  			var linha1 = editorInput.celleditor.editablegrid.lastSelectedRowIndex;
 			  			var coluna1 = editorInput.celleditor.column.name;
 			  			var coluna2 = editorInput.celleditor.column.columnIndex;

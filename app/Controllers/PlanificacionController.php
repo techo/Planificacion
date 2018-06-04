@@ -139,6 +139,12 @@ class PlanificacionController extends BaseController
         $aCabec[1]['datatype'] = 'string';
         $aCabec[1]['editable'] = false;
         
+        //Tipo
+        $aCabec[1]['name'] = 'tipo';
+        $aCabec[1]['label'] = 'Tipo';
+        $aCabec[1]['datatype'] = 'string';
+        $aCabec[1]['editable'] = false;
+        
         //Area
         $aCabec[2]['name'] = 'area';
         $aCabec[2]['label'] = 'Area';
@@ -522,6 +528,7 @@ class PlanificacionController extends BaseController
             $aIndicador[$i]['id'] = $Dados['id'];
             $aIndicador[$i]['formato']                   = $Dados['formato'];
             $aIndicador[$i]['values']['indicador']       = $Dados['indicador'];
+            $aIndicador[$i]['values']['tipo']            = $Dados['tipo'];
             $aIndicador[$i]['values']['pilar']           = $cPilar;
             $aIndicador[$i]['values']['area']            = $cArea;
             $aIndicador[$i]['values']['enero_plan']      = $Dados['enero_plan'] == NULL ? 0 : $Dados['enero_plan'];
