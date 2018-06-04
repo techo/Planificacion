@@ -140,6 +140,7 @@ class TInforme extends BaseModel
         $sql .= "SELECT  ";
         $sql .= "dplanificacion.*,  ";
         $sql .= "indicador.indicador,  ";
+        $sql .= "indicador.formato,  ";
         $sql .= "tipo.tipo  ";
         $sql .= " FROM dplanificacion ";
         $sql .= " INNER JOIN indicador on indicador.id = dplanificacion.id_indicador ";

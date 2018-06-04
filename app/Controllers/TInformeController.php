@@ -393,134 +393,141 @@ class TInformeController extends BaseController
         
         foreach ($this->view->indicadores as $indicadores)
         {
+            $formato = $indicadores->formato;
+            
+            if($formato == '#')
+            {
+                $formato = '&#160;';
+            }
+            
             $html .= '<tr class="gradeX">';
             $html .= '<td>' . $indicadores->indicador . '</td>';
             $html .= '<td>' . $indicadores->tipo. '</td>';
             
             if($indicadores->tipo == 'Acumulado')
             {
-                $html .= '<td>' . $indicadores->acumulado_plan_anual. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_anual. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_rp_anual. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t1. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t1. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_rp_t1. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t2. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t2. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_rp_t2. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t3. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t3. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_rp_t3. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t4. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t4. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_rp_t4. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_s1. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_s1. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_rp_s1. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_s2. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_s2. '</td>';
-                $html .= '<td>' . $indicadores->acumulado_rp_s2. '</td>';
+                $html .= '<td>' . $indicadores->acumulado_plan_anual . ' ' . $formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_real_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_rp_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_plan_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_real_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_rp_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_plan_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_real_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_rp_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_plan_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_real_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_rp_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_plan_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_real_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_rp_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_plan_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_real_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_rp_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_plan_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_real_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->acumulado_rp_s2. ' ' .$formato .'</td>';
                 
             }
             
             if($indicadores->tipo == 'Promedio')
             {
-                $html .= '<td>' . $indicadores->promedio_plan_anual. '</td>';
-                $html .= '<td>' . $indicadores->promedio_real_anual. '</td>';
-                $html .= '<td>' . $indicadores->promedio_rp_anual. '</td>';
-                $html .= '<td>' . $indicadores->promedio_plan_t1. '</td>';
-                $html .= '<td>' . $indicadores->promedio_real_t1. '</td>';
-                $html .= '<td>' . $indicadores->promedio_rp_t1. '</td>';
-                $html .= '<td>' . $indicadores->promedio_plan_t2. '</td>';
-                $html .= '<td>' . $indicadores->promedio_real_t2. '</td>';
-                $html .= '<td>' . $indicadores->promedio_rp_t2. '</td>';
-                $html .= '<td>' . $indicadores->promedio_plan_t3. '</td>';
-                $html .= '<td>' . $indicadores->promedio_real_t3. '</td>';
-                $html .= '<td>' . $indicadores->promedio_rp_t3. '</td>';
-                $html .= '<td>' . $indicadores->promedio_plan_t4. '</td>';
-                $html .= '<td>' . $indicadores->promedio_real_t4. '</td>';
-                $html .= '<td>' . $indicadores->promedio_rp_t4. '</td>';
-                $html .= '<td>' . $indicadores->promedio_plan_s1. '</td>';
-                $html .= '<td>' . $indicadores->promedio_real_s1. '</td>';
-                $html .= '<td>' . $indicadores->promedio_rp_s1. '</td>';
-                $html .= '<td>' . $indicadores->promedio_plan_s2. '</td>';
-                $html .= '<td>' . $indicadores->promedio_real_s2. '</td>';
-                $html .= '<td>' . $indicadores->promedio_rp_s2. '</td>';
+                $html .= '<td>' . $indicadores->promedio_plan_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_real_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_rp_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_plan_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_real_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_rp_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_plan_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_real_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_rp_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_plan_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_real_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_rp_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_plan_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_real_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_rp_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_plan_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_real_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_rp_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_plan_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_real_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->promedio_rp_s2. ' ' .$formato .'</td>';
             }
             
             if($indicadores->tipo == 'Minimo')
             {
-                $html .= '<td>' . $indicadores->minimo_plan_anual. '</td>';
-                $html .= '<td>' . $indicadores->minimo_real_anual. '</td>';
-                $html .= '<td>' . $indicadores->minimo_rp_anual. '</td>';
-                $html .= '<td>' . $indicadores->minimo_plan_t1. '</td>';
-                $html .= '<td>' . $indicadores->minimo_real_t1. '</td>';
-                $html .= '<td>' . $indicadores->minimo_rp_t1. '</td>';
-                $html .= '<td>' . $indicadores->minimo_plan_t2. '</td>';
-                $html .= '<td>' . $indicadores->minimo_real_t2. '</td>';
-                $html .= '<td>' . $indicadores->minimo_rp_t2. '</td>';
-                $html .= '<td>' . $indicadores->minimo_plan_t3. '</td>';
-                $html .= '<td>' . $indicadores->minimo_real_t3. '</td>';
-                $html .= '<td>' . $indicadores->minimo_rp_t3. '</td>';
-                $html .= '<td>' . $indicadores->minimo_plan_t4. '</td>';
-                $html .= '<td>' . $indicadores->minimo_real_t4. '</td>';
-                $html .= '<td>' . $indicadores->minimo_rp_t4. '</td>';
-                $html .= '<td>' . $indicadores->minimo_plan_s1. '</td>';
-                $html .= '<td>' . $indicadores->minimo_real_s1. '</td>';
-                $html .= '<td>' . $indicadores->minimo_rp_s1. '</td>';
-                $html .= '<td>' . $indicadores->minimo_plan_s2. '</td>';
-                $html .= '<td>' . $indicadores->minimo_real_s2. '</td>';
-                $html .= '<td>' . $indicadores->minimo_rp_s2. '</td>';
+                $html .= '<td>' . $indicadores->minimo_plan_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_real_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_rp_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_plan_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_real_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_rp_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_plan_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_real_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_rp_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_plan_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_real_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_rp_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_plan_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_real_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_rp_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_plan_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_real_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_rp_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_plan_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_real_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->minimo_rp_s2. ' ' .$formato .'</td>';
             }
             
             if($indicadores->tipo == 'Maximo')
             {
-                $html .= '<td>' . $indicadores->maximo_plan_anual. '</td>';
-                $html .= '<td>' . $indicadores->maximo_real_anual. '</td>';
-                $html .= '<td>' . $indicadores->maximo_rp_anual. '</td>';
-                $html .= '<td>' . $indicadores->maximo_plan_t1. '</td>';
-                $html .= '<td>' . $indicadores->maximo_real_t1. '</td>';
-                $html .= '<td>' . $indicadores->maximo_rp_t1. '</td>';
-                $html .= '<td>' . $indicadores->maximo_plan_t2. '</td>';
-                $html .= '<td>' . $indicadores->maximo_real_t2. '</td>';
-                $html .= '<td>' . $indicadores->maximo_rp_t2. '</td>';
-                $html .= '<td>' . $indicadores->maximo_plan_t3. '</td>';
-                $html .= '<td>' . $indicadores->maximo_real_t3. '</td>';
-                $html .= '<td>' . $indicadores->maximo_rp_t3. '</td>';
-                $html .= '<td>' . $indicadores->maximo_plan_t4. '</td>';
-                $html .= '<td>' . $indicadores->maximo_real_t4. '</td>';
-                $html .= '<td>' . $indicadores->maximo_rp_t4. '</td>';
-                $html .= '<td>' . $indicadores->maximo_plan_s1. '</td>';
-                $html .= '<td>' . $indicadores->maximo_real_s1. '</td>';
-                $html .= '<td>' . $indicadores->maximo_rp_s1. '</td>';
-                $html .= '<td>' . $indicadores->maximo_plan_s2. '</td>';
-                $html .= '<td>' . $indicadores->maximo_real_s2. '</td>';
-                $html .= '<td>' . $indicadores->maximo_rp_s2. '</td>';
+                $html .= '<td>' . $indicadores->maximo_plan_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_real_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_rp_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_plan_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_real_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_rp_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_plan_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_real_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_rp_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_plan_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_real_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_rp_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_plan_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_real_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_rp_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_plan_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_real_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_rp_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_plan_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_real_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->maximo_rp_s2. ' ' .$formato .'</td>';
             }
             
             if($indicadores->tipo == 'Ultimo')
             {
-                $html .= '<td>' . $indicadores->ultimo_plan_anual. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_real_anual. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_rp_anual. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_plan_t1. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_real_t1. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_rp_t1. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_plan_t2. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_real_t2. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_rp_t2. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_plan_t3. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_real_t3. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_rp_t3. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_plan_t4. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_real_t4. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_rp_t4. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_plan_s1. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_real_s1. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_rp_s1. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_plan_s2. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_real_s2. '</td>';
-                $html .= '<td>' . $indicadores->ultimo_rp_s2. '</td>';
+                $html .= '<td>' . $indicadores->ultimo_plan_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_real_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_rp_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_plan_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_real_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_rp_t1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_plan_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_real_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_rp_t2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_plan_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_real_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_rp_t3. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_plan_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_real_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_rp_t4. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_plan_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_real_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_rp_s1. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_plan_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_real_s2. ' ' .$formato .'</td>';
+                $html .= '<td>' . $indicadores->ultimo_rp_s2. ' ' .$formato .'</td>';
             }
         }
         
