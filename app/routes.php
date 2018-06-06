@@ -82,4 +82,9 @@ $route[] = ['/tinforme/CarregaAnual', 'TInformeController@CarregaAnual'];
 $route[] = ['/tinforme/monitoreo', 'TInformeController@Monitoreo'];
 $route[] = ['/tinforme/BuscaValoresMonitoreo', 'TInformeController@BuscaValoresMonitoreo'];
 
+/** Generador de Informes **/
+$route[] = ['/generador', 'GeneradorController@index'];
+$route[] = ['/generador/SearchPais', 'GeneradorController@CarregaPais'];
+$route[] = ['/generador/SearchIndicadores', 'GeneradorController@CarregaIndicadores'];
+
 return $route;
