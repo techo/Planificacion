@@ -8,7 +8,17 @@
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="/assets/css/animate.css" rel="stylesheet">
-        <link href="/assets/css/style.css" rel="stylesheet">
+        <?php 
+            if($_SERVER['SERVER_NAME'] == 'admin.planificacion.techo.org' || $_SERVER['SERVER_NAME'] == 'localhost')
+            {
+                $css = '<link href="/assets/css/style_admin.css" rel="stylesheet">';
+            }
+            else
+            {
+                $css = '<link href="/assets/css/style.css" rel="stylesheet">';
+            }
+            echo($css);
+        ?>
     	<link href="/assets/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
     	<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css" rel="stylesheet">

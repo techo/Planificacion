@@ -1,10 +1,20 @@
 ﻿<div id="wrapper">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2>Sistema de Planificaci&oacute;n</h2>
+               <?php 
+                    if($_SERVER['SERVER_NAME'] == 'admin.planificacion.techo.org' || $_SERVER['SERVER_NAME'] == 'localhost')
+                    {
+                        $title= '<h2>Admin Planificaci&oacute;n</h2>';
+                    }
+                    else
+                    {
+                        $title = '<h2>Sistema de Planificaci&oacute;n</h2>';
+                    }
+                    echo($title);
+                ?>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="/">This is</a>
+                            <a href="/">est&aacute;s aqu&iacute;</a>
                         </li>
                         <li class="active">
                             <strong>Home</strong>
