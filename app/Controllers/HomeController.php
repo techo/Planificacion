@@ -73,7 +73,7 @@ class HomeController extends BaseController
         
         if(!isset($_SESSION['Planificacion']['token']))
         {
-            header('Location: http://login.techo.org/');
+            header('Location: http://login.techo.org/?appid=245sd4d5f4g8h1rt4584ht84t54tg8tg&redirect=https://planificacion.techo.org/');
         }
         
         $this->setPageTitle('Home');

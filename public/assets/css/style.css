@@ -8589,3 +8589,7 @@ div#DataTables_Table_0_wrapper .btn, .dataTables-example .btn {
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
 }
+/* width */
+::-webkit-scrollbar {
+    height: 6px;
+}
