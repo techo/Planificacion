@@ -56,31 +56,35 @@ class Generador extends BaseModel
     }
     
     //Indicadores Comuns a todos
-    public function BuscaIndicadores()
+    public function BuscaIndicadores($aParam)
     {
         $sql  = "";
         $sql .= "SELECT ";
         $sql .= "indicador.id,";
+        $sql .= "indicador.indicador";
+        $sql .= " FROM dplanificacion";
+        $sql .= " INNER JOIN indicador ON indicador.id = dplanificacion.id_indicador ";
+        $sql .= " WHERE dplanificacion.deleted = 0 and dplanificacion.id_cplanificacion = " . $aParam['id'];
+        $sql .= " GROUP BY dplanificacion.id_indicador";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    //Retorno Final para calculos 
+    public function BuscaValores($aParam, $idPais)
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
         $sql .= "indicador.indicador, ";
-        $sql .= "indicador.situation, ";
-        $sql .= "indicador.id_temporalidad, ";
-        $sql .= "temporalidad.temporalidad, ";
-        $sql .= "indicador.id_tipo, ";
         $sql .= "tipo.tipo, ";
-        $sql .= "indicador.id_pilar, ";
-        $sql .= "pilar.pilar, ";
-        $sql .= "indicador.id_pais, ";
-        $sql .= "indicador.id_area, ";
-        $sql .= "indicador.id_sede, ";
-        $sql .= "indicador.id_creator, ";
-        $sql .= "indicador.id_updater, ";
-        $sql .= "indicador.date_insert, ";
-        $sql .= "indicador.date_update ";
-        $sql .= "FROM indicador ";
-        $sql .= "INNER JOIN temporalidad ON temporalidad.id = indicador.id_temporalidad ";
-        $sql .= "INNER JOIN tipo ON tipo.id = indicador.id_tipo ";
-        $sql .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
-        $sql .= "WHERE indicador.deleted = 0 and id_pais = 0 and id_sede = 0";
+        $sql .= "dplanificacion.* ";
+        $sql .= " FROM dplanificacion";
+        $sql .= " INNER JOIN indicador ON indicador.id = dplanificacion.id_indicador ";
+        $sql .= " INNER JOIN tipo ON tipo.id = indicador.id_tipo ";
+        $sql .= " WHERE dplanificacion.situation = 1 AND dplanificacion.id_cplanificacion = " . $aParam['ano'] . " AND dplanificacion.id_indicador = " .  $aParam['indicador'] . " AND dplanificacion.id_pais IN (" . $idPais . ")";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

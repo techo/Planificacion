@@ -924,7 +924,9 @@
             var choice, close_link,
                 _this = this;
             choice = $('<li />', {
-                "class": "search-choice"
+                "class": "search-choice",
+                'value': item.value //Customizado por Elias, incluido id do pais
+                	
             }).html("<span>" + item.html + "</span>");
             if (item.disabled) {
                 choice.addClass('search-choice-disabled');

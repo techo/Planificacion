@@ -87,81 +87,119 @@ class GeneradorController extends BaseController
         //Busca paises
         $result = $model->BuscaPaises($id);
         
-        $html .= '<div class="col-lg-12">';
-        $html .= '<hr>';
-        $html .= '<h2>Elija los Pa&iacute;ses</h2>';
-        $html .= '<table id="example" class="display" style="width:100%">';
-        $html .= '<thead>';
-        $html .= '<tr>';
-        $html .= '<th></th>';
-        $html .= '<th hidden></th>';
-        $html .= '<th>Pa&iacute;s</th>';
-        $html .= '</tr>';
-        $html .= '</thead>';
-        $html .= '<tbody>';
+        $html .= '';
+        $html .= '<div class="col-lg-6">';
+        $html .= '<div class="form-group">';
+        $html .= '<label class="font-noraml">Elija los Paises</label>';
+        $html .= '<div class="input-group">';
+        $html .= '<select data-placeholder="Elija los Paises" class="chosen-select" multiple style="width:350px;" tabindex="4">';
         foreach ($result as $pais)
         {
             $aRet = $this->GetPais($pais->id_pais);
-            $html .= '<tr>';
-            $html .= '<td></td>';
-            $html .= '<td hidden>'.$aRet['id'].'</td>';
-            $html .= '<td>'.$aRet['nombre'].'</td>';
-            $html .= '</tr>';
+            $html .= '<option class="combo1"id="'.$aRet['id'].'" value="'.$aRet['id'].'">'.$aRet['nombre'].'</option>';
         }
-        $html .= '</tbody>';
-        $html .= '<tfoot>';
-        $html .= '</tfoot>';
-        $html .= '</table>';
+        $html .= '</select>';
         $html .= '</div>';
-        
+        $html .= '</div>';
+        $html .= '</div>';
         echo ($html);
+        
     }
     
-    public function CarregaIndicadores()
+    public function GeraIndicador($aParam)
     {
-        //Buscar Indicadores comuns a todos paises
-        $model = Container::getModel("Generador");
+        $aParam = (array) $aParam;
         
-        //Busca paises
-        $result = $model->BuscaIndicadores();
         
-        $html .= '<div class="col-lg-12">';
-        $html .= '<hr>';
-        $html .= '<h2>Elija el Indicador</h2>';
-        $html .= '<table id="example1" class="display" style="width:100%">';
-        $html .= '<thead>';
-        $html .= '<tr>';
-        $html .= '<th></th>';
-        $html .= '<th hidden></th>';
-        $html .= '<th>Indicador</th>';
-        $html .= '<th>Temporalidad</th>';
-        $html .= '<th>Tipo</th>';
-        $html .= '<th>Pilar Estrat&eacute;gico</th>';
-        $html .= '<th>&Aacute;rea</th>';
-        $html .= '</tr>';
-        $html .= '</thead>';
-        $html .= '<tbody>';
+        //Buscar Indicadores comuns a todos paises no ano selecionado
+        $model  = Container::getModel("Generador");
+        $result = $model->BuscaIndicadores($aParam);
+        
+        $html .= '';
+        $html .= '<div class="form-group">';
+        $html .= '<label class="font-noraml">Indicador</label>';
+        $html .= '<div class="input-group">';
+        $html .= '<select data-placeholder="Elija el Indicador." class="chosen-select" style="width:350px;" tabindex="2">';
+        $html .= '<option value="">Seleccione</option>';
         foreach ($result as $indicador)
         {
-            $area  = $this->GetArea($indicador->id_area);
-            $cArea = $area['nombre'];
-            
-            $html .= '<tr>';
-            $html .= '<td></td>';
-            $html .= '<td hidden>'.$indicador->id.'</td>';
-            $html .= '<td>'.$indicador->indicador.'</td>';
-            $html .= '<td>'.$indicador->temporalidad.'</td>';
-            $html .= '<td>'.$indicador->tipo.'</td>';
-            $html .= '<td>'.$indicador->pilar.'</td>';
-            $html .= '<td>'.$cArea.'</td>';
-            $html .= '</tr>';
+            $html .= '<option class="combo2"id="'.$indicador->id.'" value="'.$indicador->id.'">'.$indicador->indicador.'</option>';
         }
-        $html .= '</tbody>';
-        $html .= '<tfoot>';
-        $html .= '</tfoot>';
-        $html .= '</table>';
+        $html .= '</select>';
         $html .= '</div>';
-        
+        $html .= '</div>';
         echo ($html);
+        
+    }
+    
+    public function GeraPais($aDados)
+    {
+        $aDados= (array) $aDados;
+        $i = 0;
+        
+        //Separa os Ids dos paises
+        $paises = explode(',',$aDados['paises']);
+        $pais = array_filter($paises);
+        
+        $model  = Container::getModel("Generador");
+        
+        foreach ($pais as $pais)
+        {
+            //Nome do Pais
+            $cPais = $this->GetPais($pais);
+            $cPais = $cPais['nombre'];
+            
+            //Buscar Dados do Indicador selecionado de todos paises tambem selecionados
+            $result = $model->BuscaValores($aDados, $pais);
+            
+            $tipo    = $result[0]->tipo;
+            $id_pais = $pais;
+            //Verifica tipo de Indicador para efetuar os calculos
+            if($tipo == 'Acumulado')
+            {
+                foreach ($result as $indicador)
+                {
+                    //Anual
+                    $aValores[$i]['pais']        = $cPais;
+                    $aValores[$i]['Plan_anual'] += $indicador->acumulado_plan_anual;
+                    $aValores[$i]['Real_anual'] += $indicador->acumulado_real_anual;
+                    $aValores[$i]['RP_anual']   += $indicador->acumulado_rp_anual;
+                    
+                    //T1
+                    $aValores[$i]['Plan_t1'] += $indicador->acumulado_plan_t1;
+                    $aValores[$i]['Real_t1'] += $indicador->acumulado_real_t1;
+                    $aValores[$i]['RP_t1']   += $indicador->acumulado_rp_t1;
+                    
+                    //T2
+                    $aValores[$i]['Plan_t2'] += $indicador->acumulado_plan_t2;
+                    $aValores[$i]['Real_t2'] += $indicador->acumulado_real_t2;
+                    $aValores[$i]['RP_t2']   += $indicador->acumulado_rp_t2;
+                    
+                    //T3
+                    $aValores[$i]['Plan_t3'] += $indicador->acumulado_plan_t3;
+                    $aValores[$i]['Real_t3'] += $indicador->acumulado_real_t3;
+                    $aValores[$i]['RP_t3']   += $indicador->acumulado_rp_t3;
+                    
+                    //T4
+                    $aValores[$i]['Plan_t4'] += $indicador->acumulado_plan_t4;
+                    $aValores[$i]['Real_t4'] += $indicador->acumulado_real_t4;
+                    $aValores[$i]['RP_t4']   += $indicador->acumulado_rp_t4;
+                    
+                    //S1
+                    $aValores[$i]['Plan_s1'] += $indicador->acumulado_plan_s1;
+                    $aValores[$i]['Real_s1'] += $indicador->acumulado_real_s1;
+                    $aValores[$i]['RP_s1']   += $indicador->acumulado_rp_s1;
+                    
+                    //S2
+                    $aValores[$i]['Plan_s2'] += $indicador->acumulado_plan_s2;
+                    $aValores[$i]['Real_s2'] += $indicador->acumulado_real_s2;
+                    $aValores[$i]['RP_s2']   += $indicador->acumulado_rp_s2;
+                }
+            }
+            
+            $i++;
+        }
+        echo json_encode(array("data" => $aValores));
     }
 }
+

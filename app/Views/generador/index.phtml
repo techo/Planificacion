@@ -1,3 +1,15 @@
+<head>
+	<title>Informe Mensual</title>
+	<script src="/assets/js/Chart.bundle.js"></script>
+	<script src="/assets/js/utils.js"></script>
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
+</head>
 <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h2>Generador de Informes</h2>
@@ -28,21 +40,18 @@
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
                                 <div class="panel-body">
-                                <div class="col-lg-12">
-										<div class="form-group" id="pais">
-    	 									<label for="tipo">Generar Informe por</label><br>
-        									<div class="form-group" id="pais">
-                                                 <input id="c1" type="checkbox" value="pais" class="js-switch"/>
-                                                 <label for="pais">Pa&iacute;s</label><br>
+                                    <div class="col-lg-12">
+                                    		<div class="form-group">
+        	 									<label for="tipo">Generar Informe por</label><br>
+        	 									<div class="i-checks">
+        	 										<label> <input type="radio" id="paises "value="paises" name="tipo"> <i></i>Paises</label>
+        	 									</div>
                 	 						</div>
-                	 						<div class="form-group" id="sede">
-                                                 <input id="c2" type="checkbox" value="sede" class="js-switch_2"/>
-                                                 <label for="sede">Sede</label><br>
+                	 						<div class="form-group">
+        	 									<div class="i-checks"><label> <input type="radio" id="sedes" value="sedes" name="tipo"> <i></i>Sedes</label></div>
                 	 						</div>
-            	 						</div>
-									</div>
-									
-									 <div class="col-lg-6">
+    								</div>
+									<div class="col-lg-6">
 										<div class="form-group">
     	 									<label for="ano">A&ntilde;o</label>
         	 								<select  id="ano" class="form-control" >
@@ -52,13 +61,20 @@
                 	 							<?php endforeach; ?>
                 	 						</select>
             	 						</div>
-									</div>
-									
-									<div id="Listpaises"></div>
-									<div id="Listindicadores"></div>
-                                </div>
-                                
+                                	</div>
+                                    <div class="col-lg-6">
+                                    	<div id="Listpaises"></div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                    	<p><button hidden id="buscaSede" type="button"><strong>Buscar Sedes</strong></button></p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                    <div id="ListIndicador"></div>
+                                    </div>
+                                    
+                                 </div>
                             </div>
+                      </div>      
                             <div id="tab-2" class="tab-pane">
                                 <div class="panel-body">
                                     <div class="col-lg-12">
@@ -79,32 +95,36 @@
                     </div>
 
                         </div>
-                        <div id="loading-techo">
-                        	<div class="loading"><img src="/loading.gif"></div>
-                        </div>
                         </div>  
                 </div>
                 </div>
             </div>
-
+<link href="assets/css/plugins/iCheck/custom.css" rel="stylesheet">            
+<script src="assets/js/plugins/iCheck/icheck.min.js"></script>
 <script>
-         $(document).ready(function(){
-        	 var elem = document.querySelector('.js-switch');
-        	 var switchery = new Switchery(elem, { color: '#1AB394' });
+$(document).ready(function () {
+	//Check de Pais e Sede
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
 
-        	 var elem_2 = document.querySelector('.js-switch_2');
-        	 var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
+    var config = {
+            '.chosen-select'           : {},
+            '.chosen-select-deselect'  : {allow_single_deselect:true},
+            '.chosen-select-no-single' : {disable_search_threshold:10},
+            '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+            '.chosen-select-width'     : {width:"95%"}
+            }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+});        
 
-        	 $('#loading-techo').hide();
-
-        	 $("#generar-resultado").click(function() {
-        		 GeneraResultado(table.rows('.selected').data(), table1.rows('.selected').data());
-            	});
-        });
-
-    </script>
-    <script type="text/javascript" src="/assets/js/generador/generador.js""></script>
-    <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
-    <script src="/assets/js/plugins/switchery/switchery.js"></script>
-    <link href="/assets/css/plugins/switchery/switchery.css" rel="stylesheet">
+$("#generar-resultado").click(function() {
+	 GeneraResultado();
+	});
+</script>
+<script type="text/javascript" src="/assets/js/generador/generador.js""></script>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
     
