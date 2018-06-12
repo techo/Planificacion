@@ -122,24 +122,37 @@ function GeneraResultado()
 			data: oData,
 			success: function(resp)
 			{	
-				dados = resp['data'];
-				  var max    = 0;				
+				//Essa parte e para nao bugar o charts com varios graficos
+				document.getElementById("container").innerHTML = '&nbsp;';
+				document.getElementById("container").innerHTML = '<canvas id="canvas"></canvas>';
+				var ctx = document.getElementById("canvas").getContext("2d");
+				
+				 dados = resp['data'];
+				  var max    = 0;	
 				  
 				  //Dados do Grid
 				  var MONTHS = ['Plan Anual', 'Real Anual', '% RP Anual', 'Plan T1', 'Real T1', '% RP T1','Plan T2', 'Real T2', '%RP T2', 'Plan T3', 'Real T3', '% RP T3', 'Plan T4', 'Real T4', '% RP T4', 'Plan S1', 'Real S1', '% RP S1', 'Plan S2', 'Real S2', '% RP S2'];
 				  var color = Chart.helpers.color;
 				  //Comeca a varrer os paises
 				  var qtd = dados.length;
-				  var teste = '';
+				  var valores = [];
+				  var cores = ['rgba(234,60,7,1)', 'rgba(7,182,234,1)', 'rgba(234,91,7,1)', 'rgba(76,175,80,1)', 'rgba(234,7,196,1)', 'rgba(210,234,7,1)'];
+				  var random = 0;
+				  
 				  while (max < qtd) 
 				  {
-					  teste = [{label: dados[max].pais,backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),borderColor: window.chartColors.red,borderWidth: 1,data: [dados[max].Plan_anual, dados[max].Real_anual, dados[max].RP_anual, dados[max].Plan_t1, dados[max].Real_t1, dados[max].RP_t1, dados[max].Plan_t2, dados[max].Real_t2, dados[max].RP_t2, dados[max].Plan_t3, dados[max].Real_t3, dados[max].RP_t3, dados[max].Plan_t4, dados[max].Real_t4, dados[max].RP_t4, dados[max].Plan_s1, dados[max].Real_s1, dados[max].RP_s1, dados[max].Plan_s2, dados[max].Real_s2, dados[max].RP_s2]}];
+					  random = Math.floor((Math.random() * 6) + 1) -1;
+					  
+					  valores.splice(0, 0, {label: dados[max].pais,backgroundColor: color(cores[random]).alpha(0.5).rgbString(),borderColor: cores[random],borderWidth: 1,data: [dados[max].Plan_anual, dados[max].Real_anual, dados[max].RP_anual, dados[max].Plan_t1, dados[max].Real_t1, dados[max].RP_t1, dados[max].Plan_t2, dados[max].Real_t2, dados[max].RP_t2, dados[max].Plan_t3, dados[max].Real_t3, dados[max].RP_t3, dados[max].Plan_t4, dados[max].Real_t4, dados[max].RP_t4, dados[max].Plan_s1, dados[max].Real_s1, dados[max].RP_s1, dados[max].Plan_s2, dados[max].Real_s2, dados[max].RP_s2]});
+					  
 					  max++;
 				  }
 				  
+				  var myJSON = JSON.stringify(valores);
+				  
 				  var barChartData = {
 				  	labels: ['Plan Anual', 'Real Anual', '% RP Anual', 'Plan T1', 'Real T1', '% RP T1', 'Plan T2', 'Real T2', '% RP T2', 'Plan T3', 'Real T3', '% RP T3', 'Plan T4', 'Real T4', '% RP T4', 'Plan S1', 'Real S1', '% RP S1', 'Plan S2', 'Real S2', '% RP S2'],
-				  	datasets: teste
+				  	datasets: JSON.parse(myJSON)
 				  };
 				  
 				  //Carrega e mostra os dados
