@@ -120,7 +120,6 @@ class Indicador extends BaseModel
         $stmt->execute();
         $result = $stmt->rowCount();
         $stmt->closeCursor();
-        
         return $result;
     }
     
