@@ -45,7 +45,7 @@ window.onload = function()
 						editableGrid.data.forEach(function(o,i) {
 							if(editableGrid.data[i].formato == '%' )  
 							{
-								j = 3;
+								j = 4;
 								while (j < 28) {
 									editableGrid.data[i].columns[j] = editableGrid.data[i].columns[j] + ' ' + editableGrid.data[i].formato;
 								    j++;
@@ -55,7 +55,7 @@ window.onload = function()
 							
 							if(editableGrid.data[i].formato == '$' )  
 							{
-								j = 3;
+								j = 4;
 								while (j < 28) {
 									editableGrid.data[i].columns[j] = editableGrid.data[i].formato + ' ' + editableGrid.data[i].columns[j];
 								    j++;
@@ -64,7 +64,7 @@ window.onload = function()
 							
 							if(editableGrid.data[i].formato == '#' )  
 							{
-								j = 3;
+								j = 4;
 								while (j < 28) {
 									editableGrid.data[i].columns[j] = editableGrid.data[i].columns[j];
 								    j++;
