@@ -128,6 +128,7 @@ function GeneraResultado()
 				var ctx = document.getElementById("canvas").getContext("2d");
 				
 				 dados = resp['data'];
+				 
 				  var max    = 0;	
 				  
 				  //Dados do Grid

@@ -135,6 +135,7 @@ class GeneradorController extends BaseController
     public function GeraPais($aDados)
     {
         $aDados= (array) $aDados;
+        
         $i = 0;
         
         //Separa os Ids dos paises
@@ -196,6 +197,183 @@ class GeneradorController extends BaseController
                     $aValores[$i]['RP_s2']   += $indicador->acumulado_rp_s2;
                 }
             }
+            
+            //Promedio
+            if($tipo == 'Promedio')
+            {
+                foreach ($result as $indicador)
+                {
+                    //Anual
+                    $aValores[$i]['pais']        = $cPais;
+                    $aValores[$i]['Plan_anual'] += $indicador->promedio_plan_anual;
+                    $aValores[$i]['Real_anual'] += $indicador->promedio_real_anual;
+                    $aValores[$i]['RP_anual']   += $indicador->promedio_rp_anual;
+                    
+                    //T1
+                    $aValores[$i]['Plan_t1'] += $indicador->promedio_plan_t1;
+                    $aValores[$i]['Real_t1'] += $indicador->promedio_real_t1;
+                    $aValores[$i]['RP_t1']   += $indicador->promedio_rp_t1;
+                    
+                    //T2
+                    $aValores[$i]['Plan_t2'] += $indicador->promedio_plan_t2;
+                    $aValores[$i]['Real_t2'] += $indicador->promedio_real_t2;
+                    $aValores[$i]['RP_t2']   += $indicador->promedio_rp_t2;
+                    
+                    //T3
+                    $aValores[$i]['Plan_t3'] += $indicador->promedio_plan_t3;
+                    $aValores[$i]['Real_t3'] += $indicador->promedio_real_t3;
+                    $aValores[$i]['RP_t3']   += $indicador->promedio_rp_t3;
+                    
+                    //T4
+                    $aValores[$i]['Plan_t4'] += $indicador->promedio_plan_t4;
+                    $aValores[$i]['Real_t4'] += $indicador->promedio_real_t4;
+                    $aValores[$i]['RP_t4']   += $indicador->promedio_rp_t4;
+                    
+                    //S1
+                    $aValores[$i]['Plan_s1'] += $indicador->promedio_plan_s1;
+                    $aValores[$i]['Real_s1'] += $indicador->promedio_real_s1;
+                    $aValores[$i]['RP_s1']   += $indicador->promedio_rp_s1;
+                    
+                    //S2
+                    $aValores[$i]['Plan_s2'] += $indicador->promedio_plan_s2;
+                    $aValores[$i]['Real_s2'] += $indicador->promedio_real_s2;
+                    $aValores[$i]['RP_s2']   += $indicador->promedio_rp_s2;
+                    
+                }
+            }
+            
+            //Minimo
+            if($tipo == 'Minimo')
+            {
+                foreach ($result as $indicador)
+                {
+                    //Anual
+                    $aValores[$i]['pais']        = $cPais;
+                    $aValores[$i]['Plan_anual'] += $indicador->minimo_plan_anual;
+                    $aValores[$i]['Real_anual'] += $indicador->minimo_real_anual;
+                    $aValores[$i]['RP_anual']   += $indicador->minimo_rp_anual;
+                    
+                    //T1
+                    $aValores[$i]['Plan_t1'] += $indicador->minimo_plan_t1;
+                    $aValores[$i]['Real_t1'] += $indicador->minimo_real_t1;
+                    $aValores[$i]['RP_t1']   += $indicador->minimo_rp_t1;
+                    
+                    //T2
+                    $aValores[$i]['Plan_t2'] += $indicador->minimo_plan_t2;
+                    $aValores[$i]['Real_t2'] += $indicador->minimo_real_t2;
+                    $aValores[$i]['RP_t2']   += $indicador->minimo_rp_t2;
+                    
+                    //T3
+                    $aValores[$i]['Plan_t3'] += $indicador->minimo_plan_t3;
+                    $aValores[$i]['Real_t3'] += $indicador->minimo_real_t3;
+                    $aValores[$i]['RP_t3']   += $indicador->minimo_rp_t3;
+                    
+                    //T4
+                    $aValores[$i]['Plan_t4'] += $indicador->minimo_plan_t4;
+                    $aValores[$i]['Real_t4'] += $indicador->minimo_real_t4;
+                    $aValores[$i]['RP_t4']   += $indicador->minimo_rp_t4;
+                    
+                    //S1
+                    $aValores[$i]['Plan_s1'] += $indicador->minimo_plan_s1;
+                    $aValores[$i]['Real_s1'] += $indicador->minimo_real_s1;
+                    $aValores[$i]['RP_s1']   += $indicador->minimo_rp_s1;
+                    
+                    //S2
+                    $aValores[$i]['Plan_s2'] += $indicador->minimo_plan_s2;
+                    $aValores[$i]['Real_s2'] += $indicador->minimo_real_s2;
+                    $aValores[$i]['RP_s2']   += $indicador->minimo_rp_s2;
+                    
+                }
+            }
+            
+            //Minimo
+            if($tipo == 'Maximo')
+            {
+                foreach ($result as $indicador)
+                {
+                    //Anual
+                    $aValores[$i]['pais']        = $cPais;
+                    $aValores[$i]['Plan_anual'] += $indicador->maximo_plan_anual;
+                    $aValores[$i]['Real_anual'] += $indicador->maximo_real_anual;
+                    $aValores[$i]['RP_anual']   += $indicador->maximo_rp_anual;
+                    
+                    //T1
+                    $aValores[$i]['Plan_t1'] += $indicador->maximo_plan_t1;
+                    $aValores[$i]['Real_t1'] += $indicador->maximo_real_t1;
+                    $aValores[$i]['RP_t1']   += $indicador->maximo_rp_t1;
+                    
+                    //T2
+                    $aValores[$i]['Plan_t2'] += $indicador->maximo_plan_t2;
+                    $aValores[$i]['Real_t2'] += $indicador->maximo_real_t2;
+                    $aValores[$i]['RP_t2']   += $indicador->maximo_rp_t2;
+                    
+                    //T3
+                    $aValores[$i]['Plan_t3'] += $indicador->maximo_plan_t3;
+                    $aValores[$i]['Real_t3'] += $indicador->maximo_real_t3;
+                    $aValores[$i]['RP_t3']   += $indicador->maximo_rp_t3;
+                    
+                    //T4
+                    $aValores[$i]['Plan_t4'] += $indicador->maximo_plan_t4;
+                    $aValores[$i]['Real_t4'] += $indicador->maximo_real_t4;
+                    $aValores[$i]['RP_t4']   += $indicador->maximo_rp_t4;
+                    
+                    //S1
+                    $aValores[$i]['Plan_s1'] += $indicador->maximo_plan_s1;
+                    $aValores[$i]['Real_s1'] += $indicador->maximo_real_s1;
+                    $aValores[$i]['RP_s1']   += $indicador->maximo_rp_s1;
+                    
+                    //S2
+                    $aValores[$i]['Plan_s2'] += $indicador->maximo_plan_s2;
+                    $aValores[$i]['Real_s2'] += $indicador->maximo_real_s2;
+                    $aValores[$i]['RP_s2']   += $indicador->maximo_rp_s2;
+                    
+                }
+            }
+            
+            //Ultimo
+            if($tipo == 'Ultimo')
+            {
+                foreach ($result as $indicador)
+                {
+                    //Anual
+                    $aValores[$i]['pais']        = $cPais;
+                    $aValores[$i]['Plan_anual'] += $indicador->ultimo_plan_anual;
+                    $aValores[$i]['Real_anual'] += $indicador->ultimo_real_anual;
+                    $aValores[$i]['RP_anual']   += $indicador->ultimo_rp_anual;
+                    
+                    //T1
+                    $aValores[$i]['Plan_t1'] += $indicador->ultimo_plan_t1;
+                    $aValores[$i]['Real_t1'] += $indicador->ultimo_real_t1;
+                    $aValores[$i]['RP_t1']   += $indicador->ultimo_rp_t1;
+                    
+                    //T2
+                    $aValores[$i]['Plan_t2'] += $indicador->ultimo_plan_t2;
+                    $aValores[$i]['Real_t2'] += $indicador->ultimo_real_t2;
+                    $aValores[$i]['RP_t2']   += $indicador->ultimo_rp_t2;
+                    
+                    //T3
+                    $aValores[$i]['Plan_t3'] += $indicador->ultimo_plan_t3;
+                    $aValores[$i]['Real_t3'] += $indicador->ultimo_real_t3;
+                    $aValores[$i]['RP_t3']   += $indicador->ultimo_rp_t3;
+                    
+                    //T4
+                    $aValores[$i]['Plan_t4'] += $indicador->ultimo_plan_t4;
+                    $aValores[$i]['Real_t4'] += $indicador->ultimo_real_t4;
+                    $aValores[$i]['RP_t4']   += $indicador->ultimo_rp_t4;
+                    
+                    //S1
+                    $aValores[$i]['Plan_s1'] += $indicador->ultimo_plan_s1;
+                    $aValores[$i]['Real_s1'] += $indicador->ultimo_real_s1;
+                    $aValores[$i]['RP_s1']   += $indicador->ultimo_rp_s1;
+                    
+                    //S2
+                    $aValores[$i]['Plan_s2'] += $indicador->ultimo_plan_s2;
+                    $aValores[$i]['Real_s2'] += $indicador->ultimo_real_s2;
+                    $aValores[$i]['RP_s2']   += $indicador->ultimo_rp_s2;
+                    
+                }
+            }
+            
             
             $i++;
         }
