@@ -1,6 +1,7 @@
 <?php 
-
+/** Home **/
 $route[] = ['/', 'HomeController@index'];
+$route[] = ['/home/userlogado', 'HomeController@UserLogado'];
 
 /** Anos **/
 $route[] = ['/anos', 'AnosController@index'];

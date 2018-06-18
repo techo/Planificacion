@@ -24,15 +24,90 @@
             </div>
             <div class="wrapper wrapper-content">
                 <div class="big-box animated fadeInRightBig">
-                 <!--  <h3 class="font-bold">Sistema de Planificaci&oacute;n</h3>  -->  
                     <div class="error-desc">
-                        <?php 
-                  /*      session_start(); 
-                        echo('<pre>');
-                        echo(print_r($_SESSION, true))
-                   */     
-                        ?>
+                        <div class="col-lg-12">
+                        	<div class="tabs-container">
+                        		<ul id="lista1" class="nav nav-tabs">
+                        			<li class="active"><a data-toggle="tab" href="#tab-dash">DashBoard</a></li>
+                        		</ul>
+                        		<div class="tab-content">
+                        		
+                        		</div>
+                        	</div>
+    					</div>
                     </div>
                 </div>
             </div>
 </div>
+
+<div id="loading-techo">
+	<div class="loading"><img src="/loading.gif"></div>
+</div>
+
+<script>
+	window.onload = function() {
+		$('#loading-techo').show();
+		var tela = document.querySelector('.tabs-container');
+
+		//Identificar quem esta logado Pais / Sede / Regional
+		var pais = <?php echo($_SESSION['Planificacion']['pais_id'])?>;
+		var sede = <?php echo($_SESSION['Planificacion']['sede_id'])?>;
+		var cont = 1;
+
+		 oData    = new Object();	
+		 oData.pais = pais;
+		 oData.sede = sede;
+
+		 $.ajax({
+				type: "POST",
+				url: "/home/userlogado",
+				dataType: "json",
+				data: oData,
+				success: function(resp)
+				{	
+					$(".tab-content").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo DashBoard</div></div>");
+					//Fazer Append de dados Individuais
+					resp['data'].forEach(function(details) {
+						//Remove OI, Europa e EUA
+						if(details['pais'])
+						{
+							if(details['id'] != 5 && details['id'] != 20 && details['id'] != 22)
+							{
+								if(cont == 1)
+								{
+									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['pais'] +"</a></li>");
+									$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+								}
+								else
+								{
+									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['pais'] +"</a></li>");
+									$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+								}
+								
+								//console.log(details);
+								cont++;
+							}
+						}
+
+						if(details['sede'])
+						{
+							if(cont == 1)
+							{
+								$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['sede'] +"</a></li>");
+								$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+							}
+							else
+							{
+								$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['sede'] +"</a></li>");
+								$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane active'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+							}
+							
+							cont++;
+						}
+					});
+
+					$('#loading-techo').hide();
+				}
+		  });
+	};
+	</script>

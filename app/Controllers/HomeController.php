@@ -90,5 +90,131 @@ class HomeController extends BaseController
         $this->renderView('home/index', 'layout');
     }
     
+    //Busca Sede en id.techo.org
+    public function GetSede($idSede)
+    {
+        $url = 'http://id.techo.org/sede?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idSede;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        return $data;
+    }
+    
+    //Busca Pais en login.techo.org
+    public function GetPais($idPais)
+    {
+        $url = 'http://id.techo.org/pais?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idPais;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        return $data;
+    }
+    
+    public function Paises()
+    {
+        $url = 'http://id.techo.org/pais?api=true&token='.$_SESSION['Planificacion']['token'];
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']   = $data[$i]['ID_Pais'];
+            $aTemp[$i]['pais'] = $data[$i]['Nombre_Pais'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
+    }
+    
+    public function Sedes($idPais)
+    {
+        $url = 'http://id.techo.org/sede?api=true&token='.$_SESSION['Planificacion']['token'].'&id_pais='.$idPais;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']   = $data[$i]['id'];
+            $aTemp[$i]['sede'] = $data[$i]['nombre'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
+    }
+    
+    //Monta o DashBoard do Usuario
+    public function UserLogado($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $sede = $this->GetSede($aParam['sede']);
+        $pais = $this->GetPais($aParam['pais']);
+        
+        //Oficina Internacional
+        if($sede[0]['id'] == 1)
+        {
+            //Enviar Nome de todos Paises
+            $aPaises = $this->Paises();
+            $result  = $aPaises;
+        }
+        
+        //Sede Nacional
+        if($sede[0]['nombre'] == 'Sede Nacional')
+        {
+            //Enviar Nome do Pais e todas Sedes deste Pais
+            $aSedes = $this->Sedes($aParam['pais']);
+            $result = $aSedes;
+            
+        } 
+        //Outras Sedes
+        if($sede[0]['nombre'] != 'Sede Nacional' && $sede[0]['id'] != 1)
+        {
+            $aSedes[0]['id'] = $sede[0]['id'];
+            $aSedes[0]['sede'] = $sede[0]['nombre'];
+            
+            //Envia Apenas Nome desta Sede
+            $result = $aSedes;
+        }
+        
+        echo json_encode(array("data" => $result));
+    }
     
 }
