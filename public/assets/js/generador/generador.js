@@ -137,7 +137,7 @@ function GeneraResultado()
 				  //Comeca a varrer os paises
 				  var qtd = dados.length;
 				  var valores = [];
-				  var cores = ['rgba(234,60,7,1)', 'rgba(7,182,234,1)', 'rgba(234,91,7,1)', 'rgba(76,175,80,1)', 'rgba(234,7,196,1)', 'rgba(210,234,7,1)'];
+				  var cores = ['rgba(234,60,7,1)', 'rgba(7,182,234,1)', 'rgba(234,91,7,1)', 'rgba(76,175,80,1)', 'rgba(234,7,196,1)', 'rgba(210,234,7,1)', 'rgba(188,25,25,1)', 'rgba(155,99,211,1)', 'rgba(31,28,206,1)', 'rgba(171,32,127,1)'];
 				  var random = 0;
 				  
 				  while (max < qtd) 
