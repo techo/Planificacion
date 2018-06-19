@@ -23,20 +23,21 @@
                 </div>
             </div>
             <div class="wrapper wrapper-content">
-                <div class="big-box animated fadeInRightBig">
-                    <div class="error-desc">
-                        <div class="col-lg-12">
-                        	<div class="tabs-container">
-                        		<ul id="lista1" class="nav nav-tabs">
-                        			<li class="active"><a data-toggle="tab" href="#tab-dash">DashBoard</a></li>
-                        		</ul>
+             	<div class="row">
+            		<div class="col-lg-12">
+             			<div class="ibox">
+             				<div class="ibox-content">
+                            	<div class="tabs-container">
+                            		<ul id="lista1" class="nav nav-tabs">
+                            			<li class="active"><a data-toggle="tab" href="#tab-dash">DashBoard</a></li>
+                            		</ul>
                         		<div class="tab-content">
-                        		
                         		</div>
-                        	</div>
-    					</div>
+                            	</div>
+                        	</div>    
+                    	</div>
                     </div>
-                </div>
+                 </div>         
             </div>
 </div>
 
@@ -73,17 +74,21 @@
 						{
 							if(details['id'] != 5 && details['id'] != 20 && details['id'] != 22)
 							{
+								var str = removeAccents(details['pais']);
+								var str = str.replace(" ", "-");
+								console.log(str);
+									
 								if(cont == 1)
 								{
-									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['pais'] +"</a></li>");
+									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+details['pais']+"'>" + details['pais'] +"</a></li>");
 									$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
 								}
 								else
 								{
-									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['pais'] +"</a></li>");
+									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+details['pais']+"'>" + details['pais'] +"</a></li>");
 									$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
 								}
-								
+
 								//console.log(details);
 								cont++;
 							}
@@ -110,4 +115,18 @@
 				}
 		  });
 	};
+
+	function removeAccents(string) {
+	      const accents =
+	        "ÀÁÂÃÄÅàáâãäåßÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž";
+	      const accentsOut =
+	        "AAAAAAaaaaaaBOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
+	      return string
+	        .split("")
+	        .map((letter, index) => {
+	          const accentIndex = accents.indexOf(letter);
+	          return accentIndex !== -1 ? accentsOut[accentIndex] : letter;
+	        })
+	        .join("");
+	    }
 	</script>
