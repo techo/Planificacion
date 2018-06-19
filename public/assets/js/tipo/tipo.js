@@ -1,5 +1,63 @@
+//Validacion Campos
+$("#tipo").blur(function()
+{
+	if($('#tipo').val() == '')
+	{
+		 $("#tipo").removeClass("errotipo");
+		 $("#tipo").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#tipo" ).focus();
+	     $("#tipo").addClass("errotipo");
+	     $(".errotipo").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#tipo").removeClass("errotipo");
+		$("#tipo").attr("style", "");
+		$(".errorC").remove();
+	}
+});
+
 function GuardarTipo()
 {
+	if($('#tipo').val() == '')
+	{
+		 $("#tipo").removeClass("errotipo");
+		 $("#tipo").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#tipo" ).focus();
+	     $("#tipo").addClass("errotipo");
+	     $(".errotipo").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#tipo").removeClass("errotipo");
+		$("#tipo").attr("style", "");
+		$(".errorC").remove();
+	}
+	
+	if($('#status').val() == '0')
+	{
+		 $("#status").removeClass("errostatus");
+		 $("#status").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#status" ).focus();
+	     $("#status").addClass("errostatus");
+	     $(".errostatus").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#status").removeClass("errostatus");
+		$("#status").attr("style", "");
+		$(".errorC").remove();
+	}
+	
 	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.tipo     = $('#tipo').val();

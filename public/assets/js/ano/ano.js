@@ -3,8 +3,67 @@ $('#ano').keyup(function() {
   $(this).val(this.value.replace(/\D/g, ''));
 });
 
+//Validacion Campos
+$("#ano").blur(function()
+{
+	if($('#ano').val() == '')
+	{
+		 $("#ano").removeClass("erroano");
+		 $("#ano").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#ano" ).focus();
+	     $("#ano").addClass("erroano");
+	     $(".erroano").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#ano").removeClass("erroano");
+		$("#ano").attr("style", "");
+		$(".errorC").remove();
+	}
+});
+
 function GuardarAno()
 {
+	//Validacion Campos
+	if($('#ano').val() == '')
+	{
+		 $("#ano").removeClass("erroano");
+		 $("#ano").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#ano" ).focus();
+	     $("#ano").addClass("erroano");
+	     $(".erroano").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#ano").removeClass("erroano");
+		$("#ano").attr("style", "");
+		$(".errorC").remove();
+	}
+	
+	if($('#status').val() == '0')
+	{
+		 $("#status").removeClass("errostatus");
+		 $("#status").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#status" ).focus();
+	     $("#status").addClass("errostatus");
+	     $(".errostatus").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#status").removeClass("errostatus");
+		$("#status").attr("style", "");
+		$(".errorC").remove();
+	}
+	
 	$('#loading-techo').show();
 	oData          = new Object();	
 	oData.ano      = $('#ano').val();
