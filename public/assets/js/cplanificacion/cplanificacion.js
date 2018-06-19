@@ -1,5 +1,86 @@
+//Validacion Campos
+$("#ano").blur(function()
+{
+	if($('#ano').val() == '0')
+	{
+		 $("#ano").removeClass("errostatus");
+		 $("#ano").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#ano" ).focus();
+	     $("#ano").addClass("errostatus");
+	     $(".errostatus").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#ano").removeClass("errostatus");
+		$("#ano").attr("style", "");
+		$(".errorC").remove();
+	}
+});
+
+$("#status").blur(function()
+{
+	if($('#status').val() == '0')
+	{
+		 $("#status").removeClass("errostatus");
+		 $("#status").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#status" ).focus();
+	     $("#status").addClass("errostatus");
+	     $(".errostatus").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#status").removeClass("errostatus");
+		$("#status").attr("style", "");
+		$(".errorC").remove();
+	}
+});
+
 function GuardarPlanificacion(indicadores, sedes)
 {
+	//Ano
+	if($('#ano').val() == '0')
+	{
+		 $("#ano").removeClass("errostatus");
+		 $("#ano").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#ano" ).focus();
+	     $("#ano").addClass("errostatus");
+	     $(".errostatus").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#ano").removeClass("errostatus");
+		$("#ano").attr("style", "");
+		$(".errorC").remove();
+	}
+	
+	//Status
+	if($('#status').val() == '0')
+	{
+		 $("#status").removeClass("errostatus");
+		 $("#status").attr("style", "");
+		 $(".errorC").remove();
+		 var msg = 'Campo Obligatorio.';
+		 $( "#status" ).focus();
+	     $("#status").addClass("errostatus");
+	     $(".errostatus").css("border", "1px solid red").after('<p class="errorC" style="color:red;">' + msg + '</p>');
+	     return false;
+	}
+	else
+	{
+		$("#status").removeClass("errostatus");
+		$("#status").attr("style", "");
+		$(".errorC").remove();
+	}
+	
 	$('#loading-techo').show();
 	 
 	oData              = new Object();	
