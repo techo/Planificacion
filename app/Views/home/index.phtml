@@ -109,7 +109,7 @@
 											//Gera primeira parte das tab de paises
 											if(x == 0)
 											{
-												$("#tab-"+detalhe2['id_dashboard'] +" .panel-body").append("<div class='tabs-container'><ul id='lista"+detalhe2['id_dashboard']+"' class='nav nav-tabs'></ul><div class='tab-content"+detalhe2['id_dashboard']+"'></div></div>");
+												$("#tab-"+detalhe2['id_dashboard'] +" .panel-body").append("<div class='tabs-container'><ul id='listaP"+detalhe2['id_dashboard']+"' class='nav nav-tabs'></ul><div class='tab-content"+detalhe2['id_dashboard']+"'></div></div>");
 												x++;
 											}	
 											//ABA DE PAISES
@@ -118,13 +118,13 @@
 												//para aba 1 ativa
 												if(x == 1)
 												{
-													$("#lista"+detalhe2['id_dashboard']).append("<li class='active'><a data-toggle='tab' href='#"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
+													$("#listaP"+detalhe2['id_dashboard']).append("<li class='active'><a data-toggle='tab' href='#"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
 													$(".tab-content"+detalhe2['id_dashboard']).append("<div id='"+detalhe2['id_pais']+"' class='tab-pane'><div class='panel-body'>Conteudo "+detalhe2['nome']+"</div></div>");
 													x++;
 												}
 												else
 												{
-													$("#lista"+detalhe2['id_dashboard']).append("<li class=''><a data-toggle='tab' href='#"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
+													$("#listaP"+detalhe2['id_dashboard']).append("<li class=''><a data-toggle='tab' href='#"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
 													$(".tab-content"+detalhe2['id_dashboard']).append("<div id='"+detalhe2['id_pais']+"' class='tab-pane'><div class='panel-body'>Conteudo "+detalhe2['nome']+"</div></div>");
 												}
 												
