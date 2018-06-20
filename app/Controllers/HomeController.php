@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use Core\BaseController;
+use Core\Container;
 
 class HomeController extends BaseController
 {
@@ -184,6 +185,7 @@ class HomeController extends BaseController
     public function UserLogado($aParam)
     {
         $aParam = (array) $aParam;
+        $model  = Container::getModel("Dashboard");
         
         $sede = $this->GetSede($aParam['sede']);
         $pais = $this->GetPais($aParam['pais']);
@@ -191,9 +193,26 @@ class HomeController extends BaseController
         //Oficina Internacional
         if($sede[0]['id'] == 1)
         {
+            //Envia os Dashboard desse usuario
+            $aDash = $model->BuscaDashboard($_SESSION['Planificacion']['user_id']);
+            
+            for($i=0; $i < count($aDash); $i++)
+            {
+                $aDashboard[$i] = (array) $aDash[$i];
+            }
+            
             //Enviar Nome de todos Paises
             $aPaises = $this->Paises();
             $result  = $aPaises;
+            
+            if(!empty($aDashboard))
+            {
+                $tipo    = 'AdminValor';
+            }
+            else
+            {
+                $tipo    = 'AdminSemValor';
+            }
         }
         
         //Sede Nacional
@@ -202,6 +221,7 @@ class HomeController extends BaseController
             //Enviar Nome do Pais e todas Sedes deste Pais
             $aSedes = $this->Sedes($aParam['pais']);
             $result = $aSedes;
+            $tipo   = 'Nacional';
             
         } 
         //Outras Sedes
@@ -209,12 +229,73 @@ class HomeController extends BaseController
         {
             $aSedes[0]['id'] = $sede[0]['id'];
             $aSedes[0]['sede'] = $sede[0]['nombre'];
+            $tipo = 'Normal';
             
             //Envia Apenas Nome desta Sede
             $result = $aSedes;
         }
         
-        echo json_encode(array("data" => $result));
+        echo json_encode(array("data" => $result, 'dash' => $aDashboard, 'tipo' => $tipo));
+    }
+    
+    //Grava Nomes dos DashBoards
+    public function GravaDashboard($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['nome'] = filter_var($aParam['nome'], FILTER_SANITIZE_STRING);
+        
+        $model = Container::getModel("Dashboard");
+        
+        $result = $model->GravaDashboard($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
+    }
+    
+    public function ListaPaises()
+    {
+        //Busca paises
+        $aPaises = $this->Paises();
+        
+        //Busca os DashBoard do usuario logado
+        $model = Container::getModel("Dashboard");
+        
+        $result = $model->BuscaDashboard($_SESSION['Planificacion']['user_id']);
+        
+        echo json_encode(array("data" => $aPaises, 'dash' => $result));
+        
+    }
+    public function FinalizaDashboard($aParam)
+    {
+        $aParam = (array) $aParam;
+        $model  = Container::getModel("Dashboard");
+        
+        $paises = explode(',',$aParam['paises']);
+        $paises = array_filter($paises);
+        
+        //Comeca a gravar os paises do dashboard
+        for($i=0; $i < count($paises); $i++)
+        {
+            $aData = $paises[$i];
+            
+            $result = $model->GuardarDashPaises($aData, $aParam['dashboard']);
+        }
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
     
 }

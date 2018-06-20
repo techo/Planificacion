@@ -2,6 +2,9 @@
 /** Home **/
 $route[] = ['/', 'HomeController@index'];
 $route[] = ['/home/userlogado', 'HomeController@UserLogado'];
+$route[] = ['/home/gravadashboard', 'HomeController@GravaDashboard'];
+$route[] = ['/home/ListaPaises', 'HomeController@ListaPaises'];
+$route[] = ['/home/finaliza', 'HomeController@FinalizaDashboard'];
 
 /** Anos **/
 $route[] = ['/anos', 'AnosController@index'];
