@@ -68,4 +68,17 @@ class Dashboard extends BaseModel
         
         return $result;
     }
+    
+    public function BuscaDashPaises($id)
+    {
+        $sql  = "";
+        $sql .= "SELECT * ";
+        $sql .= " FROM dashboardpaises ";
+        $sql .= "WHERE deleted = 0 AND id_dashboard = " . $id . " AND id_creator = " . $_SESSION['Planificacion']['user_id'];
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

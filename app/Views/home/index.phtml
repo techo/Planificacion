@@ -77,14 +77,63 @@
     							$("#lista1").append("<li class='active'><a data-toggle='tab' href='#tab-dash'>General</a></li>");
 								$(".tab-content").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo General</div></div>");
 								$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+detalhe['id']+"'>"+detalhe['dashboard']+"</a></li>");
-								$(".tab-content").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>Conteudo ABA "+detalhe['dashboard']+"</div></div>");
+								$(".tab-content").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'></div></div>");
 								cont++;
     						}
     						else
     						{
     							$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+detalhe['id']+"'>"+detalhe['dashboard']+"</a></li>");
-								$(".tab-content").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>Conteudo ABA "+detalhe['dashboard']+"</div></div>");
+								$(".tab-content").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'></div></div>");
     						}
+
+    						// Busca os Paises dos Dashboards
+							 oDashboard     = new Object();	
+							 oDashboard.id  = detalhe['id'];
+							
+							$.ajax({
+								type: "POST",
+								url: "/home/carregacompleto",
+								dataType: "json",
+								data: oDashboard,
+								success: function(resp)
+								{	
+									var x = 0;
+									if(resp['results'] != null)
+									{
+										resp['results'].forEach(function(detalhe2) 
+										{
+											var str = removeAccents(detalhe2['nome']);
+											var str = str.replace(" ", "-");
+											console.log(str);
+											
+											//Gera primeira parte das tab de paises
+											if(x == 0)
+											{
+												$("#tab-"+detalhe2['id_dashboard'] +" .panel-body").append("<div class='tabs-container'><ul id='lista"+detalhe2['id_dashboard']+"' class='nav nav-tabs'></ul><div class='tab-content"+detalhe2['id_dashboard']+"'></div></div>");
+												x++;
+											}	
+											//ABA DE PAISES
+											if(detalhe['id'] == detalhe2['id_dashboard'])
+											{
+												//para aba 1 ativa
+												if(x == 1)
+												{
+													$("#lista"+detalhe2['id_dashboard']).append("<li class='active'><a data-toggle='tab' href='#"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
+													$(".tab-content"+detalhe2['id_dashboard']).append("<div id='"+detalhe2['id_pais']+"' class='tab-pane'><div class='panel-body'>Conteudo "+detalhe2['nome']+"</div></div>");
+													x++;
+												}
+												else
+												{
+													$("#lista"+detalhe2['id_dashboard']).append("<li class=''><a data-toggle='tab' href='#"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
+													$(".tab-content"+detalhe2['id_dashboard']).append("<div id='"+detalhe2['id_pais']+"' class='tab-pane'><div class='panel-body'>Conteudo "+detalhe2['nome']+"</div></div>");
+												}
+												
+											//	$(".tab-content").append("<div id='tab-pais"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>Conteudos</div></div>");
+											}
+										});
+									}
+								}
+							});
 						});
 
 						$("#lista1").append("<li class=''><a data-toggle='tab' id='maisDashboard' href='#tab-plus'>+ DashBoard</a></li>");

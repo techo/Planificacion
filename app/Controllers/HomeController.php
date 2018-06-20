@@ -272,6 +272,7 @@ class HomeController extends BaseController
         echo json_encode(array("data" => $aPaises, 'dash' => $result));
         
     }
+    
     public function FinalizaDashboard($aParam)
     {
         $aParam = (array) $aParam;
@@ -296,6 +297,27 @@ class HomeController extends BaseController
         {
             echo json_encode(array("results" => false));
         }
+    }
+    
+    public function CarregaCompleto($aParam)
+    {
+        $aParam = (array) $aParam;
+        $model  = Container::getModel("Dashboard");
+        
+        $result = $model->BuscaDashPaises($aParam['id']);
+        
+        for($i=0; $i < count($result); $i++)
+        {
+            $aDados[$i] = (array) $result[$i];
+            
+            $pais = $this->GetPais($aDados[$i]['id_pais']);
+            
+            $aDados[$i]['nome'] = $pais['nombre'];
+            $aDados[$i]['id']   = $pais['id'];
+            
+        }
+        
+        echo json_encode(array("results" => $aDados));
     }
     
 }
