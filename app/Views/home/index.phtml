@@ -31,7 +31,7 @@
                             		<ul id="lista1" class="nav nav-tabs">
                             			
                             		</ul>
-                        		<div class="tab-content">
+                        		<div class="tab-content tabPai">
                         		</div>
                             	</div>
                         	</div>    
@@ -75,15 +75,15 @@
     						{
     							//Primeira Aba
     							$("#lista1").append("<li class='active'><a data-toggle='tab' href='#tab-dash'>General</a></li>");
-								$(".tab-content").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo General</div></div>");
+								$(".tabPai").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo General</div></div>");
 								$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+detalhe['id']+"'>"+detalhe['dashboard']+"</a></li>");
-								$(".tab-content").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'></div></div>");
+								$(".tabPai").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'></div></div>");
 								cont++;
     						}
     						else
     						{
     							$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+detalhe['id']+"'>"+detalhe['dashboard']+"</a></li>");
-								$(".tab-content").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'></div></div>");
+								$(".tabPai").append("<div id='tab-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'></div></div>");
     						}
 
     						// Busca os Paises dos Dashboards
@@ -117,14 +117,14 @@
 												//para aba 1 ativa
 												if(x == 1)
 												{
-													$("#listaP"+detalhe2['id_dashboard']).append("<li class='active'><a data-toggle='tab' href='#tabFilho-"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
-													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"' class='tab-pane active'><div class='panel-body'>Conteudo XXX "+detalhe2['nome']+"</div></div>");
+													$("#listaP"+detalhe2['id_dashboard']).append("<li class='active'><a data-toggle='tab' href='#tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
+													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"' class='tab-pane active'><div class='panel-body'>Conteudo XXX "+detalhe2['nome']+"</div></div>");
 													x++;
 												}
 												else
 												{
-													$("#listaP"+detalhe2['id_dashboard']).append("<li class=''><a data-toggle='tab' href='#tabFilho-"+detalhe2['id_pais']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
-													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"' class='tab-pane'><div class='panel-body'>Conteudo YYY "+detalhe2['nome']+"</div></div>");
+													$("#listaP"+detalhe2['id_dashboard']).append("<li class=''><a data-toggle='tab' href='#tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
+													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>Conteudo YYY "+detalhe2['nome']+"</div></div>");
 												}
 												
 											//	$(".tab-content").append("<div id='tab-pais"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>Conteudos</div></div>");
@@ -136,15 +136,15 @@
 						});
 
 						$("#lista1").append("<li class=''><a data-toggle='tab' id='maisDashboard' href='#tab-plus'>+ DashBoard</a></li>");
-						$(".tab-content").append("<div id='tab-plus' class='tab-pane'><div class='panel-body'>Aba + Paises</div></div>");
+						$(".tabPai").append("<div id='tab-plus' class='tab-pane'><div class='panel-body'>Aba + Paises</div></div>");
 					}
 
 					if(resp['tipo'] == 'AdminSemValor')
 					{
 						$("#lista1").append("<li class='active'><a data-toggle='tab' href='#tab-dash'>General</a></li>");
-						$(".tab-content").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo General</div></div>");
+						$(".tabPai").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo General</div></div>");
 						$("#lista1").append("<li class=''><a data-toggle='tab' id='maisDashboard' href='#tab-plus'>+ DashBoard</a></li>");
-						$(".tab-content").append("<div id='tab-plus' class='tab-pane'><div class='panel-body'>Aba + Paises</div></div>");
+						$(".tabPai").append("<div id='tab-plus' class='tab-pane'><div class='panel-body'>Aba + Paises</div></div>");
 					}
 					
 					if(resp['tipo'] == 'Nacional' || resp['tipo'] == 'Normal')
@@ -158,14 +158,14 @@
 								{
 									//Primeira Aba
 									$("#lista1").append("<li class='active'><a data-toggle='tab' href='#tab-dash'>DashBoard</a></li>");
-									$(".tab-content").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo DashBoard</div></div>");
+									$(".tabPai").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo DashBoard</div></div>");
 									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['sede'] +"</a></li>");
-									$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+									$(".tabPai").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
 								}
 								else
 								{
 									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['sede'] +"</a></li>");
-									$(".tab-content").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+									$(".tabPai").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
 								}
 								
 								cont++;
@@ -210,7 +210,7 @@
                                       		{	
                                           		//Gravou o dashboard no banco e gera abas de paises
                                       			$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+ j +"'>"+name+"</a></li>");
-            									$(".tab-content").append("<div id='tab-"+ j +"' class='tab-pane'><div class='tabs-container'><ul class='nav nav-tabs'><li id='maispais' class='active'><a data-toggle='tab' href='#tab-1'>+ Pa&iacute;ses</a></li></ul><div class='tab-content'><div id='tab-1' class='tab-pane active'><div class='panel-body'>conteudo paises</div></div></div></div><div class='panel-body'>");
+            									$(".tabPai").append("<div id='tab-"+ j +"' class='tab-pane'><div class='tabs-container'><ul class='nav nav-tabs'><li id='maispais' class='active'><a data-toggle='tab' href='#tab-1'>+ Pa&iacute;ses</a></li></ul><div class='tab-content'><div id='tab-1' class='tab-pane active'><div class='panel-body'>conteudo paises</div></div></div></div><div class='panel-body'>");
             									j++;
             									bindPaises();		
                                       		}
