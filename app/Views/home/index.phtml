@@ -118,13 +118,13 @@
 												if(x == 1)
 												{
 													$("#listaP"+detalhe2['id_dashboard']).append("<li class='active'><a data-toggle='tab' href='#tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
-													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"' class='tab-pane active'><div class='panel-body'>Conteudo XXX "+detalhe2['nome']+"</div></div>");
+													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"' class='tab-pane active'><div class='panel-body'>Conteudo XXX "+detalhe2['select']+"</div></div>");
 													x++;
 												}
 												else
 												{
 													$("#listaP"+detalhe2['id_dashboard']).append("<li class=''><a data-toggle='tab' href='#tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"'><img src='/assets/img/flags/16/"+str+".png' alt='"+detalhe2['nome']+"'> "+detalhe2['nome']+"</a></li>");
-													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>Conteudo YYY "+detalhe2['nome']+"</div></div>");
+													$(".filho-"+detalhe2['id_dashboard']).append("<div id='tabFilho-"+detalhe2['id_pais']+"-"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>"+detalhe2['select']+"</div></div>");
 												}
 												
 											//	$(".tab-content").append("<div id='tab-pais"+detalhe['id']+"' class='tab-pane'><div class='panel-body'>Conteudos</div></div>");
@@ -210,7 +210,7 @@
                                       		{	
                                           		//Gravou o dashboard no banco e gera abas de paises
                                       			$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+ j +"'>"+name+"</a></li>");
-            									$(".tabPai").append("<div id='tab-"+ j +"' class='tab-pane'><div class='tabs-container'><ul class='nav nav-tabs'><li id='maispais' class='active'><a data-toggle='tab' href='#tab-1'>+ Pa&iacute;ses</a></li></ul><div class='tab-content'><div id='tab-1' class='tab-pane active'><div class='panel-body'>conteudo paises</div></div></div></div><div class='panel-body'>");
+            									$(".tabPai").append("<div id='tab-"+ j +"' class='tab-pane'><div class='tabs-container'><ul class='nav nav-tabs'><li id='maispais' class='active'><a data-toggle='tab' href='#tab-1'>+ Pa&iacute;ses</a></li></ul><div class='tab-content'><div id='tab-1' class='tab-pane active'><div class='panel-body'>Haga clic en + Pa&iacute;ses para crear su lista.</div></div></div></div><div class='panel-body'>");
             									j++;
             									bindPaises();		
                                       		}

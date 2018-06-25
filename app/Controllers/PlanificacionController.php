@@ -535,11 +535,30 @@ class PlanificacionController extends BaseController
             $aArea = $this->GetArea($Dados['id_area']);
             $cArea = $aArea['codigo'];
             
+            if(strlen($Dados['indicador']) > 60)
+            {
+                $punto = ' ... ';
+            }
+            else
+            {
+                $punto = ' ';
+            }
+            
+            if(strlen($cPilar) > 43)
+            {
+                $punt = ' ... ';
+            }
+            else
+            {
+                $punt = ' ';
+            }
+            
+            
             $aIndicador[$i]['id'] = $Dados['id'];
             $aIndicador[$i]['formato']                   = $Dados['formato'];
-            $aIndicador[$i]['values']['indicador']       = $Dados['indicador'];
+            $aIndicador[$i]['values']['indicador']       = substr($Dados['indicador'], 0, 60) . $punto;
             $aIndicador[$i]['values']['tipo']            = $Dados['tipo'];
-            $aIndicador[$i]['values']['pilar']           = $cPilar;
+            $aIndicador[$i]['values']['pilar']           = substr($cPilar, 0, 31). $punt;
             $aIndicador[$i]['values']['area']            = $cArea;
             $aIndicador[$i]['values']['enero_plan']      = $Dados['enero_plan'] == NULL ? 0 : $Dados['enero_plan'];
             $aIndicador[$i]['values']['enero_real']      = $Dados['enero_real'] == NULL ? 0 : $Dados['enero_real'];

@@ -1,5 +1,7 @@
 window.onload = function() 
 {
+	$('#loading-techo').show();
+	
 	var metadata = [];
 	var data = [];
 	oData   = new Object();	
@@ -249,6 +251,7 @@ window.onload = function()
 							$( ".editablegrid-diciembre_real" ).removeClass( "editablegrid-diciembre_real" ).addClass( "editablegrid-diciembre_real No-Edit" );
 						}
 						
+						$('#loading-techo').hide();
 						
 						//console.log(editableGrid.columns[4]['editable']);
 						
