@@ -32,6 +32,7 @@ window.onload = function()
 					data: oResult,
 					success: function(oData)
 					{	
+						$('#loading-techo').hide();
 						if(oData['data'])
 						{
 							data = oData['data'];
@@ -250,8 +251,6 @@ window.onload = function()
 						{
 							$( ".editablegrid-diciembre_real" ).removeClass( "editablegrid-diciembre_real" ).addClass( "editablegrid-diciembre_real No-Edit" );
 						}
-						
-						$('#loading-techo').hide();
 						
 						//console.log(editableGrid.columns[4]['editable']);
 						
