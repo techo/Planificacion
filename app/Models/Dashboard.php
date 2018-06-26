@@ -82,13 +82,14 @@ class Dashboard extends BaseModel
         return $result;
     }
     
-    public function BuscaDadosGerais($idPais, $idcplanificacion)
+    public function BuscaDadosGerais($idPais, $idcplanificacion, $idSede=0)
     {
         $sql  =  "SELECT 
                   indicador,
                   formato,
                   tipo,
                   id_indicador,
+                  id_sede,
                   SUM(acumulado_plan_anual) AS acumulado_plan_anual,
                   SUM(acumulado_real_anual) AS acumulado_real_anual,
                   (SUM(acumulado_real_anual) / SUM(acumulado_plan_anual) * 100) AS acumulado_rp_anual,
@@ -222,7 +223,13 @@ class Dashboard extends BaseModel
         $sql .= " FROM dplanificacion ";
         $sql .= " INNER JOIN indicador on indicador.id = dplanificacion.id_indicador ";
         $sql .= " INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
-        $sql .= "WHERE dplanificacion.id_cplanificacion = ". $idcplanificacion." AND dplanificacion.id_pais = " . $idPais. " AND dplanificacion.id_indicador IN ('5','6','7','8','9','10','11','12','13','14','15','16','17','18') GROUP BY dplanificacion.id_indicador";
+        $sql .= "WHERE dplanificacion.id_cplanificacion = ". $idcplanificacion." AND dplanificacion.id_pais = " . $idPais;
+        if($idSede != 0)
+        {
+            $sql .= " AND dplanificacion.id_sede = " . $idSede;
+        }
+       
+        $sql .= " AND dplanificacion.id_indicador IN ('5','6','7','8','9','10','11','12','13','14','15','16','17','18') GROUP BY dplanificacion.id_indicador";
         $sql .= " ) soma GROUP BY id_indicador ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();

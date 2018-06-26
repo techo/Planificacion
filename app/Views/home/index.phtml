@@ -152,6 +152,8 @@
 						//DashBoard Sede Nacional e Outras
 						resp['data'].forEach(function(details) {
 
+							console.log(details);
+
 							if(details['sede'])
 							{
 								if(cont == 1)
@@ -160,12 +162,12 @@
 									$("#lista1").append("<li class='active'><a data-toggle='tab' href='#tab-dash'>DashBoard</a></li>");
 									$(".tabPai").append("<div id='tab-dash' class='tab-pane active'><div class='panel-body'>Conteudo DashBoard</div></div>");
 									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['sede'] +"</a></li>");
-									$(".tabPai").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+									$(".tabPai").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'> " + details['select'] +"</div></div>");
 								}
 								else
 								{
 									$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-"+cont+"'>" + details['sede'] +"</a></li>");
-									$(".tabPai").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'>Conteudo " + cont +"</div></div>");
+									$(".tabPai").append("<div id='tab-"+cont+"' class='tab-pane'><div class='panel-body'> " + details['select'] +"</div></div>");
 								}
 								
 								cont++;
