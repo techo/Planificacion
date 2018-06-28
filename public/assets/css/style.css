@@ -8593,3 +8593,22 @@ div#DataTables_Table_0_wrapper .btn, .dataTables-example .btn {
 ::-webkit-scrollbar {
     height: 6px;
 }
+
+/* Cores Padrões Grid */
+th.azul {
+    background-color: #0f56cc!important;
+    color: #fff;
+}
+td.Verde {
+    background: #36771b;
+    color: #fff;
+}
+td.Amarelo {
+    background: #f1c332;
+    color: #000;
+}
+
+td.Vermelho {
+    background: #cc0001;
+    color: #fff;
+}

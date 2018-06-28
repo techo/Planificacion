@@ -842,7 +842,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td>' . number_format($indicadores->minimo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' .number_format($indicadores->minimo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
                         $html .= '<td>' . $indicadores->minimo_plan_s1. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->minimo_real_s1. ' ' .$formato .'</td>';
                         
@@ -862,7 +862,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td>' . number_format($indicadores->minimo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' .number_format($indicadores->minimo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
                         $html .= '<td>' . $indicadores->minimo_plan_s2. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->minimo_real_s2. ' ' .$formato .'</td>';
                         
@@ -882,7 +882,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td>' . number_format($indicadores->minimo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' .number_format($indicadores->minimo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
                     }
                     
                     if($indicadores->tipo == 'Maximo')
@@ -906,7 +906,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td>' . number_format($indicadores->maximo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' .number_format($indicadores->maximo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
                         $html .= '<td>' . $indicadores->maximo_plan_s1. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->maximo_real_s1. ' ' .$formato .'</td>';
                         
@@ -926,7 +926,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td>' . number_format($indicadores->maximo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
                         $html .= '<td>' . $indicadores->maximo_plan_s2. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->maximo_real_s2. ' ' .$formato .'</td>';
                         
@@ -946,7 +946,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td>' . number_format($indicadores->maximo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' .number_format($indicadores->maximo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
                     }
                     
                     if($indicadores->tipo == 'Ultimo')
@@ -971,7 +971,7 @@ class HomeController extends BaseController
                         }
                         
                         
-                        $html .= '<td>' . number_format($indicadores->ultimo_rp_anual, 2, '.', '') . ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_anual, 2, '.', '') . ' ' .$porcento.'</td>';
                         $html .= '<td>' . $indicadores->ultimo_plan_s1. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->ultimo_real_s1. ' ' .$formato .'</td>';
                         
@@ -992,7 +992,7 @@ class HomeController extends BaseController
                         }
                         
                         
-                        $html .= '<td>' . number_format($indicadores->ultimo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
                         $html .= '<td>' . $indicadores->ultimo_plan_s2. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->ultimo_real_s2. ' ' .$formato .'</td>';
                         
@@ -1012,7 +1012,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td>' . number_format($indicadores->ultimo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' .number_format($indicadores->ultimo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
                     }
                 }
                 
