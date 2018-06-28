@@ -142,7 +142,7 @@ function GeneraResultado()
 				  
 				  while (max < qtd) 
 				  {
-					  random = Math.floor((Math.random() * 6) + 1) -1;
+					  random = Math.floor((Math.random() * 10) + 1) -1;
 					  
 					  valores.splice(0, 0, {label: dados[max].pais,backgroundColor: color(cores[random]).alpha(0.5).rgbString(),borderColor: cores[random],borderWidth: 1,data: [dados[max].Plan_anual, dados[max].Real_anual, dados[max].RP_anual, dados[max].Plan_t1, dados[max].Real_t1, dados[max].RP_t1, dados[max].Plan_t2, dados[max].Real_t2, dados[max].RP_t2, dados[max].Plan_t3, dados[max].Real_t3, dados[max].RP_t3, dados[max].Plan_t4, dados[max].Real_t4, dados[max].RP_t4, dados[max].Plan_s1, dados[max].Real_s1, dados[max].RP_s1, dados[max].Plan_s2, dados[max].Real_s2, dados[max].RP_s2]});
 					  
