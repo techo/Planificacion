@@ -92,6 +92,7 @@ class ProyectosController extends BaseController
     
     public function show($id)
     {
+        $this->setPageTitle('Proyectos');
         $model = Container::getModel("Proyecto");
         $this->view->proyecto = $model->search($id);
         
