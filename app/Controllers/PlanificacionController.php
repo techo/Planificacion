@@ -122,6 +122,20 @@ class PlanificacionController extends BaseController
         $model = Container::getModel("CPlanificacion");
         $this->view->planificacion = $model->search($id);
         
+        $this->view->proyecto = $model->ListProyectos($_GET['sede'], $id);
+        
+        for($i=0; $i < count($this->view->proyecto); $i++)
+        {
+            $pais  = $this->view->proyecto[$i]->id_pais;
+            $sede = $this->view->proyecto[$i]->id_sede;
+            
+            $cPais = $this->GetPais($pais);
+            $cSede = $this->GetSede($sede);
+            
+            $this->view->proyecto[$i]->pais = $cPais['nombre'];
+            $this->view->proyecto[$i]->sede = $cSede[0]['nombre'];
+        }
+        
         $this->renderView('planificacion/planificar', 'layout');
     }
     

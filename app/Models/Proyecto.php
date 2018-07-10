@@ -79,4 +79,80 @@ class Proyecto extends BaseModel
         return $result;
     }
     
+    public function GrabarProyecto($aParam)
+    {
+        $sql  = "";
+        $sql .= "INSERT INTO {$this->table} (";
+        $sql .= "id, ";
+        $sql .= "proyecto, ";
+        $sql .= "responsable, ";
+        $sql .= "id_ano, ";
+        $sql .= "id_pais, ";
+        $sql .= "id_sede, ";
+        $sql .= "id_cplanificacion, ";
+        $sql .= "id_indicador_1, ";
+        $sql .= "ponderacion_1, ";
+        $sql .= "id_indicador_2, ";
+        $sql .= "ponderacion_2, ";
+        $sql .= "id_indicador_3, ";
+        $sql .= "ponderacion_3, ";
+        $sql .= "id_indicador_4, ";
+        $sql .= "ponderacion_4, ";
+        $sql .= "id_indicador_5, ";
+        $sql .= "ponderacion_5, ";
+        $sql .= "id_indicador_6, ";
+        $sql .= "ponderacion_6, ";
+        $sql .= "id_indicador_7, ";
+        $sql .= "ponderacion_7, ";
+        $sql .= "id_indicador_8, ";
+        $sql .= "ponderacion_8, ";
+        $sql .= "id_indicador_9, ";
+        $sql .= "ponderacion_9, ";
+        $sql .= "id_indicador_10, ";
+        $sql .= "ponderacion_10, ";
+        $sql .= "id_creator, ";
+        $sql .= "id_updater, ";
+        $sql .= "date_insert, ";
+        $sql .= "date_update, ";
+        $sql .= "deleted) VALUES (";
+        $sql .= " NULL, ";
+        $sql .= "'". $aParam[0]['proyecto']."', ";
+        $sql .= "'". $aParam[0]['responsable']."', ";
+        $sql .= "'". $aParam['ano']."', ";
+        $sql .= "'". $aParam['pais']."', ";
+        $sql .= "'". $aParam['sede']."', ";
+        $sql .= "'". $aParam[0]['planificacion']."', ";
+        $sql .= "'". $aParam[0]['indicador']."', ";
+        $sql .= "'". $aParam[0]['ponderacion']."', ";
+        $sql .= "". ($aParam[1]['indicador']    ? $aParam[1]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[1]['ponderacion']  ? $aParam[1]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[2]['indicador']    ? $aParam[2]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[2]['ponderacion']  ? $aParam[2]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[3]['indicador']    ? $aParam[3]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[3]['ponderacion']  ? $aParam[3]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[4]['indicador']    ? $aParam[4]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[4]['ponderacion']  ? $aParam[4]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[5]['indicador']    ? $aParam[5]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[5]['ponderacion']  ? $aParam[5]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[6]['indicador']    ? $aParam[6]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[6]['ponderacion']  ? $aParam[6]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[7]['indicador']    ? $aParam[7]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[7]['ponderacion']  ? $aParam[7]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[8]['indicador']    ? $aParam[8]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[8]['ponderacion']  ? $aParam[8]['ponderacion'] : 'NULL') .", ";
+        $sql .= "". ($aParam[9]['indicador']    ? $aParam[9]['indicador']   : 'NULL') .", ";
+        $sql .= "". ($aParam[9]['ponderacion']  ? $aParam[9]['ponderacion'] : 'NULL') .", ";
+        $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= " 0, ";
+        $sql .= " NOW(), ";
+        $sql .= " '0000-00-00 00:00:00', ";
+        $sql .= " 0)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
+    
 }

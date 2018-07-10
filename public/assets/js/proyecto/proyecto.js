@@ -17,6 +17,7 @@ function GuardarProyecto(indicadores)
 		oFinal[index] = {proyecto: oData.proyecto, responsable: oData.responsable, indicador: oData.indicador, ponderacion: oData.ponderacion, planificacion: oData.planificacion};
 	});
 	
+	$('#loading-techo').show();
 	$.ajax({
 		type: "POST",
 		url: "/proyecto/save",
@@ -24,7 +25,30 @@ function GuardarProyecto(indicadores)
 		data: oFinal,
 		success: function(resp)
 		{	
-			
+			if(resp)
+			{
+				$('#loading-techo').hide();
+				$.confirm({
+				    content: "Grabado con éxito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/planificacion";
+				        }
+				    }
+				});
+			}
+			else
+			{
+				$('#loading-techo').hide();
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/planificacion";
+				        }
+				    }
+				});
+			}
 		}
 	});
 }

@@ -980,4 +980,20 @@ class CPlanificacion extends BaseModel
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function ListProyectos($idSede, $idCPlanificacion)
+    {
+        $sql  = "";
+        $sql .= "SELECT  proyecto.*, ";
+        $sql .= "ano.ano";
+        $sql .= " FROM proyecto ";
+        $sql .= " INNER JOIN ano ON ano.id = proyecto.id_ano ";
+        $sql .= "WHERE proyecto.deleted = 0 ";
+        $sql .= " AND proyecto.id_sede = " . $idSede . " AND proyecto.id_cplanificacion = " . $idCPlanificacion;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
 }

@@ -50,7 +50,7 @@ class ProyectosController extends BaseController
         {
             $aDados[$k]['planificacion'] = $v['planificacion'];
             $aDados[$k]['indicador']     = $v['indicador'];
-            $aDados[$k]['poneracion']    = $v['ponderacion'];
+            $aDados[$k]['ponderacion']   = $v['ponderacion'];
             $aDados[$k]['proyecto']      = $v['proyecto'];
             $aDados[$k]['responsable']   = $v['responsable'];
         }
@@ -62,13 +62,21 @@ class ProyectosController extends BaseController
         $aAno =  $model->BuscaAno($aDados[0]['planificacion']);
         
         //Ano vinculado ao Projeto
-        $aDados['ano'] = $aAno->ano;
+        $aDados['ano'] = $aAno->id_ano;
+        
         $aDados['pais'] = $_SESSION['Planificacion']['pais_id'];
         $aDados['sede'] = $_SESSION['Planificacion']['sede_id'];
         
         //Gravar Projeto
+        $aRet = $model->GrabarProyecto($aDados);
         
-        echo('<pre>');
-        die(print_r($aDados, true));
+        if($aRet)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
 }

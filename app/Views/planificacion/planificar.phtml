@@ -88,7 +88,6 @@
                                                         <th>Pa&iacute;s</th>
                                                         <th>Sede</th>
                                                         <th>Responsable</th>
-                                                        <th>Status</th>
                                                         <th>Opciones</th>
                                             		</tr>
                                             	</thead>
@@ -100,7 +99,6 @@
                                             		<td><?php echo($proyecto->pais);?></td>
                                             		<td><?php echo($proyecto->sede);?></td>
                                             		<td><?php echo($proyecto->responsable);?></td>
-                                            		<td><?php ($proyecto->situation == '1' ? $proyecto->situation = 'Activo' : $proyecto->situation = 'Inactivo'); echo($proyecto->situation);?></td>
                                             		<td class="center"><a href="/proyecto/show/<?php echo($proyecto->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($proyecto->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
                                             	<?php endforeach; ?>
                                             	</tbody>
