@@ -93,4 +93,8 @@ $route[] = ['/generador/SearchPais', 'GeneradorController@CarregaPais'];
 $route[] = ['/generador/SearchIndicador', 'GeneradorController@GeraIndicador'];
 $route[] = ['/generador/GeraPais', 'GeneradorController@GeraPais'];
 
+/** Proyectos **/
+$route[] = ['/proyecto/add', 'ProyectosController@add'];
+$route[] = ['/proyecto/save', 'ProyectosController@save'];
+
 return $route;
