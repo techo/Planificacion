@@ -96,5 +96,7 @@ $route[] = ['/generador/GeraPais', 'GeneradorController@GeraPais'];
 /** Proyectos **/
 $route[] = ['/proyecto/add', 'ProyectosController@add'];
 $route[] = ['/proyecto/save', 'ProyectosController@save'];
+$route[] = ['/proyecto/delete/{id}', 'ProyectosController@delete'];
+$route[] = ['/proyecto/show/{id}', 'ProyectosController@show'];
 
 return $route;

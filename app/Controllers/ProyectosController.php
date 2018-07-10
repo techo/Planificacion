@@ -79,4 +79,15 @@ class ProyectosController extends BaseController
             echo json_encode(array("results" => false));
         }
     }
+    
+    public function delete($id)
+    {
+        $model  = Container::getModel("Proyecto");
+        $result = $model->delete($id);
+        
+        if($result)
+        {
+            header('Location: /planificacion');
+        }
+    }
 }

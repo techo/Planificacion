@@ -155,4 +155,16 @@ class Proyecto extends BaseModel
         return $result;
     }
     
+    public function delete($id)
+    {
+        $query .= "UPDATE {$this->table} SET ";
+        $query .= "deleted = 1 ";
+        $query .= "WHERE id=:id ";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }

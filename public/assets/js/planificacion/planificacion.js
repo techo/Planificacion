@@ -42,8 +42,6 @@ window.onload = function()
 						
 						editableGrid.load({"metadata": metadata, "data": data});
 						
-						console.log(editableGrid);
-						
 						//Exibe os Formatos dos Campos
 						editableGrid.data.forEach(function(o,i) {
 							if(editableGrid.data[i].formato == '%' )  

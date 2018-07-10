@@ -144,5 +144,27 @@ $(document).ready(function(){
     });
 
 });
+
+function Delete(id)
+{
+	var id = id
+    $.confirm({
+        content: 'Est\u00E1 seguro de que desea borrar este proyecto',
+        buttons: {
+            specialKey: {
+                text: 'S\u00ED',
+                action: function(){
+                	window.location.replace("/proyecto/delete/"+id);
+                }
+            },
+            alphabet: {
+                text: 'No',
+                action: function(){
+                    return;
+                }
+            }
+        }
+    });
+}
 </script>
 </html>
