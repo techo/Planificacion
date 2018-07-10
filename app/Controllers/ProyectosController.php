@@ -53,6 +53,8 @@ class ProyectosController extends BaseController
             $aDados[$k]['ponderacion']   = $v['ponderacion'];
             $aDados[$k]['proyecto']      = $v['proyecto'];
             $aDados[$k]['responsable']   = $v['responsable'];
+            $aDados[$k]['pais']          = $v['pais'];
+            $aDados[$k]['sede']          = $v['sede'];
         }
         
         unset($aDados['method']);
@@ -63,9 +65,6 @@ class ProyectosController extends BaseController
         
         //Ano vinculado ao Projeto
         $aDados['ano'] = $aAno->id_ano;
-        
-        $aDados['pais'] = $_SESSION['Planificacion']['pais_id'];
-        $aDados['sede'] = $_SESSION['Planificacion']['sede_id'];
         
         //Gravar Projeto
         $aRet = $model->GrabarProyecto($aDados);
@@ -89,5 +88,169 @@ class ProyectosController extends BaseController
         {
             header('Location: /planificacion');
         }
+    }
+    
+    public function show($id)
+    {
+        $model = Container::getModel("Proyecto");
+        $this->view->proyecto = $model->search($id);
+        
+        //Todos Indicadores Cadastrados
+        $this->view->indicador = $model->ListaIndicador();
+        
+        //Verificar quais estao selecionados e quais nao para formar a lista
+        for($i=0; $i < count($this->view->indicador); $i++)
+        {
+            $j = 0;
+            $aTeste = (array) $this->view->indicador[$i];
+            
+            if($this->view->proyecto->id_indicador_1 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_1 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_1.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_2 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_2 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_2.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_3 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_3 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_3.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_4 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_4 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_4.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_5 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_5 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_5.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_6 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_6 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_6.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_7 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_7 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_7.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_8 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_8 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_8.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_9 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_9 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_9.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($this->view->proyecto->id_indicador_10 == $aTeste['id'])
+            {
+                $html .= '<tr class="odd selected">';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$this->view->proyecto->id_indicador_10 .'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td>'.$this->view->proyecto->ponderacion_10.'</td>';
+                $html .= '</tr>';
+                $j++;
+            }
+            
+            if($j == 0)
+            {
+                $html .= '<tr>';
+                $html .= '<td></td>';
+                $html .= '<td hidden>'.$aTeste['id'].'</td>';
+                $html .= '<td>'.$aTeste['indicador'].'</td>';
+                $html .= '<td>'.$aTeste['temporalidad'].'</td>';
+                $html .= '<td>'.$aTeste['tipo'].'</td>';
+                $html .= '<td> 0</td>';
+                $html .= '</tr>';
+            }
+        }
+        
+        //Devolvo o HTML
+        $this->view->indicadores = $html;
+        
+        /* Render View Paises */
+        $this->renderView('Proyecto/edit', 'layout');
     }
 }

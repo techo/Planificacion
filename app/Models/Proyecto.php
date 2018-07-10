@@ -119,8 +119,8 @@ class Proyecto extends BaseModel
         $sql .= "'". $aParam[0]['proyecto']."', ";
         $sql .= "'". $aParam[0]['responsable']."', ";
         $sql .= "'". $aParam['ano']."', ";
-        $sql .= "'". $aParam['pais']."', ";
-        $sql .= "'". $aParam['sede']."', ";
+        $sql .= "'". $aParam[0]['pais']."', ";
+        $sql .= "'". $aParam[0]['sede']."', ";
         $sql .= "'". $aParam[0]['planificacion']."', ";
         $sql .= "'". $aParam[0]['indicador']."', ";
         $sql .= "'". $aParam[0]['ponderacion']."', ";
@@ -163,6 +163,49 @@ class Proyecto extends BaseModel
         $stmt = $this->pdo->prepare($query);
         $stmt->bindValue(":id", $id);
         $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function search($id)
+    {
+        $query = "SELECT * FROM {$this->table} WHERE id=:id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function ListaIndicador()
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= "indicador.id,";
+        $sql .= "indicador.indicador, ";
+        $sql .= "indicador.situation, ";
+        $sql .= "indicador.id_temporalidad, ";
+        $sql .= "temporalidad.temporalidad, ";
+        $sql .= "indicador.id_tipo, ";
+        $sql .= "tipo.tipo, ";
+        $sql .= "indicador.id_pilar, ";
+        $sql .= "pilar.pilar, ";
+        $sql .= "indicador.id_pais, ";
+        $sql .= "indicador.id_area, ";
+        $sql .= "indicador.id_sede, ";
+        $sql .= "indicador.id_creator, ";
+        $sql .= "indicador.id_updater, ";
+        $sql .= "indicador.date_insert, ";
+        $sql .= "indicador.date_update ";
+        $sql .= "FROM indicador ";
+        $sql .= "INNER JOIN temporalidad ON temporalidad.id = indicador.id_temporalidad ";
+        $sql .= "INNER JOIN tipo ON tipo.id = indicador.id_tipo ";
+        $sql .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
+        $sql .= "WHERE indicador.deleted = 0 ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
         $stmt->closeCursor();
         return $result;
     }
