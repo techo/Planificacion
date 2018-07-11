@@ -113,7 +113,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_1.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_1->id.'" value="'.$this->view->proyecto->ponderacion_1.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -126,7 +126,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_2.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_2->id.'" value="'.$this->view->proyecto->ponderacion_2.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -139,7 +139,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_3.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_3->id.'" value="'.$this->view->proyecto->ponderacion_3.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -152,7 +152,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_4.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_4->id.'" value="'.$this->view->proyecto->ponderacion_4.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -165,7 +165,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_5.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_5->id.'" value="'.$this->view->proyecto->ponderacion_5.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -178,7 +178,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_6.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_6->id.'" value="'.$this->view->proyecto->ponderacion_6.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -191,7 +191,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_7.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_7->id.'" value="'.$this->view->proyecto->ponderacion_7.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -204,7 +204,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_8.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_8->id.'" value="'.$this->view->proyecto->ponderacion_8.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -217,7 +217,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_9.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_9->id.'" value="'.$this->view->proyecto->ponderacion_9.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
@@ -230,7 +230,7 @@ class ProyectosController extends BaseController
                 $html .= '<td>'.$aTeste['indicador'].'</td>';
                 $html .= '<td>'.$aTeste['temporalidad'].'</td>';
                 $html .= '<td>'.$aTeste['tipo'].'</td>';
-                $html .= '<td>'.$this->view->proyecto->ponderacion_10.'</td>';
+                $html .= '<td><input type="ponderacion" name="ponderacion" id="'.$this->view->proyecto->id_indicador_10->id.'" value="'.$this->view->proyecto->ponderacion_10.'"></td>';
                 $html .= '</tr>';
                 $j++;
             }
