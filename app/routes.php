@@ -98,5 +98,6 @@ $route[] = ['/proyecto/add', 'ProyectosController@add'];
 $route[] = ['/proyecto/save', 'ProyectosController@save'];
 $route[] = ['/proyecto/delete/{id}', 'ProyectosController@delete'];
 $route[] = ['/proyecto/show/{id}', 'ProyectosController@show'];
+$route[] = ['/proyecto/edit', 'ProyectosController@edit'];
 
 return $route;

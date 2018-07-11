@@ -16,6 +16,8 @@ function GuardarProyecto(indicadores)
 		
 		oData.sede = $('#sede1').val();
 		oData.pais = $('#pais1').val();	
+		
+		console.log(oData);
 					
 		oFinal[index] = {proyecto: oData.proyecto, responsable: oData.responsable, indicador: oData.indicador, ponderacion: oData.ponderacion, planificacion: oData.planificacion, pais: oData.pais, sede: oData.sede};
 	});
@@ -43,6 +45,37 @@ function GuardarProyecto(indicadores)
 			else
 			{
 				$('#loading-techo').hide();
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/planificacion";
+				        }
+				    }
+				});
+			}
+		}
+	});
+}
+
+function EditarProyecto(indicadores, id)
+{
+	var oData = new Object();
+	oData.id = id;
+	
+	$.ajax({
+		type: "POST",
+		url: "/proyecto/edit",
+		dataType: "json",
+		data: oData,
+		success: function(resp)
+		{	
+			if(resp)
+			{
+				GuardarProyecto(indicadores);
+			}
+			else
+			{
 				$.confirm({
 				    content: "Erro ao Grabar.",
 				    buttons: {
