@@ -252,7 +252,7 @@ class ProyectosController extends BaseController
         $this->view->indicadores = $html;
         
         /* Render View Paises */
-        $this->renderView('Proyecto/edit', 'layout');
+        $this->renderView('proyecto/edit', 'layout');
     }
     
     //Desativo o Projeto e gero outro com os dados atualizados

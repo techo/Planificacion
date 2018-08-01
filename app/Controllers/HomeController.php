@@ -1026,6 +1026,8 @@ class HomeController extends BaseController
                 
                 $result[$i]['select'] = $html;
             }
+            
+            //Implementar Grids relacionados a Projetos
         }
         
         echo json_encode(array("data" => $result, 'dash' => $aDashboard, 'tipo' => $tipo));
