@@ -33,9 +33,13 @@ class PlanificacionController extends BaseController
         
         // Se nao for Oficina Internacional lista apenas da sua SEDE
         $idSede = $_SESSION['Planificacion']['sede_id'];
+        $idPais = $_SESSION['Planificacion']['pais_id'];
+        
+        $tp = $this->GetSede($idSede);
+        $n = $tp[0]['nombre'];
         
         //Busca Planificacion
-        $this->view->planificacion = $model->selectExpefica($idSede);
+        $this->view->planificacion = $model->selectExpefica($idSede, $idPais, $n);
         
         for($i=0; $i < count($this->view->planificacion); $i++)
         {

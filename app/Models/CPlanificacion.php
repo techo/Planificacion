@@ -60,7 +60,7 @@ class CPlanificacion extends BaseModel
         return $result;
     }
     
-    public function selectExpefica($idSede)
+    public function selectExpefica($idSede, $idPais, $n)
     {
         $sql  = "";
         $sql .= "SELECT ";
@@ -102,10 +102,15 @@ class CPlanificacion extends BaseModel
         $sql .= "INNER JOIN ano ano ON ano.id = {$this->table}.id_ano ";
         $sql .= "INNER JOIN dplanificacion ON dplanificacion.id_cplanificacion = {$this->table}.id ";
         $sql .= "WHERE {$this->table}.deleted = 0 ";
-        //Nao Oficina Internacional
-        if($idSede != 1)
+        //Nao Oficina Internacional nem Sede Nacional
+        if($idSede != 1 && $n != 'Sede Nacional')
         {
             $sql .= " AND dplanificacion.id_sede = " . $idSede;
+        }
+        //Sede Nacional
+        if($n == 'Sede Nacional')
+        {
+            $sql .= " AND dplanificacion.id_pais = " . $idPais;
         }
         
         $sql .= " GROUP BY id_sede, id Order By ano.ano";
