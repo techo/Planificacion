@@ -99,6 +99,18 @@ class Dashboard extends BaseModel
                   SUM(acumulado_plan_s2) AS acumulado_plan_s2,
                   SUM(acumulado_real_s2) AS acumulado_real_s2,
                   (SUM(acumulado_real_s2) / SUM(acumulado_plan_s2) * 100) AS acumulado_rp_s2,
+                  SUM(acumulado_plan_t1) AS acumulado_plan_t1,
+                  SUM(acumulado_real_t1) AS acumulado_real_t1,
+                  (SUM(acumulado_real_t1) / SUM(acumulado_plan_t1) * 100) AS acumulado_rp_t1,
+                  SUM(acumulado_plan_t2) AS acumulado_plan_t2,
+                  SUM(acumulado_real_t2) AS acumulado_real_t2,
+                  (SUM(acumulado_real_t2) / SUM(acumulado_plan_t2) * 100) AS acumulado_rp_t2,
+                  SUM(acumulado_plan_t3) AS acumulado_plan_t3,
+                  SUM(acumulado_real_t3) AS acumulado_real_t3,
+                  (SUM(acumulado_real_t3) / SUM(acumulado_plan_t3) * 100) AS acumulado_rp_t3,
+                  SUM(acumulado_plan_t4) AS acumulado_plan_t4,
+                  SUM(acumulado_real_t4) AS acumulado_real_t4,
+                  (SUM(acumulado_real_t4) / SUM(acumulado_plan_t4) * 100) AS acumulado_rp_t4,
                   SUM(promedio_plan_anual) AS promedio_plan_anual,
                   SUM(promedio_real_anual) AS promedio_real_anual,
                   (SUM(promedio_real_anual) / SUM(promedio_plan_anual) * 100) AS promedio_rp_anual,
@@ -108,6 +120,18 @@ class Dashboard extends BaseModel
                   SUM(promedio_plan_s2) AS promedio_plan_s2,
                   SUM(promedio_real_s2) AS promedio_real_s2,
                   (SUM(promedio_real_s2) / SUM(promedio_plan_s2) * 100) AS promedio_rp_s2,
+                  SUM(promedio_plan_t1) AS promedio_plan_t1,
+                  SUM(promedio_real_t1) AS promedio_real_t1,
+                  (SUM(promedio_real_t1) / SUM(promedio_plan_t1) * 100) AS promedio_rp_t1,
+                  SUM(promedio_plan_t2) AS promedio_plan_t2,
+                  SUM(promedio_real_t2) AS promedio_real_t2,
+                  (SUM(promedio_real_t2) / SUM(promedio_plan_t2) * 100) AS promedio_rp_t2,
+                  SUM(promedio_plan_t3) AS promedio_plan_t3,
+                  SUM(promedio_real_t3) AS promedio_real_t3,
+                  (SUM(promedio_real_t3) / SUM(promedio_plan_t3) * 100) AS promedio_rp_t3,
+                  SUM(promedio_plan_t4) AS promedio_plan_t4,
+                  SUM(promedio_real_t4) AS promedio_real_t4,
+                  (SUM(promedio_real_t4) / SUM(promedio_plan_t4) * 100) AS promedio_rp_t4,
                   SUM(minimo_plan_anual) AS minimo_plan_anual,
                   SUM(minimo_real_anual) AS minimo_real_anual,
                   (SUM(minimo_real_anual) / SUM(minimo_plan_anual) * 100) AS minimo_rp_anual,
@@ -117,6 +141,18 @@ class Dashboard extends BaseModel
                   SUM(minimo_plan_s2) AS minimo_plan_s2,
                   SUM(minimo_real_s2) AS minimo_real_s2,
                   (SUM(minimo_real_s2) / SUM(minimo_plan_s2) * 100) AS minimo_rp_s2,
+                  SUM(minimo_plan_t1) AS minimo_plan_t1,
+                  SUM(minimo_real_t1) AS minimo_real_t1,
+                  (SUM(minimo_real_t1) / SUM(minimo_plan_t1) * 100) AS minimo_rp_t1,
+                  SUM(minimo_plan_t2) AS minimo_plan_t2,
+                  SUM(minimo_real_t2) AS minimo_real_t2,
+                  (SUM(minimo_real_t2) / SUM(minimo_plan_t2) * 100) AS minimo_rp_t2,
+                  SUM(minimo_plan_t3) AS minimo_plan_t3,
+                  SUM(minimo_real_t3) AS minimo_real_t3,
+                  (SUM(minimo_real_t3) / SUM(minimo_plan_t3) * 100) AS minimo_rp_t3,
+                  SUM(minimo_plan_t4) AS minimo_plan_t4,
+                  SUM(minimo_real_t4) AS minimo_real_t4,
+                  (SUM(minimo_real_t4) / SUM(minimo_plan_t4) * 100) AS minimo_rp_t4,
                   SUM(maximo_plan_anual) AS maximo_plan_anual,
                   SUM(maximo_real_anual) AS maximo_real_anual,
                   (SUM(maximo_real_anual) / SUM(maximo_plan_anual) * 100) AS maximo_rp_anual,
@@ -126,6 +162,18 @@ class Dashboard extends BaseModel
                   SUM(maximo_plan_s2) AS maximo_plan_s2,
                   SUM(maximo_real_s2) AS maximo_real_s2,
                   (SUM(maximo_real_s2) / SUM(maximo_plan_s2) * 100) AS maximo_rp_s2,
+                  SUM(maximo_plan_t1) AS maximo_plan_t1,
+                  SUM(maximo_real_t1) AS maximo_real_t1,
+                 (SUM(maximo_real_t1) / SUM(maximo_plan_t1) * 100) AS maximo_rp_t1,
+                  SUM(maximo_plan_t2) AS maximo_plan_t2,
+                  SUM(maximo_real_t2) AS maximo_real_t2,
+                  (SUM(maximo_real_t2) / SUM(maximo_plan_t2) * 100) AS maximo_rp_t2,
+                  SUM(maximo_plan_t3) AS maximo_plan_t3,
+                  SUM(maximo_real_t3) AS maximo_real_t3,
+                  (SUM(maximo_real_t3) / SUM(maximo_plan_t3) * 100) AS maximo_rp_t3,
+                  SUM(maximo_plan_t4) AS maximo_plan_t4,
+                  SUM(maximo_real_t4) AS maximo_real_t4,
+                  (SUM(maximo_real_t4) / SUM(maximo_plan_t4) * 100) AS maximo_rp_t4,
                   SUM(ultimo_plan_anual) AS ultimo_plan_anual,
                   SUM(ultimo_real_anual) AS ultimo_real_anual,
                   (SUM(ultimo_real_anual) / SUM(ultimo_plan_anual) * 100) AS ultimo_rp_anual,
@@ -135,6 +183,18 @@ class Dashboard extends BaseModel
                   SUM(ultimo_plan_s2) AS ultimo_plan_s2,
                   SUM(ultimo_real_s2) AS ultimo_real_s2,
                   (SUM(ultimo_real_s2) / SUM(ultimo_plan_s2) * 100) AS ultimo_rp_s2,
+                  SUM(ultimo_plan_t1) AS ultimo_plan_t1,
+                  SUM(ultimo_real_t1) AS ultimo_real_t1,
+                  (SUM(ultimo_real_t1) / SUM(ultimo_plan_t1) * 100) AS ultimo_rp_t1,
+                  SUM(ultimo_plan_t2) AS ultimo_plan_t2,
+                  SUM(ultimo_real_t2) AS ultimo_real_t2,
+                  (SUM(ultimo_real_t2) / SUM(ultimo_plan_t2) * 100) AS ultimo_rp_t2,
+                  SUM(ultimo_plan_t3) AS ultimo_plan_t3,
+                  SUM(ultimo_real_t3) AS ultimo_real_t3,
+                  (SUM(ultimo_real_t3) / SUM(ultimo_plan_t3) * 100) AS ultimo_rp_t3,
+                  SUM(ultimo_plan_t4) AS ultimo_plan_t4,
+                  SUM(ultimo_real_t4) AS ultimo_real_t4,
+                  (SUM(ultimo_real_t4) / SUM(ultimo_plan_t4) * 100) AS ultimo_rp_t4,
                   id_indicador
                 FROM ( ";
         $sql .= "SELECT ";
@@ -176,6 +236,18 @@ class Dashboard extends BaseModel
         $sql .= "SUM(dplanificacion.acumulado_plan_s2) as acumulado_plan_s2, ";
         $sql .= "SUM(dplanificacion.acumulado_real_s2) as acumulado_real_s2, ";
         $sql .= "SUM(dplanificacion.acumulado_rp_s2) as acumulado_rp_s2, ";
+        $sql .= "SUM(dplanificacion.acumulado_plan_t1) AS acumulado_plan_t1, ";
+        $sql .= "SUM(dplanificacion.acumulado_real_t1) AS acumulado_real_t1, ";
+        $sql .= "SUM(dplanificacion.acumulado_rp_t1) AS acumulado_rp_t1, ";
+        $sql .= "SUM(dplanificacion.acumulado_plan_t2) AS acumulado_plan_t2, ";
+        $sql .= "SUM(dplanificacion.acumulado_real_t2) AS acumulado_real_t2, ";
+        $sql .= "SUM(dplanificacion.acumulado_rp_t2) AS acumulado_rp_t2, ";
+        $sql .= "SUM(dplanificacion.acumulado_plan_t3) AS acumulado_plan_t3, ";
+        $sql .= "SUM(dplanificacion.acumulado_real_t3) AS acumulado_real_t3, ";
+        $sql .= "SUM(dplanificacion.acumulado_rp_t3) AS acumulado_rp_t3, ";
+        $sql .= "SUM(dplanificacion.acumulado_plan_t4) AS acumulado_plan_t4, ";
+        $sql .= "SUM(dplanificacion.acumulado_real_t4) AS acumulado_real_t4, ";
+        $sql .= "SUM(dplanificacion.acumulado_rp_t4) AS acumulado_rp_t4, ";
         
         
         $sql .= "SUM(dplanificacion.promedio_plan_anual) as promedio_plan_anual, ";
@@ -187,6 +259,18 @@ class Dashboard extends BaseModel
         $sql .= "SUM(dplanificacion.promedio_plan_s2) as promedio_plan_s2, ";
         $sql .= "SUM(dplanificacion.promedio_real_s2) as promedio_real_s2, ";
         $sql .= "SUM(dplanificacion.promedio_rp_s2) as promedio_rp_s2, ";
+        $sql .= "SUM(dplanificacion.promedio_plan_t1) AS promedio_plan_t1, ";
+        $sql .= "SUM(dplanificacion.promedio_real_t1) AS promedio_real_t1, ";
+        $sql .= "SUM(dplanificacion.promedio_rp_t1) AS promedio_rp_t1, ";
+        $sql .= "SUM(dplanificacion.promedio_plan_t2) AS promedio_plan_t2, ";
+        $sql .= "SUM(dplanificacion.promedio_real_t2) AS promedio_real_t2, ";
+        $sql .= "SUM(dplanificacion.promedio_rp_t2) AS promedio_rp_t2, ";
+        $sql .= "SUM(dplanificacion.promedio_plan_t3) AS promedio_plan_t3, ";
+        $sql .= "SUM(dplanificacion.promedio_real_t3) AS promedio_real_t3, ";
+        $sql .= "SUM(dplanificacion.promedio_rp_t3) AS promedio_rp_t3, ";
+        $sql .= "SUM(dplanificacion.promedio_plan_t4) AS promedio_plan_t4, ";
+        $sql .= "SUM(dplanificacion.promedio_real_t4) AS promedio_real_t4, ";
+        $sql .= "SUM(dplanificacion.promedio_rp_t4) AS promedio_rp_t4, ";
         
         $sql .= "SUM(dplanificacion.minimo_plan_anual) as minimo_plan_anual, ";
         $sql .= "SUM(dplanificacion.minimo_real_anual) as minimo_real_anual, ";
@@ -197,6 +281,18 @@ class Dashboard extends BaseModel
         $sql .= "SUM(dplanificacion.minimo_plan_s2) as minimo_plan_s2, ";
         $sql .= "SUM(dplanificacion.minimo_real_s2) as minimo_real_s2, ";
         $sql .= "SUM(dplanificacion.minimo_rp_s2) as minimo_rp_s2, ";
+        $sql .= "SUM(dplanificacion.minimo_plan_t1) AS minimo_plan_t1, ";
+        $sql .= "SUM(dplanificacion.minimo_real_t1) AS minimo_real_t1, ";
+        $sql .= "SUM(dplanificacion.minimo_rp_t1) AS minimo_rp_t1, ";
+        $sql .= "SUM(dplanificacion.minimo_plan_t2) AS minimo_plan_t2, ";
+        $sql .= "SUM(dplanificacion.minimo_real_t2) AS minimo_real_t2, ";
+        $sql .= "SUM(dplanificacion.minimo_rp_t2) AS minimo_rp_t2, ";
+        $sql .= "SUM(dplanificacion.minimo_plan_t3) AS minimo_plan_t3, ";
+        $sql .= "SUM(dplanificacion.minimo_real_t3) AS minimo_real_t3, ";
+        $sql .= "SUM(dplanificacion.minimo_rp_t3) AS minimo_rp_t3, ";
+        $sql .= "SUM(dplanificacion.minimo_plan_t4) AS minimo_plan_t4, ";
+        $sql .= "SUM(dplanificacion.minimo_real_t4) AS minimo_real_t4, ";
+        $sql .= "SUM(dplanificacion.minimo_rp_t4) AS minimo_rp_t4, ";
         
         $sql .= "SUM(dplanificacion.maximo_plan_anual) as maximo_plan_anual, ";
         $sql .= "SUM(dplanificacion.maximo_real_anual) as maximo_real_anual, ";
@@ -207,6 +303,18 @@ class Dashboard extends BaseModel
         $sql .= "SUM(dplanificacion.maximo_plan_s2) as maximo_plan_s2, ";
         $sql .= "SUM(dplanificacion.maximo_real_s2) as maximo_real_s2, ";
         $sql .= "SUM(dplanificacion.maximo_rp_s2) as maximo_rp_s2, ";
+        $sql .= "SUM(dplanificacion.maximo_plan_t1) AS maximo_plan_t1, ";
+        $sql .= "SUM(dplanificacion.maximo_real_t1) AS maximo_real_t1, ";
+        $sql .= "SUM(dplanificacion.maximo_rp_t1) AS maximo_rp_t1, ";
+        $sql .= "SUM(dplanificacion.maximo_plan_t2) AS maximo_plan_t2, ";
+        $sql .= "SUM(dplanificacion.maximo_real_t2) AS maximo_real_t2, ";
+        $sql .= "SUM(dplanificacion.maximo_rp_t2) AS maximo_rp_t2, ";
+        $sql .= "SUM(dplanificacion.maximo_plan_t3) AS maximo_plan_t3, ";
+        $sql .= "SUM(dplanificacion.maximo_real_t3) AS maximo_real_t3, ";
+        $sql .= "SUM(dplanificacion.maximo_rp_t3) AS maximo_rp_t3, ";
+        $sql .= "SUM(dplanificacion.maximo_plan_t4) AS maximo_plan_t4, ";
+        $sql .= "SUM(dplanificacion.maximo_real_t4) AS maximo_real_t4, ";
+        $sql .= "SUM(dplanificacion.maximo_rp_t4) AS maximo_rp_t4, ";
         
         $sql .= "SUM(dplanificacion.ultimo_plan_anual) as ultimo_plan_anual, ";
         $sql .= "SUM(dplanificacion.ultimo_real_anual) as ultimo_real_anual, ";
@@ -217,6 +325,19 @@ class Dashboard extends BaseModel
         $sql .= "SUM(dplanificacion.ultimo_plan_s2) as ultimo_plan_s2, ";
         $sql .= "SUM(dplanificacion.ultimo_real_s2) as ultimo_real_s2, ";
         $sql .= "SUM(dplanificacion.ultimo_rp_s2) as ultimo_rp_s2, ";
+        $sql .= "SUM(dplanificacion.ultimo_plan_t1) AS ultimo_plan_t1, ";
+        $sql .= "SUM(dplanificacion.ultimo_real_t1) AS ultimo_real_t1, ";
+        $sql .= "SUM(dplanificacion.ultimo_rp_t1) AS ultimo_rp_t1, ";
+        $sql .= "SUM(dplanificacion.ultimo_plan_t2) AS ultimo_plan_t2, ";
+        $sql .= "SUM(dplanificacion.ultimo_real_t2) AS ultimo_real_t2, ";
+        $sql .= "SUM(dplanificacion.ultimo_rp_t2) AS ultimo_rp_t2, ";
+        $sql .= "SUM(dplanificacion.ultimo_plan_t3) AS ultimo_plan_t3, ";
+        $sql .= "SUM(dplanificacion.ultimo_real_t3) AS ultimo_real_t3, ";
+        $sql .= "SUM(dplanificacion.ultimo_rp_t3) AS ultimo_rp_t3, ";
+        $sql .= "SUM(dplanificacion.ultimo_plan_t4) AS ultimo_plan_t4, ";
+        $sql .= "SUM(dplanificacion.ultimo_real_t4) AS ultimo_real_t4, ";
+        $sql .= "SUM(dplanificacion.ultimo_rp_t4) AS ultimo_rp_t4, ";
+        
         $sql .= "indicador.indicador,  ";
         $sql .= "indicador.formato,  ";
         $sql .= "tipo.tipo  ";
@@ -231,6 +352,10 @@ class Dashboard extends BaseModel
        
         $sql .= " AND dplanificacion.id_indicador IN ('5','6','7','8','9','10','11','12','13','14','15','16','17','18') GROUP BY dplanificacion.id_indicador";
         $sql .= " ) soma GROUP BY id_indicador ";
+        
+        //echo('<pre>');
+      //  die(print_r($sql, true));
+        
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

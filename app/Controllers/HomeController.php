@@ -1139,6 +1139,18 @@ class HomeController extends BaseController
             $html .= '<th class="azul">Plan ' . $ano .'</th>';
             $html .= '<th class="azul">Real ' . $ano .'</th>';
             $html .= '<th class="azul">% (R/P)</th>';
+            $html .= '<th class="azul">Plan T1</th>';
+            $html .= '<th class="azul">Real T1</th>';
+            $html .= '<th class="azul">% (R/P) T1</th>';
+            $html .= '<th class="azul">Plan T2</th>';
+            $html .= '<th class="azul">Real T2</th>';
+            $html .= '<th class="azul">% (R/P) T2</th>';
+            $html .= '<th class="azul">Plan T3</th>';
+            $html .= '<th class="azul">Real T3</th>';
+            $html .= '<th class="azul">% (R/P) T3</th>';
+            $html .= '<th class="azul">Plan T4</th>';
+            $html .= '<th class="azul">Real T4</th>';
+            $html .= '<th class="azul">% (R/P) T4</th>';
             $html .= '<th class="azul">Plan S1</th>';
             $html .= '<th class="azul">Real S1</th>';
             $html .= '<th class="azul">% (R/P) S1</th>';
@@ -1185,6 +1197,96 @@ class HomeController extends BaseController
                     }
                     
                     $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T1
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor Acumulado RP T1
+                    if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') >= '60.00') && (number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T2
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor Acumulado RP T2
+                    if((number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t2, 2, '.', '') >= '60.00') && (number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t2, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T3
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor Acumulado RP T3
+                    if((number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t3, 2, '.', '') >= '60.00') && (number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t3, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T4
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor Acumulado RP T4
+                    if((number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t4, 2, '.', '') >= '60.00') && (number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->acumulado_rp_t4, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    
                     $html .= '<td>' . $indicadores->acumulado_plan_s1. ' ' .$formato .'</td>';
                     $html .= '<td class="cinza">' . $indicadores->acumulado_real_s1. ' ' .$formato .'</td>';
                     
@@ -1249,6 +1351,96 @@ class HomeController extends BaseController
                     }
                     
                     $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    
+                    //Custom T1
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor Promedio RP T1
+                    if((number_format($indicadores->promedio_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t1, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t1, 2, '.', '') >= '60.00') && (number_format($indicadores->promedio_rp_t1, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t1, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T2
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor promedio RP T2
+                    if((number_format($indicadores->promedio_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t2, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t2, 2, '.', '') >= '60.00') && (number_format($indicadores->promedio_rp_t2, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t2, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T3
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor promedio RP T3
+                    if((number_format($indicadores->promedio_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t3, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t3, 2, '.', '') >= '60.00') && (number_format($indicadores->promedio_rp_t3, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t3, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T4
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor promedio RP T4
+                    if((number_format($indicadores->promedio_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t4, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t4, 2, '.', '') >= '60.00') && (number_format($indicadores->promedio_rp_t4, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->promedio_rp_t4, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
                     $html .= '<td>' . $indicadores->promedio_plan_s1. ' ' .$formato .'</td>';
                     $html .= '<td class="cinza">' . $indicadores->promedio_real_s1. ' ' .$formato .'</td>';
                     
@@ -1313,6 +1505,95 @@ class HomeController extends BaseController
                     }
                     
                     $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T1
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor minimo RP T1
+                    if((number_format($indicadores->minimo_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t1, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t1, 2, '.', '') >= '60.00') && (number_format($indicadores->minimo_rp_t1, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t1, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T2
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor minimo RP T2
+                    if((number_format($indicadores->minimo_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t2, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t2, 2, '.', '') >= '60.00') && (number_format($indicadores->minimo_rp_t2, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t2, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T3
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor minimo RP T3
+                    if((number_format($indicadores->minimo_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t3, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t3, 2, '.', '') >= '60.00') && (number_format($indicadores->minimo_rp_t3, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t3, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T4
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor minimo RP T4
+                    if((number_format($indicadores->minimo_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t4, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t4, 2, '.', '') >= '60.00') && (number_format($indicadores->minimo_rp_t4, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->minimo_rp_t4, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
                     $html .= '<td>' . $indicadores->minimo_plan_s1. ' ' .$formato .'</td>';
                     $html .= '<td class="cinza">' . $indicadores->minimo_real_s1. ' ' .$formato .'</td>';
                     
@@ -1377,6 +1658,95 @@ class HomeController extends BaseController
                     }
                     
                     $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T1
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor maximo RP T1
+                    if((number_format($indicadores->maximo_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t1, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t1, 2, '.', '') >= '60.00') && (number_format($indicadores->maximo_rp_t1, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t1, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T2
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor maximo RP T2
+                    if((number_format($indicadores->maximo_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t2, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t2, 2, '.', '') >= '60.00') && (number_format($indicadores->maximo_rp_t2, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t2, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T3
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor maximo RP T3
+                    if((number_format($indicadores->maximo_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t3, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t3, 2, '.', '') >= '60.00') && (number_format($indicadores->maximo_rp_t3, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t3, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T4
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor maximo RP T4
+                    if((number_format($indicadores->maximo_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t4, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t4, 2, '.', '') >= '60.00') && (number_format($indicadores->maximo_rp_t4, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->maximo_rp_t4, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
                     $html .= '<td>' . $indicadores->maximo_plan_s1. ' ' .$formato .'</td>';
                     $html .= '<td class="cinza">' . $indicadores->maximo_real_s1. ' ' .$formato .'</td>';
                     
@@ -1441,6 +1811,96 @@ class HomeController extends BaseController
                     }
                     
                     $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_anual, 2, '.', '') . ' ' .$porcento.'</td>';
+                    
+                    //Custom T1
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor ultimo RP T1
+                    if((number_format($indicadores->ultimo_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t1, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t1, 2, '.', '') >= '60.00') && (number_format($indicadores->ultimo_rp_t1, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t1, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T2
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor ultimo RP T2
+                    if((number_format($indicadores->ultimo_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t2, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t2, 2, '.', '') >= '60.00') && (number_format($indicadores->ultimo_rp_t2, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t2, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T3
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor ultimo RP T3
+                    if((number_format($indicadores->ultimo_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t3, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t3, 2, '.', '') >= '60.00') && (number_format($indicadores->ultimo_rp_t3, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t3, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    //Custom T4
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    
+                    //Cor ultimo RP T4
+                    if((number_format($indicadores->ultimo_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t4, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t4, 2, '.', '') >= '60.00') && (number_format($indicadores->ultimo_rp_t4, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($indicadores->ultimo_rp_t4, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    
+                    
                     $html .= '<td>' . $indicadores->ultimo_plan_s1. ' ' .$formato .'</td>';
                     $html .= '<td class="cinza">' . $indicadores->ultimo_real_s1. ' ' .$formato .'</td>';
                     
