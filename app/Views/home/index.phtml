@@ -149,10 +149,10 @@
 					
 					if(resp['tipo'] == 'Nacional' || resp['tipo'] == 'Normal')
 					{
+						//console.log(resp['data']);
+						
 						//DashBoard Sede Nacional e Outras
 						resp['data'].forEach(function(details) {
-
-							console.log(details);
 
 							if(details['sede'])
 							{
@@ -173,6 +173,16 @@
 								cont++;
 							}
 						});
+
+						//ABA Pais para Sede Nacional e Outras Sedes
+						$("#lista1").append("<li class=''><a data-toggle='tab' href='#tab-paisxx'>" + "<img src='/assets/img/flags/16/" + resp['data'][0]['nomepais'] + ".png' alt='"+resp['data'][0]['nomepais']+"'>" + ' ' +resp['data'][0]['nomepais'] +"</a></li>");
+
+						if(resp['abapais'] == null)
+						{
+							resp['abapais'] = 'Ninguna Sede Planificada en ese pais!';
+						}
+						
+						$(".tabPai").append("<div id='tab-paisxx' class='tab-pane'><div class='panel-body'>"+ resp['abapais'] +"</div></div>");
 					}
 					
 					$('#loading-techo').hide();

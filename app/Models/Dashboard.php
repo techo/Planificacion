@@ -353,8 +353,8 @@ class Dashboard extends BaseModel
         $sql .= " AND dplanificacion.id_indicador IN ('5','6','7','8','9','10','11','12','13','14','15','16','17','18') GROUP BY dplanificacion.id_indicador";
         $sql .= " ) soma GROUP BY id_indicador ";
         
-        //echo('<pre>');
-      //  die(print_r($sql, true));
+//         echo('<pre>');
+//        die(print_r($sql, true));
         
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
