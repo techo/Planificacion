@@ -698,6 +698,7 @@ class CPlanificacion extends BaseModel
         {
             $sql .= " AND dplanificacion.id_pais = " . $idPais;
         }
+        
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
