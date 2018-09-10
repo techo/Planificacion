@@ -266,3 +266,15 @@ function Desmarcar()
 	    });
 	});
 }
+
+function DesmarcarKpis()
+{
+	$(".form-control option[value="+ 100 +"]").attr("selected",true);
+	
+	var table = $('#example');
+	table.find('tbody').each(function(indice){
+	    $(this).find('tr').each(function(indice){
+	    	$(this).removeClass();
+	    });
+	});
+}
