@@ -371,7 +371,7 @@ class TInformeController extends BaseController
         $html .= '<h5>Monitoreo de KPIs</h5>';
         $html .= '</div>';
         $html .= '<div class="ibox-content">';
-        $html .= '<table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
+        $html .= '<div id="tablecontent"><table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
         //$html .= '<table class="table table-striped table-bordered table-hover dataTables-example" >';
         $html .= '<thead>';
         $html .= '<tr>';
@@ -1138,7 +1138,7 @@ class TInformeController extends BaseController
         }
         
         $html .= '</tbody>';
-        $html .= '</table>';
+        $html .= '</table></div>';
         $html .= '</div>';
         $html .= '</div>';
         $html .= '</div>';
@@ -1184,7 +1184,7 @@ class TInformeController extends BaseController
         $html .= '<h5>Monitoreo de KPIs</h5>';
         $html .= '</div>';
         $html .= '<div class="ibox-content">';
-        $html .= '<table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
+        $html .= '<div id="tablecontent"> <table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
         $html .= '<thead>';
         $html .= '<tr>';
         $html .= '<th>KPI</th>';
@@ -1954,7 +1954,7 @@ class TInformeController extends BaseController
         }
         
         $html .= '</tbody>';
-        $html .= '</table>';
+        $html .= '</table></div>';
         $html .= '</div>';
         $html .= '</div>';
         $html .= '</div>';

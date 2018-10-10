@@ -8612,3 +8612,8 @@ td.Vermelho {
     background: #cc0001;
     color: #fff;
 }
+#tablecontent {
+ overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
