@@ -637,28 +637,28 @@ class TInformeController extends BaseController
             if($indicadores->tipo == 'Acumulado')
             {
                
-                $html .= '<td>' . $indicadores->acumulado_plan_anual . ' ' . $formato .'</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_anual. ' ' .$formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_plan_anual, 2, ',', '.') . ' ' . $formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_real_anual, 2, ',', '.'). ' ' .$formato .'</td>';
                 
                 //Cor Acumulado RP Anual
-                if(($indicadores->acumulado_rp_anual <= '0.00') || ($indicadores->acumulado_rp_anual <= '59.99'))
+                if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '59.99'))
                 {
                     $cCor = 'Vermelho';
                 }
                 
-                if(($indicadores->acumulado_rp_anual >= '60.00') && ($indicadores->acumulado_rp_anual <= '79.99'))
+                if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') >= '60.00') && (number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '79.99'))
                 {
                     $cCor = 'Amarelo';
                 }
                 
-                if(($indicadores->acumulado_rp_anual >= '80.00'))
+                if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') >= '80.00'))
                 {
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_anual, 2, ',', ' '). ' ' .$porcento.'</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t1. ' ' .$formato .'</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t1. ' ' .$formato .'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_anual, 2, ',', '.'). ' ' .$porcento.'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_plan_t1, 2, ',', '.') . ' ' .$formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_real_t1, 2, ',', '.') . ' ' .$formato .'</td>';
                 
                 //Cor Acumulado RP T1
                 if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '59.99'))
@@ -676,9 +676,9 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t1, 2, ',', ' '). ' ' .$porcento.'</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t2. ' ' .$formato .'</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t2. ' ' .$formato .'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t1, 2, ',', '.'). ' ' .$porcento.'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_plan_t2, 2, ',', '.') . ' ' .$formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_real_t2, 2, ',', '.') . ' ' .$formato .'</td>';
                 
                 //Cor Acumulado RP T2
                 if((number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '59.99'))
@@ -696,9 +696,9 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t2, 2, ',', ' '). ' ' .$porcento.'</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t3. ' ' .$formato .'</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t3. ' ' .$formato .'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t2, 2, ',', '.'). ' ' .$porcento.'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_plan_t3, 2, ',', '.') . ' ' .$formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_real_t3, 2, ',', '.') . ' ' .$formato .'</td>';
                 
                 //Cor Acumulado RP T3
                 if((number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '59.99'))
@@ -716,9 +716,9 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t3, 2, ',', ' '). ' ' .$porcento.'</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_t4. ' ' .$formato .'</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_t4. ' ' .$formato .'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t3, 2, ',', '.'). ' ' .$porcento.'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_plan_t4, 2, ',', '.') . ' ' .$formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_real_t4, 2, ',', '.') . ' ' .$formato .'</td>';
                 
                 //Cor Acumulado RP T4
                 if((number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '59.99'))
@@ -737,9 +737,9 @@ class TInformeController extends BaseController
                 }
                 
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t4, 2, ',', ' '). ' ' .$porcento.'</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_s1. ' ' .$formato .'</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_s1. ' ' .$formato .'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t4, 2, ',', '.'). ' ' .$porcento.'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_plan_s1, 2, ',', '.') . ' ' .$formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_real_s1, 2, ',', '.') . ' ' .$formato .'</td>';
                 
                 //Cor Acumulado RP S1
                 if((number_format($indicadores->acumulado_rp_s1, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_s1, 2, '.', '') <= '59.99'))
@@ -757,9 +757,9 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s1, 2, ',', ' '). ' ' .$porcento.'</td>';
-                $html .= '<td>' . $indicadores->acumulado_plan_s2. ' ' .$formato .'</td>';
-                $html .= '<td>' . $indicadores->acumulado_real_s2. ' ' .$formato .'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s1, 2, ',', '.'). ' ' .$porcento.'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_plan_s2, 2, ',', '.') . ' ' .$formato .'</td>';
+                $html .= '<td>' . number_format($indicadores->acumulado_real_s2, 2, ',', '.') . ' ' .$formato .'</td>';
                 
                 //Cor Acumulado RP S2
                 if((number_format($indicadores->acumulado_rp_s2, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_s2, 2, '.', '') <= '59.99'))
@@ -777,7 +777,7 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s2, 2, ',', ' '). ' ' .$porcento.'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s2, 2, ',', '.'). ' ' .$porcento.'</td>';
                 
             }
             
