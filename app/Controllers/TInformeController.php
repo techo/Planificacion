@@ -596,7 +596,7 @@ class TInformeController extends BaseController
         $html .= '<th>Tipo</th>';
         $html .= '<th>P. Anual</th>';
         $html .= '<th>R. Anual </th>';
-        $html .= '<th>% (R/P) Anual</th>';
+        $html .= '<th>% (R/P)</th>';
         $html .= '<th>P. T1</th>';
         $html .= '<th>R. T1</th>';
         $html .= '<th>% (R/P) T1</th>';
@@ -631,7 +631,7 @@ class TInformeController extends BaseController
             }
             
             $html .= '<tr class="gradeX">';
-            $html .= '<td>' . $indicadores->indicador . '</td>';
+            $html .= '<td title="'. $indicadores->indicador .'">' . $indicadores->indicador . '</td>';
             $html .= '<td>' . $indicadores->tipo. '</td>';
             
             if($indicadores->tipo == 'Acumulado')
