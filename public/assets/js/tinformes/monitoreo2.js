@@ -61,6 +61,7 @@ $("#loadPais").change(function()
 					   	     },
 					   	        pageLength: 25,
 					   	        responsive: true,
+					   	        "scrollX": true,
 					   	        dom: '<"html5buttons"B>lTfgitp',
 					   	        buttons: [
 					   	            { extend: 'copy'},

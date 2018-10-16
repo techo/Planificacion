@@ -78,8 +78,13 @@ $("#loadSede").change(function()
 				   	   	 "language": {
 				   	         "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 				   	     },
-				   	        pageLength: 25,
-				   	        responsive: true,
+				   	    scrollY:        "600px",
+				        scrollX:        true,
+				        scrollCollapse: true,
+				        paging:         false,
+				        fixedColumns:   {
+				            leftColumns: 1
+				        },
 				   	        dom: '<"html5buttons"B>lTfgitp',
 				   	        buttons: [
 				   	            { extend: 'copy'},
