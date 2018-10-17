@@ -145,7 +145,7 @@ class Proyecto extends BaseModel
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
-        $sql .= " '0000-00-00 00:00:00', ";
+        $sql .= " NOW(), ";
         $sql .= " 0)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
