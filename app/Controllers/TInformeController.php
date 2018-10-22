@@ -1963,7 +1963,153 @@ class TInformeController extends BaseController
         
         echo ($html);
         
+    }
+    
+    public function MonitoreoProyecto()
+    {
+        $this->setPageTitle('Monitoreo Proyecto');
+        $model = Container::getModel("TInforme");
         
+        //Busca Anos
+        $this->view->ano = $model->ListAnos();
+        
+        /* Render View Paises */
+        $this->renderView('tinforme/mproyecto', 'layout');
+        
+    }
+    
+    public function BuscaValoresProyecto($aDados)
+    {
+        $aDados = (array) $aDados;
+        
+        $cplanificacion  = $aDados['cplanificacion'];
+        $pais            = $aDados['idPais'];
+        
+        $model = Container::getModel("TInforme");
+        
+        //Busca Anual
+        $result = $model->BuscaProyectos($cplanificacion, $pais);
+        $i = 0;
+        
+        //Montar Grid Monitoreo Proyectos
+        $html .= '<div  class="wrapper wrapper-content animated fadeInRight">';
+        $html .= '<div class="row">';
+        $html .= '<div class="col-lg-12">';
+        $html .= '<div class="ibox float-e-margins">';
+        $html .= '<div class="ibox-title">';
+        $html .= '<h5>Monitoreo de Proyectos</h5>';
+        $html .= '</div>';
+        
+        foreach ($result as $dados)
+        {
+            $html .= '<div class="ibox-content" style="visibility: show;">';
+            $html .= '<a id="mostrar'.$i.'" href="javascript:mostrar('.$i.');">Ocultar</a>';
+            $html .= '<div id="tablecontent-'.$i.'"> <table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
+            $html .= '<thead>';
+            $html .= '<tr>';
+            $html .= '<th>Proyecto</th>';
+            $html .= '<th>KPI</th>';
+            $html .= '<th>Peso/Ponderaci&oacute;n</th>';
+            $html .= '</tr>';
+            $html .= '</thead>';
+            $html .= '<tbody>';
+            
+            $html .= '<tr class="gradeX">';
+            $html .= '<td title="'. $dados->proyecto.'">' . $dados->proyecto. '</td>';
+            
+            if($dados->Indicador1)
+            {
+                $html .= '<td title="'. $dados->Indicador1.'">' . $dados->Indicador1. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion1.'">' . $dados->Ponderacion1. '</td>';
+            }
+            
+            if($dados->Indicador2)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador2.'">' . $dados->Indicador2. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion2.'">' . $dados->Ponderacion2. '</td>';
+            }
+            
+            if($dados->Indicador3)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador3.'">' . $dados->Indicador3. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion3.'">' . $dados->Ponderacion3. '</td>';
+            }
+            
+            if($dados->Indicador4)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador4.'">' . $dados->Indicador4. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion4.'">' . $dados->Ponderacion4. '</td>';
+            }
+            
+            if($dados->Indicador5)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador5.'">' . $dados->Indicador5. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion5.'">' . $dados->Ponderacion5. '</td>';
+            }
+            
+            if($dados->Indicador6)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador6.'">' . $dados->Indicador6. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion6.'">' . $dados->Ponderacion6. '</td>';
+            }
+            
+            if($dados->Indicador7)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador7.'">' . $dados->Indicador7. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion7.'">' . $dados->Ponderacion7. '</td>';
+            }
+            
+            if($dados->Indicador8)
+            {
+                $html .= '<tr';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador8.'">' . $dados->Indicador8. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion8.'">' . $dados->Ponderacion8. '</td>';
+            }
+            
+            if($dados->Indicador9)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador9.'">' . $dados->Indicador9. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion9.'">' . $dados->Ponderacion9. '</td>';
+            }
+            
+            if($dados->Indicador10)
+            {
+                $html .= '<tr>';
+                $html .= '<th></th>';
+                $html .= '<td title="'. $dados->Indicador10.'">' . $dados->Indicador10. '</td>';
+                $html .= '<td title="'. $dados->Ponderacion10.'">' . $dados->Ponderacion10. '</td>';
+            }
+            
+            $i++;
+            $html .= '</tbody>';
+            $html .= '</table></div>';
+            $html .= '</div>';
+        }
+        
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '</div>';
+        
+//         echo('<pre>');
+//         die(print_r($result, true));
+        
+        echo ($html);
         
     }
         
