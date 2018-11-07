@@ -153,7 +153,7 @@ class TInforme extends BaseModel
         return $result;
     }
     
-    public function BuscaDadosGerais($idPais, $idcplanificacion)
+    public function BuscaDadosGerais($idPais, $idcplanificacion, $idIndicador = 0)
     {
         $sql  =  "SELECT
                   indicador,
@@ -416,6 +416,11 @@ class TInforme extends BaseModel
         $sql .= " INNER JOIN indicador on indicador.id = dplanificacion.id_indicador ";
         $sql .= " INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
         $sql .= "WHERE dplanificacion.id_cplanificacion = ". $idcplanificacion." AND dplanificacion.id_pais = " . $idPais;
+        
+        if($idIndicador != 0)
+        {
+            $sql .= " AND dplanificacion.id_indicador =  " . $idIndicador;
+        }
         $sql .= " GROUP BY dplanificacion.id_indicador";
         $sql .= " ) soma GROUP BY id_indicador ";
         
@@ -432,6 +437,7 @@ class TInforme extends BaseModel
     {
         $sql  = "";
         $sql .= "SELECT ";
+        $sql .= " ano.ano as 'ano',";
         $sql .= " proyecto.id_pais,";
         $sql .= " proyecto.id_ano,";
         $sql .= " proyecto.proyecto, ";
@@ -498,11 +504,29 @@ class TInforme extends BaseModel
         $sql .= " LEFT JOIN tipo T9 ON I9.id_tipo = T9.id";
         $sql .= " LEFT JOIN indicador I10 ON I10.id = proyecto.id_indicador_10";
         $sql .= " LEFT JOIN tipo T10 ON I10.id_tipo = T10.id";
-        $sql .= " WHERE proyecto.id_cplanificacion =  ". $cplanificacion. " and proyecto.id_pais = " . $idpais;
+        $sql .= " LEFT JOIN ano ON ano.id = proyecto.id_ano";
+        $sql .= " WHERE proyecto.deleted = 0 and proyecto.id_cplanificacion =  ". $cplanificacion. " and proyecto.id_pais = " . $idpais;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
         $stmt->closeCursor();
         return $result;
     }
+    
+    public function BuscaTipo($idIndicador)
+    {
+        $sql  = "";
+        $sql .= "SELECT  ";
+        $sql .= "indicador.indicador,  ";
+        $sql .= "LOWER(tipo.tipo) as 'tipo' ";
+        $sql .= " FROM indicador ";
+        $sql .= " INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
+        $sql .= "WHERE indicador.id = ". $idIndicador . ' and indicador.deleted = 0';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }

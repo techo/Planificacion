@@ -1987,7 +1987,7 @@ class TInformeController extends BaseController
         
         $model = Container::getModel("TInforme");
         
-        //Busca Anual
+        //Busca Dados
         $result = $model->BuscaProyectos($cplanificacion, $pais);
         $i = 0;
         
@@ -2003,13 +2003,16 @@ class TInformeController extends BaseController
         foreach ($result as $dados)
         {
             $html .= '<div class="ibox-content" style="visibility: show;">';
-            $html .= '<a id="mostrar'.$i.'" href="javascript:mostrar('.$i.');">Ocultar</a>';
+         //   $html .= '<a id="mostrar'.$i.'" href="javascript:mostrar('.$i.');">Ocultar</a>';
             $html .= '<div id="tablecontent-'.$i.'"> <table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
             $html .= '<thead>';
             $html .= '<tr>';
             $html .= '<th>Proyecto</th>';
             $html .= '<th>KPI</th>';
-            $html .= '<th>Peso/Ponderaci&oacute;n</th>';
+            $html .= '<th class="azul">Peso/Ponderaci&oacute;n</th>';
+            $html .= '<th class="azul">Plan '. $dados->ano .'</th>';
+            $html .= '<th class="azul">Real '. $dados->ano .'</th>';
+            $html .= '<th class="azul">% (R/P) '. $dados->ano .'</th>';
             $html .= '</tr>';
             $html .= '</thead>';
             $html .= '<tbody>';
@@ -2021,6 +2024,27 @@ class TInformeController extends BaseController
             {
                 $html .= '<td title="'. $dados->Indicador1.'">' . $dados->Indicador1. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion1.'">' . $dados->Ponderacion1. '</td>';
+                
+                //Busca Tipo do Indicador
+               // $tipo = $model->BuscaTipo($dados->Id_1);
+                
+                //Busca Dados do KPI 1
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_1);
+                
+//                 echo('<pre>');
+//                 die(print_r($aRet, true));
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
+                
             }
             
             if($dados->Indicador2)
@@ -2029,6 +2053,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador2.'">' . $dados->Indicador2. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion2.'">' . $dados->Ponderacion2. '</td>';
+                
+                //Busca Dados do KPI 2
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_2);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador3)
@@ -2037,6 +2075,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador3.'">' . $dados->Indicador3. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion3.'">' . $dados->Ponderacion3. '</td>';
+                
+                //Busca Dados do KPI 3
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_3);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador4)
@@ -2045,6 +2097,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador4.'">' . $dados->Indicador4. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion4.'">' . $dados->Ponderacion4. '</td>';
+                
+                //Busca Dados do KPI 4
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_4);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador5)
@@ -2053,6 +2119,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador5.'">' . $dados->Indicador5. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion5.'">' . $dados->Ponderacion5. '</td>';
+                
+                //Busca Dados do KPI 5
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_5);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador6)
@@ -2061,6 +2141,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador6.'">' . $dados->Indicador6. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion6.'">' . $dados->Ponderacion6. '</td>';
+                
+                //Busca Dados do KPI 6
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_6);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador7)
@@ -2069,6 +2163,21 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador7.'">' . $dados->Indicador7. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion7.'">' . $dados->Ponderacion7. '</td>';
+                
+                //Busca Dados do KPI 7
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_7);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador8)
@@ -2077,6 +2186,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador8.'">' . $dados->Indicador8. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion8.'">' . $dados->Ponderacion8. '</td>';
+                
+                //Busca Dados do KPI 8
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_8);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador9)
@@ -2085,6 +2208,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador9.'">' . $dados->Indicador9. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion9.'">' . $dados->Ponderacion9. '</td>';
+                
+                //Busca Dados do KPI 9
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_9);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             if($dados->Indicador10)
@@ -2093,6 +2230,20 @@ class TInformeController extends BaseController
                 $html .= '<th></th>';
                 $html .= '<td title="'. $dados->Indicador10.'">' . $dados->Indicador10. '</td>';
                 $html .= '<td title="'. $dados->Ponderacion10.'">' . $dados->Ponderacion10. '</td>';
+                
+                //Busca Dados do KPI 10
+                $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_10);
+                
+                if(!empty($aRet))
+                {
+                    $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
+                    $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
+                    $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
+                    
+                    $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
+                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                }
             }
             
             $i++;
@@ -2105,9 +2256,6 @@ class TInformeController extends BaseController
         $html .= '</div>';
         $html .= '</div>';
         $html .= '</div>';
-        
-//         echo('<pre>');
-//         die(print_r($result, true));
         
         echo ($html);
         

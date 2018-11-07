@@ -62,7 +62,8 @@ $("#loadPais").change(function()
 					   	        responsive: true,
 					   	        "scrollX": true,
 					   	        order: [2, 'asc'],
-					   	       "paging": false
+					   	       "paging": false,
+					   	       "bInfo" : false
 					   	    });
 					}
 				});
