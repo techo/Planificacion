@@ -1991,17 +1991,57 @@ class TInformeController extends BaseController
         $result = $model->BuscaProyectos($cplanificacion, $pais);
         $i = 0;
         
-        //Montar Grid Monitoreo Proyectos
-        $html .= '<div  class="wrapper wrapper-content animated fadeInRight">';
-        $html .= '<div class="row">';
-        $html .= '<div class="col-lg-12">';
-        $html .= '<div class="ibox float-e-margins">';
-        $html .= '<div class="ibox-title">';
-        $html .= '<h5>Monitoreo de Proyectos</h5>';
-        $html .= '</div>';
+        if(empty($result))
+        {
+            $html = '<!DOCTYPE html>
+                    <html>
+                    <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <style>
+                    .alert {
+                        padding: 20px;
+                        background-color: #f44336;
+                        color: white;
+                    }
+                    
+                    .closebtn {
+                        margin-left: 15px;
+                        color: white;
+                        font-weight: bold;
+                        float: right;
+                        font-size: 22px;
+                        line-height: 20px;
+                        cursor: pointer;
+                        transition: 0.3s;
+                    }
+                    
+                    .closebtn:hover {
+                        color: black;
+                    }
+                    </style>
+                    </head>
+                    <body>
+                    
+                    <div class="alert">
+                      <strong>Alerta!</strong> No Hay Datos Planificados.
+                    </div>
+                    
+                    </body>
+                    </html>';
+            echo ($html);
+            die();
+        }
         
         foreach ($result as $dados)
         {
+            //Montar Grid Monitoreo Proyectos
+            $html .= '<div  class="wrapper wrapper-content animated fadeInRight">';
+            $html .= '<div class="row">';
+            $html .= '<div class="col-lg-12">';
+            $html .= '<div class="ibox float-e-margins">';
+            $html .= '<div class="ibox-title">';
+            $html .= '<h5><b>'. $dados->proyecto. '</b></h5>';
+            $html .= '</div>';
             $html .= '<div class="ibox-content" style="visibility: show;">';
          //   $html .= '<a id="mostrar'.$i.'" href="javascript:mostrar('.$i.');">Ocultar</a>';
             $html .= '<div id="tablecontent-'.$i.'"> <table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
@@ -2013,6 +2053,12 @@ class TInformeController extends BaseController
             $html .= '<th class="azul">Plan '. $dados->ano .'</th>';
             $html .= '<th class="azul">Real '. $dados->ano .'</th>';
             $html .= '<th class="azul">% (R/P) '. $dados->ano .'</th>';
+            $html .= '<th class="azul">Plan S1</th>';
+            $html .= '<th class="azul">Real S1</th>';
+            $html .= '<th class="azul">% (R/P)</th>';
+            $html .= '<th class="azul">Plan S2</th>';
+            $html .= '<th class="azul">Real S2</th>';
+            $html .= '<th class="azul">% (R/P)</th>';
             $html .= '</tr>';
             $html .= '</thead>';
             $html .= '<tbody>';
@@ -2031,18 +2077,52 @@ class TInformeController extends BaseController
                 //Busca Dados do KPI 1
                 $aRet = $model->BuscaDadosGerais($dados->id_pais, $dados->cplanificacion, $dados->Id_1);
                 
-//                 echo('<pre>');
-//                 die(print_r($aRet, true));
-                
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
                 
             }
@@ -2059,13 +2139,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2081,13 +2199,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2103,13 +2259,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2125,13 +2319,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2147,13 +2379,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2169,14 +2439,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
                     
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2192,13 +2499,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2214,13 +2559,51 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
@@ -2236,19 +2619,59 @@ class TInformeController extends BaseController
                 
                 if(!empty($aRet))
                 {
+                    //Anual
                     $tipo_plan = strtolower($aRet[0]->tipo) . '_plan_anual';
                     $tipo_real = strtolower($aRet[0]->tipo) . '_real_anual';
                     $tipo_rp   = strtolower($aRet[0]->tipo) . '_rp_anual';
                     
+                    //S1
+                    $tipo_plans1 = strtolower($aRet[0]->tipo) . '_plan_s1';
+                    $tipo_reals1 = strtolower($aRet[0]->tipo) . '_real_s1';
+                    $tipo_rps1   = strtolower($aRet[0]->tipo) . '_rp_s1';
+                    
+                    //S2
+                    $tipo_plans2 = strtolower($aRet[0]->tipo) . '_plan_s2';
+                    $tipo_reals2 = strtolower($aRet[0]->tipo) . '_real_s2';
+                    $tipo_rps2   = strtolower($aRet[0]->tipo) . '_rp_s2';
+                    
+                    //Cor RP Anual
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '0.00') || (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '59.99'))
+                    {
+                        $cCor = 'Vermelho';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '60.00') && (number_format($aRet[0]->$tipo_rp, 2, '.', '') <= '79.99'))
+                    {
+                        $cCor = 'Amarelo';
+                    }
+                    
+                    if((number_format($aRet[0]->$tipo_rp, 2, '.', '') >= '80.00'))
+                    {
+                        $cCor = 'Verde';
+                    }
+                    
+                    //Anual
                     $html .= '<td title="'. $aRet[0]->$tipo_plan .'">' . $aRet[0]->$tipo_plan . '</td>';
                     $html .= '<td title="'. $aRet[0]->$tipo_real .'">' . $aRet[0]->$tipo_real . '</td>';
-                    $html .= '<td title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rp, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rp, 2, '.', '') . '</td>';
+                    
+                    //S1
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans1.'">' . $aRet[0]->$tipo_plans1. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals1.'">' . $aRet[0]->$tipo_reals1. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps1, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps1, 2, '.', '') . '</td>';
+                    
+                    //S2
+                    $html .= '<td title="'. $aRet[0]->$tipo_plans2.'">' . $aRet[0]->$tipo_plans2. '</td>';
+                    $html .= '<td title="'. $aRet[0]->$tipo_reals2.'">' . $aRet[0]->$tipo_reals2. '</td>';
+                    $html .= '<td class="'.$cCor.'" title="'. number_format($aRet[0]->$tipo_rps2, 2, '.', '').'">'    . number_format($aRet[0]->$tipo_rps2, 2, '.', '') . '</td>';
                 }
             }
             
             $i++;
             $html .= '</tbody>';
             $html .= '</table></div>';
+            $html .= '</div>';
+            $html .= '</br>';
             $html .= '</div>';
         }
         
