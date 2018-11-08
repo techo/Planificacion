@@ -1,3 +1,4 @@
+console.log('Teste');
 $("#ano").change(function() 
 {
 	  if($("#ano").val() != 0)
