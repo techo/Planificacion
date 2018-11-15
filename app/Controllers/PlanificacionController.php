@@ -65,7 +65,7 @@ class PlanificacionController extends BaseController
     public function GetPais($idPais)
     {
         $url = 'http://id.techo.org/pais?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idPais;
-        
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
