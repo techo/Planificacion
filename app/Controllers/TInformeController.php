@@ -2023,7 +2023,7 @@ class TInformeController extends BaseController
                     <body>
                     
                     <div class="alert">
-                      <strong>Alerta!</strong> No Hay Datos Planificados.
+                      <strong>Alerta!</strong> No Hay Proyectos Creados!.
                     </div>
                     
                     </body>
