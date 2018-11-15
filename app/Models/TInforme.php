@@ -572,7 +572,7 @@ class TInforme extends BaseModel
         return $result;
     }
     
-    public function BuscaProyectos($cplanificacion, $idpais)
+    public function BuscaProyectos($cplanificacion, $idpais, $idsede = 0)
     {
         $sql  = "";
         $sql .= "SELECT ";
@@ -645,6 +645,11 @@ class TInforme extends BaseModel
         $sql .= " LEFT JOIN tipo T10 ON I10.id_tipo = T10.id";
         $sql .= " LEFT JOIN ano ON ano.id = proyecto.id_ano";
         $sql .= " WHERE proyecto.deleted = 0 and proyecto.id_cplanificacion =  ". $cplanificacion. " and proyecto.id_pais = " . $idpais;
+        
+        if($idsede!= 0)
+        {
+            $sql .= " AND proyecto.id_sede = " . $idsede;
+        }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

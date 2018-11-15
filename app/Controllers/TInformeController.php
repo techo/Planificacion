@@ -1984,11 +1984,12 @@ class TInformeController extends BaseController
         
         $cplanificacion  = $aDados['cplanificacion'];
         $pais            = $aDados['idPais'];
+        $sede            = $aDados['idSede'];
         
         $model = Container::getModel("TInforme");
         
         //Busca Dados
-        $result = $model->BuscaProyectos($cplanificacion, $pais);
+        $result = $model->BuscaProyectos($cplanificacion, $pais, $sede);
         $i = 0;
         
         if(empty($result))

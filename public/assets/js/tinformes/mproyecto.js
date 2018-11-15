@@ -1,4 +1,4 @@
-console.log('Teste');
+
 $("#ano").change(function() 
 {
 	  if($("#ano").val() != 0)
@@ -26,24 +26,54 @@ $("#ano").change(function()
 	  }
 });
 
+//Metodo pais novo
 $("#loadPais").change(function() 
+		{
+			  if($("#pais").val() != 0)
+			  {
+				  $('#dados').hide();
+				  $('#loading-techo').show();
+				  $("#sedes").val("0");
+				  $("#indicador").val("0");
+				  oData    = new Object();	
+				  oData.cplanificacion = $('#ano').val();
+				  oData.idPais         = $('#pais').val();
+				  
+				  $.ajax({
+						type: "POST",
+						url: "/tinforme/SearchSede",
+						dataType: "html",
+						data: oData,
+						success: function(resp)
+						{	
+							$('#loadSede').html(resp);
+							$('#loadSede').show();
+							$('#loading-techo').hide();
+						}
+					});
+					
+			  }
+		});
+
+$("#loadSede").change(function() 
 {
-	  if($("#pais").val() != 0)
+	  if($("#sede").val() != 0)
 	  {
 		  $('#dados').hide();
 		  $('#loading-techo').show();
-		  $("#sedes").val("0");
 		  $("#indicador").val("0");
 		  oData    = new Object();	
 		  oData.cplanificacion = $('#ano').val();
 		  oData.idPais         = $('#pais').val();
+		  oData.idSede         = $('#sedes').val();
 		  
-		  if($("#pais").val() != 0)
+		  if($("#sede").val() != 0)
 		  {
 			  $('#loading-techo').show();
 			  oData    = new Object();	
 			  oData.cplanificacion = $('#ano').val();
 			  oData.idPais         = $('#pais').val();
+			  oData.idSede         = $('#sedes').val();
 			  
 			  $.ajax({
 					type: "POST",
