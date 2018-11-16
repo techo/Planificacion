@@ -632,4 +632,11 @@ class CPlanificacionController extends BaseController
             header('Location: /cplanificacion');
         }
     }
+    
+    public function redirect()
+    {
+        $this->setPageTitle('Crear Planificacion');
+              
+        $this->renderView('cplanificacion/loading_cplan', 'layout');
+    }
 }

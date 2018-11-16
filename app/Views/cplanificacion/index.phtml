@@ -12,7 +12,7 @@
 	</div>
 	<div class="col-sm-8">
 		<div class="title-action">
-			<a href="/cplanificacion/add" class="btn  btn-success btn-lg">Crear Planificaci&oacute;n</a>
+			<a href="/cplanificacion/redirect" class="btn  btn-success btn-lg">Crear Planificaci&oacute;n</a>
 		</div>
 	</div>
 </div>
@@ -38,17 +38,26 @@
                     		<tr class="gradeX">
                     		<td><?php echo($cplanificacion->ano);?></td>
                     		<td><?php ($cplanificacion->situation == '1' ? $cplanificacion->situation = 'Activo' : $cplanificacion->situation = 'Inactivo'); echo($cplanificacion->situation);?></td>
-                    		<td class="center"><a href="/cplanificacion/show/<?php echo($cplanificacion->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Editar</a><a href="/cplanificacion/duplicar/<?php echo($cplanificacion->id);?>" class="btn btn-warning btn-xs"><i class="fa fa-paste"></i> Duplicar</a><a href="/cplanificacion/delete/<?php echo($cplanificacion->id);?>" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
+                    		<td class="center"><a href="/cplanificacion/show/<?php echo($cplanificacion->id);?>" class="btn btn-success btn-xs carregando"><i class="fa fa-paste"></i> Editar</a><a href="/cplanificacion/duplicar/<?php echo($cplanificacion->id);?>" class="btn btn-warning btn-xs"><i class="fa fa-paste"></i> Duplicar</a><a href="/cplanificacion/delete/<?php echo($cplanificacion->id);?>" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
+		 <div id="loading-techo" style="display:none;">
+        	<div class="loading"><img src="/loading.gif"></div>
+        </div>
 	</div>
 </div>
 <script>
 $(document).ready(function(){
+
+	//Loading 
+	$( ".carregando" ).click(function() {
+		  $('#loading-techo').css('display', 'block');
+		});
+	
     $('.dataTables-example').dataTable({
    	 "language": {
          "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

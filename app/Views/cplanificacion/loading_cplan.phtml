@@ -1,0 +1,87 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>Crear Planificaci&oacute;n</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/cplanificacion">Listado Planificaci&oacute;n</a>
+                        </li>
+                        <li class="active">
+                            <strong>Crear Planificaci&oacute;n</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="wrapper wrapper-content">
+                 <div id="loading-techo">
+                        	<div class="loading"><img src="/loading.gif"></div>
+                        </div>
+
+<script>
+         $(document).ready(function(){
+             //Indicadores
+        	 location.href = "/cplanificacion/add";
+             $('#example').DataTable( {
+            	 "paging": false,
+            	 "language": {
+                     "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                 },
+                columnDefs: [ {
+                    className: 'select-checkbox',
+                    targets:   0, 
+                    checkboxes: {selectRow: true}
+                } ],
+                select: {
+                    style:    'multi',
+                    selector: 'td:first-child'
+                },
+                order: [[ 1, 'asc' ]]
+            } );
+
+             var table = $('#example').DataTable();
+
+             $('#example tbody').on( 'click', 'tr', function () {
+                 $(this).toggleClass('selected');
+             } );
+
+             // Sedes	
+             $('#example-sede').DataTable( {
+            	 "paging": false,
+            	 "language": {
+                     "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                 },
+                columnDefs: [ {
+                    className: 'select-checkbox',
+                    targets:   0, 
+                    checkboxes: {selectRow: true}
+                } ],
+                select: {
+                    style:    'multi',
+                    selector: 'td:first-child'
+                },
+                order: [[ 1, 'asc' ]]
+            } );
+
+             var table1 = $('#example-sede').DataTable();
+
+             $('#example-sede tbody').on( 'click', 'tr', function () {
+                 $(this).toggleClass('selected');
+             } );
+          
+//              $('#button').click( function () {
+//                  console.log(table.rows('.selected').data());
+//              } );
+
+             $("#guardar-planificacion").click(function() {
+          		GuardarPlanificacion(table.rows('.selected').data(), table1.rows('.selected').data());
+          	});
+             
+        });
+
+    </script>
+    <script type="text/javascript" src="/assets/js/cplanificacion/cplanificacion.js""></script>
+    <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+    
