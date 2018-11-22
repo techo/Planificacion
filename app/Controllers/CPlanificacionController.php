@@ -636,7 +636,7 @@ class CPlanificacionController extends BaseController
     public function redirect()
     {
         $this->setPageTitle('Crear Planificacion');
-              
-        $this->renderView('cplanificacion/loading_cplan', 'layout');
+        
+        $this->renderView('cplanificacion/loadingcplan', 'layout');
     }
 }
