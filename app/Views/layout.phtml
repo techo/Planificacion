@@ -27,6 +27,9 @@
   	<body>
          <?php require_once __DIR__ . '/menu.phtml' ?>
          <?php $this->content(); ?>
+         <div id="loading-techo2" style="display:none;">
+        	<div class="loading"><img src="/loading.gif"></div>
+        </div>
          <?php require_once __DIR__ . '/footer.phtml' ?>
          <script src="/assets/js/bootstrap.min.js"></script>
          <script src="/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
@@ -48,7 +51,14 @@
     		{
     		    window.close();
     		});
+
+            //Loading 
+        	$( ".clicoucarrega" ).click(function() {
+        		  $('#loading-techo2').css('display', 'block');
+        		});
+    		
     	 </script>
+    	 
 	  
   	</body>
 </html>
