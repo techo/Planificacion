@@ -241,7 +241,7 @@
 						</div>
 						<div class="actions clearfix paddingTop-20">
 							<button type="button" id="actualizar-indicador" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
-							<a href="/indicadores" class="btn btn-danger btn-lg pull-right">Cancelar</a>
+							<a href="/indicadores" class="btn btn-danger btn-lg pull-right carregando">Cancelar</a>
 						</div>
 					</div>
 					<div id="loading-techo">
@@ -258,6 +258,11 @@
     $(document).ready(function() {
     	$('#loading-techo').hide();
     });
+
+    //Loading 
+    $( ".carregando" ).click(function() {
+    	  $('#loading-techo').css('display', 'block');
+    	});
 </script>
 <script>
 	$("#actualizar-indicador").click(function() {

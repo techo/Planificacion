@@ -12,7 +12,7 @@
 	</div>
 	<div class="col-sm-8">
 		<div class="title-action">
-			<a href="/indicadores/add" class="btn  btn-success btn-lg">Agregar Indicador</a>
+			<a href="/indicadores/add" class="btn  btn-success btn-lg carregando">Agregar Indicador</a>
 		</div>
 	</div>
 </div>
@@ -46,7 +46,7 @@
                     		<td><?php echo($indicador->pilar);?></td>
                     		<td><?php echo($indicador->area);?></td>
                     		<td><?php ($indicador->situation == '1' ? $indicador->situation = 'Activo' : $indicador->situation = 'Inactivo'); echo($indicador->situation);?></td>
-                    		<td class="center"><a href="/indicadores/show/<?php echo($indicador->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($indicador->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
+                    		<td class="center"><a href="/indicadores/show/<?php echo($indicador->id);?>" class="btn btn-success btn-xs carregando"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($indicador->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>
@@ -107,5 +107,10 @@ function Delete(id)
         }
     });
 }
+
+//Loading 
+$( ".carregando" ).click(function() {
+	  $('#loading-techo').css('display', 'block');
+	});
 
 </script>
