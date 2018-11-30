@@ -22,7 +22,7 @@ function GuardarProyecto(indicadores)
 		oFinal[index] = {proyecto: oData.proyecto, responsable: oData.responsable, indicador: oData.indicador, ponderacion: oData.ponderacion, planificacion: oData.planificacion, pais: oData.pais, sede: oData.sede};
 	});
 	
-//	$('#loading-techo').show();
+	$('#loading-techo').show();
 	$.ajax({
 		type: "POST",
 		url: "/proyecto/save",
