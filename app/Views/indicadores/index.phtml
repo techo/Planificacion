@@ -46,7 +46,18 @@
                     		<td><?php echo($indicador->pilar);?></td>
                     		<td><?php echo($indicador->area);?></td>
                     		<td><?php ($indicador->situation == '1' ? $indicador->situation = 'Activo' : $indicador->situation = 'Inactivo'); echo($indicador->situation);?></td>
+                    		<?php 
+                    		if($_SESSION['Planificacion']['sede_id'] == 1)
+                    		{?>
+                    		   
                     		<td class="center"><a href="/indicadores/show/<?php echo($indicador->id);?>" class="btn btn-success btn-xs carregando"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($indicador->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
+                    		<?php
+                    		}else{
+                    		?>
+                    		<td class="center"></td>
+                    		<?php
+                    		}
+                    		?>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>
