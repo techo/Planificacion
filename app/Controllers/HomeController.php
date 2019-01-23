@@ -44,6 +44,27 @@ class HomeController extends BaseController
                 $_SESSION['Planificacion']['cargo_id']  = $data['id_cargo'];
                 $_SESSION['Planificacion']['pais_id']   = $data['id_pais'];
                 $_SESSION['Planificacion']['Name']      = $data['nombre'];
+                
+                //Carrego na Sessao para diminuir o tempo de consulta a plataforma de login
+                $aPaises = $this->Paises();
+                $aAreas = $this->Areas();
+                
+                $acountry= array();
+                $arrAreas= array();
+                
+                for($i=0; $i < count($aPaises); $i++)
+                {
+                    $acountry[$aPaises[$i]['id']] = utf8_decode($aPaises[$i]['pais']);
+                }
+                
+                for($j=0; $j < count($aAreas); $j++)
+                {
+                    $arrAreas[$aAreas[$j]['id']] = utf8_decode($aAreas[$j]['area']);
+                }
+                
+                $_SESSION['Planificacion']['countries']  = $acountry;
+                $_SESSION['Planificacion']['areas']  = $arrAreas;
+                
             }
         }
         else
@@ -70,6 +91,27 @@ class HomeController extends BaseController
             $_SESSION['Planificacion']['cargo_id']  = $data['id_cargo'];
             $_SESSION['Planificacion']['pais_id']   = $data['id_pais'];
             $_SESSION['Planificacion']['Name']      = $data['nombre'];
+            
+            //Carrego na Sessao para diminuir o tempo de consulta a plataforma de login
+            $aPaises = $this->Paises();
+            $aAreas = $this->Areas();
+            
+            $acountry= array();
+            $arrAreas= array();
+            
+            for($i=0; $i < count($aPaises); $i++)
+            {
+                $acountry[$aPaises[$i]['id']] = utf8_decode($aPaises[$i]['pais']);
+            }
+            
+            for($j=0; $j < count($aAreas); $j++)
+            {
+                $arrAreas[$aAreas[$j]['id']] = utf8_decode($aAreas[$j]['area']);
+            }
+
+            $_SESSION['Planificacion']['countries']  = $acountry;
+            $_SESSION['Planificacion']['areas']  = $arrAreas;
+            
         }
         
         if($_SERVER['SERVER_NAME'] == 'admin.planificacion.techo.org' || $_SERVER['SERVER_NAME'] == 'localhost')
@@ -155,6 +197,32 @@ class HomeController extends BaseController
         return $aTemp;
     }
     
+    public function Areas()
+    {
+        $url = 'http://id.techo.org/area?api=true&token='.$_SESSION['Planificacion']['token'];
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, getcwd() . DIRECTORY_SEPARATOR . 'cacert.pem');
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        for($i=0; $i < count($data); $i++)
+        {
+            $aTemp[$i]['id']   = $data[$i]['ID_Area'];
+            $aTemp[$i]['area'] = $data[$i]['Nombre_Area'];
+        }
+        
+        //  echo json_encode(array("values" => $aTemp));
+        return $aTemp;
+    }
+    
     public function Sedes($idPais)
     {
         $url = 'http://id.techo.org/sede?api=true&token='.$_SESSION['Planificacion']['token'].'&id_pais='.$idPais;
@@ -186,7 +254,7 @@ class HomeController extends BaseController
     {
         $aParam = (array) $aParam;
         $model  = Container::getModel("Dashboard");
-        
+                
         //Ano corrente
         $ano = date('Y');
         

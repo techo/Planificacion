@@ -38,8 +38,13 @@ class IndicadoresController extends BaseController
             $aKPI[$i] = (array) $aKPI[$i];
             
             //Get Area
-            $area = $this->GetArea($aKPI[$i]['id_area']);
-            $aKPI[$i]['area'] = $area['nombre'];
+           // $area = $this->GetArea($aKPI[$i]['id_area']);
+           // $aKPI[$i]['area'] = $area['nombre'];
+           
+            if (array_key_exists($aKPI[$i]['id_area'], $_SESSION['Planificacion']['areas']))
+            {
+                $aKPI[$i]['area'] = utf8_encode($_SESSION['Planificacion']['areas'][$aKPI[$i]['id_area']]);
+            }
             
             //Get Pais
             if($aKPI[$i]['id_pais'])
