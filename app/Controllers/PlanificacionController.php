@@ -50,11 +50,22 @@ class PlanificacionController extends BaseController
             $pais  = $this->view->planificacion[$i]->id_pais;
             $sede = $this->view->planificacion[$i]->id_sede;
             
-            $cPais = $this->GetPais($pais);
-            $cSede = $this->GetSede($sede);
+          //  $cPais = $this->GetPais($pais);
+          // $cSede = $this->GetSede($sede);
+          
+            //Removido linha acima porque estava demorando muito para carregar a pagina
+            if (array_key_exists($pais, $_SESSION['Planificacion']['countries']))
+            {
+                $cPais = $_SESSION['Planificacion']['countries'][$pais];
+            }
             
-            $this->view->planificacion[$i]->pais = $cPais['nombre'];
-            $this->view->planificacion[$i]->sede = $cSede[0]['nombre'];
+            if (array_key_exists($sede, $_SESSION['Planificacion']['sedes']))
+            {
+                $cSede = $_SESSION['Planificacion']['sedes'][$sede];
+            }
+            
+            $this->view->planificacion[$i]->pais = utf8_encode($cPais);
+            $this->view->planificacion[$i]->sede = utf8_encode($cSede);
         }
         
         /* Render View Planificacion */
