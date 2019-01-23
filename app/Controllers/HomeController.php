@@ -47,10 +47,12 @@ class HomeController extends BaseController
                 
                 //Carrego na Sessao para diminuir o tempo de consulta a plataforma de login
                 $aPaises = $this->Paises();
-                $aAreas = $this->Areas();
+                $aAreas  = $this->Areas();
+                $aSedes  = $this->TodasSedes();
                 
                 $acountry= array();
                 $arrAreas= array();
+                $arrSedes= array();
                 
                 for($i=0; $i < count($aPaises); $i++)
                 {
@@ -62,8 +64,14 @@ class HomeController extends BaseController
                     $arrAreas[$aAreas[$j]['id']] = utf8_decode($aAreas[$j]['area']);
                 }
                 
+                for($p=0; $p < count($aSedes); $p++)
+                {
+                    $arrSedes[$aSedes[$p]['id']] = utf8_decode($aSedes[$p]['sede']);
+                }
+                
                 $_SESSION['Planificacion']['countries']  = $acountry;
-                $_SESSION['Planificacion']['areas']  = $arrAreas;
+                $_SESSION['Planificacion']['areas']      = $arrAreas;
+                $_SESSION['Planificacion']['sedes']      = $arrSedes;
                 
             }
         }
