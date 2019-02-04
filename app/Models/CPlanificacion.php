@@ -166,7 +166,7 @@ class CPlanificacion extends BaseModel
         $sql .= "INNER JOIN temporalidad ON temporalidad.id = indicador.id_temporalidad ";
         $sql .= "INNER JOIN tipo ON tipo.id = indicador.id_tipo ";
         $sql .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
-        $sql .= "WHERE indicador.deleted = 0 ";
+        $sql .= "WHERE indicador.deleted = 0 AND indicador.id_pais = 0";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -239,7 +239,7 @@ class CPlanificacion extends BaseModel
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
-        $sql .= " '0000-00-00 00:00:00', ";
+        $sql .= " NOW(), ";
         $sql .= "'". $aParam['status']."', ";
         $sql .= " 0)";
         $stmt = $this->pdo->prepare($sql);
@@ -321,7 +321,7 @@ class CPlanificacion extends BaseModel
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
-        $sql .= " '0000-00-00 00:00:00', ";
+        $sql .= " NOW(), ";
         $sql .= "'". $status."', ";
         $sql .= " 0)";
         $stmt = $this->pdo->prepare($sql);
@@ -699,7 +699,7 @@ class CPlanificacion extends BaseModel
             $sql .= " AND dplanificacion.id_pais = " . $idPais;
         }
         
-        $stmt = $this->pdo->prepare($sql);                        
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
         $stmt->closeCursor();
