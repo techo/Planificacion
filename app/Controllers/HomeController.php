@@ -1189,8 +1189,10 @@ class HomeController extends BaseController
                 $html .= '</div>';
                 $html .= '</div>';
                 
+            //    $newpais = $cadena = preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $pais['nombre']) );
+                
                 $result[$i]['select'] = $html;
-                $result[$i]['nomepais'] = $pais['nombre'];
+                $result[$i]['nomepais'] = preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $pais['nombre']) );
             }
             
             //Implementar consolidado do pais
