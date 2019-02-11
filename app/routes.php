@@ -108,4 +108,8 @@ $route[] = ['/proyecto/delete/{id}', 'ProyectosController@delete'];
 $route[] = ['/proyecto/show/{id}', 'ProyectosController@show'];
 $route[] = ['/proyecto/edit', 'ProyectosController@edit'];
 
+/** Indicadores Extras **/
+$route[] = ['/extras', 'ExtrasController@index'];
+$route[] = ['/extras/add', 'ExtrasController@add'];
+
 return $route;
