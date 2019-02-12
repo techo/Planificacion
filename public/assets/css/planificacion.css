@@ -53,13 +53,13 @@
     cursor: not-allowed;
 }
 .editablegrid-indicador {
- width: 400px;
+ width: 674px;
  position: absolute;
     background: #fff;
     margin-left: -1px;
 }
 .editablegrid-tipo {
- padding-left:400px!important;
+ padding-left:680px!important;
 }
 #savando {
     position: fixed;
