@@ -16,7 +16,8 @@ class Extras extends BaseModel
     
     public function select()
     {
-        $sql  = "SELECT * FROM Indicador WHERE id_pais = " . $_SESSION['Planificacion']['pais_id'];
+        
+        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $_SESSION['Planificacion']['pais_id'];
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -26,7 +27,7 @@ class Extras extends BaseModel
     
     public function BuscaIndicadores($aParam)
     {
-        $sql  = "SELECT * FROM Indicador WHERE id_pais = " . $aParam['pais'];
+        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $aParam['pais'];
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -111,6 +112,23 @@ class Extras extends BaseModel
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $this->pdo->lastInsertId();
+        $stmt->closeCursor();
+        
+        //Regasta info do campo para acrecentar valor
+        $sql  = "SELECT addplanificacion FROM indicador WHERE id = " . $aParam['indicador'];
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $indicador = (array) $stmt->fetch();
+        $stmt->closeCursor();
+        
+        // Depois de inserir na planificacao, inseri a sede no campo addplanificacion na tabela de indicadores para nao listar mais na tela de indicadores extras
+        $sql  = "";
+        $sql .= "UPDATE indicador SET ";
+        $sql .= "addplanificacion = '".$indicador['addplanificacion']."[" . $aParam['sede']."],' ";
+        $sql .= "WHERE id = '" . $aParam['indicador']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
         $stmt->closeCursor();
         
         return $result;

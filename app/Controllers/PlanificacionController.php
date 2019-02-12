@@ -571,39 +571,39 @@ class PlanificacionController extends BaseController
             $Dados = (array) $aListagem[$i];
             
             //Buscar Pilar
-            $aPilar = $model->GetPilar($Dados['id_pilar']);
+//             $aPilar = $model->GetPilar($Dados['id_pilar']);
             
-            $cPilar = $aPilar[0]->pilar;
+//             $cPilar = $aPilar[0]->pilar;
             
-            //Busca Area
-            $aArea = $this->GetArea($Dados['id_area']);
-            $cArea = $aArea['codigo'];
+//             //Busca Area
+//             $aArea = $this->GetArea($Dados['id_area']);
+//             $cArea = $aArea['codigo'];
             
-            if(strlen($Dados['indicador']) > 60)
-            {
-                $punto = ' ... ';
-            }
-            else
-            {
-                $punto = ' ';
-            }
+//             if(strlen($Dados['indicador']) > 60)
+//             {
+//                 $punto = ' ... ';
+//             }
+//             else
+//             {
+//                 $punto = ' ';
+//             }
             
-            if(strlen($cPilar) > 43)
-            {
-                $punt = ' ... ';
-            }
-            else
-            {
-                $punt = ' ';
-            }
+//             if(strlen($cPilar) > 43)
+//             {
+//                 $punt = ' ... ';
+//             }
+//             else
+//             {
+//                 $punt = ' ';
+//             }
             
             
             $aIndicador[$i]['id'] = $Dados['id'];
             $aIndicador[$i]['formato']                   = $Dados['formato'];
-            $aIndicador[$i]['values']['indicador']       = substr($Dados['indicador'], 0, 60) . $punto;
+            $aIndicador[$i]['values']['indicador']       = $Dados['indicador'];
             $aIndicador[$i]['values']['tipo']            = $Dados['tipo'];
-            $aIndicador[$i]['values']['pilar']           = substr($cPilar, 0, 31). $punt;
-            $aIndicador[$i]['values']['area']            = $cArea;
+          //  $aIndicador[$i]['values']['pilar']           = substr($cPilar, 0, 31). $punt;
+         //   $aIndicador[$i]['values']['area']            = $cArea;
             $aIndicador[$i]['values']['enero_plan']      = $Dados['enero_plan'] == NULL ? 0 : $Dados['enero_plan'];
             $aIndicador[$i]['values']['enero_real']      = $Dados['enero_real'] == NULL ? 0 : $Dados['enero_real'];
             $aIndicador[$i]['values']['febrero_plan']    = $Dados['febrero_plan'] == NULL ? 0 : $Dados['febrero_plan'];
