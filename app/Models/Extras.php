@@ -27,7 +27,7 @@ class Extras extends BaseModel
     
     public function BuscaIndicadores($aParam)
     {
-        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $aParam['pais'];
+        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $aParam['pais'] . " AND id_sede IN (0,".$aParam['sede'].")";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
