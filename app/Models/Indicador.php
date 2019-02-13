@@ -14,7 +14,7 @@ class Indicador extends BaseModel
         $this->pdo = $pdo;
     }
     
-    public function select()
+    public function select($idPais)
     {
         $sql  = "";
         $sql .= "SELECT ";
@@ -38,7 +38,12 @@ class Indicador extends BaseModel
         $sql .= "INNER JOIN temporalidad ON temporalidad.id = {$this->table}.id_temporalidad ";
         $sql .= "INNER JOIN tipo ON tipo.id = {$this->table}.id_tipo ";
         $sql .= "INNER JOIN pilar ON pilar.id = {$this->table}.id_pilar ";
-        $sql .= "WHERE {$this->table}.deleted = 0";
+        $sql .= "WHERE {$this->table}.deleted = 0 ";
+        if($idPais != 5)
+        {
+            $sql .= " and id_pais IN (0, " .$idPais. ")";
+        }
+        $sql .= " Order By id DESC";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -113,7 +118,7 @@ class Indicador extends BaseModel
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
-        $sql .= " '0000-00-00 00:00:00', ";
+        $sql .= " NOW(), ";
         $sql .= "'". $aParam['status']."', ";
         $sql .= " 0)";
         $stmt = $this->pdo->prepare($sql);

@@ -30,7 +30,7 @@ class IndicadoresController extends BaseController
     {
         $this->setPageTitle('Indicadores');
         $model = Container::getModel("Indicador");
-        $this->view->indicador = $model->select();
+        $this->view->indicador = $model->select($_SESSION['Planificacion']['pais_id']);
         $aKPI = $this->view->indicador;
         
         for($i=0; $i < count($aKPI); $i++)
