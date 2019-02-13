@@ -35,7 +35,7 @@ $ano = date('Y');
 				$pais = $_GET['pais'];
 				$sede = $_GET['sede'];
 				
-				$dg = new C_DataGrid("SELECT * from indicador where id_pais = ". $pais . " AND addplanificacion NOT LIKE '%[".$sede."],%' AND id_sede IN (0,".$sede.")", "id", "indicadores");
+				$dg = new C_DataGrid("SELECT * from indicador where id_pais = ". $pais . " AND addplanificacion NOT LIKE '%[".$sede."],%' AND id_sede IN (0,".$sede.") AND deleted = 0 AND situation = 1", "id", "indicadores");
                     
 				$dg->set_col_hidden('id');
 				$dg->set_col_hidden('id_temporalidad');

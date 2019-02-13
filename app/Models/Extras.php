@@ -17,7 +17,7 @@ class Extras extends BaseModel
     public function select()
     {
         
-        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $_SESSION['Planificacion']['pais_id'];
+        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $_SESSION['Planificacion']['pais_id'] . " AND deleted = 0 AND situation = 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -27,7 +27,7 @@ class Extras extends BaseModel
     
     public function BuscaIndicadores($aParam)
     {
-        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $aParam['pais'] . " AND id_sede IN (0,".$aParam['sede'].")";
+        $sql  = "SELECT * FROM indicador WHERE id_pais = " . $aParam['pais'] . " AND id_sede IN (0,".$aParam['sede'].") AND deleted = 0 AND situation = 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
