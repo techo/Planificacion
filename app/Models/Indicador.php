@@ -22,6 +22,7 @@ class Indicador extends BaseModel
         $sql .= "{$this->table}.indicador, ";
         $sql .= "{$this->table}.situation, ";
         $sql .= "{$this->table}.id_temporalidad, ";
+        $sql .= "{$this->table}.descripcion, ";
         $sql .= "temporalidad.temporalidad, ";
         $sql .= "{$this->table}.id_tipo, ";
         $sql .= "tipo.tipo, ";
@@ -100,6 +101,7 @@ class Indicador extends BaseModel
         $sql .= "id_area, ";
         $sql .= "id_sede, ";
         $sql .= "formato, ";
+        $sql .= "descripcion, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -115,6 +117,7 @@ class Indicador extends BaseModel
         $sql .= "'". $aParam['area']."', ";
         $sql .= "'". $aParam['sede']."', ";
         $sql .= "'". $aParam['formato']."', ";
+        $sql .= "'". $aParam['descripcion']."', ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
@@ -151,6 +154,7 @@ class Indicador extends BaseModel
         $sql .= "id_area         = '" . $aParam['area']."', ";
         $sql .= "id_sede         = '" . $aParam['sede']."', ";
         $sql .= "formato         = '" . $aParam['formato']."', ";
+        $sql .= "descripcion     = '" . $aParam['descripcion']."', ";
         $sql .= "situation       = '" . $aParam['status']."', ";
         $sql .= "id_updater        = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update       = NOW() ";

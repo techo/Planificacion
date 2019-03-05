@@ -316,6 +316,7 @@ function GuardarIndicador()
 	oData.sede         = $('#sede').val();
 	oData.status       = $('#status').val();
 	oData.formato      = $('#formato').val();
+	oData.descripcion  = $('#descripcion').val();
 	
 	//Caso seja para todos os paises, tbm e para todas as sedes
 	if($("#pais").val() == 0)
@@ -337,7 +338,7 @@ function GuardarIndicador()
 				    content: "Grabado con éxito.",
 				    buttons: {
 				        ok: function(){
-				        	location.href = "/indicadores";
+				        	location.href = "/indicadores/redirect";
 				        }
 				    }
 				});
@@ -372,6 +373,7 @@ function ActualizarIndicador()
 	oData.sede         = $('#sede').val();
 	oData.status       = $('#status').val();
 	oData.formato      = $('#formato').val();
+	oData.descripcion  = $('#descripcion').val();
 	
 	//Caso seja para todos os paises, tbm e para todas as sedes
 	if($("#pais").val() == 0)
@@ -393,7 +395,7 @@ function ActualizarIndicador()
 				    content: "Grabado con éxito.",
 				    buttons: {
 				        ok: function(){
-				        	location.href = "/indicadores";
+				        	location.href = "/indicadores/redirect";
 				        }
 				    }
 				});

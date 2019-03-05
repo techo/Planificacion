@@ -314,6 +314,7 @@ class IndicadoresController extends BaseController
         $aParam['sede']         = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
         $aParam['status']       = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         $aParam['formato']      = filter_var($aParam['formato'], FILTER_SANITIZE_STRING);
+        $aParam['descripcion']  = filter_var($aParam['descripcion'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Indicador");
         $result = $model->GuardarIndicador($aParam);
@@ -387,6 +388,7 @@ class IndicadoresController extends BaseController
         $aParam['sede']         = filter_var($aParam['sede'], FILTER_SANITIZE_STRING);
         $aParam['status']       = filter_var($aParam['status'], FILTER_SANITIZE_STRING);
         $aParam['formato']      = filter_var($aParam['formato'], FILTER_SANITIZE_STRING);
+        $aParam['descripcion']  = filter_var($aParam['descripcion'], FILTER_SANITIZE_STRING);
         
         $model  = Container::getModel("Indicador");
         $result = $model->ActualizarIndicador($aParam);
@@ -410,5 +412,12 @@ class IndicadoresController extends BaseController
         {
             header('Location: /indicadores');
         }
+    }
+    
+    public function redirect()
+    {
+        $this->setPageTitle('Indicadores');
+        
+        $this->renderView('indicadores/loading_indicador', 'layout');
     }
 }
