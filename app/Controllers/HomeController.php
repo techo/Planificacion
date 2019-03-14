@@ -44,6 +44,7 @@ class HomeController extends BaseController
                 $_SESSION['Planificacion']['cargo_id']  = $data['id_cargo'];
                 $_SESSION['Planificacion']['pais_id']   = $data['id_pais'];
                 $_SESSION['Planificacion']['Name']      = $data['nombre'];
+                $_SESSION['Planificacion']['picture']   = $data['picture'];
                 
                 //Carrego na Sessao para diminuir o tempo de consulta a plataforma de login
                 $aPaises = $this->Paises();
@@ -99,6 +100,7 @@ class HomeController extends BaseController
             $_SESSION['Planificacion']['cargo_id']  = $data['id_cargo'];
             $_SESSION['Planificacion']['pais_id']   = $data['id_pais'];
             $_SESSION['Planificacion']['Name']      = $data['nombre'];
+            $_SESSION['Planificacion']['picture']   = $data['picture'];
             
             //Carrego na Sessao para diminuir o tempo de consulta a plataforma de login
             $aPaises = $this->Paises();

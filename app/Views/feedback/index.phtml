@@ -1,0 +1,96 @@
+<div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Cuentenos su experiencia en el Sistema de Planificacion</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content no-padding">
+
+                        <div class="summernote">
+                            <h3>Titulo</h3>
+                            Contenido...
+                            <br/>
+                            <br/>
+                            <ul>
+                                <li>Puntos de Mejora 1</li>
+                                <li>Puntos de Mejora 2</li>
+                                <li>Puntos de Mejora 3</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                       <div class="mail-body text-right tooltip-demo">
+                        <a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Enviar</a>
+                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Cancelar</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+<div class="col-lg-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Mural de Feedback</h5>
+            <div class="ibox-tools">
+                <span class="label label-warning-light pull-right">10 Messages</span>
+               </div>
+        </div>
+        <div class="ibox-content">
+
+            <div>
+                <div class="feed-activity-list">
+
+                    <div class="feed-element">
+                        <a href="profile.html" class="pull-left">
+                            <img alt="image" class="img-circle" src="<?php echo($_SESSION['Planificacion']['picture'])?>">
+                        </a>
+                        <div class="media-body ">
+                            <small class="pull-right"><?php echo(date(jM))?></small>
+                            <strong><?php echo($_SESSION['Planificacion']['Name'])?></strong> <br>
+                            <small class="text-muted">Hoy  5:60 pm - 14.03.2019</small>
+                            <div class="well">
+                               Mi FeedBack sobre el Sistema de Planificacion...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-block m-t"><i class="fa fa-arrow-down"></i> Show More</button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="/assets/js/plugins/summernote/summernote.min.js"></script>
+<script>
+        $(document).ready(function(){
+
+            $('.summernote').summernote();
+
+       });
+        var edit = function() {
+            $('.click2edit').summernote({focus: true});
+        };
+        var save = function() {
+            var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+            $('.click2edit').destroy();
+        };
+    </script>

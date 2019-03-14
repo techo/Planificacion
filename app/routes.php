@@ -114,4 +114,10 @@ $route[] = ['/proyecto/edit', 'ProyectosController@edit'];
 $route[] = ['/extras', 'ExtrasController@index'];
 $route[] = ['/extras/add', 'ExtrasController@add'];
 
+/** Feedback **/
+$route[] = ['/feedback', 'FeedbackController@index'];
+
+/** Gambis **/
+$route[] = ['/gambis', 'GambisController@index'];
+
 return $route;
