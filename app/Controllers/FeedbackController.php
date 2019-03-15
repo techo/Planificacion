@@ -30,11 +30,31 @@ class FeedbackController extends BaseController
     {
         $this->setPageTitle('FeedBack');
         $model = Container::getModel("feedback");
-      //  $aIndicador = $model->select();
-
-              
-        /* Render View Paises */
+        $this->view->feedback = $model->select();
+        
+        /* Render View feedback */
         $this->renderView('feedback/index', 'layout');
+    }
+    
+    public function save($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['mensaje'] = $aParam['mensaje'];
+        $aParam['usuario'] = $_SESSION['Planificacion']['Name'];
+        $aParam['foto']    = $_SESSION['Planificacion']['picture'];
+        
+        $model  = Container::getModel("Feedback");
+        $result = $model->Guardar($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
     
 }

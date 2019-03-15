@@ -116,6 +116,7 @@ $route[] = ['/extras/add', 'ExtrasController@add'];
 
 /** Feedback **/
 $route[] = ['/feedback', 'FeedbackController@index'];
+$route[] = ['/feedback/enviar', 'FeedbackController@save'];
 
 /** Gambis **/
 $route[] = ['/gambis', 'GambisController@index'];

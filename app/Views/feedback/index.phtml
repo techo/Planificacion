@@ -1,28 +1,15 @@
-<div class="col-lg-12">
-                <div class="ibox float-e-margins">
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-content">
+				<div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Cuentenos su experiencia en el Sistema de Planificacion</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#">Config option 1</a>
-                                </li>
-                                <li><a href="#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
                     </div>
                     <div class="ibox-content no-padding">
 
-                        <div class="summernote">
+                        <div class="summernote" id="mensaje">
                             <h3>Titulo</h3>
                             Contenido...
                             <br/>
@@ -33,64 +20,110 @@
                                 <li>Puntos de Mejora 3</li>
                             </ul>
                         </div>
-
                     </div>
                        <div class="mail-body text-right tooltip-demo">
-                        <a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Enviar</a>
-                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Cancelar</a>
+                        <a class="btn btn-sm btn-primary" id="enviar" data-toggle="tooltip" data-placement="top" title="Enviar"><i class="fa fa-reply"></i> Enviar</a>
+                        <a href="/" class="btn btn-white btn-sm carregando" id="sair" data-toggle="tooltip" data-placement="top"><i class="fa fa-times"></i> Cancelar</a>
                     </div>
                 </div>
-            </div>
-            
-            
-<div class="col-lg-12">
-    <div class="ibox float-e-margins">
+					 <div class="ibox float-e-margins">
         <div class="ibox-title">
             <h5>Mural de Feedback</h5>
             <div class="ibox-tools">
-                <span class="label label-warning-light pull-right">10 Messages</span>
+                <span class="label label-warning-light pull-right"><?php echo(count($this->view->feedback))?> Feedback</span>
                </div>
         </div>
         <div class="ibox-content">
-
             <div>
-                <div class="feed-activity-list">
-
-                    <div class="feed-element">
-                        <a href="profile.html" class="pull-left">
-                            <img alt="image" class="img-circle" src="<?php echo($_SESSION['Planificacion']['picture'])?>">
-                        </a>
-                        <div class="media-body ">
-                            <small class="pull-right"><?php echo(date(jM))?></small>
-                            <strong><?php echo($_SESSION['Planificacion']['Name'])?></strong> <br>
-                            <small class="text-muted">Hoy  5:60 pm - 14.03.2019</small>
-                            <div class="well">
-                               Mi FeedBack sobre el Sistema de Planificacion...
-                            </div>
+               <?php foreach ($this->view->feedback as $feedback):?>
+               <div class="feed-element">
+                    <a href="#" class="pull-left">
+                        <img alt="image" class="img-circle" src="<?php echo($feedback->foto_usuario)?>">
+                    </a>
+                    <div class="media-body ">
+                        <small class="pull-right"><?php echo($feedback->fecha_hora)?></small>
+                        <strong><?php echo($feedback->nombre_usuario)?></strong> <br>
+                        <small class="text-muted"><?php echo($feedback->date_insert)?></small>
+                        <div class="well">
+                           <?php echo($feedback->feedback)?>
                         </div>
                     </div>
                 </div>
-
-                <button class="btn btn-primary btn-block m-t"><i class="fa fa-arrow-down"></i> Show More</button>
-
+               <?php endforeach; ?>
             </div>
-
         </div>
     </div>
-
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+<div id="loading-techo">
+	<div class="loading"><img src="/loading.gif"></div>
+</div>
+                    
 <script src="/assets/js/plugins/summernote/summernote.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+
 <script>
-        $(document).ready(function(){
+$(document).ready(function(){
+	$('#loading-techo').hide();
+    $('.summernote').summernote();
 
-            $('.summernote').summernote();
+});
+var edit = function() {
+    $('.click2edit').summernote({focus: true});
+};
+var save = function() {
+    var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+    $('.click2edit').destroy();
+};
 
-       });
-        var edit = function() {
-            $('.click2edit').summernote({focus: true});
-        };
-        var save = function() {
-            var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
-            $('.click2edit').destroy();
-        };
-    </script>
+//Loading 
+$( "#sair" ).click(function() {
+	$('#loading-techo').show();
+	});
+
+//Envia el feedback
+$( "#enviar" ).click(function() {
+	var markupStr = $('#mensaje').summernote('code');
+
+	oData          = new Object();	
+	oData.mensaje  = markupStr;
+	
+	$.ajax({
+		type: "POST",
+		url: "/feedback/enviar",
+		dataType: "json",
+		data: oData,
+		success: function(oData)
+		{	
+			if(oData['results'])
+			{
+				$('#loading-techo').hide();
+				$.confirm({
+				    content: "Grabado con Exito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/feedback";
+				        }
+				    }
+				});
+			}
+			else
+			{
+				$('#loading-techo').hide();
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/feedback";
+				        }
+				    }
+				});
+			}
+		}
+	});
+	});
+</script>
