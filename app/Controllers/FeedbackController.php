@@ -29,7 +29,7 @@ class FeedbackController extends BaseController
     public function index()
     {
         $this->setPageTitle('FeedBack');
-        $model = Container::getModel("feedback");
+        $model = Container::getModel("Feedback");
         $this->view->feedback = $model->select();
         
         /* Render View feedback */
@@ -56,5 +56,6 @@ class FeedbackController extends BaseController
             echo json_encode(array("results" => false));
         }
     }
+    
     
 }
