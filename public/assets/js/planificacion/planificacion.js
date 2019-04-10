@@ -282,7 +282,8 @@ window.onload = function()
 	  		$( "td" )
 	  		  .focusout(function() {
 	  			  
-	  			$('#save1').show();
+	  			//$('#gif').removeClass('esconde').addClass('mostra');
+	  			$('#loading-techo').show();
 	  			setTimeout(function(){
 			  			var linha1 = editorInput.celleditor.editablegrid.lastSelectedRowIndex;
 			  			var coluna1 = editorInput.celleditor.column.name;
@@ -296,7 +297,6 @@ window.onload = function()
 			  		  		oIndicador.id     = id1;
 			  		  		oIndicador.coluna = coluna1;
 			  		  		oIndicador.valor  = valor1;
-			  		  		
 			  		  	$.ajax({
 							type: "POST",
 							url: "/planificacion/atualiza",
@@ -304,14 +304,12 @@ window.onload = function()
 							data: oIndicador,
 							success: function(oData)
 							{	
-								$('#save1').hide();
-								$('#save2').show();
+								//$('#gif').addClass('esconde').removeClass('mostra');
+								$('#loading-techo').hide();
 							}
 						});
 			  		  	
 		  	  		}, 500);
-	  			
-	  				$('#save2').hide();
 	  		  })
 
 	  		event = event || window.event;
