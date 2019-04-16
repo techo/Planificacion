@@ -292,7 +292,7 @@ class TInforme extends BaseModel
         return $result;
     }
     
-    public function BuscaDadosGerais($idPais, $idcplanificacion, $idIndicador = 0)
+    public function BuscaDadosGerais($idPais, $idcplanificacion, $idIndicador = 0, $idSede = 0)
     {
         $sql  =  "SELECT
                   indicador,
@@ -560,6 +560,12 @@ class TInforme extends BaseModel
         {
             $sql .= " AND dplanificacion.id_indicador =  " . $idIndicador;
         }
+        
+        if($idSede!= 0)
+        {
+            $sql .= " AND dplanificacion.id_sede =  " . $idSede;
+        }
+        
         $sql .= " GROUP BY dplanificacion.id_indicador";
         $sql .= " ) soma GROUP BY id_indicador ";
         
@@ -572,10 +578,11 @@ class TInforme extends BaseModel
         return $result;
     }
     
-    public function BuscaProyectos($cplanificacion, $idpais, $idsede = 0)
+    public function BuscaProyectos($cplanificacion, $idpais, $idsede = 0, $idproyecto = 0)
     {
         $sql  = "";
         $sql .= "SELECT ";
+        $sql .= " proyecto.id,";
         $sql .= " ano.ano as 'ano',";
         $sql .= " proyecto.id_pais,";
         $sql .= " proyecto.id_ano,";
@@ -649,6 +656,11 @@ class TInforme extends BaseModel
         if($idsede!= 0)
         {
             $sql .= " AND proyecto.id_sede = " . $idsede;
+        }
+        
+        if($idproyecto != 0)
+        {
+            $sql .= " AND proyecto.id = " . $idproyecto;
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();

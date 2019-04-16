@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Proyectos</title>
+
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- FooTable -->
+    <link href="/assets/css/plugins/footable/footable.core.css" rel="stylesheet">
+
+    <link href="/assets/css/animate.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+						<div class="panel-body">
+                			<div class="col-lg-3">
+                				<div class="form-group">
+                					<label for="ano">A&ntilde;o</label>
+                					<select  id="ano" class="form-control" >
+                						<option value="0">-- SELECCIONE --</option>
+                						<?php foreach ($this->view->ano as $ano):?>
+                    					<option value="<?php echo($ano->id);?>"><?php echo($ano->ano);?></option>
+                    					<?php endforeach; ?>
+                					</select>
+                				</div>
+                			</div>
+                			<div id="loadPais"></div>
+                			<div id="loadSede"></div>
+                			<div id="proyectos">
+						</div>
+						<div id="dados">
+						 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div id="loading-techo">
+        	<div class="loading"><img src="/loading.gif"></div>
+        </div>
+	</body>
+	<script type="text/javascript" src="/assets/js/tinformes/newproyectos.js"></script>
+	 <script src="/assets/js/jquery-2.1.1.js"></script>
+	    <script src="/assets/js/bootstrap.min.js"></script>
+	    <script src="/assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+	    <script src="/assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	    <!-- FooTable -->
+	    <script src="/assets/js/plugins/footable/footable.all.min.js"></script>
+
+	    <!-- Custom and plugin javascript -->
+	    <script src="/assets/js/inspinia.js"></script>
+	    <script src="/assets/js/plugins/pace/pace.min.js"></script>
+
+	    <!-- Page-Level Scripts -->
+	    <script>
+	        $(document).ready(function() {
+	        	$('#loading-techo').hide();
+	            $('.footable').footable();
+	            $('.footable2').footable();
+
+	        });
+
+	    </script>
+
+</html>

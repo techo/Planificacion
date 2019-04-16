@@ -96,6 +96,9 @@ $route[] = ['/tinforme/BuscaValoresMonitoreo2', 'TInformeController@BuscaValores
 /** Monitoreo de Proyectos **/
 $route[] = ['/tinforme/mproyecto', 'TInformeController@MonitoreoProyecto'];
 $route[] = ['/tinforme/BuscaValoresProyecto', 'TInformeController@BuscaValoresProyecto'];
+$route[] = ['/tinforme/newproyectos', 'TInformeController@NewProyectos'];
+$route[] = ['/tinforme/CarregaProyectos', 'TInformeController@CarregaProyectos'];
+$route[] = ['/tinforme/NewValoresProyecto', 'TInformeController@NewValoresProyecto'];
 
 /** Generador de Informes **/
 $route[] = ['/generador', 'GeneradorController@index'];
@@ -120,5 +123,10 @@ $route[] = ['/feedback/enviar', 'FeedbackController@save'];
 
 /** Gambis **/
 $route[] = ['/gambis', 'GambisController@index'];
+/** API **/
+$route[] = ['/api', 'GambisController@api'];
+
+/** New Planificacion **/
+$route[] = ['/new', 'NewPlanificacionController@index'];
 
 return $route;

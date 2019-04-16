@@ -2684,6 +2684,419 @@ class TInformeController extends BaseController
         echo ($html);
         
     }
+    
+    public function NewProyectos()
+    {
+        $this->setPageTitle('Proyectos');
+        $model = Container::getModel("TInforme");
         
+        //Busca Anos
+        $this->view->ano = $model->ListAnos();
+        $this->renderView('tinforme/newproyectos', 'layout');
+    }
+     
+    public function NewValoresProyecto($aDados)
+    {
+        $aDados = (array) $aDados;
+        
+        $cplanificacion  = $aDados['cplanificacion'];
+        $pais            = $aDados['idPais'];
+        $sede            = $aDados['idSede'];
+        $idproyecto      = $aDados['idproyecto'];
+        
+        $model = Container::getModel("TInforme");
+        
+        //Busca Dados
+        $result = $model->BuscaProyectos($cplanificacion, $pais, $sede, $idproyecto);
+        
+        $html .= '<table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">';
+        $html .= '<thead>';
+        $html .= '<tr>';
+        $html .= '<th data-toggle="true">Indicador</th>';
+        $html .= '<th data-hide="all">Peso/Ponderacion</th>';
+        $html .= '<th data-hide="all">Plan '.$result[0]->ano.'</th>';
+        $html .= '<th data-hide="all">Real '.$result[0]->ano.'</th>';
+        $html .= '<th data-hide="all">% (R/P) '.$result[0]->ano.'</th>';
+        $html .= '<th data-hide="all">Plan S1</th>';
+        $html .= '<th data-hide="all">Real S1</th>';
+        $html .= '<th data-hide="all">% (R/P)</th>';
+        $html .= '<th data-hide="all">Plan S2</th>';
+        $html .= '<th data-hide="all">Real S2</th>';
+        $html .= '<th data-hide="all">% (R/P)</th>';
+        $html .= '</tr>';
+        $html .= '</thead>';
+        $html .= '<tbody>';
+        foreach ($result as $dados)
+        {
+            //Busca Dados do KPI 1
+            $aIndicador1 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_1, $sede);
+            $ind1 = (array) $aIndicador1[0];
+            $indicador1 = array_filter($ind1);
+            $plan1 = strtolower($indicador1['tipo'] . '_' . 'plan_anual');
+            $real1 = strtolower($indicador1['tipo'] . '_' . 'real_anual');
+            $rp1   = strtolower($indicador1['tipo'] . '_' . 'rp_anual');
+            $s1p   = strtolower($indicador1['tipo'] . '_' . 'plan_s1');
+            $s1r   = strtolower($indicador1['tipo'] . '_' . 'real_s1');
+            $s1rp  = strtolower($indicador1['tipo'] . '_' . 'rp_s1');
+            $s2p   = strtolower($indicador1['tipo'] . '_' . 'plan_s2');
+            $s2r   = strtolower($indicador1['tipo'] . '_' . 'real_s2');
+            $s2rp  = strtolower($indicador1['tipo'] . '_' . 'rp_s2');
+            
+            
+            //Indicador 1
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador1.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion1.'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$plan1], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$real1], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$rp1], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador1) > 1 ? '' : number_format($indicador1[$s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 2
+             $aIndicador2 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_2, $sede);
+             
+             $ind2 = (array) $aIndicador2[0];
+             $indicador2 = array_filter($ind2);
+             $plan2    = strtolower($indicador2['tipo'] . '_' . 'plan_anual');
+             $real2    = strtolower($indicador2['tipo'] . '_' . 'real_anual');
+             $rp2      = strtolower($indicador2['tipo'] . '_' . 'rp_anual');
+             $in2s1p   = strtolower($indicador2['tipo'] . '_' . 'plan_s1');
+             $in2s1r   = strtolower($indicador2['tipo'] . '_' . 'real_s1');
+             $in2s1rp  = strtolower($indicador2['tipo'] . '_' . 'rp_s1');
+             $in2s2p   = strtolower($indicador2['tipo'] . '_' . 'plan_s2');
+             $in2s2r   = strtolower($indicador2['tipo'] . '_' . 'real_s2');
+             $in2s2rp  = strtolower($indicador2['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 2
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador2.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion2.'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$plan2], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$real2], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$rp2], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$in2s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$in2s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$in2s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$in2s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$in2s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador2) > 1 ? '' : number_format($indicador2[$in2s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 3
+             $aIndicador3 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_3, $sede);
+             $ind3 = (array) $aIndicador3[0];
+             $indicador3 = array_filter($ind3);
+             $plan3    = strtolower($indicador3['tipo'] . '_' . 'plan_anual');
+             $real3    = strtolower($indicador3['tipo'] . '_' . 'real_anual');
+             $rp3      = strtolower($indicador3['tipo'] . '_' . 'rp_anual');
+             $in3s1p   = strtolower($indicador3['tipo'] . '_' . 'plan_s1');
+             $in3s1r   = strtolower($indicador3['tipo'] . '_' . 'real_s1');
+             $in3s1rp  = strtolower($indicador3['tipo'] . '_' . 'rp_s1');
+             $in3s2p   = strtolower($indicador3['tipo'] . '_' . 'plan_s2');
+             $in3s2r   = strtolower($indicador3['tipo'] . '_' . 'real_s2');
+             $in3s2rp  = strtolower($indicador3['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 3
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador3.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion3.'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$plan3], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$real3], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$rp3], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$in3s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$in3s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$in2s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$in3s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$in3s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador3) > 1 ? '' : number_format($indicador3[$in3s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 4
+             $aIndicador4 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_4, $sede);
+             $ind4 = (array) $aIndicador4[0];
+             $indicador4 = array_filter($ind4);
+             $plan4    = strtolower($indicador4['tipo'] . '_' . 'plan_anual');
+             $real4    = strtolower($indicador4['tipo'] . '_' . 'real_anual');
+             $rp4      = strtolower($indicador4['tipo'] . '_' . 'rp_anual');
+             $in4s1p   = strtolower($indicador4['tipo'] . '_' . 'plan_s1');
+             $in4s1r   = strtolower($indicador4['tipo'] . '_' . 'real_s1');
+             $in4s1rp  = strtolower($indicador4['tipo'] . '_' . 'rp_s1');
+             $in4s2p   = strtolower($indicador4['tipo'] . '_' . 'plan_s2');
+             $in4s2r   = strtolower($indicador4['tipo'] . '_' . 'real_s2');
+             $in4s2rp  = strtolower($indicador4['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 4
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador4.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion4.'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$plan4], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$real4], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$rp4], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$in4s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$in4s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$in4s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$in4s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$in4s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador4) > 1 ? '' : number_format($indicador4[$in4s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 5
+             $aIndicador5 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_5, $sede);
+             $ind5 = (array) $aIndicador5[0];
+             $indicador5 = array_filter($ind5);
+             $plan5    = strtolower($indicador5['tipo'] . '_' . 'plan_anual');
+             $real5    = strtolower($indicador5['tipo'] . '_' . 'real_anual');
+             $rp5      = strtolower($indicador5['tipo'] . '_' . 'rp_anual');
+             $in5s1p   = strtolower($indicador5['tipo'] . '_' . 'plan_s1');
+             $in5s1r   = strtolower($indicador5['tipo'] . '_' . 'real_s1');
+             $in5s1rp  = strtolower($indicador5['tipo'] . '_' . 'rp_s1');
+             $in5s2p   = strtolower($indicador5['tipo'] . '_' . 'plan_s2');
+             $in5s2r   = strtolower($indicador5['tipo'] . '_' . 'real_s2');
+             $in5s2rp  = strtolower($indicador5['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 5
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador5.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion5.'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$plan5], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$real5], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$rp5], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$in5s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$in5s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$in5s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$in5s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$in5s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador5) > 1 ? '' : number_format($indicador5[$in5s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 6
+             $aIndicador6 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_6, $sede);
+             $ind6 = (array) $aIndicador6[0];
+             $indicador6 = array_filter($ind6);
+             $plan6    = strtolower($indicador6['tipo'] . '_' . 'plan_anual');
+             $real6    = strtolower($indicador6['tipo'] . '_' . 'real_anual');
+             $rp6      = strtolower($indicador6['tipo'] . '_' . 'rp_anual');
+             $in6s1p   = strtolower($indicador6['tipo'] . '_' . 'plan_s1');
+             $in6s1r   = strtolower($indicador6['tipo'] . '_' . 'real_s1');
+             $in6s1rp  = strtolower($indicador6['tipo'] . '_' . 'rp_s1');
+             $in6s2p   = strtolower($indicador6['tipo'] . '_' . 'plan_s2');
+             $in6s2r   = strtolower($indicador6['tipo'] . '_' . 'real_s2');
+             $in6s2rp  = strtolower($indicador6['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 6
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador6.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion6.'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$plan6], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$real6], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$rp6], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$in6s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$in6s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$in6s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$in6s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$in6s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador6) > 1 ? '' : number_format($indicador6[$in6s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 7
+             $aIndicador7 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_7, $sede);
+             $ind7 = (array) $aIndicador7[0];
+             $indicador7 = array_filter($ind7);
+             $plan7    = strtolower($indicador7['tipo'] . '_' . 'plan_anual');
+             $real7    = strtolower($indicador7['tipo'] . '_' . 'real_anual');
+             $rp7      = strtolower($indicador7['tipo'] . '_' . 'rp_anual');
+             $in7s1p   = strtolower($indicador7['tipo'] . '_' . 'plan_s1');
+             $in7s1r   = strtolower($indicador7['tipo'] . '_' . 'real_s1');
+             $in7s1rp  = strtolower($indicador7['tipo'] . '_' . 'rp_s1');
+             $in7s2p   = strtolower($indicador7['tipo'] . '_' . 'plan_s2');
+             $in7s2r   = strtolower($indicador7['tipo'] . '_' . 'real_s2');
+             $in7s2rp  = strtolower($indicador7['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 7
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador7.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion7.'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$plan7], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$real7], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$rp7], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$in7s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$in7s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$in7s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$in7s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$in7s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador7) > 1 ? '' : number_format($indicador7[$in7s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 8
+             $aIndicador8 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_8, $sede);
+             $ind8 = (array) $aIndicador8[0];
+             $indicador8 = array_filter($ind8);
+             $plan8    = strtolower($indicador8['tipo'] . '_' . 'plan_anual');
+             $real8    = strtolower($indicador8['tipo'] . '_' . 'real_anual');
+             $rp8      = strtolower($indicador8['tipo'] . '_' . 'rp_anual');
+             $in8s1p   = strtolower($indicador8['tipo'] . '_' . 'plan_s1');
+             $in8s1r   = strtolower($indicador8['tipo'] . '_' . 'real_s1');
+             $in8s1rp  = strtolower($indicador8['tipo'] . '_' . 'rp_s1');
+             $in8s2p   = strtolower($indicador8['tipo'] . '_' . 'plan_s2');
+             $in8s2r   = strtolower($indicador8['tipo'] . '_' . 'real_s2');
+             $in8s2rp  = strtolower($indicador8['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 8
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador8.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion8.'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' :number_format($indicador8[$plan8], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' :number_format($indicador8[$real8], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' :number_format($indicador8[$rp8], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' : number_format($indicador8[$in8s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' : number_format($indicador8[$in8s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' : number_format($indicador8[$in8s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' : number_format($indicador8[$in8s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' : number_format($indicador8[$in8s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador8) > 1 ? '' : number_format($indicador8[$in8s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 9
+             $aIndicador9 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_9, $sede);
+             
+             $ind9 = (array) $aIndicador9[0];
+             $indicador9 = array_filter($ind9);
+             $plan9    = strtolower($indicador9['tipo'] . '_' . 'plan_anual');
+             $real9    = strtolower($indicador9['tipo'] . '_' . 'real_anual');
+             $rp9      = strtolower($indicador9['tipo'] . '_' . 'rp_anual');
+             $in9s1p   = strtolower($indicador9['tipo'] . '_' . 'plan_s1');
+             $in9s1r   = strtolower($indicador9['tipo'] . '_' . 'real_s1');
+             $in9s1rp  = strtolower($indicador9['tipo'] . '_' . 'rp_s1');
+             $in9s2p   = strtolower($indicador9['tipo'] . '_' . 'plan_s2');
+             $in9s2r   = strtolower($indicador9['tipo'] . '_' . 'real_s2');
+             $in9s2rp  = strtolower($indicador9['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 9
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador9.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion9.'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$plan9], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$real9], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$rp9], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$in9s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$in9s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$in9s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$in9s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$in9s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador9) > 1 ? '' : number_format($indicador9[$in9s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+             //Busca Dados do KPI 10
+             $aIndicador10 = $model->BuscaDadosGerais($pais, $cplanificacion, $result[0]->Id_10, $sede);
+             
+             $ind10 = (array) $aIndicador10[0];
+             $indicador10 = array_filter($ind10);
+             $plan10    = strtolower($indicador10['tipo'] . '_' . 'plan_anual');
+             $real10    = strtolower($indicador10['tipo'] . '_' . 'real_anual');
+             $rp10      = strtolower($indicador10['tipo'] . '_' . 'rp_anual');
+             $in10s1p   = strtolower($indicador10['tipo'] . '_' . 'plan_s1');
+             $in10s1r   = strtolower($indicador10['tipo'] . '_' . 'real_s1');
+             $in10s1rp  = strtolower($indicador10['tipo'] . '_' . 'rp_s1');
+             $in10s2p   = strtolower($indicador10['tipo'] . '_' . 'plan_s2');
+             $in10s2r   = strtolower($indicador10['tipo'] . '_' . 'real_s2');
+             $in10s2rp  = strtolower($indicador10['tipo'] . '_' . 'rp_s2');
+             
+             //Indicador 10
+             $html .= '<tr>';
+             $html .= '<td>'.$result[0]->Indicador10.'</td>';
+             $html .= '<td>'.$result[0]->Ponderacion10.'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$plan10], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$real10], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$rp10], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$in10s1p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$in10s1r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$in10s1rp], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$in10s2p], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$in10s2r], 2, '.', '')) .'</td>';
+             $html .= '<td>'. (count($aIndicador10) > 1 ? '' : number_format($indicador10[$in10s2rp], 2, '.', '')) .'</td>';
+             $html .= '</tr>';
+             
+        }
+        $html .= '</tbody>';
+        $html .= '</table>';
+        
+        echo ($html);
+    }
+    
+    public function CarregaProyectos($aDados)
+    {
+        $aDados = (array) $aDados;
+        
+        $cplanificacion  = $aDados['cplanificacion'];
+        $pais            = $aDados['idPais'];
+        $sede            = $aDados['idSede'];
+        
+        $model = Container::getModel("TInforme");
+        
+        //Busca Dados
+        $result = $model->BuscaProyectos($cplanificacion, $pais, $sede);
+        
+        if(empty($result))
+        {
+            $html = '<!DOCTYPE html>
+                    <html>
+                    <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <style>
+                    .alert {
+                        padding: 20px;
+                        background-color: #f44336;
+                        color: white;
+                    }
+                
+                    .closebtn {
+                        margin-left: 15px;
+                        color: white;
+                        font-weight: bold;
+                        float: right;
+                        font-size: 22px;
+                        line-height: 20px;
+                        cursor: pointer;
+                        transition: 0.3s;
+                    }
+                
+                    .closebtn:hover {
+                        color: black;
+                    }
+                    </style>
+                    </head>
+                    <body>
+                
+                    <div class="alert">
+                      <strong>Alerta!</strong> No Hay Proyectos Creados!.
+                    </div>
+                
+                    </body>
+                    </html>';
+            echo ($html);
+            die();
+        }
+        
+        $html .= '<div class="col-lg-3">';
+        $html .= '<div class="form-group">';
+        $html .= '<label for="proyectos">Proyectos</label>';
+        $html .= '<select  id="pro" class="form-control" >';
+        $html .= '<option value="0">-- SELECCIONE --</option>';
+        foreach ($result as $proyecto)
+        {
+            $html.= '<option value="'.$proyecto->id.'">'.$proyecto->proyecto.'</option>';
+        }
+        $html .= '</select>';
+        $html .= '</div>';
+        $html .= '</div>';
+        
+        echo ($html);
+    }
     
 }
