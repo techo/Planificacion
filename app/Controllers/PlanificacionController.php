@@ -2080,6 +2080,28 @@ class PlanificacionController extends BaseController
                 
                 $aValores[0]['id'] = $aParam['id'];
                 
+                //Correção Argentina, pode surgir em outros indicadores
+                foreach($aValores[0] as $key=>$value)
+                {
+                    //Problema 1 valor Infinito
+                    if($value == INF)
+                    {
+                        $aValores[0][$key] = 0.00;
+                    }
+                    
+                    //Problema 2 Valor NAN
+                    if(is_nan($value))
+                    {
+                        $aValores[0][$key] = 0.00;
+                    }
+                    
+                    //Problema 3 Valor com decimais com mais de 10 caracteres
+                    if(strlen($value) > 10)
+                    {
+                        $aValores[0][$key] = round($value, 2);
+                    }
+                }
+                
                 //Metodo que grava os Maximos
                 $aRetVal = $model->GravaUltimo($aValores);
             }
