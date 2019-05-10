@@ -211,17 +211,89 @@ class TInformeController extends BaseController
         //Busca Trismestre
         $result = $model->BuscaTrimestre($idplanificacion, $pais, $sede, $indicador);
         
-        //Dados para o Chart Plan
-        $T1Plan = $result[0]->enero_plan + $result[0]->febrero_plan + $result[0]->marzo_plan;
-        $T2Plan = $result[0]->abril_plan + $result[0]->mayo_plan    + $result[0]->junio_plan;
-        $T3Plan = $result[0]->julio_plan + $result[0]->agosto_plan  + $result[0]->septiembre_plan;
-        $T4Plan = $result[0]->octubre_plan + $result[0]->noviembre_plan + $result[0]->diciembre_plan;
+        // Acumulado
+        if($result[0]->id_tipo == 1)
+        {
+            //Dados para o Chart Plan
+            $T1Plan = $result[0]->enero_plan + $result[0]->febrero_plan + $result[0]->marzo_plan;
+            $T2Plan = $result[0]->abril_plan + $result[0]->mayo_plan    + $result[0]->junio_plan;
+            $T3Plan = $result[0]->julio_plan + $result[0]->agosto_plan  + $result[0]->septiembre_plan;
+            $T4Plan = $result[0]->octubre_plan + $result[0]->noviembre_plan + $result[0]->diciembre_plan;
+            
+            //Dados para o Chart Real
+            $T1Real = $result[0]->enero_real + $result[0]->febrero_real + $result[0]->marzo_real;
+            $T2Real = $result[0]->abril_real + $result[0]->mayo_real + $result[0]->junio_real;
+            $T3Real = $result[0]->julio_real + $result[0]->agosto_real + $result[0]->septiembre_real;
+            $T4Real = $result[0]->octubre_real + $result[0]->noviembre_real + $result[0]->diciembre_real;
+        }
         
-        //Dados para o Chart Real
-        $T1Real = $result[0]->enero_real + $result[0]->febrero_real + $result[0]->marzo_real;
-        $T2Real = $result[0]->abril_real + $result[0]->mayo_real + $result[0]->junio_real;
-        $T3Real = $result[0]->julio_real + $result[0]->agosto_real + $result[0]->septiembre_real;
-        $T4Real = $result[0]->octubre_real + $result[0]->noviembre_real + $result[0]->diciembre_real;
+        // Minimo
+        if($result[0]->id_tipo == 2)
+        {
+            $aT1 = array($result[0]->enero_plan, $result[0]->febrero_plan, $result[0]->marzo_plan);
+            $aT2 = array($result[0]->abril_plan, $result[0]->mayo_plan, $result[0]->junio_plan);
+            $aT3 = array($result[0]->julio_plan, $result[0]->agosto_plan, $result[0]->septiembre_plan);
+            $aT4 = array($result[0]->octubre_plan, $result[0]->noviembre_plan, $result[0]->diciembre_plan);
+            
+            //Dados para o Chart Plan
+            $T1Plan = min($aT1);
+            $T2Plan = min($aT2);
+            $T3Plan = min($aT3);
+            $T4Plan = min($aT4);
+            
+            $aR1 = array($result[0]->enero_real, $result[0]->febrero_real, $result[0]->marzo_real);
+            $aR2 = array($result[0]->abril_real, $result[0]->mayo_real, $result[0]->junio_real);
+            $aR3 = array($result[0]->julio_real, $result[0]->agosto_real, $result[0]->septiembre_real);
+            $aR4 = array($result[0]->octubre_real, $result[0]->noviembre_real, $result[0]->diciembre_real);
+            
+            //Dados para o Chart Real
+            $T1Real = min($aR1);
+            $T2Real = min($aR2);
+            $T3Real = min($aR3);
+            $T4Real = min($aR4);
+        }
+        
+        // Promedio
+        if($result[0]->id_tipo == 3)
+        {
+            //Dados para o Chart Plan
+            $T1Plan = ($result[0]->enero_plan + $result[0]->febrero_plan + $result[0]->marzo_plan) / 3;
+            $T2Plan = ($result[0]->abril_plan + $result[0]->mayo_plan    + $result[0]->junio_plan) / 3;
+            $T3Plan = ($result[0]->julio_plan + $result[0]->agosto_plan  + $result[0]->septiembre_plan) / 3;
+            $T4Plan = ($result[0]->octubre_plan + $result[0]->noviembre_plan + $result[0]->diciembre_plan) / 3;
+            
+            //Dados para o Chart Real
+            $T1Real = ($result[0]->enero_real + $result[0]->febrero_real + $result[0]->marzo_real) /3;
+            $T2Real = ($result[0]->abril_real + $result[0]->mayo_real + $result[0]->junio_real) /3;
+            $T3Real = ($result[0]->julio_real + $result[0]->agosto_real + $result[0]->septiembre_real) /3;
+            $T4Real = ($result[0]->octubre_real + $result[0]->noviembre_real + $result[0]->diciembre_real) /3;
+        }
+        
+        // Ultimo
+        if($result[0]->id_tipo == 4)
+        {
+            $aT1 = array($result[0]->enero_plan, $result[0]->febrero_plan, $result[0]->marzo_plan);
+            $aT2 = array($result[0]->abril_plan, $result[0]->mayo_plan, $result[0]->junio_plan);
+            $aT3 = array($result[0]->julio_plan, $result[0]->agosto_plan, $result[0]->septiembre_plan);
+            $aT4 = array($result[0]->octubre_plan, $result[0]->noviembre_plan, $result[0]->diciembre_plan);
+            
+            //Dados para o Chart Plan
+            $T1Plan = max($aT1);
+            $T2Plan = max($aT2);
+            $T3Plan = max($aT3);
+            $T4Plan = max($aT4);
+            
+            $aR1 = array($result[0]->enero_real, $result[0]->febrero_real, $result[0]->marzo_real);
+            $aR2 = array($result[0]->abril_real, $result[0]->mayo_real, $result[0]->junio_real);
+            $aR3 = array($result[0]->julio_real, $result[0]->agosto_real, $result[0]->septiembre_real);
+            $aR4 = array($result[0]->octubre_real, $result[0]->noviembre_real, $result[0]->diciembre_real);
+            
+            //Dados para o Chart Real
+            $T1Real = max($aR1);
+            $T2Real = max($aR2);
+            $T3Real = max($aR3);
+            $T4Real = max($aR4);
+        }
         
         //tudo junto pq deu merda separado
         echo json_encode(array("plan" => $T1Plan . ',' . $T2Plan . ',' . $T3Plan. ',' . $T4Plan . ',' . $T1Real. ',' . $T2Real. ',' . $T3Real. ',' . $T4Real));
