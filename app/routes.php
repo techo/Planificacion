@@ -125,8 +125,13 @@ $route[] = ['/feedback/enviar', 'FeedbackController@save'];
 $route[] = ['/gambis', 'GambisController@index'];
 /** API **/
 $route[] = ['/api', 'GambisController@api'];
+$route[] = ['/api/valores', 'GambisController@valores'];
+$route[] = ['/api/MX', 'GambisController@MX'];
 
 /** New Planificacion **/
 $route[] = ['/new', 'NewPlanificacionController@index'];
+
+/** Power BI **/
+$route[] = ['/kpis2019', 'PowerBiController@index'];
 
 return $route;
