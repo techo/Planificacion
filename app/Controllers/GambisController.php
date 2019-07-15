@@ -203,4 +203,19 @@ class GambisController extends BaseController
         echo(json_encode($aDados));
     }
     
+    public function IndicesExcelencia($request)
+    {
+        
+        $aRequest = (array) $request;
+        
+        $_SESSION['Planificacion']['token']   = '7c9b5c9b9baae1227deb96f1c51a7b61';
+        
+        $this->setPageTitle('API');
+        $model = Container::getModel("Gambis");
+        
+        $aDados = $model->indicesExcelencia();
+        
+        echo(json_encode($aDados));
+    }
+    
 }

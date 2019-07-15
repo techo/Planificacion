@@ -353,4 +353,22 @@ class Gambis extends BaseModel
         return $result;
     }
     
+    public function indicesExcelencia()
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= " indicador.id, ";
+        $sql .= " indicador.indicador, ";
+        $sql .= " indicador.id_tipo, ";
+        $sql .= " tipo.tipo ";
+        $sql .= " FROM indicador ";
+        $sql .= " INNER JOIN tipo on tipo.id = indicador.id_tipo ";
+        $sql .= "WHERE indicador.id  IN ('5','6','7','8','9','10','11','12','13','14','15','16','17','18') ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }
