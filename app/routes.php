@@ -134,5 +134,6 @@ $route[] = ['/new', 'NewPlanificacionController@index'];
 
 /** Power BI **/
 $route[] = ['/kpis2019', 'PowerBiController@index'];
+$route[] = ['/infografia2019', 'PowerBiController@inforgrafia2019'];
 
 return $route;
