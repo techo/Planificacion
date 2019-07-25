@@ -35,4 +35,14 @@ class PowerBiController extends BaseController
         /* Render View Paises */
         $this->renderView('powerbi/index', 'layout');
     }
+    
+    public function inforgrafia2019()
+    {
+        $this->setPageTitle('Power BI - TECHO');
+        # precisa obrigatorio pra funcionar ter uma model
+        $model = Container::getModel("Ano");
+        
+        /* Render View Paises */
+        $this->renderView('powerbi/infografia2019', 'layout');
+    }
 }
