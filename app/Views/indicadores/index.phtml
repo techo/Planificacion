@@ -3,7 +3,7 @@
 		<h2>Indicadores</h2>
 		 <ol class="breadcrumb">
 		 	<li>
-                <a href="/">Home</a>
+                <a href="/">Inicio</a>
             </li>
             <li class="active">
                 <strong>Indicadores</strong>
@@ -29,11 +29,12 @@
 						<thead>
                     		<tr>
                                 <th>Indicador</th>
+                                <th>Descripci&oacute;n</th>
                                 <th>Temporalidad</th>
                                 <th>Tipo</th>
                                 <th>Pilar Estrat&eacute;gico</th>
                                 <th>&Aacute;rea</th>
-                                <th>Status</th>
+                                <th>Estado</th>
                                 <th>Opciones</th>
                     		</tr>
                     	</thead>
@@ -41,6 +42,7 @@
                     	<?php foreach ($this->view->indicador as $indicador): ?>
                     		<tr class="gradeX">
                     		<td><?php echo($indicador->indicador);?></td>
+                    		<td><?php echo($indicador->descripcion);?></td>
                     		<td><?php echo($indicador->temporalidad);?></td>
                     		<td><?php echo($indicador->tipo);?></td>
                     		<td><?php echo($indicador->pilar);?></td>
@@ -50,7 +52,7 @@
                     		if($_SESSION['Planificacion']['sede_id'] == 1)
                     		{?>
                     		   
-                    		<td class="center"><a href="/indicadores/show/<?php echo($indicador->id);?>" class="btn btn-success btn-xs carregando"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($indicador->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
+                    		<td class="center"><a href="/indicadores/show/<?php echo($indicador->id);?>" class="btn btn-success btn-xs carregando"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($indicador->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Eliminar</a></td>
                     		<?php
                     		}else
                     		{
