@@ -35,6 +35,7 @@
                                 <th>Pilar Estrat&eacute;gico</th>
                                 <th>&Aacute;rea</th>
                                 <th>Estado</th>
+                                <th>Pa&iacute;s</th>
                                 <th>Opciones</th>
                     		</tr>
                     	</thead>
@@ -48,6 +49,7 @@
                     		<td><?php echo($indicador->pilar);?></td>
                     		<td><?php echo($indicador->area);?></td>
                     		<td><?php ($indicador->situation == '1' ? $indicador->situation = 'Activo' : $indicador->situation = 'Inactivo'); echo($indicador->situation);?></td>
+                    		<td><?php echo($indicador->pais);?></td>
                     		<?php 
                     		if($_SESSION['Planificacion']['sede_id'] == 1)
                     		{?>

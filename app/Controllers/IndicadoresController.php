@@ -54,7 +54,7 @@ class IndicadoresController extends BaseController
             }
             else 
             {
-                $aKPI[$i]['pais'] = 'Todos';
+                $aKPI[$i]['pais'] = 'standard';
             }
             
             //Get Sede
@@ -65,7 +65,7 @@ class IndicadoresController extends BaseController
             }
             else
             {
-                $aKPI[$i]['sede'] = 'Todas';
+                $aKPI[$i]['sede'] = 'standard';
             }
             
             $this->view->indicador[$i] = (object) $aKPI[$i];
