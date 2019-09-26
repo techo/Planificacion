@@ -58,6 +58,11 @@
                                             {
                                                 $numeral = 'selected';
                                             }
+                                            
+                                            if($this->view->indicador->formato == 'S/N')
+                                            {
+                                                $binario = 'selected';
+                                            }
                                         ?>
 										<div class="form-group">
     	 									<label for="formato">Formato</label>
@@ -66,6 +71,7 @@
                                     			<option <?php echo ($dolar);?> value="$">$ - Dolar</option>
                                     			<option <?php echo ($porcentagem);?> value="%">% - Porcentaje</option>
                                     			<option <?php echo ($numeral);?> value="#"># - Numeral</option>
+                                    			<option <?php echo ($binario);?> value="S/N">S/N - Binario</option>
                 	 						</select>
             	 						</div>
 									</div>
