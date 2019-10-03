@@ -72,6 +72,15 @@ window.onload = function()
 								}
 								
 							}
+							
+							if(editableGrid.data[i].formato == 'S/N' )  
+							{
+								j = 4;
+								while (j < 28) {
+									editableGrid.data[i].columns[j] = editableGrid.data[i].formato + ' ' + editableGrid.data[i].columns[j];
+								    j++;
+								}
+							}
 						})
 						
 //						if(editableGrid.data[0].columns[0] == 'Voluntarios/as movilizados/as en Colecta')
@@ -291,6 +300,23 @@ window.onload = function()
 			  			var id1     = editorInput.celleditor.editablegrid.data[linha1].id;
 			  			var valor1  = editorInput.celleditor.editablegrid.data[linha1].columns[coluna2];
 			  			
+			  			if(editorInput.celleditor.editablegrid.data[linha1].formato == 'S/N')
+		  				{
+			  				
+			  				if(valor1 != 0 && valor1 != 1)
+		  					{
+			  					$('#loading-techo').hide();
+			  					
+			  					var left  = ($(window).width()/2)-(500/2),
+			  				    top   = ($(window).height()/2)-(250/2),
+			  				    myWindow = window.open ("", "popup", "width=500, height=250, top="+top+", left="+left);
+			  					myWindow.document.write("<p><font color='red'><b>INDICADORES BINARIOS NO ACEPTAN VALORES DISTINTOS DE 0 Y 1!!</b></font></p>");
+			  					//var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+			  				    
+			  					return false;
+		  					}
+		  				}
+			  			
 			  			
 			  		  	//Implementar Update de Dados
 			  		  		oIndicador   = new Object();
@@ -322,6 +348,19 @@ window.onload = function()
 	  		var coluna = (this.celleditor['column']['name']);
 	  		var id     = (this.celleditor['editablegrid']['data'][linha]['id']);
 	  		var valor  = (this.celleditor.getEditorValue(this));
+	  		
+	  		if(this.celleditor['editablegrid']['data'][linha]['formato'] == 'S/N')
+  			{
+	  			if(valor != 0 && valor != 1)
+				{
+	  				$('#loading-techo').hide();
+	  				var left  = ($(window).width()/2)-(500/2),
+  				    top   = ($(window).height()/2)-(250/2),
+  				    myWindow = window.open ("", "popup", "width=500, height=250, top="+top+", left="+left);
+  					myWindow.document.write("<p><font color='red'><b>INDICADORES BINARIOS NO ACEPTAN VALORES DISTINTOS DE 0 Y 1!!</b></font></p>");
+	  				return false;
+				}
+  			}
 	  		
 	  		//Implementar Update de Dados
 	  		oIndicador   = new Object();
