@@ -418,8 +418,8 @@ class HomeController extends BaseController
                             $cCor = 'Vermelho';
                         }
                         
-                        $html .= '<td>' . $indicadores->acumulado_plan_anual . ' ' . $formato .'</td>';
-                        $html .= '<td class="cinza">' . $indicadores->acumulado_real_anual. ' ' .$formato .'</td>';
+                        $html .= '<td>' . number_format($indicadores->acumulado_plan_anual, 2, ',', '.') . ' ' . $formato .'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_anual, 2, ',', '.'). ' ' .$formato .'</td>';
                         
                         //Cor Acumulado RP Anual
                         if((number_format($indicadores->acumulado_rp_anual, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_anual, 2, '.', '') <= '59.99'))
@@ -437,11 +437,11 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_anual, 2, ',', '.'). '' .$porcento.'</td>';
                         
                         //Custom T1
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t1, 2, ',', '.'). '' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t1, 2, ',', '.'). '' .$formato.'</td>';
                         
                         //Cor Acumulado RP T1
                         if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '59.99'))
@@ -459,11 +459,11 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t1, 2, ',', '.'). '' .$porcento.'</td>';
                         
                         //Custom T2
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t2, 2, ',', '.'). '' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t2, 2, ',', '.'). '' .$formato.'</td>';
                         
                         //Cor Acumulado RP T2
                         if((number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '59.99'))
@@ -481,11 +481,11 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t2, 2, ',', '.'). '' .$porcento.'</td>';
                         
                         //Custom T3
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t3, 2, ',', '.'). '' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t3, 2, ',', '.'). '' .$formato.'</td>';
                         
                         //Cor Acumulado RP T3
                         if((number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '59.99'))
@@ -503,11 +503,11 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t3, 2, ',', '.'). '' .$porcento.'</td>';
                         
                         //Custom T4
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
-                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t4, 2, ',', '.'). '' .$formato.'</td>';
+                        $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t4, 2, ',', '.'). '' .$ormato.'</td>';
                         
                         //Cor Acumulado RP T4
                         if((number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '59.99'))
@@ -525,7 +525,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t4, 2, ',', '.'). '' .$porcento.'</td>';
                         
                         $html .= '<td>' . $indicadores->acumulado_plan_s1. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->acumulado_real_s1. ' ' .$formato .'</td>';
@@ -546,7 +546,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s1, 2, ',', '.'). '' .$porcento.'</td>';
                         $html .= '<td>' . $indicadores->acumulado_plan_s2. ' ' .$formato .'</td>';
                         $html .= '<td class="cinza">' . $indicadores->acumulado_real_s2. ' ' .$formato .'</td>';
                         
@@ -566,7 +566,7 @@ class HomeController extends BaseController
                             $cCor = 'Verde';
                         }
                         
-                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                        $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s2, 2, ',', '.'). '' .$porcento.'</td>';
                     }
                     
                     if($indicadores->tipo == 'Promedio')
@@ -3828,11 +3828,8 @@ class HomeController extends BaseController
             $html .= '<div  class="wrapper wrapper-content animated fadeInRight">';
             $html .= '<div class="row">';
             $html .= '<div class="col-lg-12">';
-            $html .= '<div class="ibox float-e-margins">';
-            $html .= '<div class="ibox-title">';
-            $html .= '</div>';
             $html .= '<div class="ibox-content">';
-            $html .= '<table class="table table-striped table-bordered table-hover dataTables-example" >';
+            $html .= '<div id="tablecontent"> <table class="display responsive nowrap table table-striped table-bordered table-hover dataTables-example" style="width:100%">';
             $html .= '<thead>';
             $html .= '<tr>';
             $html .= '<th>KPI - &Iacute;NDICES DE EXCELENCIA</th>';
@@ -3872,13 +3869,23 @@ class HomeController extends BaseController
                     $formato = '&#160;';
                 }
                 
+                if($formato == '$')
+                {
+                    $formato = '';
+                    $dolar   = '$';
+                }
+                else
+                {
+                    $dolar = '';
+                }
+                
                 $html .= '<tr class="gradeX">';
                 $html .= '<td>' . $indicadores->indicador . '</td>';
                 
                 if($indicadores->tipo == 'Acumulado')
                 {
-                    $html .= '<td>' . $indicadores->acumulado_plan_anual . ' ' . $formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->acumulado_real_anual. ' ' .$formato .'</td>';
+                    $html .= '<td>' . $dolar.number_format($indicadores->acumulado_plan_anual, 2, ',', '.') . ' ' . $formato .'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_real_anual, 2, ',', '.'). ' ' .$formato .'</td>';
                     
                     //Cor Acumulado RP Anual
                     if((number_format($indicadores->acumulado_rp_anual, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_anual, 2, '.', '') <= '59.99'))
@@ -3896,11 +3903,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' .number_format($indicadores->acumulado_rp_anual, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T1
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_plan_t1, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_real_t1, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor Acumulado RP T1
                     if((number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t1, 2, '.', '') <= '59.99'))
@@ -3918,11 +3925,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' .number_format($indicadores->acumulado_rp_t1, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T2
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_plan_t2, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_real_t2, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor Acumulado RP T2
                     if((number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t2, 2, '.', '') <= '59.99'))
@@ -3940,11 +3947,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t2, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T3
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_plan_t3, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_real_t3, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor Acumulado RP T3
                     if((number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t3, 2, '.', '') <= '59.99'))
@@ -3962,11 +3969,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' .number_format($indicadores->acumulado_rp_t3, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T4
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->acumulado_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_plan_t4, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_real_t4, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor Acumulado RP T4
                     if((number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_t4, 2, '.', '') <= '59.99'))
@@ -3984,11 +3991,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_t4, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     
-                    $html .= '<td>' . $indicadores->acumulado_plan_s1. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->acumulado_real_s1. ' ' .$formato .'</td>';
+                    $html .= '<td>' . $dolar.number_format($indicadores->acumulado_plan_s1, 2, ',', '.'). '' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_real_s1, 2, ',', '.'). '' .$formato .'</td>';
                     
                     //Cor Acumulado RP S1
                     if((number_format($indicadores->acumulado_rp_s1, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_s1, 2, '.', '') <= '59.99'))
@@ -4006,9 +4013,9 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
-                    $html .= '<td>' . $indicadores->acumulado_plan_s2. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->acumulado_real_s2. ' ' .$formato .'</td>';
+                    $html .= '<td class="'.$cCor.'">' .number_format($indicadores->acumulado_rp_s1, 2, ',', '.'). '' .$porcento.'</td>';
+                    $html .= '<td>' . $dolar.number_format($indicadores->acumulado_plan_s2, 2, ',', '.'). '' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . $dolar.number_format($indicadores->acumulado_real_s2, 2, ',', '.'). '' .$formato .'</td>';
                     
                     //Cor Acumulado RP S2
                     if((number_format($indicadores->acumulado_rp_s2, 2, '.', '') <= '0.00') || (number_format($indicadores->acumulado_rp_s2, 2, '.', '') <= '59.99'))
@@ -4026,13 +4033,13 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->acumulado_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' .number_format($indicadores->acumulado_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
                 }
                 
                 if($indicadores->tipo == 'Promedio')
                 {
-                    $html .= '<td>' . $indicadores->promedio_plan_anual. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->promedio_real_anual. ' ' .$formato .'</td>';
+                    $html .= '<td>' . number_format($indicadores->promedio_plan_anual, 2, ',', '.'). '' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_anual, 2, ',', '.'). '' .$formato .'</td>';
                     
                     //Cor Promedio RP Anual
                     if((number_format($indicadores->promedio_rp_anual, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_anual, 2, '.', '') <= '59.99'))
@@ -4050,12 +4057,12 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_anual, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     
                     //Custom T1
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t1, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t1, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor Promedio RP T1
                     if((number_format($indicadores->promedio_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t1, 2, '.', '') <= '59.99'))
@@ -4073,11 +4080,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t1, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T2
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t2, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t2, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor promedio RP T2
                     if((number_format($indicadores->promedio_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t2, 2, '.', '') <= '59.99'))
@@ -4095,11 +4102,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t2, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T3
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t3, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t3, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor promedio RP T3
                     if((number_format($indicadores->promedio_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t3, 2, '.', '') <= '59.99'))
@@ -4117,11 +4124,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t3, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T4
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_plan_t4, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_t4, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor promedio RP T4
                     if((number_format($indicadores->promedio_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_t4, 2, '.', '') <= '59.99'))
@@ -4139,10 +4146,10 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_t4, 2, ',', '.'). '' .$porcento.'</td>';
                     
-                    $html .= '<td>' . $indicadores->promedio_plan_s1. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->promedio_real_s1. ' ' .$formato .'</td>';
+                    $html .= '<td>' . number_format($indicadores->promedio_plan_s1, 2, ',', '.'). ' ' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_s1, 2, ',', '.'). ' ' .$formato .'</td>';
                     
                     //Cor Promedio RP S1
                     if((number_format($indicadores->promedio_rp_s1, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_s1, 2, '.', '') <= '59.99'))
@@ -4160,9 +4167,9 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
-                    $html .= '<td>' . $indicadores->promedio_plan_s2. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->promedio_real_s2. ' ' .$formato .'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_s1, 2, ',', '.'). '' .$porcento.'</td>';
+                    $html .= '<td>' . number_format($indicadores->promedio_plan_s2, 2, ',', '.'). ' ' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->promedio_real_s2, 2, ',', '.'). ' ' .$formato .'</td>';
                     
                     //Cor Promedio RP S2
                     if((number_format($indicadores->promedio_rp_s2, 2, '.', '') <= '0.00') || (number_format($indicadores->promedio_rp_s2, 2, '.', '') <= '59.99'))
@@ -4180,7 +4187,7 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_s2, 2, ',', '.'). '' .$porcento.'</td>';
                 }
                 
                 if($indicadores->tipo == 'Minimo')
@@ -4204,11 +4211,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_anual, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T1
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t1, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t1, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor minimo RP T1
                     if((number_format($indicadores->minimo_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t1, 2, '.', '') <= '59.99'))
@@ -4226,11 +4233,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t1, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T2
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t2, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t2, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor minimo RP T2
                     if((number_format($indicadores->minimo_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t2, 2, '.', '') <= '59.99'))
@@ -4248,11 +4255,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t2, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T3
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t3, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t3, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor minimo RP T3
                     if((number_format($indicadores->minimo_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t3, 2, '.', '') <= '59.99'))
@@ -4270,11 +4277,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t3, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T4
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_plan_t4, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_t4, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor minimo RP T4
                     if((number_format($indicadores->minimo_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_t4, 2, '.', '') <= '59.99'))
@@ -4292,10 +4299,10 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_t4, 2, ',', '.'). '' .$porcento.'</td>';
                     
-                    $html .= '<td>' . $indicadores->minimo_plan_s1. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->minimo_real_s1. ' ' .$formato .'</td>';
+                    $html .= '<td>' . number_format($indicadores->minimo_plan_s1, 2, ',', '.'). ' ' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_s1, 2, ',', '.'). ' ' .$formato .'</td>';
                     
                     //Cor Minimo RP S1
                     if((number_format($indicadores->minimo_rp_s1, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_s1, 2, '.', '') <= '59.99'))
@@ -4313,9 +4320,9 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
-                    $html .= '<td>' . $indicadores->minimo_plan_s2. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->minimo_real_s2. ' ' .$formato .'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->minimo_rp_s1, 2, ',', '.'). '' .$porcento.'</td>';
+                    $html .= '<td>' . number_format($indicadores->minimo_plan_s2, 2, ',', '.'). '' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->minimo_real_s2, 2, ',', '.'). '' .$formato .'</td>';
                     
                     //Cor Minimo RP S2
                     if((number_format($indicadores->minimo_rp_s2, 2, '.', '') <= '0.00') || (number_format($indicadores->minimo_rp_s2, 2, '.', '') <= '59.99'))
@@ -4338,8 +4345,8 @@ class HomeController extends BaseController
                 
                 if($indicadores->tipo == 'Maximo')
                 {
-                    $html .= '<td>' . $indicadores->maximo_plan_anual. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->maximo_real_anual. ' ' .$formato .'</td>';
+                    $html .= '<td>' . number_format($indicadores->maximo_plan_anual, 2, ',', '.'). '' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_anual, 2, ',', '.'). '' .$formato .'</td>';
                     
                     //Cor Maximo RP Anual
                     if((number_format($indicadores->maximo_rp_anual, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_anual, 2, '.', '') <= '59.99'))
@@ -4357,11 +4364,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_anual, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_anual, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T1
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t1, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t1, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor maximo RP T1
                     if((number_format($indicadores->maximo_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t1, 2, '.', '') <= '59.99'))
@@ -4379,11 +4386,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t1, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T2
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t2, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t2, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor maximo RP T2
                     if((number_format($indicadores->maximo_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t2, 2, '.', '') <= '59.99'))
@@ -4401,11 +4408,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t2, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T3
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t3, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t3, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor maximo RP T3
                     if((number_format($indicadores->maximo_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t3, 2, '.', '') <= '59.99'))
@@ -4423,11 +4430,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t3, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T4
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_plan_t4, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_t4, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor maximo RP T4
                     if((number_format($indicadores->maximo_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_t4, 2, '.', '') <= '59.99'))
@@ -4445,10 +4452,10 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_t4, 2, ',', '.'). '' .$porcento.'</td>';
                     
-                    $html .= '<td>' . $indicadores->maximo_plan_s1. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->maximo_real_s1. ' ' .$formato .'</td>';
+                    $html .= '<td>' . number_format($indicadores->maximo_plan_s1, 2, ',', '.'). '' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_s1, 2, ',', '.'). ' ' .$formato .'</td>';
                     
                     //Cor Maximo RP S1
                     if((number_format($indicadores->maximo_rp_s1, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_s1, 2, '.', '') <= '59.99'))
@@ -4466,9 +4473,9 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
-                    $html .= '<td>' . $indicadores->maximo_plan_s2. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->maximo_real_s2. ' ' .$formato .'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_s1, 2, ',', '.'). '' .$porcento.'</td>';
+                    $html .= '<td>' . number_format($indicadores->maximo_plan_s2, 2, ',', '.'). ' ' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->maximo_real_s2, 2, ',', '.'). ' ' .$formato .'</td>';
                     
                     //Cor Maximo RP S2
                     if((number_format($indicadores->maximo_rp_s2, 2, '.', '') <= '0.00') || (number_format($indicadores->maximo_rp_s2, 2, '.', '') <= '59.99'))
@@ -4486,13 +4493,13 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->maximo_rp_s2, 2, ',', '.'). '' .$porcento.'</td>';
                 }
                 
                 if($indicadores->tipo == 'Ultimo')
                 {
-                    $html .= '<td>' . $indicadores->ultimo_plan_anual. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->ultimo_real_anual. ' ' .$formato .'</td>';
+                    $html .= '<td>' . number_format($indicadores->ultimo_plan_anual, 2, ',', '.'). ' ' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_anual, 2, ',', '.'). ' ' .$formato .'</td>';
                     
                     //Cor Ultimo RP Anual
                     if((number_format($indicadores->ultimo_rp_anual, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_anual, 2, '.', '') <= '59.99'))
@@ -4510,11 +4517,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_anual, 2, '.', '') . ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_anual, 2, ',', '.') . '' .$porcento.'</td>';
                     
                     //Custom T1
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t1, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t1, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t1, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t1, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor ultimo RP T1
                     if((number_format($indicadores->ultimo_rp_t1, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t1, 2, '.', '') <= '59.99'))
@@ -4532,11 +4539,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t1, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t1, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T2
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t2, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t2, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t2, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t2, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor ultimo RP T2
                     if((number_format($indicadores->ultimo_rp_t2, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t2, 2, '.', '') <= '59.99'))
@@ -4554,11 +4561,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t2, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T3
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t3, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t3, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t3, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t3, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor ultimo RP T3
                     if((number_format($indicadores->ultimo_rp_t3, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t3, 2, '.', '') <= '59.99'))
@@ -4576,11 +4583,11 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t3, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t3, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     //Custom T4
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t4, 2, '.', ''). ' ' .$formato.'</td>';
-                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t4, 2, '.', ''). ' ' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_plan_t4, 2, ',', '.'). '' .$formato.'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_t4, 2, ',', '.'). '' .$formato.'</td>';
                     
                     //Cor ultimo RP T4
                     if((number_format($indicadores->ultimo_rp_t4, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_t4, 2, '.', '') <= '59.99'))
@@ -4598,7 +4605,7 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t4, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t4, 2, ',', '.'). '' .$porcento.'</td>';
                     
                     
                     $html .= '<td>' . $indicadores->ultimo_plan_s1. ' ' .$formato .'</td>';
@@ -4620,9 +4627,9 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s1, 2, '.', ''). ' ' .$porcento.'</td>';
-                    $html .= '<td>' . $indicadores->ultimo_plan_s2. ' ' .$formato .'</td>';
-                    $html .= '<td class="cinza">' . $indicadores->ultimo_real_s2. ' ' .$formato .'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s1, 2, ',', '.'). '' .$porcento.'</td>';
+                    $html .= '<td>' . number_format($indicadores->ultimo_plan_s2, 2, ',', '.'). ' ' .$formato .'</td>';
+                    $html .= '<td class="cinza">' . number_format($indicadores->ultimo_real_s2, 2, ',', '.'). '' .$formato .'</td>';
                     
                     //Cor Ultimo RP S2
                     if((number_format($indicadores->ultimo_rp_s2, 2, '.', '') <= '0.00') || (number_format($indicadores->ultimo_rp_s2, 2, '.', '') <= '59.99'))
@@ -4640,7 +4647,7 @@ class HomeController extends BaseController
                         $cCor = 'Verde';
                     }
                     
-                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s2, 2, '.', ''). ' ' .$porcento.'</td>';
+                    $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s2, 2, ',', '.'). '' .$porcento.'</td>';
                 }
             }
             

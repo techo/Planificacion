@@ -1294,7 +1294,7 @@ class TInformeController extends BaseController
             
             if($formato == '#')
             {
-                $formato = '&#160;';
+                $formato = '';
             }
             
             if($formato == '$')
@@ -1600,7 +1600,7 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_s2, 2, '.', ' ').$porcento.'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->promedio_rp_s2, 2, '.', '').$porcento.'</td>';
             }
             
             if($indicadores->tipo == 'Minimo')
@@ -1992,7 +1992,7 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t4, 2, '.', ' ').$porcento.'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_t4, 2, '.', '').$porcento.'</td>';
                 $html .= '<td>' . number_format($indicadores->ultimo_plan_s1, 2, ',', '.').$formato .'</td>';
                 $html .= '<td>' . number_format($indicadores->ultimo_real_s1, 2, ',', '.').$formato .'</td>';
                 
@@ -2012,7 +2012,7 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s1, 2, '.', ' ').$porcento.'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s1, 2, '.', '').$porcento.'</td>';
                 $html .= '<td>' . number_format($indicadores->ultimo_plan_s2, 2, ',', '.').$formato .'</td>';
                 $html .= '<td>' . number_format($indicadores->ultimo_real_s2, 2, ',', '.').$formato .'</td>';
                 
@@ -2032,7 +2032,7 @@ class TInformeController extends BaseController
                     $cCor = 'Verde';
                 }
                 
-                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s2, 2, '.', ' ').$porcento.'</td>';
+                $html .= '<td class="'.$cCor.'">' . number_format($indicadores->ultimo_rp_s2, 2, '.', '').$porcento.'</td>';
             }
         }
         
