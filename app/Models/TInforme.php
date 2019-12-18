@@ -124,9 +124,12 @@ class TInforme extends BaseModel
         $sql  = "";
         $sql .= "SELECT  ";
         $sql .= "dplanificacion.*,  ";
-        $sql .= "indicador.indicador  ";
+        $sql .= "indicador.indicador,  ";
+        $sql .= "indicador.formato,  ";
+        $sql .= "tipo.tipo  ";
         $sql .= " FROM dplanificacion ";
         $sql .= " INNER JOIN indicador on indicador.id = dplanificacion.id_indicador ";
+        $sql .= " INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
         $sql .= "WHERE dplanificacion.situation = 1 and id_cplanificacion = ". $idplanificacion . " and dplanificacion.id_pais = " . $idpais."  and dplanificacion.id_sede = ". $idsede . " and id_indicador =" . $idIndicador;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();

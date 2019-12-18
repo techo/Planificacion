@@ -387,16 +387,36 @@ class TInformeController extends BaseController
         //Busca Anual
         $result = $model->BuscaAnual($idplanificacion, $pais, $sede, $indicador);
         
-        //Dados para o Chart Plan
-        $aPlanificado = $result[0]->enero_plan + $result[0]->febrero_plan + $result[0]->marzo_plan + $result[0]->abril_plan + $result[0]->mayo_plan + 
-                        $result[0]->junio_plan + $result[0]->julio_plan + $result[0]->agosto_plan  + $result[0]->septiembre_plan + $result[0]->octubre_plan +
-                        $result[0]->noviembre_plan + $result[0]->diciembre_plan;
-                
-        //Dados para o Chart Real
-        $aRealizado  = $result[0]->enero_real + $result[0]->febrero_real + $result[0]->marzo_real + $result[0]->abril_real + $result[0]->mayo_real + 
-                       $result[0]->junio_real + $result[0]->julio_real + $result[0]->agosto_real + $result[0]->septiembre_real + $result[0]->octubre_real + 
-                       $result[0]->noviembre_real + $result[0]->diciembre_real;
-               
+        if( $result[0]->tipo == 'Ultimo')
+        {
+            $aPlanificado = $result[0]->ultimo_plan_anual;
+            $aRealizado   = $result[0]->ultimo_real_anual;
+        }
+        
+        if( $result[0]->tipo == 'Acumulado')
+        {
+            $aPlanificado = $result[0]->acumulado_plan_anual;
+            $aRealizado   = $result[0]->acumulado_real_anual;
+        }
+        
+        if( $result[0]->tipo == 'Promedio')
+        {
+            $aPlanificado = $result[0]->promedio_plan_anual;
+            $aRealizado   = $result[0]->promedio_real_anual;
+        }
+        
+        if( $result[0]->tipo == 'Minimo')
+        {
+            $aPlanificado = $result[0]->minimo_plan_anual;
+            $aRealizado   = $result[0]->minimo_real_anual;
+        }
+        
+        if( $result[0]->tipo == 'Maximo')
+        {
+            $aPlanificado = $result[0]->maximo_plan_anual;
+            $aRealizado   = $result[0]->maximo_real_anual;
+        }
+        
         //tudo junto pq deu merda separado
         echo json_encode(array("plan" => $aPlanificado. ',' . $aRealizado));
     }

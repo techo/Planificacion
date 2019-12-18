@@ -124,33 +124,31 @@ $("#loadIndicador").change(function()
 						  var MONTHS = ['Anual'];
 						  var color = Chart.helpers.color;
 						  var barChartData = {
-						  	labels: ['Anual'],
-						  	datasets: [{
-						  		label: 'Plan',
-						  		backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-						  		borderColor: window.chartColors.red,
-						  		borderWidth: 1,
-						  		data: [
-									plan,
-									real
-								],
-								backgroundColor: [
-									window.chartColors.blue,
-									window.chartColors.red,
-								],
-								label: 'Dataset 1'
-							}],
-							labels: [
-								'Planificado',
-								'Real',
-							]
+								  	labels: ['Planificado X Realizado', ' '],
+								  	datasets: [{
+								  		label: 'Planificado',
+								  		backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+								  		borderColor: window.chartColors.red,
+								  		borderWidth: 1,
+								  		data: [
+								  			plan
+								  		]
+								  	}, {
+								  		label: 'Realizado',
+								  		backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+								  		borderColor: window.chartColors.blue,
+								  		borderWidth: 1,
+								  		data: [
+								  			real
+								  		]
+								  	}]
 
-						  };
+								  };
 						  
 						  //Carrega e mostra os dados
 						   var ctx = document.getElementById('canvas').getContext('2d');
 						  	window.myBar = new Chart(ctx, {
-						  		type: 'pie',
+						  		type: 'bar',
 						  		data: barChartData,
 						  		options: {
 						  			responsive: true,
