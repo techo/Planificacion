@@ -136,6 +136,7 @@ class PropositoController extends BaseController
         $html   .= '<div class="form-group">';
         $html   .= '<label for="label">Prop&oacute;sito</label>';
         $html   .= '<input type="text" class="form-control" name="proposito" id="proposito" value="'.$result[0]->proposito.'">';
+        $html   .= '<input type="hidden" class="form-control" name="id" id="id" value="'.$result[0]->id.'">';
         $html   .= '</div>';
         $html   .= '</div>';
         $html   .= '<div class="col-lg-6">';
@@ -190,7 +191,7 @@ class PropositoController extends BaseController
         $html   .= '</div>';
         $html   .= '</div>';
         $html   .= '<div class="col-lg-12">';
-        $html   .= '<button type="button" id="editar" class="btn btn-w-m btn-warning">Editar</button>';
+        $html   .= '<button type="button" onclick="AtualizarProposito();" class="btn btn-w-m btn-warning">Actualizar</button>';
         $html   .= '</div>';
         $html   .= '</div>';
         $html   .= '</div>';
@@ -200,5 +201,25 @@ class PropositoController extends BaseController
         
         echo json_encode(array("results" => $html));
         
+    }
+    
+    public function update($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $aParam['proposito']     = filter_var($aParam['proposito'], FILTER_SANITIZE_STRING);
+        $aParam['descripcion']   = filter_var($aParam['descripcion'], FILTER_SANITIZE_STRING);
+        
+        $model  = Container::getModel("proposito");
+        $result = $model->update($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
 }

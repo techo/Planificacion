@@ -121,4 +121,23 @@ class proposito extends BaseModel
         return $result;
     }
     
+    public function update($aParam)
+    {
+        $sql  = "";
+        $sql .= "UPDATE {$this->table} SET ";
+        $sql .= "proposito               = '" . $aParam['proposito']."', ";
+        $sql .= "descripcion             = '" . $aParam['descripcion']."', ";
+        $sql .= "id_pais                 = '" . $aParam['pais']."', ";
+        $sql .= "id_ano                  = '" . $aParam['ano']."', ";
+        $sql .= "id_updater              = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update             = NOW() ";
+        $sql .= "WHERE id                = '" . $aParam['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
+    
 }

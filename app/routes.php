@@ -142,4 +142,5 @@ $route[] = ['/proposito/agregar', 'PropositoController@save'];
 $route[] = ['/proposito/filtro', 'PropositoController@filter'];
 $route[] = ['/proposito/delete/{id}', 'PropositoController@delete'];
 $route[] = ['/proposito/edit', 'PropositoController@edit'];
+$route[] = ['/proposito/update', 'PropositoController@update'];
 return $route;

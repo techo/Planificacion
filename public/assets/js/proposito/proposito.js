@@ -1,4 +1,4 @@
-$( "#guardar" ).click(function() {
+$("#guardar").click(function() {
 	GuardarProposito();
 });
 
@@ -138,6 +138,37 @@ function EditarProposito(id)
 				$('#loading-techo').hide();
 				$('#add').empty();
 				$('#add').html(oData['results']);
+			}
+		}
+	});
+}
+
+function AtualizarProposito()
+{
+	$('#loading-techo').show();
+	oData             = new Object();	
+	oData.proposito   = $('#proposito').val();
+	oData.descripcion = $('#descripcion').val();
+	oData.pais        = $('#pais').val();
+	oData.ano         = $('#ano').val();
+	oData.id          = $('#id').val();
+	
+	$.ajax({
+		type: "POST",
+		url: "/proposito/update",
+		dataType: "json",
+		data: oData,
+		success: function(oData)
+		{	
+			if(oData['results'])
+			{
+				$('#loading-techo').hide();
+				location.href = "/proposito";
+			}
+			else
+			{
+				$('#loading-techo').hide();
+				location.href = "/proposito";
 			}
 		}
 	});
