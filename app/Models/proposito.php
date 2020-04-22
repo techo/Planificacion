@@ -19,7 +19,7 @@ class proposito extends BaseModel
         $sql  = "";
         $sql .= "SELECT  *";
         $sql .= " FROM {$this->table} ";
-        $sql .= "WHERE deleted = 0 ";
+        $sql .= "WHERE deleted = 0  ORDER BY id DESC";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

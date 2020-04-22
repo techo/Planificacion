@@ -90,10 +90,14 @@ class PropositoController extends BaseController
         
         foreach ($result as $proposito)
         {
-            $html .= '<div class="form-group">';
-            $html .= '<input type="text" class="form-control" name="proposito" value="'.$proposito->proposito.'" disabled>';
-            $html .= '<textarea rows="3" cols="100" disabled>'.$proposito->descripcion.'</textarea></br>';
+            $html .= '<div class="form-group ibox">';
+            $html .= '<div class="ibox-title">';
+            $html .= '<h5>'.$proposito->proposito.'</h5>';
+            $html .= '</div>';
+            $html .= '<div class="ibox-content">';
+            $html .= '<h3>'.$proposito->descripcion.'</h3>';
             $html .= '<a href="#"><i class="fa fa-pencil"></i> Editar </a><a href="#"><i class="fa fa-eraser"></i> Eliminar </a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>';
+            $html .= '</div>';
             $html .= '</div>';
         }
         
