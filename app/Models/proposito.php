@@ -71,4 +71,28 @@ class proposito extends BaseModel
         return $result;
     }
     
+    public function filter($aParam)
+    {
+        $sql  = "";
+        $sql .= "SELECT  *";
+        $sql .= " FROM {$this->table} ";
+        $sql .= "WHERE deleted = 0";
+        
+        if($aParam['pais'] != 0)
+        {
+            $sql .= " AND id_pais = " . $aParam['pais'];
+        }
+        
+        if($aParam['ano'] != 0)
+        {
+            $sql .= " AND id_ano = " . $aParam['ano'];
+        }
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }

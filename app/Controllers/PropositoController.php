@@ -79,4 +79,23 @@ class PropositoController extends BaseController
             echo json_encode(array("results" => false));
         }
     }
+    
+    public function filter($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $model  = Container::getModel("proposito");
+        $result = $model->filter($aParam);
+        $html ='';
+        
+        foreach ($result as $proposito)
+        {
+            $html .= '<div class="form-group">';
+            $html .= '<input type="text" class="form-control" name="proposito" value="'.$proposito->proposito.'" disabled>';
+            $html .= '<textarea rows="3" cols="100" disabled>'.$proposito->descripcion.'</textarea>';
+            $html .= '</div>';
+        }
+        
+        echo json_encode(array("results" => $html));
+    }
 }

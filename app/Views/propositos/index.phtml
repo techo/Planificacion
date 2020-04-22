@@ -32,12 +32,14 @@
     		<div class="col-lg-12">
     			<div class="col-lg-6">
     				<strong>LISTADO DE PROPOSITOS</strong><br>
-    				<?php foreach ($this->view->proposito as $proposito):?>
-    					<div class="form-group">
-    						<input type="text" class="form-control" name="proposito" value="<?php echo($proposito->proposito);?>" disabled>
-    						<textarea rows="6" cols="45" disabled><?php echo($proposito->descripcion);?></textarea>
-    					</div>	
-    				<?php endforeach; ?>
+    				<div id="load">
+    					<?php foreach ($this->view->proposito as $proposito):?>
+        					<div class="form-group">
+        						<input type="text" class="form-control" name="proposito" value="<?php echo($proposito->proposito);?>" disabled>
+        						<textarea rows="3" cols="100" disabled><?php echo($proposito->descripcion);?></textarea>
+        					</div>	
+        				<?php endforeach; ?>
+    				</div>
     			</div>
     			<div class="col-lg-6">
     				<div class="ibox">
