@@ -114,3 +114,32 @@ function EliminarProposito(id)
     });
 }
 
+function EditarProposito(id)
+{
+	$('#loading-techo').show();
+	oData      = new Object();	
+	oData.id   = id;
+	
+	$.ajax({
+		type: "POST",
+		url: "/proposito/edit",
+		dataType: "json",
+		data: oData,
+		success: function(oData)
+		{	
+			if(oData['results'])
+			{
+				$('#loading-techo').hide();
+				$('#add').empty();
+				$('#add').html(oData['results']);
+			}
+			else
+			{
+				$('#loading-techo').hide();
+				$('#add').empty();
+				$('#add').html(oData['results']);
+			}
+		}
+	});
+}
+

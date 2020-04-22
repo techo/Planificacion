@@ -114,4 +114,91 @@ class PropositoController extends BaseController
             header('Location: /proposito');
         }
     }
+    
+    public function edit($aParam)
+    {
+        $aParam    = (array) $aParam;
+        $aPaises   = $this->GetPais();
+        $model     = Container::getModel("proposito");
+        $result    = $model->edit($aParam);
+        $aAnos     = $model->selectAnos();
+        $html      = '';
+        
+        $html   .= '<div class="col-lg-6">';
+        $html   .= '<div class="ibox">';
+        $html   .= '<div class="ibox-title">';
+        $html   .= '<h5>Editar Prop&oacute;sito</h5>';
+        $html   .= '</div>';
+        $html   .= '<div class="ibox-content">';
+        $html   .= '<div id="tab-1" class="">';
+        $html   .= '<div class="panel-body">';
+        $html   .= '<div class="col-lg-12">';
+        $html   .= '<div class="form-group">';
+        $html   .= '<label for="label">Prop&oacute;sito</label>';
+        $html   .= '<input type="text" class="form-control" name="proposito" id="proposito" value="'.$result[0]->proposito.'">';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '<div class="col-lg-6">';
+        $html   .= '<div class="form-group">';
+        $html   .= '<label for="pais">Pa&iacute;s</label>';
+        $html   .= '<select  id="pais" class="form-control" >';
+        $html   .= '<option value="0">-- GLOBAL --</option>';
+        
+        foreach ($aPaises as $pais)
+        {
+            if($pais['ID_Pais'] == $result[0]->id_pais)
+            {
+                $html .= '<option value="'.$pais['ID_Pais'].'" selected>'.$pais['Nombre_Pais'].'</option>';
+            }
+            else
+            {
+                $html .= '<option value="'.$pais['ID_Pais'].'">'.$pais['Nombre_Pais'].'</option>';
+            }
+            
+        }
+        
+        $html   .= '</select>';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '<div class="col-lg-6">';
+        $html   .= '<div class="form-group">';
+        $html   .= '<label for="ano">A&ntilde;o</label>';
+        $html   .= '<select  id="ano" class="form-control" >';
+        $html   .= '<option value="0">-- SELECCIONAR --</option>';
+        
+        foreach ($aAnos as $ano)
+        {
+            if($ano->id == $result[0]->id_ano)
+            {
+                $html .= '<option value="'.$ano->id.'" selected>'.$ano->ano.'</option>';
+            }
+            else
+            {
+                $html .= '<option value="'.$ano->id.'">'.$ano->ano.'</option>';
+            }
+            
+        }
+        
+        $html   .= '</select>';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '<div class="col-lg-12">';
+        $html   .= '<div class="form-group">';
+        $html   .= '<label for="label">Descripci&oacute;n</label>';
+        $html   .= '<textarea class="form-control" id="descripcion" rows="6" cols="45">';
+        $html   .= $result[0]->descripcion.'</textarea>';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '<div class="col-lg-12">';
+        $html   .= '<button type="button" id="editar" class="btn btn-w-m btn-warning">Editar</button>';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '</div>';
+        $html   .= '</div> ';
+        
+        echo json_encode(array("results" => $html));
+        
+    }
 }

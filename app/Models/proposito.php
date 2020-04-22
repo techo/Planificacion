@@ -107,4 +107,18 @@ class proposito extends BaseModel
         return $result;
     }
     
+    public function edit($aParam)
+    {
+        $sql  = "";
+        $sql .= "SELECT  *";
+        $sql .= " FROM {$this->table} ";
+        $sql .= "WHERE ";
+        $sql .= " id = " . $aParam['id'];
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }
