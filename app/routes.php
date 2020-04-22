@@ -136,4 +136,9 @@ $route[] = ['/new', 'NewPlanificacionController@index'];
 $route[] = ['/kpis2019', 'PowerBiController@index'];
 $route[] = ['/infografia2019', 'PowerBiController@inforgrafia2019'];
 
+/** MdG **/
+$route[] = ['/proposito', 'PropositoController@index'];
+$route[] = ['/proposito/agregar', 'PropositoController@save'];
+$route[] = ['/proposito/filtro', 'PropositoController@filter'];
+$route[] = ['/proposito/delete/{id}', 'PropositoController@delete'];
 return $route;
