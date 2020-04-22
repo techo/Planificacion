@@ -92,7 +92,8 @@ class PropositoController extends BaseController
         {
             $html .= '<div class="form-group">';
             $html .= '<input type="text" class="form-control" name="proposito" value="'.$proposito->proposito.'" disabled>';
-            $html .= '<textarea rows="3" cols="100" disabled>'.$proposito->descripcion.'</textarea>';
+            $html .= '<textarea rows="3" cols="100" disabled>'.$proposito->descripcion.'</textarea></br>';
+            $html .= '<a href="#"><i class="fa fa-pencil"></i> Editar </a><a href="#"><i class="fa fa-eraser"></i> Eliminar </a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>';
             $html .= '</div>';
         }
         

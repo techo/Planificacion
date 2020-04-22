@@ -36,7 +36,8 @@
     					<?php foreach ($this->view->proposito as $proposito):?>
         					<div class="form-group">
         						<input type="text" class="form-control" name="proposito" value="<?php echo($proposito->proposito);?>" disabled>
-        						<textarea rows="3" cols="100" disabled><?php echo($proposito->descripcion);?></textarea>
+        						<textarea rows="3" cols="100" disabled><?php echo($proposito->descripcion);?></textarea></br>
+        						<a href="#"><i class="fa fa-pencil"></i> Editar </a><a href="#"><i class="fa fa-eraser"></i> Eliminar </a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>
         					</div>	
         				<?php endforeach; ?>
     				</div>
