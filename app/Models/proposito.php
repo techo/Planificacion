@@ -19,7 +19,7 @@ class proposito extends BaseModel
         $sql  = "";
         $sql .= "SELECT  *";
         $sql .= " FROM {$this->table} ";
-        $sql .= "WHERE deleted = 0  ORDER BY id DESC";
+        $sql .= "WHERE deleted = 0 ORDER BY id DESC";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -91,6 +91,18 @@ class proposito extends BaseModel
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function delete($id)
+    {
+        $query .= "UPDATE {$this->table} SET ";
+        $query .= "deleted = 1 ";
+        $query .= "WHERE id=:id ";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $result = $stmt->execute();
         $stmt->closeCursor();
         return $result;
     }

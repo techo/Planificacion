@@ -39,7 +39,7 @@
         						</div>
         						<div class="ibox-content">
             						<h3><?php echo($proposito->descripcion);?></h3>
-            						<a href="#"><i class="fa fa-pencil"></i> Editar </a><a href="#"><i class="fa fa-eraser"></i> Eliminar </a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>
+            						<a href="#"><i class="fa fa-pencil"></i> Editar &nbsp;&nbsp;&nbsp;</a><a href="#" onclick="EliminarProposito(<?php echo($proposito->id);?>);"><i class="fa fa-eraser"></i> Eliminar &nbsp;&nbsp;&nbsp;</a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>
         						</div>
         					</div>	
         				<?php endforeach; ?>

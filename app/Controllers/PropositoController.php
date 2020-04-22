@@ -96,11 +96,22 @@ class PropositoController extends BaseController
             $html .= '</div>';
             $html .= '<div class="ibox-content">';
             $html .= '<h3>'.$proposito->descripcion.'</h3>';
-            $html .= '<a href="#"><i class="fa fa-pencil"></i> Editar </a><a href="#"><i class="fa fa-eraser"></i> Eliminar </a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>';
+            $html .= '<a href="#"><i class="fa fa-pencil"></i> Editar &nbsp;&nbsp;&nbsp;</a><a href="#"><i class="fa fa-eraser"></i> Eliminar &nbsp;&nbsp;&nbsp;</a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>';
             $html .= '</div>';
             $html .= '</div>';
         }
         
         echo json_encode(array("results" => $html));
+    }
+    
+    public function delete($id)
+    {
+        $model  = Container::getModel("proposito");
+        $result = $model->delete($id);
+        
+        if($result)
+        {
+            header('Location: /proposito');
+        }
     }
 }

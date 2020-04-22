@@ -92,4 +92,25 @@ function Filtro(pais=0, ano=0)
 	});
 }
 
+function EliminarProposito(id)
+{
+	var id = id
+    $.confirm({
+        content: 'Est\u00E1 seguro de que desea borrar esta prop\u00F3sito?',
+        buttons: {
+            specialKey: {
+                text: 'S\u00ED',
+                action: function(){
+                	window.location.replace("/proposito/delete/"+id);
+                }
+            },
+            alphabet: {
+                text: 'No',
+                action: function(){
+                    return;
+                }
+            }
+        }
+    });
+}
 
