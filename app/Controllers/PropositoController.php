@@ -222,4 +222,55 @@ class PropositoController extends BaseController
             echo json_encode(array("results" => false));
         }
     }
+    
+    public function relacionar($aParam)
+    {
+        $aParam = (array) $aParam;
+        $id = $aParam[0];
+        
+        $this->setPageTitle('Relacionar');
+        $model = Container::getModel("proposito");
+        
+        $result = $model->getProposito($id);
+        
+        //Get Pais
+        $pais = $this->GetPaisUnico($result[0]->id_pais);
+        $result[0]->pais = $pais['nombre'];
+        
+        //Get Idnices de Excelencia
+        $kpis = $model->indicesExcelencia();
+        
+        $this->view->info = $result[0];
+        $this->view->kpis = $kpis;
+        
+        /* Render View Relacionar Indicadores */
+        $this->renderView('/propositos/relacionar', 'layout');
+    }
+    
+    //Busca Pais en login.techo.org
+    public function GetPaisUnico($idPais)
+    {
+        $url = 'http://id.techo.org/pais?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idPais;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        return $data;
+    }
+    
+    public function relacion($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        echo('<pre>');
+        die(print_r($aParam, true));
+    }
 }

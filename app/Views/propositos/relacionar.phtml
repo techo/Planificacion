@@ -1,0 +1,93 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4"><br>
+		<h3>Relacionar Propositos</h3>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group"><br>
+			<label for="pais">Pa&iacute;s: </label><?php echo($this->view->info->pais)?>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group"><br>
+			<label for="ano">A&ntilde;o: <?php echo($this->view->info->ano)?></label>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content">
+	<div class="row">
+    	<div class="ibox">
+    		<div class="col-lg-12">
+    			<div class="col-lg-8">
+    				<div id="load">
+        					<div class="form-group ibox">
+        						<div class="ibox-title">
+        							<h5><?php echo($this->view->info->proposito)?></h5>
+        						</div>
+        						<div class="ibox-content">
+            						<?php echo($this->view->info->descripcion)?>
+        						</div>
+        					</div>	
+    				</div>
+    			</div>
+    			<div class="col-lg-4">
+    				Totalizaci&oacute;n
+    				<select name="tipo" id="tipo">
+                      <option value="promedio">Promedio</option>
+                      <option value="ponderacion">Ponderaci&oacute;n</option>
+                    </select>
+    			</div>
+    		</div>
+    		<div class="col-lg-6">
+    			<div class="form-group">
+			<h3> Configurar Indicadores</h3><br><br>
+			<label for="kpi">Indicador 1</label>
+			<select  id="kpi1" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php foreach ($this->view->kpis as $kpi):?>
+						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
+				<?php endforeach; ?>
+			</select><br>
+			
+			<label for="kpi">Indicador 2</label>
+			<select  id="kpi2" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php foreach ($this->view->kpis as $kpi):?>
+						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
+				<?php endforeach; ?>
+			</select><br>
+			
+			<label for="kpi">Indicador 3</label>
+			<select  id="kpi3" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php foreach ($this->view->kpis as $kpi):?>
+						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
+				<?php endforeach; ?>
+			</select><br>
+			
+			<label for="kpi">Indicador 4</label>
+			<select  id="kpi4" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php foreach ($this->view->kpis as $kpi):?>
+						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
+				<?php endforeach; ?>
+			</select><br>
+			
+			<label for="kpi">Indicador 5</label>
+			<select  id="kpi5" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php foreach ($this->view->kpis as $kpi):?>
+						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
+				<?php endforeach; ?>
+			</select><br>
+		</div>
+    		</div>
+    	</div>	
+    </div>
+    <div class="actions clearfix paddingTop-20">
+							<a href="/proposito" class="btn btn-danger btn-lg pull-left">Cancelar</a>
+							<button type="button" id="guardarrelacion" class="btn btn-success btn-lg pull-left btn-salvar">Guardar</button>
+						</div>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script type="text/javascript" src="/assets/js/proposito/proposito.js""></script>
