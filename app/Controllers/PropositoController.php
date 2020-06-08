@@ -296,7 +296,14 @@ class PropositoController extends BaseController
         
         $model = Container::getModel("proposito");
         
-        $result = $model->InsertRelacion($aParam);
+        if($aParam['idrelacion'] == '')
+        {
+            $result = $model->InsertRelacion($aParam);
+        }
+        else
+        {
+            $result = $model->UpdateRelacion($aParam);
+        }
         
         if($result)
         {

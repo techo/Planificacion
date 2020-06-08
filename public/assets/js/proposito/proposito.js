@@ -209,7 +209,8 @@ $( "#kpi5" ).change(function() {
 
 $("#guardarrelacion").click(function() {
 	
-	aDados.proposito = $('#idproposito').val();
+	aDados.proposito  = $('#idproposito').val();
+	aDados.idrelacion = $('#idrelacion').val();
 	
 	$.ajax({
 		type: "POST",

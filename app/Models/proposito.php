@@ -229,6 +229,31 @@ class proposito extends BaseModel
         $result = $stmt->fetchAll();
         $stmt->closeCursor();
         return $result;
+    } 
+    
+    public function UpdateRelacion($aParam)
+    {
+        $sql  = "";
+        $sql .= "UPDATE rlproposito SET ";
+        $sql .= "kpi1                    = '" . $aParam['K1']."', ";
+        $sql .= "ponderacion1            = '" . $aParam['P1']."', ";
+        $sql .= "kpi2                    = '" . $aParam['K2']."', ";
+        $sql .= "ponderacion2            = '" . $aParam['P2']."', ";
+        $sql .= "kpi3                    = '" . $aParam['K3']."', ";
+        $sql .= "ponderacion3            = '" . $aParam['P3']."', ";
+        $sql .= "kpi4                    = '" . $aParam['K4']."', ";
+        $sql .= "ponderacion4            = '" . $aParam['P4']."', ";
+        $sql .= "kpi5                    = '" . $aParam['K5']."', ";
+        $sql .= "ponderacion5            = '" . $aParam['P5']."', ";
+        $sql .= "id_updater              = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update             = NOW() ";
+        $sql .= "WHERE id                = '" . $aParam['idrelacion']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
     }
     
 }
