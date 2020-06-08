@@ -58,8 +58,8 @@
     				}
     			?>
 				<?php echo($Combo1);?>
-			</select><br>
-			
+			</select>
+			<br>
 			<label for="kpi">Indicador 2</label>
 			<select  id="kpi2" class="form-control" >
 				<option value="0">-- SELECCIONAR --</option>
@@ -138,8 +138,70 @@
 		</div>
 		<input type="hidden" class="form-control" name="idproposito" id="idproposito" value="<?php echo($this->view->info->id);?>">
 		<input type="hidden" class="form-control" name="idrelacion" id="idrelacion" value="<?php echo($this->view->existe[0]->id);?>">
-    		</div>
-    	</div>	
+    </div>
+    <div class="col-lg-6" id="ponderaciones">
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+     <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p1" id="p1" title="Ejemplo: 52,00 %" value="0.00">
+    	</div>				
+    </div>
+    %	
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p2" id="p2" title="Ejemplo: 52,00 %" value="0.00">
+    	</div>				
+    </div>
+    %	
+     </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p3" id="p3" title="Ejemplo: 52,00 %" value="0.00">
+    	</div>
+    </div>
+    %	
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p4" id="p4" title="Ejemplo: 52,00 %" value="0.00">
+    	</div>				
+    </div>
+    %	
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p5" id="p5" title="Ejemplo: 52,00 %" value="0.00">
+    	</div>				
+    </div>
+     %
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<h3><strong>TOTAL: </strong></h3><input type="text" class="form-control" name="total" id="total" value="0.00" disabled>
+    	</div>				
+    </div>
+    </div>	
+    </div>
     </div>
     <div class="actions clearfix paddingTop-20">
 							<a href="/proposito" class="btn btn-danger btn-lg pull-left">Cancelar</a>

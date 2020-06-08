@@ -1,3 +1,163 @@
+$('#ponderaciones').hide();
+
+//Exibe as Ponderacoes
+$("#tipo").change(function() {
+	 if($('#tipo').val() == 'ponderacion')
+	 {
+		 $('#ponderaciones').show();
+	 }	 
+	 else
+     {
+		 $('#ponderaciones').hide();
+     }		  
+});
+
+//faz calculos
+$( "#p1" ).keyup(function() {
+	var num = parseFloat($('#p1').val().replace(',', '.'));
+	
+	if(isNaN(num))
+	{
+		num = 0.00;
+		$('#p1').val(0.00)
+	}	
+	
+	var parcial = num + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+	
+	if(parcial > 100)
+	{
+		$.confirm({
+		    content: "Porcentaje no puede ser maior que 100.",
+		    buttons: {
+		        ok: function(){
+		        }
+		    }
+		});
+		
+		parcial =  parcial - num;
+		
+		$('#p1').val(0.00)
+	}	
+	
+	$('#total').val(parcial);
+});
+
+$( "#p2" ).keyup(function() {
+	var num = parseFloat($('#p2').val().replace(',', '.'));
+	
+	if(isNaN(num))
+	{
+		num = 0.00;
+		$('#p2').val(0.00)
+	}	
+	
+	var parcial = parseFloat($('#p1').val().replace(',', '.')) + num + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+	
+	if(parcial > 100)
+	{
+		$.confirm({
+		    content: "Porcentaje no puede ser maior que 100.",
+		    buttons: {
+		        ok: function(){
+		        }
+		    }
+		});
+		parcial =  parcial - num;
+		
+		$('#p2').val(0.00);
+	}	
+	
+	$('#total').val(parcial);
+});
+
+$( "#p3" ).keyup(function() {
+	var num = parseFloat($('#p3').val().replace(',', '.'));
+	
+	if(isNaN(num))
+	{
+		num = 0.00;
+		$('#p3').val(0.00)
+	}	
+	
+	var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + num + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+	
+	if(parcial > 100)
+	{
+		$.confirm({
+		    content: "Porcentaje no puede ser maior que 100.",
+		    buttons: {
+		        ok: function(){
+		        }
+		    }
+		});
+		
+		parcial =  parcial - num;
+		
+		$('#p3').val(0.00)
+	}	
+	
+	$('#total').val(parcial);
+});
+
+$( "#p4" ).keyup(function() {
+	var num = parseFloat($('#p4').val().replace(',', '.'));
+	
+	if(isNaN(num))
+	{
+		num = 0.00;
+		$('#p4').val(0.00)
+	}	
+	
+	var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + num + parseFloat($('#p5').val().replace(',', '.'));
+	
+	if(parcial > 100)
+	{
+		$.confirm({
+		    content: "Porcentaje no puede ser maior que 100.",
+		    buttons: {
+		        ok: function(){
+		        }
+		    }
+		});
+		
+		parcial =  parcial - num;
+		
+		$('#p4').val(0.00)
+	}	
+	
+	
+	$('#total').val(parcial);
+});
+
+$( "#p5" ).keyup(function() {
+	var num = parseFloat($('#p4').val().replace(',', '.'));
+	
+	if(isNaN(num))
+	{
+		num = 0.00;
+		$('#p5').val(0.00)
+	}	
+	
+	var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + num;
+	
+	if(parcial > 100)
+	{
+		$.confirm({
+		    content: "Porcentaje no puede ser maior que 100.",
+		    buttons: {
+		        ok: function(){
+		        }
+		    }
+		});
+		parcial =  parcial - num;
+		
+		$('#p5').val(0.00)
+	}	
+	
+	
+	$('#total').val(parcial);
+});
+
 $("#guardar").click(function() {
 	GuardarProposito();
 });
