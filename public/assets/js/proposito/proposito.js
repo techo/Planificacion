@@ -179,35 +179,37 @@ aDados = new Object();
 // SelectBox com ids de kpis
 $( "#kpi1" ).change(function() {
 	
-	aDados[1] =  $('#kpi1').val();
+	aDados['K'+1] =  $('#kpi1').val();
 	console.log(aDados);
 });
 
 $( "#kpi2" ).change(function() {
 	
-	aDados[2] =  $('#kpi2').val();
+	aDados['K'+2] =  $('#kpi2').val();
 	console.log(aDados);
 });
 
 $( "#kpi3" ).change(function() {
 	
-	aDados[3] =  $('#kpi3').val();
+	aDados['K'+3] =  $('#kpi3').val();
 	console.log(aDados);
 });
 
 $( "#kpi4" ).change(function() {
 	
-	aDados[4] =  $('#kpi4').val();
+	aDados['K'+4] =  $('#kpi4').val();
 	console.log(aDados);
 });
 
 $( "#kpi5" ).change(function() {
 	
-	aDados[5] =  $('#kpi5').val();
+	aDados['K'+5] =  $('#kpi5').val();
 	console.log(aDados);
 });
 
 $("#guardarrelacion").click(function() {
+	
+	aDados.proposito = $('#idproposito').val();
 	
 	$.ajax({
 		type: "POST",

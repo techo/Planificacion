@@ -44,43 +44,99 @@
 			<label for="kpi">Indicador 1</label>
 			<select  id="kpi1" class="form-control" >
 				<option value="0">-- SELECCIONAR --</option>
-				<?php foreach ($this->view->kpis as $kpi):?>
-						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
-				<?php endforeach; ?>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi1 == $kpi->id)
+    				  {
+    				      $Combo1.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo1.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo1);?>
 			</select><br>
 			
 			<label for="kpi">Indicador 2</label>
 			<select  id="kpi2" class="form-control" >
 				<option value="0">-- SELECCIONAR --</option>
-				<?php foreach ($this->view->kpis as $kpi):?>
-						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
-				<?php endforeach; ?>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi2 == $kpi->id)
+    				  {
+    				      $Combo2.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo2.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo2);?>
 			</select><br>
 			
 			<label for="kpi">Indicador 3</label>
 			<select  id="kpi3" class="form-control" >
 				<option value="0">-- SELECCIONAR --</option>
-				<?php foreach ($this->view->kpis as $kpi):?>
-						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
-				<?php endforeach; ?>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi3 == $kpi->id)
+    				  {
+    				      $Combo3.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo3.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo3);?>
 			</select><br>
 			
 			<label for="kpi">Indicador 4</label>
 			<select  id="kpi4" class="form-control" >
 				<option value="0">-- SELECCIONAR --</option>
-				<?php foreach ($this->view->kpis as $kpi):?>
-						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
-				<?php endforeach; ?>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi4 == $kpi->id)
+    				  {
+    				      $Combo4.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo4.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo4);?>
 			</select><br>
 			
 			<label for="kpi">Indicador 5</label>
 			<select  id="kpi5" class="form-control" >
 				<option value="0">-- SELECCIONAR --</option>
-				<?php foreach ($this->view->kpis as $kpi):?>
-						<option value="<?php echo($kpi->id);?>"><?php echo($kpi->indicador);?></option>
-				<?php endforeach; ?>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi5 == $kpi->id)
+    				  {
+    				      $Combo5.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo5.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo5);?>
 			</select><br>
 		</div>
+		<input type="hidden" class="form-control" name="idproposito" id="idproposito" value="<?php echo($this->view->info->id);?>">
     		</div>
     	</div>	
     </div>

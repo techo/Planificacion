@@ -231,6 +231,15 @@ class PropositoController extends BaseController
         $this->setPageTitle('Relacionar');
         $model = Container::getModel("proposito");
         
+        //Verifica se já existe relacao para editar
+        $relacion = $model->getRelacion($id);
+        
+        if(!empty($relacion))
+        {
+            $this->view->existe = $relacion;
+        }
+        
+        //info do proposito
         $result = $model->getProposito($id);
         
         //Get Pais
@@ -241,6 +250,7 @@ class PropositoController extends BaseController
         $kpis = $model->indicesExcelencia();
         
         $this->view->info = $result[0];
+        
         $this->view->kpis = $kpis;
         
         /* Render View Relacionar Indicadores */
@@ -270,7 +280,31 @@ class PropositoController extends BaseController
     {
         $aParam = (array) $aParam;
         
-        echo('<pre>');
-        die(print_r($aParam, true));
+        // Indicadores - kPIS
+        $aParam['K1'] = $aParam['K1'] ? $aParam['K1'] : 0;
+        $aParam['K2'] = $aParam['K2'] ? $aParam['K2'] : 0;
+        $aParam['K3'] = $aParam['K3'] ? $aParam['K3'] : 0;
+        $aParam['K4'] = $aParam['K4'] ? $aParam['K4'] : 0;
+        $aParam['K5'] = $aParam['K5'] ? $aParam['K5'] : 0;
+        
+        // Ponderacion
+        $aParam['P1'] = $aParam['P1'] ? $aParam['P1'] : 0;
+        $aParam['P2'] = $aParam['P2'] ? $aParam['P2'] : 0;
+        $aParam['P3'] = $aParam['P3'] ? $aParam['P3'] : 0;
+        $aParam['P4'] = $aParam['P4'] ? $aParam['P4'] : 0;
+        $aParam['P5'] = $aParam['P5'] ? $aParam['P5'] : 0;
+        
+        $model = Container::getModel("proposito");
+        
+        $result = $model->InsertRelacion($aParam);
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
 }

@@ -164,7 +164,66 @@ class proposito extends BaseModel
         $sql .= " tipo.tipo ";
         $sql .= " FROM indicador ";
         $sql .= " INNER JOIN tipo on tipo.id = indicador.id_tipo ";
-        $sql .= "WHERE indicador.id  IN ('5','6','7','8','9','10','11','12','13','14','15','16','17','18') ";
+        $sql .= " WHERE indicador.formato IN ('#', '$') AND indicador.id_pais = 0 ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function InsertRelacion($aParam)
+    {
+        $sql  = "";
+        $sql .= "INSERT INTO rlproposito (";
+        $sql .= "id, ";
+        $sql .= "kpi1, ";
+        $sql .= "ponderacion1, ";
+        $sql .= "kpi2, ";
+        $sql .= "ponderacion2, ";
+        $sql .= "kpi3, ";
+        $sql .= "ponderacion3, ";
+        $sql .= "kpi4, ";
+        $sql .= "ponderacion4, ";
+        $sql .= "kpi5, ";
+        $sql .= "ponderacion5, ";
+        $sql .= "id_proposito, ";
+        $sql .= "id_creator, ";
+        $sql .= "id_updater, ";
+        $sql .= "date_insert, ";
+        $sql .= "date_update, ";
+        $sql .= "deleted) VALUES (";
+        $sql .= " NULL, ";
+        $sql .= "'". $aParam['K1']."', ";
+        $sql .= "'". $aParam['P1']."', ";
+        $sql .= "'". $aParam['K2']."', ";
+        $sql .= "'". $aParam['P2']."', ";
+        $sql .= "'". $aParam['K3']."', ";
+        $sql .= "'". $aParam['P3']."', ";
+        $sql .= "'". $aParam['K4']."', ";
+        $sql .= "'". $aParam['P4']."', ";
+        $sql .= "'". $aParam['K5']."', ";
+        $sql .= "'". $aParam['P5']."', ";
+        $sql .= "'". $aParam['proposito']."', ";
+        $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= " 0, ";
+        $sql .= " NOW(), ";
+        $sql .= " NOW(), ";
+        $sql .= " 0)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
+    
+    public function getRelacion($id)
+    {
+        $sql  = "";
+        $sql .= "SELECT  * ";
+        $sql .= " FROM rlproposito ";
+        $sql .= "WHERE rlproposito.id_proposito = " . $id;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
