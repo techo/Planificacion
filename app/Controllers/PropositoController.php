@@ -294,6 +294,12 @@ class PropositoController extends BaseController
         $aParam['P4'] = $aParam['P4'] ? $aParam['P4'] : 0;
         $aParam['P5'] = $aParam['P5'] ? $aParam['P5'] : 0;
         
+        $aParam['P1'] = str_replace(",",".",$aParam['P1']);
+        $aParam['P2'] = str_replace(",",".",$aParam['P2']);
+        $aParam['P3'] = str_replace(",",".",$aParam['P3']);
+        $aParam['P4'] = str_replace(",",".",$aParam['P4']);
+        $aParam['P5'] = str_replace(",",".",$aParam['P5']);
+        
         $model = Container::getModel("proposito");
         
         if($aParam['idrelacion'] == '')

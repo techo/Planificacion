@@ -138,6 +138,7 @@
 		</div>
 		<input type="hidden" class="form-control" name="idproposito" id="idproposito" value="<?php echo($this->view->info->id);?>">
 		<input type="hidden" class="form-control" name="idrelacion" id="idrelacion" value="<?php echo($this->view->existe[0]->id);?>">
+		<input type="hidden" class="form-control" name="retornop1" id="retornop1" value="<?php echo($this->view->existe[0]->ponderacion1);?>">
     </div>
     <div class="col-lg-6" id="ponderaciones">
     </br>
@@ -147,7 +148,7 @@
     </br>
      <div class="col-lg-3">
     	<div class="form-group">
-			<input type="text" class="form-control" name="p1" id="p1" title="Ejemplo: 52,00 %" value="0.00">
+			<input type="text" class="form-control" name="p1" id="p1" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion1 ? $this->view->existe[0]->ponderacion1 : '0.00');?>">
     	</div>				
     </div>
     %	
@@ -157,7 +158,7 @@
     </br>
     <div class="col-lg-3">
     	<div class="form-group">
-			<input type="text" class="form-control" name="p2" id="p2" title="Ejemplo: 52,00 %" value="0.00">
+			<input type="text" class="form-control" name="p2" id="p2" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion2 ? $this->view->existe[0]->ponderacion2 : '0.00');?>">
     	</div>				
     </div>
     %	
@@ -167,7 +168,7 @@
     </br>
     <div class="col-lg-3">
     	<div class="form-group">
-			<input type="text" class="form-control" name="p3" id="p3" title="Ejemplo: 52,00 %" value="0.00">
+			<input type="text" class="form-control" name="p3" id="p3" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion3 ? $this->view->existe[0]->ponderacion3 : '0.00');?>">
     	</div>
     </div>
     %	
@@ -177,7 +178,7 @@
     </br>
     <div class="col-lg-3">
     	<div class="form-group">
-			<input type="text" class="form-control" name="p4" id="p4" title="Ejemplo: 52,00 %" value="0.00">
+			<input type="text" class="form-control" name="p4" id="p4" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion4 ? $this->view->existe[0]->ponderacion4 : '0.00');?>">
     	</div>				
     </div>
     %	
@@ -187,7 +188,7 @@
     </br>
     <div class="col-lg-3">
     	<div class="form-group">
-			<input type="text" class="form-control" name="p5" id="p5" title="Ejemplo: 52,00 %" value="0.00">
+			<input type="text" class="form-control" name="p5" id="p5" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion5 ? $this->view->existe[0]->ponderacion5 : '0.00');?>">
     	</div>				
     </div>
      %
@@ -209,4 +210,5 @@
 						</div>
 </div>
 <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.mask.js"></script>
 <script type="text/javascript" src="/assets/js/proposito/proposito.js""></script>
