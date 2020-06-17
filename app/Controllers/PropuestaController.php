@@ -96,7 +96,7 @@ class PropuestaController extends BaseController
             $html .= '</div>';
             $html .= '<div class="ibox-content">';
             $html .= '<h3>'.$propuesta->descripcion.'</h3>';
-            $html .= '<a href="#"><i class="fa fa-pencil"></i> Editar &nbsp;&nbsp;&nbsp;</a><a href="#"><i class="fa fa-eraser"></i> Eliminar &nbsp;&nbsp;&nbsp;</a><a href="#"><i class="fa fa-retweet"></i> Relacionar </a>';
+            $html .= '<a href="#" onclick="EditarPropuesta('.$propuesta->id.');"><i class="fa fa-pencil"></i> Editar &nbsp;&nbsp;&nbsp;</a><a href="#" onclick="EliminarPropuesta('.$propuesta->id.');"><i class="fa fa-eraser"></i> Eliminar &nbsp;&nbsp;&nbsp;</a><a href="/propuesta/relacionar/'.$propuesta->id.'"><i class="fa fa-retweet"></i> Relacionar </a>';
             $html .= '</div>';
             $html .= '</div>';
         }
