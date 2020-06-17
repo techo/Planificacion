@@ -146,4 +146,11 @@ $route[] = ['/proposito/update', 'PropositoController@update'];
 $route[] = ['/proposito/relacionar/{id}', 'PropositoController@relacionar'];
 $route[] = ['/proposito/relacion', 'PropositoController@relacion'];
 
+$route[] = ['/propuesta', 'PropuestaController@index'];
+$route[] = ['/propuesta/agregar', 'PropuestaController@save'];
+$route[] = ['/propuesta/filtro', 'PropuestaController@filter'];
+$route[] = ['/propuesta/delete/{id}', 'PropuestaController@delete'];
+$route[] = ['/propuesta/edit', 'PropuestaController@edit'];
+$route[] = ['/propuesta/update', 'PropuestaController@update'];
+
 return $route;
