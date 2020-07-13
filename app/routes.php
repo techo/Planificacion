@@ -160,4 +160,11 @@ $route[] = ['/proceso/delete/{id}', 'ProcesoController@delete'];
 $route[] = ['/proceso/edit', 'ProcesoController@edit'];
 $route[] = ['/proceso/update', 'ProcesoController@update'];
 
+$route[] = ['/aprendizaje', 'AprendizajeController@index'];
+$route[] = ['/aprendizaje/agregar', 'AprendizajeController@save'];
+$route[] = ['/aprendizaje/filtro', 'AprendizajeController@filter'];
+$route[] = ['/aprendizaje/delete/{id}', 'AprendizajeController@delete'];
+$route[] = ['/aprendizaje/edit', 'AprendizajeController@edit'];
+$route[] = ['/aprendizaje/update', 'AprendizajeController@update'];
+
 return $route;
