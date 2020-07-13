@@ -240,6 +240,21 @@ $("#guardarrelacion").click(function()
 		return false;
 	}	
 	
+	var propositos = [];
+	var propuestas = [];
+	 
+	$("#propositoschk option:selected").each(function() {
+		   propositos.push($(this).val());
+		}); 
+	
+	aDados.ids_proposito = propositos;
+	
+	$("#propuestaschk option:selected").each(function() {
+		   propuestas.push($(this).val());
+		}); 
+	
+	 aDados.ids_propuesta = propuestas;
+	
 	aDados.propuesta  = $('#idpropuesta').val();
 	aDados.idrelacion = $('#idrelacion').val();
 	

@@ -153,6 +153,7 @@ $route[] = ['/propuesta/delete/{id}', 'PropuestaController@delete'];
 $route[] = ['/propuesta/edit', 'PropuestaController@edit'];
 $route[] = ['/propuesta/update', 'PropuestaController@update'];
 $route[] = ['/propuesta/relacionar/{id}', 'PropuestaController@relacionar'];
+$route[] = ['/propuesta/relacion', 'PropuestaController@relacion'];
 
 $route[] = ['/proceso', 'ProcesoController@index'];
 $route[] = ['/proceso/agregar', 'ProcesoController@save'];

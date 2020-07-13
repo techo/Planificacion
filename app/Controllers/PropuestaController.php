@@ -289,6 +289,9 @@ class PropuestaController extends BaseController
     {
         $aParam = (array) $aParam;
         
+        echo('<pre>');
+        die(print_r($aParam, true));
+        
         // Indicadores - kPIS
         $aParam['K1'] = $aParam['K1'] ? $aParam['K1'] : 0;
         $aParam['K2'] = $aParam['K2'] ? $aParam['K2'] : 0;
