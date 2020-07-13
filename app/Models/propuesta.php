@@ -140,12 +140,12 @@ class propuesta extends BaseModel
         return $result;
     }
     
-    public function getpropuesta($id)
+    public function getPropuesta($id)
     {
         $sql  = "";
         $sql .= "SELECT  propuesta.*, ano.ano";
         $sql .= " FROM {$this->table} ";
-        $sql .= " INNER JOIN ano on ano.id = proposito.id_ano ";
+        $sql .= " INNER JOIN ano on ano.id = propuesta.id_ano ";
         $sql .= "WHERE propuesta.deleted = 0 and propuesta.id = " . $id;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -175,7 +175,7 @@ class propuesta extends BaseModel
     public function InsertRelacion($aParam)
     {
         $sql  = "";
-        $sql .= "INSERT INTO rlproposito (";
+        $sql .= "INSERT INTO rlpropuesta (";
         $sql .= "id, ";
         $sql .= "kpi1, ";
         $sql .= "ponderacion1, ";
@@ -187,7 +187,7 @@ class propuesta extends BaseModel
         $sql .= "ponderacion4, ";
         $sql .= "kpi5, ";
         $sql .= "ponderacion5, ";
-        $sql .= "id_proposito, ";
+        $sql .= "id_propuesta, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -204,7 +204,7 @@ class propuesta extends BaseModel
         $sql .= "'". $aParam['P4']."', ";
         $sql .= "'". $aParam['K5']."', ";
         $sql .= "'". $aParam['P5']."', ";
-        $sql .= "'". $aParam['proposito']."', ";
+        $sql .= "'". $aParam['propuesta']."', ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
@@ -222,8 +222,8 @@ class propuesta extends BaseModel
     {
         $sql  = "";
         $sql .= "SELECT  * ";
-        $sql .= " FROM rlproposito ";
-        $sql .= "WHERE rlproposito.id_proposito = " . $id;
+        $sql .= " FROM rlpropuesta ";
+        $sql .= "WHERE rlpropuesta.id_propuesta = " . $id;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -234,7 +234,7 @@ class propuesta extends BaseModel
     public function UpdateRelacion($aParam)
     {
         $sql  = "";
-        $sql .= "UPDATE rlproposito SET ";
+        $sql .= "UPDATE rlpropuesta SET ";
         $sql .= "kpi1                    = '" . $aParam['K1']."', ";
         $sql .= "ponderacion1            = '" . $aParam['P1']."', ";
         $sql .= "kpi2                    = '" . $aParam['K2']."', ";
@@ -253,6 +253,34 @@ class propuesta extends BaseModel
         $result = $stmt->rowCount();
         $stmt->closeCursor();
         
+        return $result;
+    }
+    
+    public function getAllPropositos($ano)
+    {
+        $sql  = "";
+        $sql .= "SELECT  proposito.*";
+        $sql .= " FROM proposito ";
+        $sql .= " INNER JOIN ano on ano.id = proposito.id_ano ";
+        $sql .= "WHERE proposito.deleted = 0 and proposito.id_ano = " . $ano;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function getAllPropuestas($id)
+    {
+        $sql  = "";
+        $sql .= "SELECT  propuesta.*";
+        $sql .= " FROM propuesta ";
+        $sql .= " INNER JOIN ano on ano.id = propuesta.id_ano ";
+        $sql .= "WHERE propuesta.deleted = 0 and propuesta.id != " . $id;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
         return $result;
     }
     

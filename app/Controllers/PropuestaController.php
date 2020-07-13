@@ -229,7 +229,7 @@ class PropuestaController extends BaseController
         $id = $aParam[0];
         
         $this->setPageTitle('Relacionar');
-        $model = Container::getModel("proposito");
+        $model = Container::getModel("propuesta");
         
         //Verifica se já existe relacao para editar
         $relacion = $model->getRelacion($id);
@@ -240,7 +240,16 @@ class PropuestaController extends BaseController
         }
         
         //info do proposito
-        $result = $model->getProposito($id);
+        $result = $model->getPropuesta($id);
+        $ano   = $result[0]->id_ano;
+        
+        //Busca todos propositos
+        $aPropositos = $model->getAllPropositos($ano);
+        $this->view->propositos = $aPropositos;
+        
+        //Busca todas propuestas exceto ela mesma
+        $aPropuestas = $model->getAllPropuestas($id);
+        $this->view->propuestas = $aPropuestas;
         
         //Get Pais
         $pais = $this->GetPaisUnico($result[0]->id_pais);
@@ -254,7 +263,7 @@ class PropuestaController extends BaseController
         $this->view->kpis = $kpis;
         
         /* Render View Relacionar Indicadores */
-        $this->renderView('/propositos/relacionar', 'layout');
+        $this->renderView('/propuestas/relacionar', 'layout');
     }
     
     //Busca Pais en login.techo.org
@@ -300,7 +309,7 @@ class PropuestaController extends BaseController
         $aParam['P4'] = str_replace(",",".",$aParam['P4']);
         $aParam['P5'] = str_replace(",",".",$aParam['P5']);
         
-        $model = Container::getModel("proposito");
+        $model = Container::getModel("propuesta");
         
         if($aParam['idrelacion'] == '')
         {
