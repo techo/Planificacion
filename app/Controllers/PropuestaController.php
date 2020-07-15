@@ -249,6 +249,13 @@ class PropuestaController extends BaseController
         
         //Get Pais
         $pais = $this->GetPaisUnico($result[0]->id_pais);
+        
+        if($result[0]->id_pais == 0)
+        {
+            $pais['nombre'] = 'GLOBAL';
+            $pais['id']     = 0;
+        }
+        
         $result[0]->pais = $pais['nombre'];
         
         //Busca todos propositos

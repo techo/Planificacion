@@ -236,15 +236,35 @@ class ProcesoController extends BaseController
         
         if(!empty($relacion))
         {
+            $aDados['propuestas'] = (explode(",",$relacion[0]->ids_propuestas));
+            $aDados['procesos'] = (explode(",",$relacion[0]->ids_procesos));
+            
             $this->view->existe = $relacion;
+            $this->view->dados = $aDados;
         }
         
         //info do Proceso
         $result = $model->getproceso($id);
+        $ano   = $result[0]->id_ano;
         
         //Get Pais
         $pais = $this->GetPaisUnico($result[0]->id_pais);
+        
+        if($result[0]->id_pais == 0)
+        {
+            $pais['nombre'] = 'GLOBAL';
+            $pais['id']     = 0;
+        }
+        
         $result[0]->pais = $pais['nombre'];
+        
+        //Busca todos propuestas
+        $aPropuestas = $model->getAllPropuestas($ano, $pais['id']);
+        $this->view->propuestas = $aPropuestas;
+        
+        //Busca todos processos exceto ela mesma
+        $aProcesos = $model->getAllProcesos($id, $pais['id']);
+        $this->view->procesos = $aProcesos;
         
         //Get Idnices de Excelencia
         $kpis = $model->indicesExcelencia();
@@ -279,6 +299,40 @@ class ProcesoController extends BaseController
     public function relacion($aParam)
     {
         $aParam = (array) $aParam;
+        
+        $idpropuestas = '';
+        $idprocesos = '';
+        $contador = 1;
+        $count    = 1;
+        
+        foreach($aParam['ids_propuesta'] as $k=>$v)
+        {
+            if($contador == 1)
+            {
+                $idpropuestas = $v;
+            }
+            else
+            {
+                $idpropuestas = $idpropuestas . ',' . $v;
+            }
+            $contador++;
+        }
+        
+        foreach($aParam['ids_proceso'] as $k=>$v)
+        {
+            if($count == 1)
+            {
+                $idprocesos = $v;
+            }
+            else
+            {
+                $idprocesos = $idprocesos . ',' . $v;
+            }
+            $count++;
+        }
+        
+        $aParam['id_propuesta'] = $idpropuestas;
+        $aParam['id_procesos'] = $idprocesos;
         
         // Indicadores - kPIS
         $aParam['K1'] = $aParam['K1'] ? $aParam['K1'] : 0;

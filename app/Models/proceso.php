@@ -188,6 +188,8 @@ class proceso extends BaseModel
         $sql .= "kpi5, ";
         $sql .= "ponderacion5, ";
         $sql .= "id_proceso, ";
+        $sql .= "ids_procesos, ";
+        $sql .= "ids_propuestas, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -205,6 +207,8 @@ class proceso extends BaseModel
         $sql .= "'". $aParam['K5']."', ";
         $sql .= "'". $aParam['P5']."', ";
         $sql .= "'". $aParam['proceso']."', ";
+        $sql .= "'". $aParam['id_procesos']."', ";
+        $sql .= "'". $aParam['id_propuesta']."', ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
@@ -245,6 +249,9 @@ class proceso extends BaseModel
         $sql .= "ponderacion4            = '" . $aParam['P4']."', ";
         $sql .= "kpi5                    = '" . $aParam['K5']."', ";
         $sql .= "ponderacion5            = '" . $aParam['P5']."', ";
+        $sql .= "id_proceso              = '" . $aParam['proceso']."', ";
+        $sql .= "ids_procesos            = '" . $aParam['id_procesos']."', ";
+        $sql .= "ids_propuestas          = '" . $aParam['id_propuesta']."', ";
         $sql .= "id_updater              = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update             = NOW() ";
         $sql .= "WHERE id                = '" . $aParam['idrelacion']."'";
@@ -253,6 +260,53 @@ class proceso extends BaseModel
         $result = $stmt->rowCount();
         $stmt->closeCursor();
         
+        return $result;
+    }
+    
+    public function getAllPropuestas($ano, $pais)
+    {
+        if($pais != 0)
+        {
+            $completa = " and propuesta.id_pais IN ('" . $pais . "','0')";
+        }
+        else
+        {
+            $completa = "";
+        }
+                
+        $sql  = "";
+        $sql .= "SELECT propuesta.*";
+        $sql .= " FROM propuesta ";
+        $sql .= " INNER JOIN ano on ano.id = propuesta.id_ano ";
+        $sql .= "WHERE propuesta.deleted = 0 and propuesta.id_ano = " . $ano . $completa;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function getAllProcesos($id, $pais)
+    {
+        
+        if($pais != 0)
+        {
+            $completa = " and proceso.id_pais IN ('" . $pais . "','0')";
+        }
+        else
+        {
+            $completa = "";
+        }
+        
+        $sql  = "";
+        $sql .= "SELECT  proceso.*";
+        $sql .= " FROM proceso ";
+        $sql .= " INNER JOIN ano on ano.id = proceso.id_ano ";
+        $sql .= "WHERE proceso.deleted = 0 and proceso.id != " . $id . $completa;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
         return $result;
     }
     

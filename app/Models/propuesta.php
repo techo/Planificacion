@@ -265,11 +265,21 @@ class propuesta extends BaseModel
     
     public function getAllPropositos($ano, $pais)
     {
+        
+        if($pais != 0)
+        {
+            $completa = " and proposito.id_pais IN ('" . $pais . "','0')";
+        }
+        else
+        {
+            $completa = "";
+        }
+        
         $sql  = "";
         $sql .= "SELECT  proposito.*";
         $sql .= " FROM proposito ";
         $sql .= " INNER JOIN ano on ano.id = proposito.id_ano ";
-        $sql .= "WHERE proposito.deleted = 0 and proposito.id_ano = " . $ano . " and proposito.id_pais IN ('" . $pais . "','0')";
+        $sql .= "WHERE proposito.deleted = 0 and proposito.id_ano = " . $ano . $completa;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -279,11 +289,22 @@ class propuesta extends BaseModel
     
     public function getAllPropuestas($id, $pais)
     {
+        
+        if($pais != 0)
+        {
+            $completa = " and propuesta.id_pais IN ('" . $pais . "','0')";
+        }
+        else
+        {
+            $completa = "";
+        }
+        
+        
         $sql  = "";
         $sql .= "SELECT  propuesta.*";
         $sql .= " FROM propuesta ";
         $sql .= " INNER JOIN ano on ano.id = propuesta.id_ano ";
-        $sql .= "WHERE propuesta.deleted = 0 and propuesta.id != " . $id . " and propuesta.id_pais IN ('" . $pais . "','0')";
+        $sql .= "WHERE propuesta.deleted = 0 and propuesta.id != " . $id . $completa;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

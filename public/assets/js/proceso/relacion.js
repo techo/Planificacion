@@ -238,9 +238,24 @@ $("#guardarrelacion").click(function()
 		});
 		
 		return false;
-	}	
+	}
 	
-	aDados.proposito  = $('#idproposito').val();
+	var propuestas = [];
+	var procesos = [];
+	 
+	$("#propuestaschk option:selected").each(function() {
+		propuestas.push($(this).val());
+		}); 
+	
+	aDados.ids_propuesta = propuestas;
+	
+	$("#procesoschk option:selected").each(function() {
+		   procesos.push($(this).val());
+		}); 
+	
+	 aDados.ids_proceso = procesos;
+	
+	aDados.proceso  = $('#idproceso').val();
 	aDados.idrelacion = $('#idrelacion').val();
 	
 	//Relacion de Indicadores
@@ -259,7 +274,7 @@ $("#guardarrelacion").click(function()
 	
 	$.ajax({
 		type: "POST",
-		url: "/proposito/relacion",
+		url: "/proceso/relacion",
 		dataType: "json",
 		data: aDados,
 		success: function(oData)
@@ -271,7 +286,7 @@ $("#guardarrelacion").click(function()
 				    content: "Grabado con éxito.",
 				    buttons: {
 				        ok: function(){
-				        	location.href = "/proposito";
+				        	location.href = "/proceso";
 				        }
 				    }
 				});
@@ -283,7 +298,7 @@ $("#guardarrelacion").click(function()
 				    content: "Erro ao Grabar.",
 				    buttons: {
 				        ok: function(){
-				        	location.href = "/proposito";
+				        	location.href = "/proceso";
 				        }
 				    }
 				});
