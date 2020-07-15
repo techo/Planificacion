@@ -188,7 +188,8 @@ class propuesta extends BaseModel
         $sql .= "kpi5, ";
         $sql .= "ponderacion5, ";
         $sql .= "id_propuesta, ";
-        $sql .= "id_proposito, ";
+        $sql .= "ids_propuestas, ";
+        $sql .= "ids_proposito, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -206,6 +207,7 @@ class propuesta extends BaseModel
         $sql .= "'". $aParam['K5']."', ";
         $sql .= "'". $aParam['P5']."', ";
         $sql .= "'". $aParam['propuesta']."', ";
+        $sql .= "'". $aParam['id_propuesta']."', ";
         $sql .= "'". $aParam['id_proposito']."', ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
@@ -247,7 +249,9 @@ class propuesta extends BaseModel
         $sql .= "ponderacion4            = '" . $aParam['P4']."', ";
         $sql .= "kpi5                    = '" . $aParam['K5']."', ";
         $sql .= "ponderacion5            = '" . $aParam['P5']."', ";
-        $sql .= "id_proposito            = '" . $aParam['id_proposito']."', ";
+        $sql .= "id_propuesta            = '" . $aParam['propuesta']."', ";
+        $sql .= "ids_proposito           = '" . $aParam['id_proposito']."', ";
+        $sql .= "ids_propuestas          = '" . $aParam['id_propuesta']."', ";
         $sql .= "id_updater              = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update             = NOW() ";
         $sql .= "WHERE id                = '" . $aParam['idrelacion']."'";

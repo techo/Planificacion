@@ -51,11 +51,24 @@
                 <label for="kpi">Proposito</label>
                 <select id="propositoschk" multiple="multiple">
                 <?php 
+                    $contador = 0;
+                    $total    = count($this->view->dados['propositos']);
+                    
     				foreach ($this->view->propositos as $proposito)
     				{
-    				    $ComboP1.= '<option value="'.$proposito->id.'">'.$proposito->proposito.'</option>';
+    				    if($contador <= $total)
+    				    {
+    				        if($proposito->id == $this->view->dados['propositos'][$contador])
+    				        {
+    				            $ComboP1.= '<option selected value="'.$proposito->id.'">'.$proposito->proposito.'</option>';
+    				            $contador++;
+    				        }
+    				        else
+    				        {
+    				            $ComboP1.= '<option value="'.$proposito->id.'">'.$proposito->proposito.'</option>';
+    				        }
+    				    }
     				}
-    				
     				echo($ComboP1);
                     ?>
                 </select>
@@ -63,11 +76,22 @@
                  <label for="kpi">Propuesta</label>
                 <select id="propuestaschk" multiple="multiple">
                     <?php 
+                    
+                    $contador = 0;
+                    $total    = count($this->view->dados['propositos']);
+                    
     				foreach ($this->view->propuestas as $propuesta)
     				{
-    				    $ComboP2.= '<option value="'.$propuesta->id.'">'.$propuesta->propuesta.'</option>';
+    				    if($propuesta->id == $this->view->dados['propuestas'][$contador])
+    				    {
+    				        $ComboP2.= '<option selected value="'.$propuesta->id.'">'.$propuesta->propuesta.'</option>';
+    				        $contador++;
+    				    }
+    				    else
+    				    {
+    				        $ComboP2.= '<option value="'.$propuesta->id.'">'.$propuesta->propuesta.'</option>';
+    				    }
     				}
-    				
     				echo($ComboP2);
                     ?>
                 </select>
@@ -240,7 +264,7 @@
     </div>
     </div>
     <div class="actions clearfix paddingTop-20">
-							<a href="/proposito" class="btn btn-danger btn-lg pull-left">Cancelar</a>
+							<a href="/propuesta" class="btn btn-danger btn-lg pull-left">Cancelar</a>
 							<button type="button" id="guardarrelacion" class="btn btn-success btn-lg pull-left btn-salvar">Guardar</button>
 						</div>
 </div>

@@ -6,6 +6,7 @@ $('#p4').mask('##0,00', {reverse: true});
 $('#p5').mask('##0,00', {reverse: true});
 
 //Se la ponderacion 1 hay valor exibe los inputs con valores
+
 if($('#retornop1').val() != 0.00)
 {
 	 $('#ponderaciones').show();
@@ -28,7 +29,7 @@ if($('#retornop1').val() != 0.00)
 	 var total = p1 + p2 + p3 + p4 + p5;
 	 
 	 $('#total').val(total);
-	 $('#total').mask('##0,00', {reverse: true});
+	// $('#total').mask('##0,00', {reverse: true});
 }	
 
 //Exibe as Ponderacoes
@@ -227,7 +228,7 @@ $("#guardarrelacion").click(function()
 {
 	var total = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
 	
-	if(total < 100)
+	if(total < 100 && $('#tipo').val() == 'ponderacion')
 	{
 		$.confirm({
 		    content: "Para guardar la relacion la suma de toda procentaje tiene que ser 100.",

@@ -236,7 +236,11 @@ class PropuestaController extends BaseController
         
         if(!empty($relacion))
         {
+            $aDados['propositos'] = (explode(",",$relacion[0]->ids_proposito));
+            $aDados['propuestas'] = (explode(",",$relacion[0]->ids_propuestas));
+            
             $this->view->existe = $relacion;
+            $this->view->dados = $aDados;
         }
         
         //info do proposito
@@ -288,9 +292,39 @@ class PropuestaController extends BaseController
     public function relacion($aParam)
     {
         $aParam = (array) $aParam;
+        $idpropositos = '';
+        $idpropuestas = '';
+        $contador = 1;
+        $count    = 1;
         
-        echo('<pre>');
-        die(print_r($aParam, true));
+        foreach($aParam['ids_proposito'] as $k=>$v)
+        {
+            if($contador == 1)
+            {
+                $idpropositos = $v;
+            }
+            else
+            {
+                $idpropositos = $idpropositos . ',' . $v;
+            }
+            $contador++;
+        }
+        
+        foreach($aParam['ids_propuesta'] as $k=>$v)
+        {
+            if($count == 1)
+            {
+                $idpropuestas = $v;
+            }
+            else
+            {
+                $idpropuestas = $idpropuestas . ',' . $v;
+            }
+            $count++;
+        }
+        
+        $aParam['id_proposito'] = $idpropositos;
+        $aParam['id_propuesta'] = $idpropuestas;
         
         // Indicadores - kPIS
         $aParam['K1'] = $aParam['K1'] ? $aParam['K1'] : 0;
