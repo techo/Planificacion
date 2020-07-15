@@ -247,17 +247,17 @@ class PropuestaController extends BaseController
         $result = $model->getPropuesta($id);
         $ano   = $result[0]->id_ano;
         
-        //Busca todos propositos
-        $aPropositos = $model->getAllPropositos($ano);
-        $this->view->propositos = $aPropositos;
-        
-        //Busca todas propuestas exceto ela mesma
-        $aPropuestas = $model->getAllPropuestas($id);
-        $this->view->propuestas = $aPropuestas;
-        
         //Get Pais
         $pais = $this->GetPaisUnico($result[0]->id_pais);
         $result[0]->pais = $pais['nombre'];
+        
+        //Busca todos propositos
+        $aPropositos = $model->getAllPropositos($ano, $pais['id']);
+        $this->view->propositos = $aPropositos;
+        
+        //Busca todas propuestas exceto ela mesma
+        $aPropuestas = $model->getAllPropuestas($id, $pais['id']);
+        $this->view->propuestas = $aPropuestas;
         
         //Get Idnices de Excelencia
         $kpis = $model->indicesExcelencia();
