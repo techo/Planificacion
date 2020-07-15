@@ -236,15 +236,34 @@ class AprendizajeController extends BaseController
         
         if(!empty($relacion))
         {
+            $aDados['procesos'] = (explode(",",$relacion[0]->ids_procesos));
+            $aDados['aprendizajes'] = (explode(",",$relacion[0]->ids_aprendizajes));
+            
             $this->view->existe = $relacion;
+            $this->view->dados = $aDados;
         }
         
         //info do Aprendizaje
         $result = $model->getaprendizaje($id);
-        
+        $ano   = $result[0]->id_ano;
         //Get Pais
         $pais = $this->GetPaisUnico($result[0]->id_pais);
+        
+        if($result[0]->id_pais == 0)
+        {
+            $pais['nombre'] = 'GLOBAL';
+            $pais['id']     = 0;
+        }
+        
         $result[0]->pais = $pais['nombre'];
+        
+        //Busca todos procesos
+        $aProcesos = $model->getAllProcesos($ano, $pais['id']);
+        $this->view->procesos = $aProcesos;
+        
+        //Busca todas asprendizajes exceto ela mesma
+        $aAprendizajes = $model->getAllAprendizajes($id, $pais['id']);
+        $this->view->aprendizajes = $aAprendizajes;
         
         //Get Idnices de Excelencia
         $kpis = $model->indicesExcelencia();
@@ -254,7 +273,7 @@ class AprendizajeController extends BaseController
         $this->view->kpis = $kpis;
         
         /* Render View Relacionar Indicadores */
-        $this->renderView('/aprendizaje/relacionar', 'layout');
+        $this->renderView('/aprendizajes/relacionar', 'layout');
     }
     
     //Busca Pais en login.techo.org
@@ -279,6 +298,39 @@ class AprendizajeController extends BaseController
     public function relacion($aParam)
     {
         $aParam = (array) $aParam;
+        $idprcesos = '';
+        $idaprendizajes = '';
+        $contador = 1;
+        $count    = 1;
+        
+        foreach($aParam['ids_proceso'] as $k=>$v)
+        {
+            if($contador == 1)
+            {
+                $idprocesos = $v;
+            }
+            else
+            {
+                $idprocesos = $idprocesos . ',' . $v;
+            }
+            $contador++;
+        }
+        
+        foreach($aParam['ids_aprendizaje'] as $k=>$v)
+        {
+            if($count == 1)
+            {
+                $idaprendizajes = $v;
+            }
+            else
+            {
+                $idaprendizajes = $idaprendizajes . ',' . $v;
+            }
+            $count++;
+        }
+        
+        $aParam['id_proceso'] = $idprocesos;
+        $aParam['id_aprendizaje'] = $idaprendizajes;
         
         // Indicadores - kPIS
         $aParam['K1'] = $aParam['K1'] ? $aParam['K1'] : 0;

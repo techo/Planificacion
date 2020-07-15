@@ -170,5 +170,7 @@ $route[] = ['/aprendizaje/filtro', 'AprendizajeController@filter'];
 $route[] = ['/aprendizaje/delete/{id}', 'AprendizajeController@delete'];
 $route[] = ['/aprendizaje/edit', 'AprendizajeController@edit'];
 $route[] = ['/aprendizaje/update', 'AprendizajeController@update'];
+$route[] = ['/aprendizaje/relacionar/{id}', 'AprendizajeController@relacionar'];
+$route[] = ['/aprendizaje/relacion', 'AprendizajeController@relacion'];
 
 return $route;

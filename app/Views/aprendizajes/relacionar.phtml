@@ -1,0 +1,274 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4"><br>
+		<h3>Aprendizajes e Conocimientos</h3>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group"><br>
+			<label for="pais">Pa&iacute;s: </label><?php echo($this->view->info->pais)?>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group"><br>
+			<label for="ano">A&ntilde;o: <?php echo($this->view->info->ano)?></label>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content">
+	<div class="row">
+    	<div class="ibox">
+    		<div class="col-lg-12">
+    			<div class="col-lg-8">
+    				<div id="load">
+        					<div class="form-group ibox">
+        						<div class="ibox-title">
+        							<h5><?php echo($this->view->info->aprendizaje)?></h5>
+        						</div>
+        						<div class="ibox-content">
+            						<?php echo($this->view->info->descripcion)?>
+        						</div>
+        					</div>	
+    				</div>
+    			</div>
+    			<div class="col-lg-4">
+    				Totalizaci&oacute;n
+    				<select name="tipo" id="tipo">
+                      <option value="promedio">Promedio</option>
+                      <option value="ponderacion">Ponderaci&oacute;n</option>
+                    </select>
+    			</div>
+    		</div>
+    		<div class="col-lg-6">
+    			<div class="form-group">
+			<h3> Configurar Indicadores</h3><br>
+			<div class="example1">
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#procesoschk').multiselect();
+                        $('#aprendizajeschk').multiselect();
+                    });
+                </script>
+                <label for="kpi">Procesos</label>
+                <select id="procesoschk" multiple="multiple">
+                <?php 
+                    $contador = 0;
+                    $total    = count($this->view->dados['procesos']);
+                    
+    				foreach ($this->view->procesos as $proceso)
+    				{
+    				    if($contador <= $total)
+    				    {
+    				        if($proceso->id == $this->view->dados['procesos'][$contador])
+    				        {
+    				            $ComboP1.= '<option selected value="'.$proceso->id.'">'.$proceso->proceso.'</option>';
+    				            $contador++;
+    				        }
+    				        else
+    				        {
+    				            $ComboP1.= '<option value="'.$proceso->id.'">'.$proceso->proceso.'</option>';
+    				        }
+    				    }
+    				}
+    				echo($ComboP1);
+                    ?>
+                </select>
+                
+                 <label for="kpi">Aprendizajes</label>
+                <select id="aprendizajeschk" multiple="multiple">
+                    <?php 
+                    
+                    $contador = 0;
+                    $total    = count($this->view->dados['aprendizajes']);
+                    
+    				foreach ($this->view->aprendizajes as $aprendizaje)
+    				{
+    				    if($aprendizaje->id == $this->view->dados['aprendizajes'][$contador])
+    				    {
+    				        $ComboP2.= '<option selected value="'.$aprendizaje->id.'">'.$aprendizaje->aprendizaje.'</option>';
+    				        $contador++;
+    				    }
+    				    else
+    				    {
+    				        $ComboP2.= '<option value="'.$aprendizaje->id.'">'.$aprendizaje->aprendizaje.'</option>';
+    				    }
+    				}
+    				echo($ComboP2);
+                    ?>
+                </select>
+            </div>
+            <br><br>                
+			<label for="kpi">Indicador 1</label>
+			<select  id="kpi1" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi1 == $kpi->id)
+    				  {
+    				      $Combo1.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo1.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo1);?>
+			</select>
+			<br>
+			<label for="kpi">Indicador 2</label>
+			<select  id="kpi2" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi2 == $kpi->id)
+    				  {
+    				      $Combo2.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo2.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo2);?>
+			</select><br>
+			
+			<label for="kpi">Indicador 3</label>
+			<select  id="kpi3" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi3 == $kpi->id)
+    				  {
+    				      $Combo3.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo3.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo3);?>
+			</select><br>
+			
+			<label for="kpi">Indicador 4</label>
+			<select  id="kpi4" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi4 == $kpi->id)
+    				  {
+    				      $Combo4.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo4.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo4);?>
+			</select><br>
+			
+			<label for="kpi">Indicador 5</label>
+			<select  id="kpi5" class="form-control" >
+				<option value="0">-- SELECCIONAR --</option>
+				<?php 
+    				foreach ($this->view->kpis as $kpi)
+    				{
+    				    if($this->view->existe[0]->kpi5 == $kpi->id)
+    				  {
+    				      $Combo5.= '<option selected value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				  else
+    				  {
+    				      $Combo5.= '<option value="'.$kpi->id.'">'.$kpi->indicador.'</option>';
+    				  }
+    				}
+    			?>
+				<?php echo($Combo5);?>
+			</select><br>
+		</div>
+		<input type="hidden" class="form-control" name="idaprendizaje" id="idaprendizaje" value="<?php echo($this->view->info->id);?>">
+		<input type="hidden" class="form-control" name="idrelacion" id="idrelacion" value="<?php echo($this->view->existe[0]->id);?>">
+		<input type="hidden" class="form-control" name="retornop1" id="retornop1" value="<?php echo($this->view->existe[0]->ponderacion1);?>">
+    </div>
+    <div class="col-lg-6" id="ponderaciones">
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+     </br>
+      </br>
+       </br>
+     <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p1" id="p1" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion1 ? $this->view->existe[0]->ponderacion1 : '0.00');?>">
+    	</div>				
+    </div>
+    %	
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p2" id="p2" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion2 ? $this->view->existe[0]->ponderacion2 : '0.00');?>">
+    	</div>				
+    </div>
+    %	
+     </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p3" id="p3" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion3 ? $this->view->existe[0]->ponderacion3 : '0.00');?>">
+    	</div>
+    </div>
+    %	
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p4" id="p4" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion4 ? $this->view->existe[0]->ponderacion4 : '0.00');?>">
+    	</div>				
+    </div>
+    %	
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<input type="text" class="form-control" name="p5" id="p5" title="Ejemplo: 52,00 %" value="<?php echo($this->view->existe[0]->ponderacion5 ? $this->view->existe[0]->ponderacion5 : '0.00');?>">
+    	</div>				
+    </div>
+     %
+    </br>
+    </br>
+    </br>
+    </br>
+    <div class="col-lg-3">
+    	<div class="form-group">
+			<h3><strong>TOTAL: </strong></h3><input type="text" class="form-control" name="total" id="total" value="0.00" disabled>
+    	</div>				
+    </div>
+    </div>	
+    </div>
+    </div>
+    <div class="actions clearfix paddingTop-20">
+							<a href="/aprendizaje" class="btn btn-danger btn-lg pull-left">Cancelar</a>
+							<button type="button" id="guardarrelacion" class="btn btn-success btn-lg pull-left btn-salvar">Guardar</button>
+						</div>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.mask.js"></script>
+<script type="text/javascript" src="/assets/js/aprendizaje/relacion.js""></script>
+<script type="text/javascript" src="/assets/js/bootstrap-multiselect.js"></script>

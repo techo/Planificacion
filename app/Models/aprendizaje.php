@@ -187,7 +187,9 @@ class aprendizaje extends BaseModel
         $sql .= "ponderacion4, ";
         $sql .= "kpi5, ";
         $sql .= "ponderacion5, ";
-        $sql .= "id_proceso, ";
+        $sql .= "id_aprendizaje, ";
+        $sql .= "ids_procesos, ";
+        $sql .= "ids_aprendizajes, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -205,6 +207,8 @@ class aprendizaje extends BaseModel
         $sql .= "'". $aParam['K5']."', ";
         $sql .= "'". $aParam['P5']."', ";
         $sql .= "'". $aParam['aprendizaje']."', ";
+        $sql .= "'". $aParam['id_proceso']."', ";
+        $sql .= "'". $aParam['id_aprendizaje']."', ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
@@ -245,6 +249,8 @@ class aprendizaje extends BaseModel
         $sql .= "ponderacion4            = '" . $aParam['P4']."', ";
         $sql .= "kpi5                    = '" . $aParam['K5']."', ";
         $sql .= "ponderacion5            = '" . $aParam['P5']."', ";
+        $sql .= "ids_procesos            = '" . $aParam['id_proceso']."', ";
+        $sql .= "ids_aprendizajes        = '" . $aParam['id_aprendizaje']."', ";
         $sql .= "id_updater              = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update             = NOW() ";
         $sql .= "WHERE id                = '" . $aParam['idrelacion']."'";
@@ -253,6 +259,55 @@ class aprendizaje extends BaseModel
         $result = $stmt->rowCount();
         $stmt->closeCursor();
         
+        return $result;
+    }
+    
+    public function getAllProcesos($ano, $pais)
+    {
+        
+        if($pais != 0)
+        {
+            $completa = " and proceso.id_pais IN ('" . $pais . "','0')";
+        }
+        else
+        {
+            $completa = "";
+        }
+        
+        $sql  = "";
+        $sql .= "SELECT  proceso.*";
+        $sql .= " FROM proceso ";
+        $sql .= " INNER JOIN ano on ano.id = proceso.id_ano ";
+        $sql .= "WHERE proceso.deleted = 0 and proceso.id_ano = " . $ano . $completa;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function getAllAprendizajes($id, $pais)
+    {
+        
+        if($pais != 0)
+        {
+            $completa = " and aprendizaje.id_pais IN ('" . $pais . "','0')";
+        }
+        else
+        {
+            $completa = "";
+        }
+        
+        
+        $sql  = "";
+        $sql .= "SELECT  aprendizaje.*";
+        $sql .= " FROM aprendizaje ";
+        $sql .= " INNER JOIN ano on ano.id = aprendizaje.id_ano ";
+        $sql .= "WHERE aprendizaje.deleted = 0 and aprendizaje.id != " . $id . $completa;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
         return $result;
     }
     
