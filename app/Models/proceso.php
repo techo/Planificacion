@@ -17,9 +17,34 @@ class proceso extends BaseModel
     public function select()
     {
         $sql  = "";
-        $sql .= "SELECT  *";
+        $sql .= "SELECT  {$this->table}.*, ano.ano as ano, CASE
+        WHEN {$this->table}.id_pais = 1 THEN 'Brasil'
+        WHEN {$this->table}.id_pais = 2 THEN 'Chile'
+        WHEN {$this->table}.id_pais = 3 THEN 'El Salvador'
+        WHEN {$this->table}.id_pais = 4 THEN 'Argentina'
+        WHEN {$this->table}.id_pais = 5 THEN 'Oficina Internacional'
+        WHEN {$this->table}.id_pais = 6 THEN 'Bolivia'
+        WHEN {$this->table}.id_pais = 7 THEN 'Colombia'
+        WHEN {$this->table}.id_pais = 8 THEN 'Costa Rica'
+        WHEN {$this->table}.id_pais = 9 THEN 'Ecuador'
+        WHEN {$this->table}.id_pais = 10 THEN 'Guatemala'
+        WHEN {$this->table}.id_pais = 11 THEN 'Haiti'
+        WHEN {$this->table}.id_pais = 12 THEN 'Honduras'
+        WHEN {$this->table}.id_pais = 13 THEN 'Mexico'
+        WHEN {$this->table}.id_pais = 14 THEN 'Nicaragua'
+        WHEN {$this->table}.id_pais = 15 THEN 'Panama'
+        WHEN {$this->table}.id_pais = 16 THEN 'Paraguay'
+        WHEN {$this->table}.id_pais = 17 THEN 'Peru'
+        WHEN {$this->table}.id_pais = 18 THEN 'Republica Dominicana'
+        WHEN {$this->table}.id_pais = 19 THEN 'Uruguay'
+        WHEN {$this->table}.id_pais = 20 THEN 'EUA'
+        WHEN {$this->table}.id_pais = 21 THEN 'Venezuela'
+        WHEN {$this->table}.id_pais = 22 THEN 'Europa'
+        ELSE 'Global'
+        END AS 'Pais'";
         $sql .= " FROM {$this->table} ";
-        $sql .= "WHERE deleted = 0 ORDER BY id DESC";
+        $sql .= " INNER JOIN ano on ano.id = {$this->table}.id_ano ";
+        $sql .= "WHERE {$this->table}.deleted = 0 ORDER BY {$this->table}.id DESC";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
