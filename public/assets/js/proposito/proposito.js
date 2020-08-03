@@ -175,4 +175,8 @@ function AtualizarProposito()
 	});
 }
 
+function refreshPage(){
+    window.location.reload();
+} 
+
 

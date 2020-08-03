@@ -176,3 +176,7 @@ function AtualizarProceso()
 		}
 	});
 }
+
+function refreshPage(){
+    window.location.reload();
+} 

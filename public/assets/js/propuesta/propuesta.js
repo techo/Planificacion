@@ -279,4 +279,7 @@ $("#guardarrelacion").click(function()
 	});
 });
 
+function refreshPage(){
+    window.location.reload();
+} 
 

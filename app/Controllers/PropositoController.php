@@ -192,6 +192,7 @@ class PropositoController extends BaseController
         $html   .= '</div>';
         $html   .= '<div class="col-lg-12">';
         $html   .= '<button type="button" onclick="AtualizarProposito();" class="btn btn-w-m btn-warning">Actualizar</button>';
+        $html   .= '&nbsp;&nbsp; <button   onClick="refreshPage();" type="button" class="btn btn-w-m btn-danger">Cancelar</button>';
         $html   .= '</div>';
         $html   .= '</div>';
         $html   .= '</div>';
