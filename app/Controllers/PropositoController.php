@@ -227,9 +227,43 @@ class PropositoController extends BaseController
     {
         $aParam = (array) $aParam;
         $id = $aParam[0];
+        $aDados = array();
+        
+        //Ler todos propositos para remover os indicadores ja utilizados anteriormente
+        $model = Container::getModel("proposito");
+        $aUtilizados = $model->getUtilizados();
+        
+        foreach ($aUtilizados as $key => $value) 
+        {
+            if (!in_array($value->kpi1, $aDados)) 
+            {
+                array_push($aDados, $value->kpi1);
+            }
+            
+            if (!in_array($value->kpi2, $aDados))
+            {
+                array_push($aDados, $value->kpi2);
+            }
+            
+            if (!in_array($value->kpi3, $aDados))
+            {
+                array_push($aDados, $value->kpi3);
+            }
+            
+            if (!in_array($value->kpi4, $aDados))
+            {
+                array_push($aDados, $value->kpi4);
+            }
+            
+            if (!in_array($value->kpi5, $aDados))
+            {
+                array_push($aDados, $value->kpi5);
+            }
+            
+        }
         
         $this->setPageTitle('Relacionar');
-        $model = Container::getModel("proposito");
+        //$model = Container::getModel("proposito");
         
         //Verifica se já existe relacao para editar
         $relacion = $model->getRelacion($id);
@@ -248,6 +282,43 @@ class PropositoController extends BaseController
         
         //Get Idnices de Excelencia
         $kpis = $model->indicesExcelencia();
+        $aNovo = array();
+        
+        //Array com IDs dos indices de excelencia
+        foreach ($kpis as $key => $value)
+        {
+            array_push($aNovo, $value->id);
+        }
+        
+        // varedura dos ids ja utilizados e remocao do array utilizado na view
+        foreach ($aDados as $key => $value)
+        {
+            $chave = array_search($value, $aNovo);
+            unset($kpis[$chave]);
+        }
+        
+        //seta kpis utilizados antes
+        if(!empty($relacion))
+        {
+            $aNovo = array();
+            
+            $relacion[0]->kpi1 != 0 ? array_push($aNovo, $relacion[0]->kpi1) : '';
+            $relacion[0]->kpi2 != 0 ? array_push($aNovo, $relacion[0]->kpi2) : '';
+            $relacion[0]->kpi3 != 0 ? array_push($aNovo, $relacion[0]->kpi3) : '';
+            $relacion[0]->kpi4 != 0 ? array_push($aNovo, $relacion[0]->kpi4) : '';
+            $relacion[0]->kpi5 != 0 ? array_push($aNovo, $relacion[0]->kpi5) : '';
+            
+            foreach ($aNovo as $key => $value)
+            {
+                $indicador = $model->getIndicador($value);
+                
+                $obj->id        = $indicador[0]->id;
+                $obj->indicador = $indicador[0]->indicador;
+                $obj->id_tipo   = $indicador[0]->id_tipo;
+                
+                array_push($kpis, $obj);
+            }
+        }
         
         $this->view->info = $result[0];
         

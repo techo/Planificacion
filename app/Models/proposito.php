@@ -256,4 +256,28 @@ class proposito extends BaseModel
         return $result;
     }
     
+    public function getUtilizados()
+    {
+        $sql  = "";
+        $sql .= "SELECT  * FROM rlproposito ";
+        $sql .= "WHERE deleted = 0 ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function getIndicador($id)
+    {
+        $sql  = "";
+        $sql .= "SELECT  * FROM indicador ";
+        $sql .= "WHERE id = " . $id;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }
