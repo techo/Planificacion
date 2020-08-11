@@ -5,6 +5,32 @@ $('#p3').mask('##0,00', {reverse: true});
 $('#p4').mask('##0,00', {reverse: true});
 $('#p5').mask('##0,00', {reverse: true});
 
+//Desabilita os input que nao tem indicador setado
+if($('#kpi1').val() == 0)
+{
+	$("#p1").attr('disabled','disabled');
+}
+
+if($('#kpi2').val() == 0)
+{
+	$("#p2").attr('disabled','disabled');
+}
+
+if($('#kpi3').val() == 0)
+{
+	$("#p3").attr('disabled','disabled');
+}
+
+if($('#kpi4').val() == 0)
+{
+	$("#p4").attr('disabled','disabled');
+}
+
+if($('#kpi5').val() == 0)
+{
+	$("#p5").attr('disabled','disabled');
+}
+
 //Se la ponderacion 1 hay valor exibe los inputs con valores
 
 if($('#retornop1').val() != 0.00)
@@ -197,31 +223,86 @@ aDados = new Object();
 $( "#kpi1" ).change(function() {
 	
 	aDados['K'+1] =  $('#kpi1').val();
-	console.log(aDados);
+
+	if($('#kpi1').val() != 0)
+	{
+		$("#p1").removeAttr('disabled');
+	}
+	else
+	{
+		$("#p1").attr('disabled','disabled');
+		$('#p1').val(0.00);
+		var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+		$('#total').val(parcial);
+	}	
 });
 
 $( "#kpi2" ).change(function() {
 	
 	aDados['K'+2] =  $('#kpi2').val();
-	console.log(aDados);
+
+	if($('#kpi2').val() != 0)
+	{
+		$("#p2").removeAttr('disabled');
+	}
+	else
+	{
+		$("#p2").attr('disabled','disabled');
+		$('#p2').val(0.00);
+		var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+		$('#total').val(parcial);
+	}	
 });
 
 $( "#kpi3" ).change(function() {
 	
 	aDados['K'+3] =  $('#kpi3').val();
-	console.log(aDados);
+
+	if($('#kpi3').val() != 0)
+	{
+		$("#p3").removeAttr('disabled');
+	}
+	else
+	{
+		$("#p3").attr('disabled','disabled');
+		$('#p3').val(0.00);
+		var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+		$('#total').val(parcial);
+	}	
 });
 
 $( "#kpi4" ).change(function() {
 	
 	aDados['K'+4] =  $('#kpi4').val();
-	console.log(aDados);
+
+	if($('#kpi4').val() != 0)
+	{
+		$("#p4").removeAttr('disabled');
+	}
+	else
+	{
+		$("#p4").attr('disabled','disabled');
+		$('#p4').val(0.00);
+		var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+		$('#total').val(parcial);
+	}	
 });
 
 $( "#kpi5" ).change(function() {
 	
 	aDados['K'+5] =  $('#kpi5').val();
-	console.log(aDados);
+
+	if($('#kpi5').val() != 0)
+	{
+		$("#p5").removeAttr('disabled');
+	}
+	else
+	{
+		$("#p5").attr('disabled','disabled');
+		$('#p5').val(0.00);
+		var parcial = parseFloat($('#p1').val().replace(',', '.')) + parseFloat($('#p2').val().replace(',', '.')) + parseFloat($('#p3').val().replace(',', '.')) + parseFloat($('#p4').val().replace(',', '.')) + parseFloat($('#p5').val().replace(',', '.'));
+		$('#total').val(parcial);
+	}	
 });
 
 $("#guardarrelacion").click(function() 
