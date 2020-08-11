@@ -228,8 +228,8 @@ class PropuestaController extends BaseController
     {
         $aParam = (array) $aParam;
         $id = $aParam[0];
-        $aDados  = array();
-        $aDados2 = array();
+        $aDados  = array(); // Propositos
+        $aDados2 = array(); // Propuestas
         
         $this->setPageTitle('Relacionar');
         $model = Container::getModel("propuesta");
