@@ -399,7 +399,7 @@ class AprendizajeController extends BaseController
         $this->view->procesos = $aProcesos;
         
         //Busca todas asprendizajes exceto ela mesma
-        $aAprendizajes = $model->getAllAprendizajes($id, $pais['id']);
+        $aAprendizajes = $model->getAllAprendizajes($id, $pais['id'], $ano);
         $this->view->aprendizajes = $aAprendizajes;
         
         //Get Idnices de Excelencia

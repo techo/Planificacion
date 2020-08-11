@@ -331,7 +331,7 @@ class PropuestaController extends BaseController
         $this->view->propositos = $aPropositos;
         
         //Busca todas propuestas exceto ela mesma
-        $aPropuestas = $model->getAllPropuestas($id, $pais['id']);
+        $aPropuestas = $model->getAllPropuestas($id, $pais['id'], $ano);
         $this->view->propuestas = $aPropuestas;
         
         //Get Indices de Excelencia

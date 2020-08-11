@@ -311,7 +311,7 @@ class aprendizaje extends BaseModel
         return $result;
     }
     
-    public function getAllAprendizajes($id, $pais)
+    public function getAllAprendizajes($id, $pais, $ano)
     {
         
         if($pais != 0)
@@ -328,7 +328,7 @@ class aprendizaje extends BaseModel
         $sql .= "SELECT  aprendizaje.*";
         $sql .= " FROM aprendizaje ";
         $sql .= " INNER JOIN ano on ano.id = aprendizaje.id_ano ";
-        $sql .= "WHERE aprendizaje.deleted = 0 and aprendizaje.id != " . $id . $completa;
+        $sql .= "WHERE aprendizaje.deleted = 0 and aprendizaje.id_ano = " . $ano." and aprendizaje.id != " . $id . $completa;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

@@ -312,7 +312,7 @@ class propuesta extends BaseModel
         return $result;
     }
     
-    public function getAllPropuestas($id, $pais)
+    public function getAllPropuestas($id, $pais, $ano)
     {
         
         if($pais != 0)
@@ -329,7 +329,7 @@ class propuesta extends BaseModel
         $sql .= "SELECT  propuesta.*";
         $sql .= " FROM propuesta ";
         $sql .= " INNER JOIN ano on ano.id = propuesta.id_ano ";
-        $sql .= "WHERE propuesta.deleted = 0 and propuesta.id != " . $id . $completa;
+        $sql .= "WHERE propuesta.deleted = 0 and propuesta.id_ano = " . $ano." and propuesta.id != " . $id . $completa;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

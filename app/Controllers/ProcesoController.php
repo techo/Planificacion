@@ -366,7 +366,7 @@ class ProcesoController extends BaseController
         $this->view->propuestas = $aPropuestas;
         
         //Busca todos processos exceto ela mesma
-        $aProcesos = $model->getAllProcesos($id, $pais['id']);
+        $aProcesos = $model->getAllProcesos($id, $pais['id'], $ano);
         $this->view->procesos = $aProcesos;
         
         //Get Idnices de Excelencia

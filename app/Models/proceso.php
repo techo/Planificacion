@@ -311,7 +311,7 @@ class proceso extends BaseModel
         return $result;
     }
     
-    public function getAllProcesos($id, $pais)
+    public function getAllProcesos($id, $pais, $ano)
     {
         
         if($pais != 0)
@@ -327,7 +327,7 @@ class proceso extends BaseModel
         $sql .= "SELECT  proceso.*";
         $sql .= " FROM proceso ";
         $sql .= " INNER JOIN ano on ano.id = proceso.id_ano ";
-        $sql .= "WHERE proceso.deleted = 0 and proceso.id != " . $id . $completa;
+        $sql .= "WHERE proceso.deleted = 0 and proceso.id_ano = " . $ano." and proceso.id != " . $id . $completa;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
