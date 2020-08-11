@@ -228,9 +228,76 @@ class PropuestaController extends BaseController
     {
         $aParam = (array) $aParam;
         $id = $aParam[0];
+        $aDados  = array();
+        $aDados2 = array();
         
         $this->setPageTitle('Relacionar');
         $model = Container::getModel("propuesta");
+        
+        /* PROPOSITOS UTILIZADOS - START */
+        $aUtilizados = $model->getUtilizados();
+        
+        foreach ($aUtilizados as $key => $value)
+        {
+            if (!in_array($value->kpi1, $aDados))
+            {
+                array_push($aDados, $value->kpi1);
+            }
+            
+            if (!in_array($value->kpi2, $aDados))
+            {
+                array_push($aDados, $value->kpi2);
+            }
+            
+            if (!in_array($value->kpi3, $aDados))
+            {
+                array_push($aDados, $value->kpi3);
+            }
+            
+            if (!in_array($value->kpi4, $aDados))
+            {
+                array_push($aDados, $value->kpi4);
+            }
+            
+            if (!in_array($value->kpi5, $aDados))
+            {
+                array_push($aDados, $value->kpi5);
+            }
+            
+        }
+        /* PROPOSITOS UTILIZADOS - END */
+        
+        /* PROPUESTAS UTILIZADAS - START */
+        $aUtilizados2 = $model->getProp();
+        
+        foreach ($aUtilizados2 as $key => $value)
+        {
+            if (!in_array($value->kpi1, $aDados2))
+            {
+                array_push($aDados2, $value->kpi1);
+            }
+            
+            if (!in_array($value->kpi2, $aDados2))
+            {
+                array_push($aDados2, $value->kpi2);
+            }
+            
+            if (!in_array($value->kpi3, $aDados2))
+            {
+                array_push($aDados2, $value->kpi3);
+            }
+            
+            if (!in_array($value->kpi4, $aDados2))
+            {
+                array_push($aDados2, $value->kpi4);
+            }
+            
+            if (!in_array($value->kpi5, $aDados2))
+            {
+                array_push($aDados2, $value->kpi5);
+            }
+            
+        }
         
         //Verifica se já existe relacao para editar
         $relacion = $model->getRelacion($id);
@@ -267,8 +334,51 @@ class PropuestaController extends BaseController
         $aPropuestas = $model->getAllPropuestas($id, $pais['id']);
         $this->view->propuestas = $aPropuestas;
         
-        //Get Idnices de Excelencia
+        //Get Indices de Excelencia
         $kpis = $model->indicesExcelencia();
+        $aNovo = array();
+        
+        //Array com IDs dos indices de excelencia
+        foreach ($kpis as $key => $value)
+        {
+            array_push($aNovo, $value->id);
+        }
+        
+        // varedura dos ids ja utilizados e remocao do array utilizado na view
+        foreach ($aDados as $key => $value)
+        {
+            $chave = array_search($value, $aNovo);
+            unset($kpis[$chave]);
+        }
+        
+        foreach ($aDados2 as $key => $value)
+        {
+            $chave = array_search($value, $aNovo);
+            unset($kpis[$chave]);
+        }
+        
+        //seta kpis utilizados antes
+        if(!empty($relacion))
+        {
+            $aNovo = array();
+            
+            $relacion[0]->kpi1 != 0 ? array_push($aNovo, $relacion[0]->kpi1) : '';
+            $relacion[0]->kpi2 != 0 ? array_push($aNovo, $relacion[0]->kpi2) : '';
+            $relacion[0]->kpi3 != 0 ? array_push($aNovo, $relacion[0]->kpi3) : '';
+            $relacion[0]->kpi4 != 0 ? array_push($aNovo, $relacion[0]->kpi4) : '';
+            $relacion[0]->kpi5 != 0 ? array_push($aNovo, $relacion[0]->kpi5) : '';
+            
+            foreach ($aNovo as $key => $value)
+            {
+                $indicador = $model->getIndicador($value);
+                
+                $obj->id        = $indicador[0]->id;
+                $obj->indicador = $indicador[0]->indicador;
+                $obj->id_tipo   = $indicador[0]->id_tipo;
+                
+                array_push($kpis, $obj);
+            }
+        }
         
         $this->view->info = $result[0];
         
