@@ -228,9 +228,145 @@ class AprendizajeController extends BaseController
     {
         $aParam = (array) $aParam;
         $id = $aParam[0];
+        $aDados  = array(); // Propositos
+        $aDados2 = array(); // Propuestas
+        $aDados3 = array(); // Procesos
+        $aDados4 = array(); // Aprendisaje
         
         $this->setPageTitle('Relacionar');
         $model = Container::getModel("aprendizaje");
+        
+        /* PROPOSITOS UTILIZADOS - START */
+        $aUtilizados = $model->getUtilizados();
+        
+        foreach ($aUtilizados as $key => $value)
+        {
+            if (!in_array($value->kpi1, $aDados))
+            {
+                array_push($aDados, $value->kpi1);
+            }
+            
+            if (!in_array($value->kpi2, $aDados))
+            {
+                array_push($aDados, $value->kpi2);
+            }
+            
+            if (!in_array($value->kpi3, $aDados))
+            {
+                array_push($aDados, $value->kpi3);
+            }
+            
+            if (!in_array($value->kpi4, $aDados))
+            {
+                array_push($aDados, $value->kpi4);
+            }
+            
+            if (!in_array($value->kpi5, $aDados))
+            {
+                array_push($aDados, $value->kpi5);
+            }
+            
+        }
+        /* PROPOSITOS UTILIZADOS - END */
+        
+        /* PROPUESTAS UTILIZADAS - START */
+        $aUtilizados2 = $model->getProp();
+        
+        foreach ($aUtilizados2 as $key => $value)
+        {
+            if (!in_array($value->kpi1, $aDados2))
+            {
+                array_push($aDados2, $value->kpi1);
+            }
+            
+            if (!in_array($value->kpi2, $aDados2))
+            {
+                array_push($aDados2, $value->kpi2);
+            }
+            
+            if (!in_array($value->kpi3, $aDados2))
+            {
+                array_push($aDados2, $value->kpi3);
+            }
+            
+            if (!in_array($value->kpi4, $aDados2))
+            {
+                array_push($aDados2, $value->kpi4);
+            }
+            
+            if (!in_array($value->kpi5, $aDados2))
+            {
+                array_push($aDados2, $value->kpi5);
+            }
+            
+        }
+        /* PROPUESTAS UTILIZADAS - END */
+        
+        /* PROCESOS UTILIZADAS - START */
+        $aUtilizados3 = $model->getProc();
+        
+        foreach ($aUtilizados3 as $key => $value)
+        {
+            if (!in_array($value->kpi1, $aDados3))
+            {
+                array_push($aDados3, $value->kpi1);
+            }
+            
+            if (!in_array($value->kpi2, $aDados3))
+            {
+                array_push($aDados3, $value->kpi2);
+            }
+            
+            if (!in_array($value->kpi3, $aDados3))
+            {
+                array_push($aDados3, $value->kpi3);
+            }
+            
+            if (!in_array($value->kpi4, $aDados3))
+            {
+                array_push($aDados3, $value->kpi4);
+            }
+            
+            if (!in_array($value->kpi5, $aDados3))
+            {
+                array_push($aDados3, $value->kpi5);
+            }
+            
+        }
+        /* PROCESOS UTILIZADAS - END */
+        
+        /* APRENDIZAJE UTILIZADAS - START */
+        $aUtilizados4 = $model->getApre();
+        
+        foreach ($aUtilizados4 as $key => $value)
+        {
+            if (!in_array($value->kpi1, $aDados4))
+            {
+                array_push($aDados4, $value->kpi1);
+            }
+            
+            if (!in_array($value->kpi2, $aDados4))
+            {
+                array_push($aDados4, $value->kpi2);
+            }
+            
+            if (!in_array($value->kpi3, $aDados4))
+            {
+                array_push($aDados4, $value->kpi3);
+            }
+            
+            if (!in_array($value->kpi4, $aDados4))
+            {
+                array_push($aDados4, $value->kpi4);
+            }
+            
+            if (!in_array($value->kpi5, $aDados4))
+            {
+                array_push($aDados4, $value->kpi5);
+            }
+            
+        }
+        /* APRENDIZAJE UTILIZADAS - END */
         
         //Verifica se já existe relacao para editar
         $relacion = $model->getRelacion($id);
@@ -268,6 +404,61 @@ class AprendizajeController extends BaseController
         
         //Get Idnices de Excelencia
         $kpis = $model->indicesExcelencia();
+        $aNovo = array();
+        
+        //Array com IDs dos indices de excelencia
+        foreach ($kpis as $key => $value)
+        {
+            array_push($aNovo, $value->id);
+        }
+        
+        // varedura dos ids ja utilizados e remocao do array utilizado na view
+        foreach ($aDados as $key => $value)
+        {
+            $chave = array_search($value, $aNovo);
+            unset($kpis[$chave]);
+        }
+        
+        foreach ($aDados2 as $key => $value)
+        {
+            $chave = array_search($value, $aNovo);
+            unset($kpis[$chave]);
+        }
+        
+        foreach ($aDados3 as $key => $value)
+        {
+            $chave = array_search($value, $aNovo);
+            unset($kpis[$chave]);
+        }
+        
+        foreach ($aDados4 as $key => $value)
+        {
+            $chave = array_search($value, $aNovo);
+            unset($kpis[$chave]);
+        }
+        
+        //seta kpis utilizados antes
+        if(!empty($relacion))
+        {
+            $aNovo = array();
+            
+            $relacion[0]->kpi1 != 0 ? array_push($aNovo, $relacion[0]->kpi1) : '';
+            $relacion[0]->kpi2 != 0 ? array_push($aNovo, $relacion[0]->kpi2) : '';
+            $relacion[0]->kpi3 != 0 ? array_push($aNovo, $relacion[0]->kpi3) : '';
+            $relacion[0]->kpi4 != 0 ? array_push($aNovo, $relacion[0]->kpi4) : '';
+            $relacion[0]->kpi5 != 0 ? array_push($aNovo, $relacion[0]->kpi5) : '';
+            
+            foreach ($aNovo as $key => $value)
+            {
+                $indicador = $model->getIndicador($value);
+                
+                $obj->id        = $indicador[0]->id;
+                $obj->indicador = $indicador[0]->indicador;
+                $obj->id_tipo   = $indicador[0]->id_tipo;
+                
+                array_push($kpis, $obj);
+            }
+        }
         
         $this->view->info = $result[0];
         
