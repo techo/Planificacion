@@ -313,11 +313,13 @@ class PropositoController extends BaseController
             {
                 $indicador = $model->getIndicador($value);
                 
-                $obj->id        = $indicador[0]->id;
-                $obj->indicador = $indicador[0]->indicador;
-                $obj->id_tipo   = $indicador[0]->id_tipo;
+                $object = (object) [
+                    'id' => $indicador[0]->id,
+                    'indicador' => $indicador[0]->indicador,
+                    'id_tipo' => $indicador[0]->id_tipo,
+                ];
                 
-                array_push($kpis, $obj);
+                array_push($kpis, $object);
             }
         }
         

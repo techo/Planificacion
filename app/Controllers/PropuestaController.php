@@ -368,15 +368,23 @@ class PropuestaController extends BaseController
             $relacion[0]->kpi4 != 0 ? array_push($aNovo, $relacion[0]->kpi4) : '';
             $relacion[0]->kpi5 != 0 ? array_push($aNovo, $relacion[0]->kpi5) : '';
             
+            $teste = array();
+            
             foreach ($aNovo as $key => $value)
             {
                 $indicador = $model->getIndicador($value);
                 
-                $obj->id        = $indicador[0]->id;
+                $object = (object) [
+                    'id' => $indicador[0]->id,
+                    'indicador' => $indicador[0]->indicador,
+                    'id_tipo' => $indicador[0]->id_tipo,
+                ];
+                
+             /*   $obj->id        = $indicador[0]->id;
                 $obj->indicador = $indicador[0]->indicador;
                 $obj->id_tipo   = $indicador[0]->id_tipo;
-                
-                array_push($kpis, $obj);
+             */   
+                array_push($kpis, $object);
             }
         }
         
