@@ -12,18 +12,26 @@
 		<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->planificacion[0]->id);?>">
 		<input type="hidden" class="form-control" id="pais" value="<?php echo($_GET['pais']);?>">
 		<input type="hidden" class="form-control" id="sede" value="<?php echo($_GET['sede']);?>">
-		<label><strong>Config. Leguage:</strong></label>
+		<label><strong>Config. Idioma:</strong></label>
 		<button id="lang-german">Espa&ntilde;ol</button>
 		<button id="lang-portugues">Portugu&ecirc;s</button>
 		<br>
 		<label><strong>Download:</strong></label>
-		<div>
-            <button id="download-xlsx">Download Excel</button>
-        </div>
+		<button id="download-xlsx">Download Excel</button>
+		<br>
+		<label><strong>Ocultar / Mostrar</strong></label>
+		<ul class="items">
+            <li><input id="plan"  type="checkbox"> Plan</a></li>
+            <li><input id="real"  type="checkbox"> Real</a></li>
+            <li><input id="1"  type="checkbox"> 1 Trimestre</a></li>
+            <li><input id="2"  type="checkbox"> 2 Trimestre</a></li>
+            <li><input id="3"  type="checkbox"> 3 Trimestre</a></li>
+            <li><input id="4"  type="checkbox"> 4 Trimestre</a></li>
+    	</ul>
+		<label><strong>Para copiar la tabla, haz click en la primera linea y pressiona las teclas CTRL + C.</strong></label>
 	</div>
 	<br>
     <div id="example-table"></div>
-</div>
 </body>
 <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
 <script type="text/javascript" src="/assets/js/planificacion/planificacion.js""></script>

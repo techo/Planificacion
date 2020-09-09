@@ -44,6 +44,7 @@ window.onload = function()
 		function keypress(e){
 			if(e.keyCode == 13){
 				buildValues();
+				console.log('Update Data');
 			}
 
 			if(e.keyCode == 27){
@@ -180,10 +181,11 @@ window.onload = function()
 						var table = new Tabulator("#example-table", {
 							data:tabledata,           //load row data from array
 							tooltips:true,            //show tool tips on cells
+							clipboard:true,
 							addRowPos:"top",          //when adding a new row, add it to the top of the table
 							history:true,             //allow undo and redo actions on the table
 							pagination:"local",       //paginate the data
-							paginationSize:25,         //allow 7 rows per page of data
+							paginationSize:15,         //allow 7 rows per page of data
 							movableColumns:true,      //allow column order to be changed
 							resizableRows:true,       //allow row order to be changed
 							initialSort:[             //set the initial sort order of the data
@@ -236,13 +238,14 @@ window.onload = function()
 								{formatter:printIcon, width:40, hozAlign:"center", headerMenu:headerMenu, frozen:true, cellClick:function(e, cell){Descricao(cell._cell.row.data['indicador'],cell._cell.row.data['descripcion']);}},
 								{title:"Indicador", field:"indicador", width:560, editor:false, headerFilter:"input", frozen:true, headerMenu:headerMenu},
 								{// 1 Trimestre
-									title:"1º Trimestre",
+									title:"1º Trimestre", field:"1trimestre",
 									columns:[
 									{title:"Enero Plan", field:"enero_plan", hozAlign:"left", editor:enero_p, headerMenu:headerMenu,formatter:"money", 
 										formatterParams:
 										{
-										    decimal:",",
-										    thousand:".",
+										    decimal:".",
+										    thousand:",",
+										    precision:2,
 										}
 									},
 									{title:"Enero Real", field:"enero_real", hozAlign:"left", editor:enero_r, headerMenu:headerMenu,formatter:"money", 
@@ -250,6 +253,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Febrero Plan", field:"febrero_plan", hozAlign:"left", editor:febrero_p, headerMenu:headerMenu,formatter:"money",
@@ -257,6 +261,7 @@ window.onload = function()
 											{
 											    decimal:",",
 											    thousand:".",
+											    precision:2,
 											}
 									},
 									{title:"Febrero Real", field:"febrero_real", hozAlign:"left", editor:febrero_r, headerMenu:headerMenu,formatter:"money",
@@ -264,6 +269,7 @@ window.onload = function()
 											{
 											    decimal:",",
 											    thousand:".",
+											    precision:2,
 											}
 									},
 									{title:"Marzo Plan", field:"marzo_plan", hozAlign:"left", editor:marzo_p, headerMenu:headerMenu,formatter:"money", 
@@ -271,6 +277,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Marzo Real", field:"marzo_real", hozAlign:"left", editor:marzo_r, headerMenu:headerMenu,formatter:"money",
@@ -278,6 +285,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									],
@@ -290,6 +298,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Abril Real", field:"abril_real", hozAlign:"left", editor:abril_r, headerMenu:headerMenu,formatter:"money",
@@ -297,6 +306,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Mayo Plan", field:"mayo_plan",  hozAlign:"left", editor:mayo_p, headerMenu:headerMenu,formatter:"money",
@@ -304,6 +314,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Mayo Real", field:"mayo_real",  hozAlign:"left", editor:mayo_r, headerMenu:headerMenu,formatter:"money",
@@ -311,6 +322,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Junio Plan", field:"junio_plan", hozAlign:"left", editor:junio_p, headerMenu:headerMenu,formatter:"money",
@@ -318,6 +330,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Junio Real", field:"junio_real", hozAlign:"left", editor:junio_r, headerMenu:headerMenu,formatter:"money",
@@ -325,6 +338,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									],
@@ -337,6 +351,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Julio Real", field:"julio_real", hozAlign:"left", editor:julio_r, headerMenu:headerMenu,formatter:"money",
@@ -344,6 +359,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Agosto Plan", field:"agosto_plan", hozAlign:"left", editor:agosto_p, headerMenu:headerMenu,formatter:"money",
@@ -351,6 +367,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Agosto Real", field:"agosto_real", hozAlign:"left", editor:agosto_r, headerMenu:headerMenu,formatter:"money",
@@ -358,6 +375,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Septiembre Plan", field:"septiembre_plan", hozAlign:"left", editor:septiembre_p, headerMenu:headerMenu,formatter:"money",
@@ -365,6 +383,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Septiembre Real", field:"septiembre_real", hozAlign:"left", editor:septiembre_r, headerMenu:headerMenu,formatter:"money",
@@ -372,6 +391,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									],
@@ -384,6 +404,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Octubre Real", field:"octubre_real", hozAlign:"left", editor:octubre_r, headerMenu:headerMenu,formatter:"money",
@@ -391,6 +412,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Noviembre Plan", field:"noviembre_plan", hozAlign:"left", editor:noviembre_p, headerMenu:headerMenu,formatter:"money",
@@ -398,6 +420,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Noviembre Real", field:"noviembre_real", hozAlign:"left", editor:noviembre_r, headerMenu:headerMenu,formatter:"money",
@@ -405,6 +428,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Diciembre Plan", field:"diciembre_plan", hozAlign:"left", editor:diciembre_p, headerMenu:headerMenu,formatter:"money",
@@ -412,6 +436,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									{title:"Diciembre Real", field:"diciembre_real", hozAlign:"left", editor:diciembre_r, headerMenu:headerMenu,formatter:"money",
@@ -419,6 +444,7 @@ window.onload = function()
 										{
 										    decimal:",",
 										    thousand:".",
+										    precision:2,
 										}
 									},
 									],
@@ -440,6 +466,204 @@ window.onload = function()
 						//trigger download of data.xlsx file
 						document.getElementById("download-xlsx").addEventListener("click", function(){
 						    table.download("xlsx", "data.xlsx", {sheetName:"My Data"});
+						});
+						
+						document.getElementById("plan").addEventListener("click", function()
+						{
+							 if (this.checked) 
+							 {
+								$('#1').prop("disabled", true);
+								$('#2').prop("disabled", true);
+								$('#3').prop("disabled", true);
+								$('#4').prop("disabled", true);
+							 }
+							 else
+							 {
+								 if ($('#real').is(':checked'))
+								 {
+									 $('#1').prop("disabled", true);
+									 $('#2').prop("disabled", true);
+									 $('#3').prop("disabled", true);
+									 $('#4').prop("disabled", true);
+								 }
+								 else
+								 {
+									 $('#1').prop("disabled", false);
+									 $('#2').prop("disabled", false);
+									 $('#3').prop("disabled", false);
+									 $('#4').prop("disabled", false);
+								 }	 
+							 }	 
+							 
+							table.toggleColumn('enero_plan');
+							table.toggleColumn('febrero_plan');
+							table.toggleColumn('marzo_plan');
+							table.toggleColumn('abril_plan');
+							table.toggleColumn('mayo_plan');
+							table.toggleColumn('junio_plan');
+							table.toggleColumn('julio_plan');
+							table.toggleColumn('agosto_plan');
+							table.toggleColumn('septiembre_plan');
+							table.toggleColumn('octubre_plan');
+							table.toggleColumn('noviembre_plan');
+							table.toggleColumn('diciembre_plan');
+						});
+						
+						document.getElementById("real").addEventListener("click", function()
+						{
+							 if (this.checked) 
+							 {
+								$('#1').prop("disabled", true);
+								$('#2').prop("disabled", true);
+								$('#3').prop("disabled", true);
+								$('#4').prop("disabled", true);
+							 }
+							 else
+							 {
+								 if ($('#plan').is(':checked'))
+								 {
+									 $('#1').prop("disabled", true);
+									 $('#2').prop("disabled", true);
+									 $('#3').prop("disabled", true);
+									 $('#4').prop("disabled", true);
+								 }
+								 else
+								 {
+									 $('#1').prop("disabled", false);
+									 $('#2').prop("disabled", false);
+									 $('#3').prop("disabled", false);
+									 $('#4').prop("disabled", false);
+								 }	 
+							 }	 
+							 
+							table.toggleColumn('enero_real');
+							table.toggleColumn('febrero_real');
+							table.toggleColumn('marzo_real');
+							table.toggleColumn('abril_real');
+							table.toggleColumn('mayo_real');
+							table.toggleColumn('junio_real');
+							table.toggleColumn('julio_real');
+							table.toggleColumn('agosto_real');
+							table.toggleColumn('septiembre_real');
+							table.toggleColumn('octubre_real');
+							table.toggleColumn('noviembre_real');
+							table.toggleColumn('diciembre_real');
+						});
+						
+						document.getElementById("1").addEventListener("click", function()
+						{
+							 if (this.checked) 
+							 {
+								$('#plan').prop("disabled", true);
+								$('#real').prop("disabled", true);
+							 }
+							 else
+							 {
+								 if ($('#2').is(':checked') || $('#3').is(':checked') || $('#4').is(':checked'))
+								 {
+									 $('#plan').prop("disabled", true);
+									 $('#real').prop("disabled", true);
+								 }
+								 else
+								 {
+									 $('#plan').prop("disabled", false);
+									 $('#real').prop("disabled", false);
+								 }	 
+							 }	 
+							
+							table.toggleColumn('enero_plan');
+							table.toggleColumn('febrero_plan');
+							table.toggleColumn('marzo_plan');
+							table.toggleColumn('enero_real');
+							table.toggleColumn('febrero_real');
+							table.toggleColumn('marzo_real');
+						});
+						
+						document.getElementById("2").addEventListener("click", function()
+						{
+							 if (this.checked) 
+							 {
+								$('#plan').prop("disabled", true);
+								$('#real').prop("disabled", true);
+							 }
+							 else
+							 {
+								 if ($('#1').is(':checked') || $('#3').is(':checked') || $('#4').is(':checked'))
+								 {
+									 $('#plan').prop("disabled", true);
+									 $('#real').prop("disabled", true);
+								 }
+								 else
+								 {
+									 $('#plan').prop("disabled", false);
+									 $('#real').prop("disabled", false);
+								 }	 
+							 }	 
+							 
+							table.toggleColumn('abril_plan');
+							table.toggleColumn('mayo_plan');
+							table.toggleColumn('junio_plan');
+							table.toggleColumn('abril_real');
+							table.toggleColumn('mayo_real');
+							table.toggleColumn('junio_real');
+						});
+						
+						document.getElementById("3").addEventListener("click", function()
+						{
+							 if (this.checked) 
+							 {
+								$('#plan').prop("disabled", true);
+								$('#real').prop("disabled", true);
+							 }
+							 else
+							 {
+								 if ($('#1').is(':checked') || $('#2').is(':checked') || $('#4').is(':checked'))
+								 {
+									 $('#plan').prop("disabled", true);
+									 $('#real').prop("disabled", true);
+								 }
+								 else
+							     {
+									 $('#plan').prop("disabled", false);
+									 $('#real').prop("disabled", false);
+							     }		 
+							 }	 
+							 
+							table.toggleColumn('julio_plan');
+							table.toggleColumn('agosto_plan');
+							table.toggleColumn('septiembre_plan');
+							table.toggleColumn('julio_real');
+							table.toggleColumn('agosto_real');
+							table.toggleColumn('septiembre_real');
+						});
+						
+						document.getElementById("4").addEventListener("click", function()
+						{
+							 if (this.checked) 
+							 {
+								$('#plan').prop("disabled", true);
+								$('#real').prop("disabled", true);
+							 }
+							 else
+							 {
+								 if ($('#1').is(':checked') || $('#2').is(':checked') || $('#3').is(':checked'))
+								 {
+									 $('#plan').prop("disabled", true);
+									 $('#real').prop("disabled", true);
+								 }
+								 else
+								 {
+									 $('#plan').prop("disabled", false);
+									 $('#real').prop("disabled", false);
+								 }	 
+							 }	 
+							 
+							table.toggleColumn('octubre_plan');
+							table.toggleColumn('noviembre_plan');
+							table.toggleColumn('diciembre_plan');
+							table.toggleColumn('octubre_real');
+							table.toggleColumn('noviembre_real');
+							table.toggleColumn('diciembre_real');
 						});
 					}
 				});
