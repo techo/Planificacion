@@ -426,14 +426,20 @@ window.onload = function()
 							],
 						});
 						
-						//set locale to French
+						/* Opcoes de Idioma */
 						document.getElementById("lang-portugues").addEventListener("click", function(){
 							table.setLocale("pt-br");
 						});
 
-						//set locale to German
 						document.getElementById("lang-german").addEventListener("click", function(){
 							table.setLocale("es-es");
+						});
+						
+						/* Opcao de Download em Excel*/
+						
+						//trigger download of data.xlsx file
+						document.getElementById("download-xlsx").addEventListener("click", function(){
+						    table.download("xlsx", "data.xlsx", {sheetName:"My Data"});
 						});
 					}
 				});
