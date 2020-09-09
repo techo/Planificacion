@@ -1,170 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<script src="/assets/js/grid/editablegrid.js"></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/assets/js/grid/editablegrid_renderers.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/assets/js/grid/editablegrid_editors.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/assets/js/grid/editablegrid_validators.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/assets/js/grid/editablegrid_utils.js" ></script>
-		<!-- [DO NOT DEPLOY] --> <script src="/assets/js/grid/editablegrid_charts.js" ></script>
-		<link rel="stylesheet" href="/assets/js/grid/editablegrid.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="/assets/css/planificacion.css" type="text/css" media="screen">		
-	</head>
-	
-	<body>
-		<div class="tabs-container">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab-1">Planificaci&oacute;n</a></li>
-                <li class=""><a data-toggle="tab" href="#tab-2">Proyectos</a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="tab-1" class="tab-pane active">
-                    <div class="panel-body">
-                        
-                        <div id="filtro">
-                    		<input type="text" id="searchField" placeholder="Buscar Indicador"/>
-                    	</div>
-                    	
-                    	<!-- <div id="savando">
-                    		<p hidden align="center" id="save1"><font color="red">Saving...</font></p>
-                    		<p hidden align="center" id="save2"><font color="green">Save!</font></p>
-                    	</div> -->
-                    		
-                    		<div id="tablecontent"></div>
-                    		
-                    		<!-- Paginator control -->
-                    			<div id="paginator"></div>
-                    		
-                    		<div class="form-group">
-                    			<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->planificacion[0]->id);?>">
-                    		</div>
-                    		<div class="form-group">
-                    			<input type="hidden" class="form-control" id="pais" value="<?php echo($_GET['pais']);?>">
-                    		</div>
-                    		<div class="form-group">
-                    			<input type="hidden" class="form-control" id="sede" value="<?php echo($_GET['sede']);?>">
-                    		</div>
-                    		<div id="loading-techo">
-                            	<div class="loading"><img src="/loading.gif"></div>
-                            </div>
-                    </div>
-                </div>
-                <div id="tab-2" class="tab-pane">
-                    <div class="panel-body">
-                        <!-- 
-                            Aba 2
-                         -->
-                         <div class="row wrapper border-bottom white-bg page-heading">
-                             <div class="col-sm-8">
-                        		<div class="title-action">
-                        		<?php 
-                        		$id = $this->view->planificacion[0]->id;
-                        		$pais = $_GET['pais'];
-                        		$sede = $_GET['sede'];
-                        		
-                        		
-                        		$url= '?id='. $id . '&pais='. $pais . '&sede='.$sede;
-                        		
-                        		?>
-                        			<a href="/proyecto/add<?php echo($url);?>" class="btn  btn-success btn-lg">Agregar Proyecto</a>
-                        		</div>
-                        	</div>
-                    	</div>	
-                    	<div class="wrapper wrapper-content animated fadeInRight">
-                        	<div class="row">
-                        		<div class="col-lg-12">
-                        			<div class="ibox float-e-margins">
-                        				<div class="ibox-title">
-                        					<h5>Listado de Proyectos</h5>
-                        				</div>
-                        				<div class="ibox-content">
-                        					<table class="table table-striped table-bordered table-hover dataTables-example" >
-                        						<thead>
-                                            		<tr>
-                                                        <th>Proyecto</th>
-                                                        <th>A&ntilde;o</th>
-                                                        <th>Pa&iacute;s</th>
-                                                        <th>Sede</th>
-                                                        <th>Responsable</th>
-                                                        <th>Opciones</th>
-                                            		</tr>
-                                            	</thead>
-                                            	<tbody>
-                                            	<?php foreach ($this->view->proyecto as $proyecto): ?>
-                                            		<tr class="gradeX">
-                                            		<td><?php echo($proyecto->proyecto);?></td>
-                                            		<td><?php echo($proyecto->ano);?></td>
-                                            		<td><?php echo($proyecto->pais);?></td>
-                                            		<td><?php echo($proyecto->sede);?></td>
-                                            		<td><?php echo($proyecto->responsable);?></td>
-                                            		<td class="center"><a href="/proyecto/show/<?php echo($proyecto->id);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Editar</a><a href="#" onclick="Delete(<?php echo($proyecto->id);?>);" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Deletar</a></td>
-                                            	<?php endforeach; ?>
-                                            	</tbody>
-                        					</table>
-                        				</div>
-                        			</div>
-                        		</div>
-                        	</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-	</body>
-<script type="text/javascript" src="/assets/js/planificacion/planificacion.js""></script>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/assets/css/tabulator.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/assets/js/tabulator_core.js"></script>
+    <script src="/assets/js/tabulator.js"></script>   
+</head>
+<body>
+	<div>
+		<input type="hidden" class="form-control" id="id" value="<?php echo($this->view->planificacion[0]->id);?>">
+		<input type="hidden" class="form-control" id="pais" value="<?php echo($_GET['pais']);?>">
+		<input type="hidden" class="form-control" id="sede" value="<?php echo($_GET['sede']);?>">
+		<label><strong>Config. Leguage:</strong></label>
+		<button id="lang-german">Espa&ntilde;ol</button>
+		<button id="lang-portugues">Portugu&ecirc;s</button>
+	</div>
+	<br>
+    <div id="example-table"></div>
+</div>
+</body>
 <script type="text/javascript" src="/assets/js/jquery-confirm.js"></script>
-<script>
-$(document).ready(function(){
-    $('.dataTables-example').dataTable({
-   	 "language": {
-         "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-     },
-        pageLength: 25,
-        responsive: true,
-        dom: '<"html5buttons"B>lTfgitp',
-        buttons: [
-            { extend: 'copy'},
-            {extend: 'excel', title: 'ExampleFile'},
-            {extend: 'pdf', title: 'ExampleFile'},
-
-            {extend: 'print',
-             customize: function (win){
-                    $(win.document.body).addClass('white-bg');
-                    $(win.document.body).css('font-size', '10px');
-
-                    $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
-            }
-            }
-        ]
-
-    });
-
-});
-
-function Delete(id)
-{
-	var id = id
-    $.confirm({
-        content: 'Est\u00E1 seguro de que desea borrar este proyecto',
-        buttons: {
-            specialKey: {
-                text: 'S\u00ED',
-                action: function(){
-                	window.location.replace("/proyecto/delete/"+id);
-                }
-            },
-            alphabet: {
-                text: 'No',
-                action: function(){
-                    return;
-                }
-            }
-        }
-    });
-}
-</script>
+<script type="text/javascript" src="/assets/js/planificacion/planificacion.js""></script>
 </html>

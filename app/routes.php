@@ -68,9 +68,12 @@ $route[] = ['/cplanificacion/redirect', 'CPlanificacionController@redirect'];
 /** Planificar ano **/
 $route[] = ['/planificacion', 'PlanificacionController@index'];
 $route[] = ['/planificacion/show/{id}', 'PlanificacionController@show'];
-$route[] = ['/planificacion/dados', 'PlanificacionController@carregardados'];
-$route[] = ['/planificacion/listagem', 'PlanificacionController@listagem'];
+$route[] = ['/planificacion/dados', 'PlanificacionController@carregardados'];/*old method DEPRECATED*/
+$route[] = ['/planificacion/listagem', 'PlanificacionController@listagem']; /*old method DEPRECATED*/
 $route[] = ['/planificacion/atualiza', 'PlanificacionController@atualiza'];
+
+$route[] = ['/planificacion/colunas', 'PlanificacionController@Colunas'];
+$route[] = ['/planificacion/planificado', 'PlanificacionController@Planificado'];
 
 /** TInforme - Informe por trimestre **/
 $route[] = ['/tinforme', 'TInformeController@index'];

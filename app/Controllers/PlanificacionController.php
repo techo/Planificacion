@@ -544,7 +544,39 @@ class PlanificacionController extends BaseController
         
     }
     
-    public function listagem($aParam)
+    /*New Colunas Tratadas ou Liberadas*/
+    public function Colunas($aParam)
+    {
+        $aParam = (array) $aParam;
+        $idPlanificacion = $aParam['id'];
+        
+        $model          = Container::getModel("CPlanificacion");
+        $aPlanificacion = $model->search($idPlanificacion);
+        $aColunas       = (array) $aPlanificacion[0];
+        
+        echo json_encode(array("colunas" => $aColunas));
+    }
+    
+    
+    /*New Listagem*/
+    public function Planificado($aParam)
+    {
+        $aParam = (array) $aParam;
+        
+        $idPlanificacion = $aParam['id'];
+        $idSede = $aParam['sede'];
+        $idPais = $aParam['pais'] ? $aParam['pais'] : 0;
+        
+        $model = Container::getModel("CPlanificacion");
+        
+        $aListagem = $model->Listagem($idPlanificacion, $idSede, $idPais);
+        
+        echo json_encode(array("resultado" => $aListagem));
+    }
+    
+    
+    /* Old Listagem*/
+    public function listagem_old($aParam)
     {
         $aParam = (array) $aParam;
         

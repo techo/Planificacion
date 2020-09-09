@@ -1,444 +1,456 @@
 window.onload = function() 
 {
-	$('#loading-techo').show();
+/*	var tabledata = [
+		{id:1, indicador:"Indicador 001", enero_plan:12, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:2, indicador:"Indicador 002", enero_plan:13, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:3, indicador:"Indicador 003", enero_plan:14, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:4, indicador:"Indicador 004", enero_plan:15, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:5, indicador:"Indicador 005", enero_plan:16, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:6, indicador:"Indicador 006", enero_plan:17, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:7, indicador:"Indicador 007", enero_plan:18, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:8, indicador:"Indicador 008", enero_plan:19, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:9, indicador:"Indicador 009", enero_plan:20, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:10, indicador:"Indicador 010", enero_plan:21, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan:1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+		{id:11, indicador:"Indicador 011", enero_plan:22, enero_real:15, febrero_plan:3, febrero_real:5, marzo_plan:6, marzo_real:15, abril_plan:15, abril_real:15, mayo_plan:15, mayo_real:16, junio_plan: 12, junio_real: 12, julio_plan: 1, julio_real: 2, agosto_plan: 2, agosto_real: 3, septiembre_plan: 4, septiembre_real: 5, octubre_plan: 10, octubre_real: 11, noviembre_plan: 6, noviembre_real: 7, diciembre_plan: 8, diciembre_real: 9},
+	];*/
 	
-	var metadata = [];
+	// Start Filtros
+	//custom max min header filter
+	var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
+
+		var end;
+
+		var container = document.createElement("span");
+
+		//create and style inputs
+		var start = document.createElement("input");
+		start.setAttribute("type", "number");
+		start.setAttribute("placeholder", "Min");
+		start.setAttribute("min", 0);
+		start.setAttribute("max", 100);
+		start.style.padding = "4px";
+		start.style.width = "50%";
+		start.style.boxSizing = "border-box";
+
+		start.value = cell.getValue();
+
+		function buildValues(){
+			success({
+				start:start.value,
+				end:end.value,
+			});
+		}
+
+		function keypress(e){
+			if(e.keyCode == 13){
+				buildValues();
+			}
+
+			if(e.keyCode == 27){
+				cancel();
+			}
+		}
+
+		end = start.cloneNode();
+		end.setAttribute("placeholder", "Max");
+
+		start.addEventListener("change", buildValues);
+		start.addEventListener("blur", buildValues);
+		start.addEventListener("keydown", keypress);
+
+		end.addEventListener("change", buildValues);
+		end.addEventListener("blur", buildValues);
+		end.addEventListener("keydown", keypress);
+
+
+		container.appendChild(start);
+		container.appendChild(end);
+
+		return container;
+	 }
+	// End Filtros
+	
+	// Ocultar Colunas
+	//define row context menu
+	var headerMenu = [
+		{
+			label:"<i class='fas fa-eye-slash'></i> Ocultar Columna",
+			action:function(e, column){
+				column.hide();
+			}
+		}
+	]
+	
+	// Json com os Dados
+	var tabledata = [];
 	var data = [];
-	oData   = new Object();	
-	oResult = new Object();
-	oData.id     = $('#id').val();
-	oData.pais   = $('#pais').val();
-	oData.sede   = $('#sede').val();
-	oResult.id   = $('#id').val();
-	oResult.pais = $('#pais').val();
-	oResult.sede = $('#sede').val();
+	oData    = new Object();	
+	oData.id      = $('#id').val();
+	oData.pais    = $('#pais').val();
+	oData.sede    = $('#sede').val();
+	
+	/*Variaveis de travamento das Colunas*/
+	let enero_p      = true;
+	let enero_r      = true;
+	let febrero_p    = true;
+	let febrero_r    = true;
+	let marzo_p      = true;
+	let marzo_r      = true;
+	let abril_p      = true;
+	let abril_r      = true;
+	let mayo_p       = true;
+	let mayo_r       = true;
+	let junio_p      = true;
+	let junio_r      = true;
+	let julio_p      = true;
+	let julio_r      = true;
+	let agosto_p     = true;
+	let agosto_r     = true;
+	let septiembre_p = true;
+	let septiembre_r = true;
+	let octubre_p    = true;
+	let octubre_r    = true;
+	let noviembre_p  = true;
+	let noviembre_r  = true;
+	let diciembre_p  = true;
+	let diciembre_r  = true;
 	
 	$.ajax({
 		type: "POST",
-		url: "/planificacion/dados",
+		url: "/planificacion/colunas",
 		dataType: "json",
 		data: oData,
-		success: function(oData)
+		success: function(resp)
 		{	
-			if(oData['metadata'])
+			if(resp)
 			{
-				metadata = oData['metadata'];
+				//Enero
+				enero_p = resp['colunas']['edit_plan_enero'] == 1 ? true : false;
+				enero_r = resp['colunas']['edit_real_enero'] == 1 ? true : false;
+				//Febrero
+				febrero_p = resp['colunas']['edit_plan_febrero'] == 1 ? true : false;
+				febrero_r = resp['colunas']['edit_real_febrero'] == 1 ? true : false;
+				//Marzo
+				marzo_p = resp['colunas']['edit_plan_marzo'] == 1 ? true : false;
+				marzo_r = resp['colunas']['edit_real_marzo'] == 1 ? true : false;
+				//Abril
+				abril_p = resp['colunas']['edit_plan_abril'] == 1 ? true : false;
+				abril_r = resp['colunas']['edit_real_abril'] == 1 ? true : false;
+				//Mayo
+				mayo_p = resp['colunas']['edit_plan_mayo'] == 1 ? true : false;
+				mayo_r = resp['colunas']['edit_real_mayo'] == 1 ? true : false;
+				//Junio
+				junio_p = resp['colunas']['edit_plan_junio'] == 1 ? true : false;
+				junio_r = resp['colunas']['edit_real_junio'] == 1 ? true : false;
+				//Julio
+				julio_p = resp['colunas']['edit_plan_julio'] == 1 ? true : false;
+				julio_r = resp['colunas']['edit_real_julio'] == 1 ? true : false;
+				//Agosto
+				agosto_p = resp['colunas']['edit_plan_agosto'] == 1 ? true : false;
+				agosto_r = resp['colunas']['edit_real_agosto'] == 1 ? true : false;
+				//Septiembre
+				septiembre_p = resp['colunas']['edit_plan_septiembre'] == 1 ? true : false;
+				septiembre_r = resp['colunas']['edit_real_septiembre'] == 1 ? true : false;
+				//Octubre
+				octubre_p = resp['colunas']['edit_plan_octubre'] == 1 ? true : false;
+				octubre_r = resp['colunas']['edit_real_octubre'] == 1 ? true : false;
+				//Noviembre
+				noviembre_p = resp['colunas']['edit_plan_noviembre'] == 1 ? true : false;
+				noviembre_r = resp['colunas']['edit_real_noviembre'] == 1 ? true : false;
+				//Diciembre
+				diciembre_p = resp['colunas']['edit_plan_diciembre'] == 1 ? true : false;
+				diciembre_r = resp['colunas']['edit_real_diciembre'] == 1 ? true : false;
 				
-				//Criar Ajax data ...
+				/* Busca os Dados Planificado e Realizado*/
 				$.ajax({
 					type: "POST",
-					url: "/planificacion/listagem",
+					url: "/planificacion/planificado",
 					dataType: "json",
-					data: oResult,
-					success: function(oData)
+					data: oData,
+					success: function(resposta)
 					{	
-						$('#loading-techo').hide();
-						if(oData['data'])
-						{
-							data = oData['data'];
-						}
+						tabledata = resposta['resultado'];
 						
-						editableGrid = new EditableGrid("DemoGridJsData");
+						//Generate print icon
+						var printIcon = function(cell, formatterParams){ //plain text value
+						    return "<i class='fa fa-print'></i>";
+						};
 						
-						editableGrid.load({"metadata": metadata, "data": data});
-						
-						//Exibe os Formatos dos Campos
-						editableGrid.data.forEach(function(o,i) {
-							if(editableGrid.data[i].formato == '%' )  
-							{
-								j = 4;
-								while (j < 28) {
-									editableGrid.data[i].columns[j] = editableGrid.data[i].columns[j] + ' ' + editableGrid.data[i].formato;
-								    j++;
-								}
-								//console.log("Value for '" + editableGrid.getColumnName(editableGrid.columns[3].name) + "' in row " + editableGrid.data[0].originalIndex + " has changed from '" + 10 + "' to '" + 20 + "'");
-							}
-							
-							if(editableGrid.data[i].formato == '$' )  
-							{
-								j = 4;
-								while (j < 28) {
-									editableGrid.data[i].columns[j] = editableGrid.data[i].formato + ' ' + editableGrid.data[i].columns[j];
-								    j++;
-								}
-							}
-							
-							if(editableGrid.data[i].formato == '#' )  
-							{
-								j = 4;
-								while (j < 28) {
-									editableGrid.data[i].columns[j] = editableGrid.data[i].columns[j];
-								    j++;
-								}
+						/* Inicia o COmponente da Grid com as Colunas*/
+						var table = new Tabulator("#example-table", {
+							data:tabledata,           //load row data from array
+							tooltips:true,            //show tool tips on cells
+							addRowPos:"top",          //when adding a new row, add it to the top of the table
+							history:true,             //allow undo and redo actions on the table
+							pagination:"local",       //paginate the data
+							paginationSize:25,         //allow 7 rows per page of data
+							movableColumns:true,      //allow column order to be changed
+							resizableRows:true,       //allow row order to be changed
+							initialSort:[             //set the initial sort order of the data
+								{column:"indicador", dir:"asc"},
+							],
+							 langs:{
+								"pt-br":{ //French language definition
+								    "columns":{
+								        "indicador":"Indicador",
+								        "enero_plan":"Janeiro Plan",
+								        "enero_real":"Janeiro Real",
+								        "febrero_plan":"Fevereiro Plan",
+								        "febrero_real":"Fevereiro Real",
+								        "marzo_plan":"Março Plan",
+								        "marzo_real":"Março Real",
+								        "abril_plan":"Abril Plan",
+								        "abril_real":"Abril Real",
+								        "mayo_plan":"Maio Plan",
+								        "mayo_real":"Maio Real",
+								        "junio_plan":"Junho Plan",
+								        "junio_real":"Junho Real",
+								        "julio_plan":"Julho Plan",
+								        "julio_real":"Julho Real",
+								        "agosto_plan":"Agosto Plan",
+								        "agosto_real":"Agosto Real",
+								        "septiembre_plan":"Setembro Plan",
+								        "septiembre_real":"Setembro Real",
+								        "octubre_plan":"Outubro Plan",
+								        "octubre_real":"Outubro Real",
+								        "noviembre_plan":"Novembro Plan",
+								        "noviembre_real":"Novembro Real",
+								        "diciembre_plan":"Dezembro Plan",
+								        "diciembre_real":"Dezembro Real",
+								    },
+								    "pagination":{
+								        "first":"Primeira",
+								        "first_title":"Primeira Página",
+								        "last":"última",
+								        "last_title":"última Página",
+								        "prev":"Anterior",
+								        "prev_title":"Página Anterior",
+								        "next":"Próxima",
+								        "next_title":"Próxima Página",
+								        "all":"Listar Tudo",
+								    },
+								},
 								
-							}
-							
-							if(editableGrid.data[i].formato == 'S/N' )  
-							{
-								j = 4;
-								while (j < 28) {
-									editableGrid.data[i].columns[j] = editableGrid.data[i].formato + ' ' + editableGrid.data[i].columns[j];
-								    j++;
-								}
-							}
-						})
+							},
+							columns:[ // Columnas Default
+								{formatter:printIcon, width:40, hozAlign:"center", headerMenu:headerMenu, frozen:true, cellClick:function(e, cell){Descricao(cell._cell.row.data['indicador'],cell._cell.row.data['descripcion']);}},
+								{title:"Indicador", field:"indicador", width:560, editor:false, headerFilter:"input", frozen:true, headerMenu:headerMenu},
+								{// 1 Trimestre
+									title:"1º Trimestre",
+									columns:[
+									{title:"Enero Plan", field:"enero_plan", hozAlign:"left", editor:enero_p, headerMenu:headerMenu,formatter:"money", 
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Enero Real", field:"enero_real", hozAlign:"left", editor:enero_r, headerMenu:headerMenu,formatter:"money", 
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Febrero Plan", field:"febrero_plan", hozAlign:"left", editor:febrero_p, headerMenu:headerMenu,formatter:"money",
+											formatterParams:
+											{
+											    decimal:",",
+											    thousand:".",
+											}
+									},
+									{title:"Febrero Real", field:"febrero_real", hozAlign:"left", editor:febrero_r, headerMenu:headerMenu,formatter:"money",
+											formatterParams:
+											{
+											    decimal:",",
+											    thousand:".",
+											}
+									},
+									{title:"Marzo Plan", field:"marzo_plan", hozAlign:"left", editor:marzo_p, headerMenu:headerMenu,formatter:"money", 
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Marzo Real", field:"marzo_real", hozAlign:"left", editor:marzo_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									],
+								},
+								{// 2 Trimestre
+									title:"2º Trimestre",
+									columns:[
+									{title:"Abril Plan", field:"abril_plan", hozAlign:"left", editor:abril_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Abril Real", field:"abril_real", hozAlign:"left", editor:abril_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Mayo Plan", field:"mayo_plan",  hozAlign:"left", editor:mayo_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Mayo Real", field:"mayo_real",  hozAlign:"left", editor:mayo_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Junio Plan", field:"junio_plan", hozAlign:"left", editor:junio_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Junio Real", field:"junio_real", hozAlign:"left", editor:junio_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									],
+								},
+								{// 3 Trimestre
+									title:"3º Trimestre",
+									columns:[
+									{title:"Julio Plan", field:"julio_plan", hozAlign:"left", editor:julio_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Julio Real", field:"julio_real", hozAlign:"left", editor:julio_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Agosto Plan", field:"agosto_plan", hozAlign:"left", editor:agosto_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Agosto Real", field:"agosto_real", hozAlign:"left", editor:agosto_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Septiembre Plan", field:"septiembre_plan", hozAlign:"left", editor:septiembre_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Septiembre Real", field:"septiembre_real", hozAlign:"left", editor:septiembre_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									],
+								},
+								{// 4 Trimestre
+									title:"4º Trimestre",
+									columns:[
+									{title:"Octubre Plan", field:"octubre_plan", hozAlign:"left", editor:octubre_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Octubre Real", field:"octubre_real", hozAlign:"left", editor:octubre_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Noviembre Plan", field:"noviembre_plan", hozAlign:"left", editor:noviembre_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Noviembre Real", field:"noviembre_real", hozAlign:"left", editor:noviembre_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Diciembre Plan", field:"diciembre_plan", hozAlign:"left", editor:diciembre_p, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									{title:"Diciembre Real", field:"diciembre_real", hozAlign:"left", editor:diciembre_r, headerMenu:headerMenu,formatter:"money",
+										formatterParams:
+										{
+										    decimal:",",
+										    thousand:".",
+										}
+									},
+									],
+								},
+							],
+						});
 						
-//						if(editableGrid.data[0].columns[0] == 'Voluntarios/as movilizados/as en Colecta')
-//						{
-//							editableGrid.setCellRenderer("enero_plan", new CellRenderer({
-//								render: function(cell, value) { new NumberCellRenderer().render(cell, value ? value + " %" : ""); }
-//								}));
-//						}
-						
-						editableGrid.renderGrid("tablecontent", "testgrid");
-						
-						//Indicador
-						if(editableGrid.columns[0]['editable'] == false)
-						{
-							$( ".editablegrid-indicador" ).removeClass( "editablegrid-indicador" ).addClass( "editablegrid-indicador No-Edit" );
-						}
-						//Tipo
-						if(editableGrid.columns[1]['editable'] == false)
-						{
-							$( ".editablegrid-tipo" ).removeClass( "editablegrid-tipo" ).addClass( "editablegrid-tipo No-Edit" );
-						}
-						
-						//Pilar
-						if(editableGrid.columns[2]['editable'] == false)
-						{
-							$( ".editablegrid-pilar" ).removeClass( "editablegrid-pilar" ).addClass( "editablegrid-pilar No-Edit" );
-						}
-						
-						//Area
-						if(editableGrid.columns[3]['editable'] == false)
-						{
-							$( ".editablegrid-area" ).removeClass( "editablegrid-area" ).addClass( "editablegrid-area No-Edit" );
-						}
-						
-						//01 Plan
-						if(editableGrid.columns[4]['editable'] == false)
-						{
-							$( ".editablegrid-enero_plan" ).removeClass( "editablegrid-enero_plan" ).addClass( "editablegrid-enero_plan No-Edit" );
-						}
-						
-						//01 Real
-						if(editableGrid.columns[5]['editable'] == false)
-						{
-							$( ".editablegrid-enero_real" ).removeClass( "editablegrid-enero_real" ).addClass( "editablegrid-enero_real No-Edit" );
-						}
-						
-						//02 Plan
-						if(editableGrid.columns[6]['editable'] == false)
-						{
-							$( ".editablegrid-febrero_plan" ).removeClass( "editablegrid-febrero_plan" ).addClass( "editablegrid-febrero_plan No-Edit" );
-						}
-						
-						//02 Real
-						if(editableGrid.columns[7]['editable'] == false)
-						{
-							$( ".editablegrid-febrero_real" ).removeClass( "editablegrid-febrero_real" ).addClass( "editablegrid-febrero_real No-Edit" );
-						}
-						
-						//03 Plan
-						if(editableGrid.columns[8]['editable'] == false)
-						{
-							$( ".editablegrid-marzo_plan" ).removeClass( "editablegrid-marzo_plan" ).addClass( "editablegrid-marzo_plan No-Edit" );
-						}
-						
-						//03 Real
-						if(editableGrid.columns[9]['editable'] == false)
-						{
-							$( ".editablegrid-marzo_real" ).removeClass( "editablegrid-marzo_real" ).addClass( "editablegrid-marzo_real No-Edit" );
-						}
-						
-						//04 Plan
-						if(editableGrid.columns[10]['editable'] == false)
-						{
-							$( ".editablegrid-abril_plan" ).removeClass( "editablegrid-abril_plan" ).addClass( "editablegrid-abril_plan No-Edit" );
-						}
-						
-						//04 Real
-						if(editableGrid.columns[11]['editable'] == false)
-						{
-							$( ".editablegrid-abril_real" ).removeClass( "editablegrid-abril_real" ).addClass( "editablegrid-abril_real No-Edit" );
-						}
-						
-						//05 Plan
-						if(editableGrid.columns[12]['editable'] == false)
-						{
-							$( ".editablegrid-mayo_plan" ).removeClass( "editablegrid-mayo_plan" ).addClass( "editablegrid-mayo_plan No-Edit" );
-						}
-						
-						//05 Real
-						if(editableGrid.columns[13]['editable'] == false)
-						{
-							$( ".editablegrid-mayo_real" ).removeClass( "editablegrid-mayo_real" ).addClass( "editablegrid-mayo_real No-Edit" );
-						}
-						
-						//06 Plan
-						if(editableGrid.columns[14]['editable'] == false)
-						{
-							$( ".editablegrid-junio_plan" ).removeClass( "editablegrid-junio_plan" ).addClass( "editablegrid-junio_plan No-Edit" );
-						}
-						
-						//06 Real
-						if(editableGrid.columns[15]['editable'] == false)
-						{
-							$( ".editablegrid-junio_real" ).removeClass( "editablegrid-junio_real" ).addClass( "editablegrid-junio_real No-Edit" );
-						}
-						
-						//07 Plan
-						if(editableGrid.columns[16]['editable'] == false)
-						{
-							$( ".editablegrid-julio_plan" ).removeClass( "editablegrid-julio_plan" ).addClass( "editablegrid-julio_plan No-Edit" );
-						}
-						
-						//07 Real
-						if(editableGrid.columns[17]['editable'] == false)
-						{
-							$( ".editablegrid-julio_real" ).removeClass( "editablegrid-julio_real" ).addClass( "editablegrid-julio_real No-Edit" );
-						}
-						
-						//08 Plan
-						if(editableGrid.columns[18]['editable'] == false)
-						{
-							$( ".editablegrid-agosto_plan" ).removeClass( "editablegrid-agosto_plan" ).addClass( "editablegrid-agosto_plan No-Edit" );
-						}
-						
-						//08 Real
-						if(editableGrid.columns[19]['editable'] == false)
-						{
-							$( ".editablegrid-agosto_real" ).removeClass( "editablegrid-agosto_real" ).addClass( "editablegrid-agosto_real No-Edit" );
-						}
-						
-						//09 Plan
-						if(editableGrid.columns[20]['editable'] == false)
-						{
-							$( ".editablegrid-septiembre_plan" ).removeClass( "editablegrid-septiembre_plan" ).addClass( "editablegrid-septiembre_plan No-Edit" );
-						}
-						
-						//09 Real
-						if(editableGrid.columns[21]['editable'] == false)
-						{
-							$( ".editablegrid-septiembre_real" ).removeClass( "editablegrid-septiembre_real" ).addClass( "editablegrid-septiembre_real No-Edit" );
-						}
-						
-						//10 Plan
-						if(editableGrid.columns[22]['editable'] == false)
-						{
-							$( ".editablegrid-octubre_plan" ).removeClass( "editablegrid-octubre_plan" ).addClass( "editablegrid-octubre_plan No-Edit" );
-						}
-						
-						//10 Real
-						if(editableGrid.columns[23]['editable'] == false)
-						{
-							$( ".editablegrid-octubre_real" ).removeClass( "editablegrid-octubre_real" ).addClass( "editablegrid-octubre_real No-Edit" );
-						}
-						
-						//11 Plan
-						if(editableGrid.columns[24]['editable'] == false)
-						{
-							$( ".editablegrid-noviembre_plan" ).removeClass( "editablegrid-noviembre_plan" ).addClass( "editablegrid-noviembre_plan No-Edit" );
-						}
-						
-						//11 Real
-						if(editableGrid.columns[25]['editable'] == false)
-						{
-							$( ".editablegrid-noviembre_real" ).removeClass( "editablegrid-noviembre_real" ).addClass( "editablegrid-noviembre_real No-Edit" );
-						}
-						
-						//12 Plan
-						if(editableGrid.columns[26]['editable'] == false)
-						{
-							$( ".editablegrid-diciembre_plan" ).removeClass( "editablegrid-diciembre_plan" ).addClass( "editablegrid-diciembre_plan No-Edit" );
-						}
-						
-						//12 Real
-						if(editableGrid.columns[27]['editable'] == false)
-						{
-							$( ".editablegrid-diciembre_real" ).removeClass( "editablegrid-diciembre_real" ).addClass( "editablegrid-diciembre_real No-Edit" );
-						}
-						
-						//console.log(editableGrid.columns[4]['editable']);
-						
-						var searchField = document.getElementById('searchField');
-						searchField.addEventListener(
-						    'keyup',
-						    function (){
-						    	editableGrid.filter(searchField.value);
-						    }
-						);
+						//set locale to French
+						document.getElementById("lang-portugues").addEventListener("click", function(){
+							table.setLocale("pt-br");
+						});
+
+						//set locale to German
+						document.getElementById("lang-german").addEventListener("click", function(){
+							table.setLocale("es-es");
+						});
 					}
 				});
 			}
 		}
 	});
-	
-	CellEditor.prototype.edit = function(rowIndex, columnIndex, element, value) 
-	{
-	  	element.isEditing = true;
-	  	element.rowIndex = rowIndex; 
-	  	element.columnIndex = columnIndex;
-	  	
-	  	var editorInput = this.getEditor(element, value);
-	  	if (!editorInput) return false;
-	  	
-	  	editorInput.element = element;
-	  	editorInput.celleditor = this;
-	  
-	  	editorInput.onkeydown = function(event) {
-	  		
-	  		$( "td" )
-	  		  .focusout(function() {
-	  			  
-	  			//$('#gif').removeClass('esconde').addClass('mostra');
-	  			$('#loading-techo').show();
-	  			setTimeout(function(){
-			  			var linha1 = editorInput.celleditor.editablegrid.lastSelectedRowIndex;
-			  			var coluna1 = editorInput.celleditor.column.name;
-			  			var coluna2 = editorInput.celleditor.column.columnIndex;
-			  			var id1     = editorInput.celleditor.editablegrid.data[linha1].id;
-			  			var valor1  = editorInput.celleditor.editablegrid.data[linha1].columns[coluna2];
-			  			
-			  			if(editorInput.celleditor.editablegrid.data[linha1].formato == 'S/N')
-		  				{
-			  				
-			  				if(valor1 != 0 && valor1 != 1)
-		  					{
-			  					$('#loading-techo').hide();
-			  					
-			  					var left  = ($(window).width()/2)-(500/2),
-			  				    top   = ($(window).height()/2)-(250/2),
-			  				    myWindow = window.open ("", "popup", "width=500, height=250, top="+top+", left="+left);
-			  					myWindow.document.write("<p><font color='red'><b>INDICADORES BINARIOS NO ACEPTAN VALORES DISTINTOS DE 0 Y 1!!</b></font></p>");
-			  					//var myWindow = window.open("", "MsgWindow", "width=200,height=100");
-			  				    
-			  					return false;
-		  					}
-		  				}
-			  			
-			  			
-			  		  	//Implementar Update de Dados
-			  		  		oIndicador   = new Object();
-			  		  		oIndicador.id     = id1;
-			  		  		oIndicador.coluna = coluna1;
-			  		  		oIndicador.valor  = valor1;
-			  		  	$.ajax({
-							type: "POST",
-							url: "/planificacion/atualiza",
-							dataType: "json",
-							data: oIndicador,
-							success: function(oData)
-							{	
-								//$('#gif').addClass('esconde').removeClass('mostra');
-								$('#loading-techo').hide();
-							}
-						});
-			  		  	
-		  	  		}, 500);
-	  		  })
-
-	  		event = event || window.event;
-	  		
-	  		if (event.keyCode == 13 || event.keyCode == 9) {
-	  			this.onblur = null; 
-	  			this.celleditor.applyEditing(this.element, this.celleditor.getEditorValue(this));
-	  		
-	  		var linha  = (this.celleditor['editablegrid']['lastSelectedRowIndex']);
-	  		var coluna = (this.celleditor['column']['name']);
-	  		var id     = (this.celleditor['editablegrid']['data'][linha]['id']);
-	  		var valor  = (this.celleditor.getEditorValue(this));
-	  		
-	  		if(this.celleditor['editablegrid']['data'][linha]['formato'] == 'S/N')
-  			{
-	  			if(valor != 0 && valor != 1)
-				{
-	  				$('#loading-techo').hide();
-	  				var left  = ($(window).width()/2)-(500/2),
-  				    top   = ($(window).height()/2)-(250/2),
-  				    myWindow = window.open ("", "popup", "width=500, height=250, top="+top+", left="+left);
-  					myWindow.document.write("<p><font color='red'><b>INDICADORES BINARIOS NO ACEPTAN VALORES DISTINTOS DE 0 Y 1!!</b></font></p>");
-	  				return false;
-				}
-  			}
-	  		
-	  		//Implementar Update de Dados
-	  		oIndicador   = new Object();
-	  		oIndicador.id     = id;
-	  		oIndicador.coluna = coluna;
-	  		oIndicador.valor  = valor;
-	  		
-	  		//Implementar Update de Dados
-	  		$.ajax({
-				type: "POST",
-				url: "/planificacion/atualiza",
-				dataType: "json",
-				data: oIndicador,
-				success: function(oData)
-				{	
-					$('#save1').hide();
-					$('#save2').show();
-				}
-			});
-	  			$('#save2').hide();
-	  			return false;
-	  		}
-	  		
-	  		// ESC: cancel editing
-	  		if (event.keyCode == 27) { 
-	  			this.onblur = null; 
-	  			this.celleditor.cancelEditing(this.element); 
-	  			return false; 
-	  		}
-	  	};
-	  
-	  	if (!this.editablegrid.allowSimultaneousEdition) editorInput.onblur = this.editablegrid.saveOnBlur ?
-	  			function(event) { this.onblur = null; this.celleditor.applyEditing(this.element, this.celleditor.getEditorValue(this)); } :
-	  			function(event) { this.onblur = null; this.celleditor.cancelEditing(this.element); };
-	  
-	  	this.displayEditor(element, editorInput);
-	  	
-	  	editorInput.focus();
-	};
-	
-	CellEditor.prototype.getEditorValue = function(editorInput) {
-		  	return editorInput.value;
-		  };
 } 
 
-/* 
-Exemplo do JSON metadata
-
-//	metadata.push({ name: "indicador", label: "Indicador", datatype: "string", editable: false});
-//	metadata.push({ name: "enero_plan", label:"01 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "enero_real", label: "01 Real", datatype: "integer", editable: false});
-//	metadata.push({ name: "febrero_plan", label: "02 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "febrero_real", label: "02 Real", datatype: "integer", editable: false});
-//	metadata.push({ name: "marzo_plan", label: "03 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "marzo_real", label: "03 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "abril_plan", label: "04 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "abril_real", label: "04 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "mayo_plan", label: "05 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "mayo_real", label: "05 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "junio_plan", label: "06 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "junio_real", label: "06 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "julio_plan", label: "07 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "julio_real", label: "07 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "agosto_plan", label: "08 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "agosto_real", label: "08 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "septiembre_plan", label: "09 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "septiembre_real", label: "09 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "octubre_plan", label: "10 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "octubre_real", label: "10 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "noviembre_plan", label: "11 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "noviembre_real", label: "11 Real", datatype: "integer", editable: true});
-//	metadata.push({ name: "diciembre_plan", label: "12 Plan", datatype: "integer", editable: true});
-//	metadata.push({ name: "diciembre_real", label: "12 Real", datatype: "integer", editable: true});
+function Descricao(indicador, descricao)
+{
+	if(descricao == null)
+	{
+		descricao = '';
+	}
 	
- */
-
-
-/* Exemplo de data
- 	data.push({id: 1, values: {"indicador":"%CEF - Porcentaje de Cobertura de Egresos Fijos","enero_plan":2,"enero_real":1,"febrero_plan":3,"febrero_real":1,"marzo_plan":10,"marzo_real":2,"abril_plan":16,"abril_real": 5,"mayo_plan":12,"mayo_real": 3,"junio_plan":23,"junio_real": 42}});
-	data.push({id: 4, values: {"name":"Conway","firstname":"Coby","age":47,"height":1.96,"country":"za","email":"coby@conwayinc.com","freelance":true,"lastvisit":"01\/12\/2007"}});
- * */
+	$.alert({
+	    title: '<i class="fa fa-rocket"></i> Descripción',
+	    content: '<p><strong>Indicador:</strong> ' + indicador + '</p><p><strong>Descripción:</strong> ' + descricao + '</p>',
+	});
+}

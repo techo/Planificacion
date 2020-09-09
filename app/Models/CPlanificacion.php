@@ -686,6 +686,7 @@ class CPlanificacion extends BaseModel
         $sql .= "indicador.id_pilar, ";
         $sql .= "indicador.id_temporalidad, ";
         $sql .= "temporalidad.temporalidad, ";
+        $sql .= "indicador.descripcion, ";
         $sql .= "tipo.tipo, ";
         $sql .= "indicador.formato, ";
         $sql .= "indicador.id_area ";
