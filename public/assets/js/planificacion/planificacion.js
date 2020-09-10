@@ -454,6 +454,7 @@ window.onload = function()
 							], 
 							cellEdited:function(cell)
 							{
+								$('#loading-techo').show();
 								/* Gravacao dos dados alterados*/
 								var coluna = cell.getColumn().getField();
 								
@@ -467,7 +468,7 @@ window.onload = function()
 						        		 oData.valor = value;
 						        	 }	 
 						        });
-						         
+						        
 						         $.ajax({
 						     		type: "POST",
 						     		url: "/planificacion/atualiza",
@@ -475,11 +476,13 @@ window.onload = function()
 						     		data: oData,
 						     		success: function(oData)
 						     		{	
-						     			
+						     			$('#loading-techo').hide();
 						     		}
 						     	});
 						    },
 						});
+						
+						$('#loading-techo').hide();
 						
 						/* Opcoes de Idioma */
 						document.getElementById("lang-portugues").addEventListener("click", function(){
