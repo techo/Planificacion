@@ -487,10 +487,14 @@ window.onload = function()
 						/* Opcoes de Idioma */
 						document.getElementById("lang-portugues").addEventListener("click", function(){
 							table.setLocale("pt-br");
+							$('#msg_pt').css('display','block');
+							$('#msg_es').css('display','none');
 						});
 
 						document.getElementById("lang-german").addEventListener("click", function(){
 							table.setLocale("es-es");
+							$('#msg_pt').css('display','none');
+							$('#msg_es').css('display','block');
 						});
 						
 						/* Opcao de Download em Excel*/
