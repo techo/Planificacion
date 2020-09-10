@@ -451,7 +451,34 @@ window.onload = function()
 									},
 									],
 								},
-							],
+							], 
+							cellEdited:function(cell)
+							{
+								/* Gravacao dos dados alterados*/
+								var coluna = cell.getColumn().getField();
+								
+								oData          = new Object();	
+								oData.id       = cell.getRow().getData().id;
+								oData.coluna   = cell.getColumn().getField();
+								
+						         $.each( cell.getRow().getData(), function( key, value ) {
+						        	 if(value != null && key == coluna)
+						        	 {
+						        		 oData.valor = value;
+						        	 }	 
+						        });
+						         
+						         $.ajax({
+						     		type: "POST",
+						     		url: "/planificacion/atualiza",
+						     		dataType: "json",
+						     		data: oData,
+						     		success: function(oData)
+						     		{	
+						     			
+						     		}
+						     	});
+						    },
 						});
 						
 						/* Opcoes de Idioma */
