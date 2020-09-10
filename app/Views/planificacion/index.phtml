@@ -28,6 +28,7 @@
                                 <th>Sede</th>
                                 <th>Status</th>
                                 <th>Opciones</th>
+                                <th>PyT</th>
                     		</tr>
                     	</thead>
                     	<tbody>
@@ -38,6 +39,13 @@
                     		<td><?php echo($planificacion->sede);?></td>
                     		<td><?php ($planificacion->situation == '1' ? $planificacion->situation = 'Activo' : $planificacion->situation = 'Inactivo'); echo($planificacion->situation);?></td>
                     		<td class="center"><a href="/planificacion/show/<?php echo($planificacion->id);?>?pais=<?php echo($planificacion->id_pais);?>&sede=<?php echo($planificacion->id_sede);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Planificar</a></td>
+                    		<?php 
+                    		if($_SESSION['Planificacion']['area_id'] == 1)
+                    		{
+                    		    $html = '<td class="center"><a href="/planificacion/show/new/'.$planificacion->id.'?pais='.$planificacion->id_pais.'&sede='.$planificacion->id_sede.'" class="btn btn-warning btn-xs"><i class="fa fa-paste"></i> Prueba PyT</a></td>';
+                    		    echo($html);
+                    		}
+                    		?>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>

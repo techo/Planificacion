@@ -687,7 +687,9 @@ class CPlanificacion extends BaseModel
         $sql .= "indicador.id_temporalidad, ";
         $sql .= "temporalidad.temporalidad, ";
         $sql .= "indicador.descripcion, ";
+        $sql .= "temporalidad.temporalidad, ";
         $sql .= "tipo.tipo, ";
+        $sql .= "pilar.pilar, ";
         $sql .= "indicador.formato, ";
         $sql .= "indicador.id_area, ";
         $sql .= "CASE
@@ -714,6 +716,7 @@ class CPlanificacion extends BaseModel
         $sql .= "INNER JOIN indicador indicador ON indicador.id = dplanificacion.id_indicador ";
         $sql .= "LEFT JOIN tipo ON tipo.id = indicador.id_tipo ";
         $sql .= "INNER JOIN temporalidad temporalidad ON temporalidad.id = indicador.id_temporalidad ";
+        $sql .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
         $sql .= "WHERE dplanificacion.id_cplanificacion = " . $idPlanificacion . " AND dplanificacion.deleted = 0 AND dplanificacion.situation = 1 AND dplanificacion.id_sede = ". $idSede;
         if($idPais != 0)
         {

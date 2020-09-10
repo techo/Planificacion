@@ -168,6 +168,44 @@ class PlanificacionController extends BaseController
         $this->renderView('planificacion/planificar', 'layout');
     }
     
+    public function show2($id)
+    {
+        $this->setPageTitle('Planificar a&ntilde;o');
+        
+        $model = Container::getModel("CPlanificacion");
+        $this->view->planificacion = $model->search($id);
+        
+        $this->view->proyecto = $model->ListProyectos($_GET['sede'], $id);
+        
+        for($i=0; $i < count($this->view->proyecto); $i++)
+        {
+            $pais  = $this->view->proyecto[$i]->id_pais;
+            $sede = $this->view->proyecto[$i]->id_sede;
+            
+            //$cPais = $this->GetPais($pais);
+            // $cSede = $this->GetSede($sede);
+            
+            //Removido linha acima porque estava demorando muito para carregar a pagina
+            if (array_key_exists($pais, $_SESSION['Planificacion']['countries']))
+            {
+                $cPais = $_SESSION['Planificacion']['countries'][$pais];
+            }
+            
+            if (array_key_exists($sede, $_SESSION['Planificacion']['sedes']))
+            {
+                $cSede = $_SESSION['Planificacion']['sedes'][$sede];
+            }
+            
+            $this->view->proyecto[$i]->pais = utf8_encode($cPais);
+            $this->view->proyecto[$i]->sede = utf8_encode($cSede);
+            
+            //$this->view->proyecto[$i]->pais = $cPais['nombre'];
+            // $this->view->proyecto[$i]->sede = $cSede[0]['nombre'];
+        }
+        
+        $this->renderView('planificacion/planificar_new', 'layout');
+    }
+    
     public function carregardados($aParam)
     {
         $aParam = (array) $aParam;
@@ -576,7 +614,7 @@ class PlanificacionController extends BaseController
     
     
     /* Old Listagem*/
-    public function listagem_old($aParam)
+    public function listagem($aParam)
     {
         $aParam = (array) $aParam;
         
