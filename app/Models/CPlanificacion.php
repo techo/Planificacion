@@ -689,7 +689,27 @@ class CPlanificacion extends BaseModel
         $sql .= "indicador.descripcion, ";
         $sql .= "tipo.tipo, ";
         $sql .= "indicador.formato, ";
-        $sql .= "indicador.id_area ";
+        $sql .= "indicador.id_area, ";
+        $sql .= "CASE
+                    WHEN indicador.id_area = 1 THEN 'Procesos y Tecnologia'
+                    WHEN indicador.id_area = 2 THEN 'Administracion y Finanzas'
+                    WHEN indicador.id_area = 3 THEN 'Comunicaciones'
+                    WHEN indicador.id_area = 4 THEN 'Construccion y Logistica'
+                    WHEN indicador.id_area = 5 THEN 'Desarrollo de Fondos'
+                    WHEN indicador.id_area = 6 THEN 'Vivienda y Habitat'
+                    WHEN indicador.id_area = 7 THEN 'Deteccion y Asignacion'
+                    WHEN indicador.id_area = 8 THEN 'Direccion General'
+                    WHEN indicador.id_area = 9 THEN 'Formacion y Voluntariado'
+                    WHEN indicador.id_area = 10 THEN 'Legal'
+                    WHEN indicador.id_area = 11 THEN 'Personas'
+                    WHEN indicador.id_area = 12 THEN 'Gestion Comunitaria'
+                    WHEN indicador.id_area = 13 THEN 'Programas y Proyectos'
+                    WHEN indicador.id_area = 14 THEN 'Equipos'
+                    WHEN indicador.id_area = 15 THEN 'Centro de Investigacion Social'
+                    WHEN indicador.id_area = 17 THEN 'Formacion y Voluntariado'
+                    WHEN indicador.id_area = 18 THEN 'Procesos Comunitarios'
+                    ELSE '---'
+                END as area";
         $sql .= " FROM dplanificacion ";
         $sql .= "INNER JOIN indicador indicador ON indicador.id = dplanificacion.id_indicador ";
         $sql .= "LEFT JOIN tipo ON tipo.id = indicador.id_tipo ";

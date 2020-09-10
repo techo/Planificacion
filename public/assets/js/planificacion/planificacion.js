@@ -195,6 +195,7 @@ window.onload = function()
 								"pt-br":{ //French language definition
 								    "columns":{
 								        "indicador":"Indicador",
+								        "area":"Área",
 								        "enero_plan":"Janeiro Plan",
 								        "enero_real":"Janeiro Real",
 								        "febrero_plan":"Fevereiro Plan",
@@ -237,6 +238,7 @@ window.onload = function()
 							columns:[ // Columnas Default
 								{formatter:printIcon, width:40, hozAlign:"center", headerMenu:headerMenu, frozen:true, cellClick:function(e, cell){Descricao(cell._cell.row.data['indicador'],cell._cell.row.data['descripcion']);}},
 								{title:"Indicador", field:"indicador", width:560, editor:false, headerFilter:"input", frozen:true, headerMenu:headerMenu},
+								{title:"Área", field:"area", width:200, editor:false, headerFilter:"input", frozen:false, headerMenu:headerMenu},
 								{// 1 Trimestre
 									title:"1º Trimestre", field:"1trimestre",
 									columns:[
