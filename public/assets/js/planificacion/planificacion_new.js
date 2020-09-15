@@ -238,7 +238,8 @@ window.onload = function()
 							columns:[ // Columnas Default
 								{formatter:printIcon, width:40, hozAlign:"center", headerMenu:headerMenu, frozen:true, cellClick:function(e, cell){Descricao(cell._cell.row.data['indicador'],cell._cell.row.data['descripcion'],cell._cell.row.data['tipo'],cell._cell.row.data['formato'],cell._cell.row.data['temporalidad'],cell._cell.row.data['pilar']);}},
 								{title:"Indicador", field:"indicador", width:560, editor:false, headerFilter:"input", frozen:true, headerMenu:headerMenu},
-								{title:"Área", field:"area", width:200, editor:false, headerFilter:"input", frozen:false, headerMenu:headerMenu},
+								{title:"Área", field:"area", editor:"select", headerFilter:true, headerFilterParams:{values:{"":"Listar Todo","Administracion y Finanzas":"AFF","Centro de Investigacion Social":"CIS", "Comunicaciones":"COM", "Construccion y Logistica":"CLO", "Desarrollo de Fondos":"DFO", "Deteccion y Asignacion":"DYA", "Direccion General":"DIR", "Equipos":"EQU", "Formacion y Voluntariado":"FyV", "Gestion Comunitaria":"GCO", "Legal":"LEG", "Personas":"PER", "Procesos Comunitarios":"PRC", "Procesos y Tecnologia":"PYT", "Programas y Proyectos":"PYP", "Vivienda y Habitat":"VYH"}}},
+								//{title:"Área", field:"area", width:200, editor:false, headerFilter:"input", frozen:false, headerMenu:headerMenu},
 								{// 1 Trimestre
 									title:"1º Trimestre", field:"1trimestre",
 									columns:[
