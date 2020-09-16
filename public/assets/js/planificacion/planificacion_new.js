@@ -703,6 +703,13 @@ window.onload = function()
 							table.toggleColumn('noviembre_real');
 							table.toggleColumn('diciembre_real');
 						});
+						
+						document.getElementById("lista-todo").addEventListener("click", function()
+						{
+							var total = table.options.data.length;
+							table.setHeight(400);
+							table.setPageSize(total);
+						});
 					}
 				});
 			}
