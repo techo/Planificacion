@@ -706,9 +706,18 @@ window.onload = function()
 						
 						document.getElementById("lista-todo").addEventListener("click", function()
 						{
-							var total = table.options.data.length;
-							table.setHeight(400);
-							table.setPageSize(total);
+							if (this.checked) 
+							{
+								var total = table.options.data.length;
+								table.setHeight(400);
+								table.setPageSize(total);
+							}
+							else
+							{
+								table.setHeight(400);
+								table.setPageSize(10);
+							}
+							
 						});
 					}
 				});
