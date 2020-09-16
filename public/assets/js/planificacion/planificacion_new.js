@@ -188,6 +188,7 @@ window.onload = function()
 							paginationSize:10,         //allow 7 rows per page of data
 							movableColumns:true,      //allow column order to be changed
 							resizableRows:true,       //allow row order to be changed
+							autoResize:true,
 							initialSort:[             //set the initial sort order of the data
 								{column:"indicador", dir:"asc"},
 							],
