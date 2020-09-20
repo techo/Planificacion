@@ -244,7 +244,7 @@ window.onload = function()
 								{// 1 Trimestre
 									title:"1º Trimestre", field:"1trimestre",
 									columns:[
-									{title:"Enero Plan", field:"enero_plan", hozAlign:"left", editor:enero_p, headerMenu:headerMenu,formatter:"money", 
+									{title:"Enero Plan", field:"enero_plan", hozAlign:"left", editor:enero_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"], 
 										formatterParams:
 										{
 										    decimal:".",
@@ -252,7 +252,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Enero Real", field:"enero_real", hozAlign:"left", editor:enero_r, headerMenu:headerMenu,formatter:"money", 
+									{title:"Enero Real", field:"enero_real", hozAlign:"left", editor:enero_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"], 
 										formatterParams:
 										{
 										    decimal:",",
@@ -260,7 +260,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Febrero Plan", field:"febrero_plan", hozAlign:"left", editor:febrero_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Febrero Plan", field:"febrero_plan", hozAlign:"left", editor:febrero_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 											formatterParams:
 											{
 											    decimal:",",
@@ -268,7 +268,7 @@ window.onload = function()
 											    precision:2,
 											}
 									},
-									{title:"Febrero Real", field:"febrero_real", hozAlign:"left", editor:febrero_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Febrero Real", field:"febrero_real", hozAlign:"left", editor:febrero_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 											formatterParams:
 											{
 											    decimal:",",
@@ -276,7 +276,7 @@ window.onload = function()
 											    precision:2,
 											}
 									},
-									{title:"Marzo Plan", field:"marzo_plan", hozAlign:"left", editor:marzo_p, headerMenu:headerMenu,formatter:"money", 
+									{title:"Marzo Plan", field:"marzo_plan", hozAlign:"left", editor:marzo_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -284,7 +284,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Marzo Real", field:"marzo_real", hozAlign:"left", editor:marzo_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Marzo Real", field:"marzo_real", hozAlign:"left", editor:marzo_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -297,7 +297,7 @@ window.onload = function()
 								{// 2 Trimestre
 									title:"2º Trimestre",
 									columns:[
-									{title:"Abril Plan", field:"abril_plan", hozAlign:"left", editor:abril_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Abril Plan", field:"abril_plan", hozAlign:"left", editor:abril_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -305,7 +305,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Abril Real", field:"abril_real", hozAlign:"left", editor:abril_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Abril Real", field:"abril_real", hozAlign:"left", editor:abril_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -313,7 +313,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Mayo Plan", field:"mayo_plan",  hozAlign:"left", editor:mayo_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Mayo Plan", field:"mayo_plan",  hozAlign:"left", editor:mayo_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -321,7 +321,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Mayo Real", field:"mayo_real",  hozAlign:"left", editor:mayo_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Mayo Real", field:"mayo_real",  hozAlign:"left", editor:mayo_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -329,7 +329,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Junio Plan", field:"junio_plan", hozAlign:"left", editor:junio_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Junio Plan", field:"junio_plan", hozAlign:"left", editor:junio_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -337,7 +337,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Junio Real", field:"junio_real", hozAlign:"left", editor:junio_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Junio Real", field:"junio_real", hozAlign:"left", editor:junio_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -350,7 +350,7 @@ window.onload = function()
 								{// 3 Trimestre
 									title:"3º Trimestre",
 									columns:[
-									{title:"Julio Plan", field:"julio_plan", hozAlign:"left", editor:julio_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Julio Plan", field:"julio_plan", hozAlign:"left", editor:julio_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -358,7 +358,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Julio Real", field:"julio_real", hozAlign:"left", editor:julio_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Julio Real", field:"julio_real", hozAlign:"left", editor:julio_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -366,7 +366,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Agosto Plan", field:"agosto_plan", hozAlign:"left", editor:agosto_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Agosto Plan", field:"agosto_plan", hozAlign:"left", editor:agosto_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -374,7 +374,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Agosto Real", field:"agosto_real", hozAlign:"left", editor:agosto_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Agosto Real", field:"agosto_real", hozAlign:"left", editor:agosto_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -382,7 +382,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Septiembre Plan", field:"septiembre_plan", hozAlign:"left", editor:septiembre_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Septiembre Plan", field:"septiembre_plan", hozAlign:"left", editor:septiembre_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -390,7 +390,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Septiembre Real", field:"septiembre_real", hozAlign:"left", editor:septiembre_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Septiembre Real", field:"septiembre_real", hozAlign:"left", editor:septiembre_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -403,7 +403,7 @@ window.onload = function()
 								{// 4 Trimestre
 									title:"4º Trimestre",
 									columns:[
-									{title:"Octubre Plan", field:"octubre_plan", hozAlign:"left", editor:octubre_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Octubre Plan", field:"octubre_plan", hozAlign:"left", editor:octubre_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -411,7 +411,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Octubre Real", field:"octubre_real", hozAlign:"left", editor:octubre_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Octubre Real", field:"octubre_real", hozAlign:"left", editor:octubre_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -419,7 +419,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Noviembre Plan", field:"noviembre_plan", hozAlign:"left", editor:noviembre_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Noviembre Plan", field:"noviembre_plan", hozAlign:"left", editor:noviembre_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -427,7 +427,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Noviembre Real", field:"noviembre_real", hozAlign:"left", editor:noviembre_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Noviembre Real", field:"noviembre_real", hozAlign:"left", editor:noviembre_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -435,7 +435,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Diciembre Plan", field:"diciembre_plan", hozAlign:"left", editor:diciembre_p, headerMenu:headerMenu,formatter:"money",
+									{title:"Diciembre Plan", field:"diciembre_plan", hozAlign:"left", editor:diciembre_p, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -443,7 +443,7 @@ window.onload = function()
 										    precision:2,
 										}
 									},
-									{title:"Diciembre Real", field:"diciembre_real", hozAlign:"left", editor:diciembre_r, headerMenu:headerMenu,formatter:"money",
+									{title:"Diciembre Real", field:"diciembre_real", hozAlign:"left", editor:diciembre_r, headerMenu:headerMenu,formatter:"money",validator:["numeric"],
 										formatterParams:
 										{
 										    decimal:",",
@@ -490,13 +490,17 @@ window.onload = function()
 						document.getElementById("lang-portugues").addEventListener("click", function(){
 							table.setLocale("pt-br");
 							$('#msg_pt').css('display','block');
+							$('#msg_pt_2').css('display','block');
 							$('#msg_es').css('display','none');
+							$('#msg_es_2').css('display','none');
 						});
 
 						document.getElementById("lang-german").addEventListener("click", function(){
 							table.setLocale("es-es");
 							$('#msg_pt').css('display','none');
+							$('#msg_pt_2').css('display','none');
 							$('#msg_es').css('display','block');
+							$('#msg_es_2').css('display','block');
 						});
 						
 						/* Opcao de Download em Excel*/
