@@ -28,24 +28,23 @@
                                 <th>Sede</th>
                                 <th>Status</th>
                                 <th>Opciones</th>
-                                <th>PyT</th>
                     		</tr>
                     	</thead>
                     	<tbody>
                     	<?php foreach ($this->view->planificacion as $planificacion): ?>
                     		<tr class="gradeX">
+                    		<?php 
+                        		if($_SESSION['Planificacion']['area_id'] == 1)
+                        		{
+                        		    $new = '<a href="/planificacion/show/new/'.$planificacion->id.'?pais='.$planificacion->id_pais.'&sede='.$planificacion->id_sede.'" class="btn btn-warning btn-xs"><i class="fa fa-paste"></i> Prueba PyT</a>';
+                        		}
+                    		?>
+                    		
                     		<td><?php echo($planificacion->ano);?></td>
                     		<td><?php echo($planificacion->pais);?></td>
                     		<td><?php echo($planificacion->sede);?></td>
                     		<td><?php ($planificacion->situation == '1' ? $planificacion->situation = 'Activo' : $planificacion->situation = 'Inactivo'); echo($planificacion->situation);?></td>
-                    		<td class="center"><a href="/planificacion/show/<?php echo($planificacion->id);?>?pais=<?php echo($planificacion->id_pais);?>&sede=<?php echo($planificacion->id_sede);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Planificar</a></td>
-                    		<?php 
-                    		if($_SESSION['Planificacion']['area_id'] == 1)
-                    		{
-                    		    $html = '<td class="center"><a href="/planificacion/show/new/'.$planificacion->id.'?pais='.$planificacion->id_pais.'&sede='.$planificacion->id_sede.'" class="btn btn-warning btn-xs"><i class="fa fa-paste"></i> Prueba PyT</a></td>';
-                    		    echo($html);
-                    		}
-                    		?>
+                    		<td class="center"><a href="/planificacion/show/<?php echo($planificacion->id);?>?pais=<?php echo($planificacion->id_pais);?>&sede=<?php echo($planificacion->id_sede);?>" class="btn btn-success btn-xs"><i class="fa fa-paste"></i> Planificar</a><a href="/extras?pais=<?php echo($planificacion->id_pais);?>&sede=<?php echo($planificacion->id_sede);?>&cplanificacion=<?php echo($planificacion->id);?>" class="btn btn-danger btn-xs"><i class="fa fa-paste"></i> Indicadores Extras</a><?php echo($new);?></td>
                     	<?php endforeach; ?>
                     	</tbody>
 					</table>
