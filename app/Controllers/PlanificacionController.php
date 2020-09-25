@@ -1722,6 +1722,7 @@ class PlanificacionController extends BaseController
                         unset($Plan[$k]);
                     }
                 }
+                
                 //Troca index para pegar o ultimo mes preenchido
                 $j = 0;
                 foreach($Plan as $k=>$v)

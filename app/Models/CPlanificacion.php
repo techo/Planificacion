@@ -773,9 +773,9 @@ class CPlanificacion extends BaseModel
         $sql  = "";
         $sql .= "UPDATE dplanificacion SET ";
         
-        if($aParam['valor'] == 'NaN')
+        if($aParam['valor'] == 'NaN' || $aParam['valor'] == '')
         {
-            $sql .= "{$aParam['coluna']} = (NULL), ";
+            $sql .= "{$aParam['coluna']} = NULL, ";
         }
         else
         {
@@ -784,7 +784,7 @@ class CPlanificacion extends BaseModel
         
         $sql .= "id_updater = '" . $_SESSION['Planificacion']['user_id']."', ";
         $sql .= "date_update = NOW() ";
-        $sql .= "WHERE id            = '" . $aParam['id']."'";
+        $sql .= "WHERE id = '" . $aParam['id']."'";
         $stmt = $this->pdo->prepare($sql);
         $result = $stmt->execute();
         $stmt->closeCursor();
@@ -979,6 +979,41 @@ class CPlanificacion extends BaseModel
     
     public function GravaUltimo($aValores)
     {
+       if($aValores[0]['ultimo_rp_anual'] == false)
+       {
+           $aValores[0]['ultimo_rp_anual'] = 0.00;
+       }
+       
+       if($aValores[0]['ultimo_rp_t1'] == false)
+       {
+           $aValores[0]['ultimo_rp_t1'] = 0.00;
+       }
+       
+       if($aValores[0]['ultimo_rp_t2'] == false)
+       {
+           $aValores[0]['ultimo_rp_t2'] = 0.00;
+       }
+       
+       if($aValores[0]['ultimo_rp_t3'] == false)
+       {
+           $aValores[0]['ultimo_rp_t3'] = 0.00;
+       }
+       
+       if($aValores[0]['ultimo_rp_t4'] == false)
+       {
+           $aValores[0]['ultimo_rp_t4'] = 0.00;
+       }
+       
+       if($aValores[0]['ultimo_rp_s1'] == false)
+       {
+           $aValores[0]['ultimo_rp_s1'] = 0.00;
+       }
+       
+       if($aValores[0]['ultimo_rp_s2'] == false)
+       {
+           $aValores[0]['ultimo_rp_s2'] = 0.00;
+       }
+        
         $sql  = "";
         $sql .= "UPDATE dplanificacion SET ";
         $sql .= "ultimo_plan_anual = ".$aValores[0]['ultimo_plan_anual'].", ";
