@@ -27,7 +27,8 @@ $("#pais").change(function()
 
 function GuardarFoco(indicadores)
 {
-	//$('#loading-techo').show();
+	$("#guardar-foco").attr("disabled", true);
+	$('#loading-techo').show();
 	var markupStr  = $('#pasos').summernote('code');
 	oData          = new Object();	
 	oData.nombre   = $('#nombre').val();

@@ -17,7 +17,7 @@ class Foco extends BaseModel
     public function select()
     {
         $sql  = "";
-        $sql .= "SELECT  foco.*,  CASE
+        $sql .= "SELECT  foco.*, ano.ano, CASE
         WHEN {$this->table}.id_pais = 1 THEN 'Brasil'
         WHEN {$this->table}.id_pais = 2 THEN 'Chile'
         WHEN {$this->table}.id_pais = 3 THEN 'El Salvador'
@@ -43,7 +43,8 @@ class Foco extends BaseModel
         ELSE 'Global'
         END AS 'pais' ";
         $sql .= " FROM {$this->table} ";
-        $sql .= "WHERE deleted = 0 ";
+        $sql .= " INNER JOIN ano ON ano.id = {$this->table}.id_ano ";
+        $sql .= "WHERE {$this->table}.deleted = 0 ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -75,6 +76,32 @@ class Foco extends BaseModel
         $sql .= "'". $aParam['id_ano']."', ";
         $sql .= "'". $aParam['id_pais']."', ";
         $sql .= "'". $aParam['id_sede']."', ";
+        $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= " 0, ";
+        $sql .= " NOW(), ";
+        $sql .= " 0)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $this->pdo->lastInsertId();
+        $stmt->closeCursor();
+        
+        return $result;
+    }
+    
+    public function GuardarDetalleFoco($indicador, $id)
+    {
+        $sql  = "";
+        $sql .= "INSERT INTO dfoco (";
+        $sql .= "id, ";
+        $sql .= "id_foco, ";
+        $sql .= "id_indicador, ";
+        $sql .= "id_creator, ";
+        $sql .= "id_updater, ";
+        $sql .= "date_insert, ";
+        $sql .= "deleted) VALUES (";
+        $sql .= " NULL, ";
+        $sql .= "'". $id."', ";
+        $sql .= "'". $indicador."', ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";

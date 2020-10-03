@@ -96,13 +96,10 @@ class FocoController extends BaseController
         //Id Encabezado Foco
         $id = $result;
         
-        echo('<pre>');
-        die(print_r($id, true));
-        
         for($j=0; $j < count($indicadores); $j++)
         {
             $indicador = $indicadores[$j];
-            $result = $model->GuardarDetallaFoco($indicador, $id);
+            $result = $model->GuardarDetalleFoco($indicador, $id);
         }
         
         if($result)
