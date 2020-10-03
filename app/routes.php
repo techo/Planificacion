@@ -177,4 +177,13 @@ $route[] = ['/aprendizaje/update', 'AprendizajeController@update'];
 $route[] = ['/aprendizaje/relacionar/{id}', 'AprendizajeController@relacionar'];
 $route[] = ['/aprendizaje/relacion', 'AprendizajeController@relacion'];
 
+/** Focos **/
+$route[] = ['/foco', 'FocoController@index'];
+$route[] = ['/foco/add', 'FocoController@add'];
+$route[] = ['/foco/save', 'FocoController@save'];
+$route[] = ['/foco/show/{id}', 'FocoController@show'];
+$route[] = ['/foco/edit', 'FocoController@edit'];
+$route[] = ['/foco/delete/{id}', 'FocoController@delete'];
+$route[] = ['/foco/SearchSede', 'FocoController@SearchSede'];
+
 return $route;
