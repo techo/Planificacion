@@ -14,7 +14,7 @@ class Foco extends BaseModel
         $this->pdo = $pdo;
     }
     
-    public function select()
+    public function select($idPais)
     {
         $sql  = "";
         $sql .= "SELECT  foco.*, ano.ano, CASE
@@ -45,6 +45,12 @@ class Foco extends BaseModel
         $sql .= " FROM {$this->table} ";
         $sql .= " INNER JOIN ano ON ano.id = {$this->table}.id_ano ";
         $sql .= "WHERE {$this->table}.deleted = 0 ";
+        /*Se for diferente de OI mostra apenas nivel pais*/
+        if($idPais != 5)
+        {
+            $sql .= " AND {$this->table}.id_pais = " . $idPais;
+        }
+        
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();

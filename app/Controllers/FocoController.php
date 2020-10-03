@@ -29,8 +29,9 @@ class FocoController extends BaseController
     public function index()
     {
         $this->setPageTitle('Focos');
-        $model = Container::getModel("Foco");
-        $this->view->foco = $model->select();
+        $model  = Container::getModel("Foco");
+        $idPais = $_SESSION['Planificacion']['pais_id'];
+        $this->view->foco = $model->select($idPais);
         
         for($i=0; $i < count($this->view->foco); $i++)
         {
