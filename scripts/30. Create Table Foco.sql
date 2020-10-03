@@ -4,7 +4,7 @@ CREATE TABLE foco (
    nombre VARCHAR(255) DEFAULT NULL COMMENT 'Nombre del Foco',
    descripcion VARCHAR(900) DEFAULT NULL COMMENT 'Descripcion del Foco',
    obs VARCHAR(900) DEFAULT NULL COMMENT 'Obs del Foco',
-   pasos VARCHAR(900) DEFAULT NULL COMMENT 'Proximos pasos del Foco',
+   pasos MEDIUMTEXT DEFAULT NULL COMMENT 'Proximos pasos del Foco',
    id_ano INT(10) NOT NULL COMMENT 'Id Año',
    id_pais INT(10) NOT NULL COMMENT 'Id Pais',
    id_sede INT(10) NOT NULL COMMENT 'Id Sede',

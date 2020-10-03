@@ -30,7 +30,21 @@ class FocoController extends BaseController
     {
         $this->setPageTitle('Focos');
         $model = Container::getModel("Foco");
-        $this->view->ano = $model->select();
+        $this->view->foco = $model->select();
+        
+        for($i=0; $i < count($this->view->foco); $i++)
+        {
+            //Get Sede
+            if($this->view->foco[$i]->id_sede)
+            {
+                $sede = $this->GetSede($this->view->foco[$i]->id_sede);
+                $this->view->foco[$i]->sede =  $sede[0]['nombre'];
+            }
+            else
+            {
+                $this->view->foco[$i]->sede = 'standard';
+            }
+        }
         
         /* Render View Paises */
         $this->renderView('foco/index', 'layout');
@@ -68,16 +82,28 @@ class FocoController extends BaseController
         $aParam['nombre']       = filter_var($aParam['nombre'], FILTER_SANITIZE_STRING);
         $aParam['descripcion']  = filter_var($aParam['descripcion'], FILTER_SANITIZE_STRING);
         $aParam['obs']          = filter_var($aParam['obs'], FILTER_SANITIZE_STRING);
-        $aParam['pasos']        = filter_var($aParam['pasos'], FILTER_SANITIZE_STRING);
-        $aParam['ano']          = filter_var($aParam['ano'], FILTER_SANITIZE_STRING);
+        $aParam['id_ano']       = filter_var($aParam['id_ano'], FILTER_SANITIZE_STRING);
         $aParam['id_pais']      = filter_var($aParam['id_pais'], FILTER_SANITIZE_STRING);
         $aParam['id_sede']      = filter_var($aParam['id_sede'], FILTER_SANITIZE_STRING);
         
-        // detallado del foco
-        // desarollar.....
+        // detalle del Foco - indicadores
+        $indicadores = explode(',',$aParam['indicadores']);
+        $indicadores = array_filter($indicadores);
         
         $model  = Container::getModel("Foco");
         $result = $model->GuardarFoco($aParam);
+        
+        //Id Encabezado Foco
+        $id = $result;
+        
+        echo('<pre>');
+        die(print_r($id, true));
+        
+        for($j=0; $j < count($indicadores); $j++)
+        {
+            $indicador = $indicadores[$j];
+            $result = $model->GuardarDetallaFoco($indicador, $id);
+        }
         
         if($result)
         {
@@ -202,6 +228,24 @@ class FocoController extends BaseController
         }
         
         return $aTemp;
+    }
+    
+    public function GetSede($idSede)
+    {
+        $url = 'http://id.techo.org/sede?api=true&token='.$_SESSION['Planificacion']['token'].'&id='.$idSede;
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $output = curl_exec($curl);
+        curl_close($curl);
+        
+        $data = json_decode($output, true);
+        
+        return $data;
     }
     
 }

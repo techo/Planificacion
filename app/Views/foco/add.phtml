@@ -154,9 +154,13 @@
 	
      var table = $('#example').DataTable();
 
-     $('#example tbody').on( 'dbclick', 'td:first-child', function () {
-         var kpi = $(this).toggleClass('selected');
+     $('#example tbody').on( 'click', 'tr', function () {
+         $(this).toggleClass('selected');
      } );
+
+     $("#guardar-foco").click(function() {
+    	 GuardarFoco(table.rows('.selected').data());
+    	});
 });
 
 </script>

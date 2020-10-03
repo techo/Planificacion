@@ -24,3 +24,60 @@ $("#pais").change(function()
 		  $('#loadSede').hide();
 	  }	  
 });
+
+function GuardarFoco(indicadores)
+{
+	//$('#loading-techo').show();
+	var markupStr  = $('#pasos').summernote('code');
+	oData          = new Object();	
+	oData.nombre   = $('#nombre').val();
+	oData.descripcion = $('#descripcion').val();
+	oData.id_ano  = $('#ano').val();
+	oData.id_pais = $('#pais').val();
+	oData.id_sede = $('#sede').val();
+	oData.obs     = $('#obs').val();
+	oData.pasos   = markupStr;
+	
+	//Criar um Array com os Indicadores a serem gravados
+	$(indicadores).each(function(index) 
+	{
+		oData.indicadores += indicadores[index][1] + ',';
+		
+		oData.indicadores = oData.indicadores.replace('undefined','');
+		
+	});
+	
+	$.ajax({
+		type: "POST",
+		url: "/foco/save",
+		dataType: "json",
+		data: oData,
+		success: function(oData)
+		{	
+			if(oData['results'])
+			{
+				$('#loading-techo').hide();
+				$.confirm({
+				    content: "Grabado con éxito.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/foco";
+				        }
+				    }
+				});
+			}
+			else
+			{
+				$('#loading-techo').hide();
+				$.confirm({
+				    content: "Erro ao Grabar.",
+				    buttons: {
+				        ok: function(){
+				        	location.href = "/foco";
+				        }
+				    }
+				});
+			}
+		}
+	});
+}
