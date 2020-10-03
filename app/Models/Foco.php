@@ -129,11 +129,70 @@ class Foco extends BaseModel
     {
         $sql  = "";
         $sql .= "SELECT  * FROM dfoco ";
-        $sql .= "WHERE dfoco.id_foco = $id ";
+        $sql .= "WHERE dfoco.id_foco = $id and deleted = 0";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
         $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function ActualizaFoco($aParam)
+    {
+        $sql  = "";
+        $sql .= "UPDATE {$this->table} SET ";
+        $sql .= "nombre            = '" . $aParam['nombre']."', ";
+        $sql .= "descripcion       = '" . $aParam['descripcion']."', ";
+        $sql .= "id_ano            = '" . $aParam['id_ano']."', ";
+        $sql .= "id_pais           = '" . $aParam['id_pais']."', ";
+        $sql .= "id_sede           = '" . $aParam['id_sede']."', ";
+        $sql .= "obs               = '" . $aParam['obs']."', ";
+        $sql .= "pasos             = '" . $aParam['pasos']."', ";
+        $sql .= "id_updater        = '" . $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= "date_update       = NOW() ";
+        $sql .= "WHERE id          = '" . $aParam['id']."'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function RemoveIndicador($idIndicador, $idFoco)
+    {
+        $query .= "UPDATE dfoco SET ";
+        $query .= "deleted = 1 ";
+        $query .= "WHERE id_foco = $idFoco AND ";
+        $query .= "id_indicador = $idIndicador ";
+        $stmt = $this->pdo->prepare($query);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function AddIndicador($indicador, $id)
+    {
+        $sql  = "";
+        $sql .= "INSERT INTO dfoco (";
+        $sql .= "id, ";
+        $sql .= "id_foco, ";
+        $sql .= "id_indicador, ";
+        $sql .= "id_creator, ";
+        $sql .= "id_updater, ";
+        $sql .= "date_insert, ";
+        $sql .= "deleted) VALUES (";
+        $sql .= " NULL, ";
+        $sql .= "'". $id."', ";
+        $sql .= "'". $indicador."', ";
+        $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
+        $sql .= " 0, ";
+        $sql .= " NOW(), ";
+        $sql .= " 0)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $this->pdo->lastInsertId();
+        $stmt->closeCursor();
+        
         return $result;
     }
     

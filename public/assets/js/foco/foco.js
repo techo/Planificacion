@@ -97,12 +97,13 @@ function ActualizarFoco(indicadores)
 	oData.id_pais = $('#pais').val();
 	oData.id_sede = $('#sede').val();
 	oData.obs     = $('#obs').val();
+	oData.id      = $('#idfoco').val();
 	oData.pasos   = markupStr;
 	
 	//Criar um Array com os Indicadores a serem gravados
 	$(indicadores).each(function(index) 
 	{
-		oData.indicadores += indicadores[index][1] + ',';
+		oData.indicadores += indicadores[index][2] + ',';
 		
 		oData.indicadores = oData.indicadores.replace('undefined','');
 		

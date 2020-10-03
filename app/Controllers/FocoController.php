@@ -155,7 +155,9 @@ class FocoController extends BaseController
     
     public function edit($aParam)
     {
+        $aDados = array();
         $aParam = (array) $aParam;
+        $i = 0;
         
         //Encabecado
         $aParam['nombre']       = filter_var($aParam['nombre'], FILTER_SANITIZE_STRING);
@@ -169,12 +171,38 @@ class FocoController extends BaseController
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
         
-        echo('<pre>');
-        die(print_r($aParam, true));
-        
+        //Atualizar el encabezado focos
         $model  = Container::getModel("Foco");
-               
-        $result = $model->ActualizarFoco($aParam);
+        $result = $model->ActualizaFoco($aParam);
+        $idFoco = $aParam['id'];
+        //hace una comparacion entre el array nuevo de indicadores y el viejo para añadir o borrar el registro de indicador
+        $aIndicadores = $model->IndicadoresFoco($idFoco);
+        
+        foreach ($aIndicadores as $value) 
+        {
+            $aDados[$i] = $value->id_indicador;
+            $i++;
+        }
+        
+        /*Arrays de Indicadores a serem removidos e adicionados no Foco*/
+        $remover   = array_diff($aDados, $indicadores);
+        $adicionar = array_diff($indicadores, $aDados);
+        
+        if(!empty($remover))
+        {
+            foreach ($remover as $value)
+            {
+                $result = $model->RemoveIndicador($value, $idFoco);
+            }
+        }
+        
+        if(!empty($adicionar))
+        {
+            foreach ($adicionar as $value)
+            {
+                $result = $model->AddIndicador($value, $idFoco);
+            }
+        }
         
         if($result)
         {
