@@ -157,9 +157,23 @@ class FocoController extends BaseController
     {
         $aParam = (array) $aParam;
         
-        $aParam['id']     = filter_var($aParam['id'], FILTER_SANITIZE_STRING);
-               
+        echo('<pre>');
+        die(print_r($aParam, true));
+        
+        //Encabecado
+        $aParam['nombre']       = filter_var($aParam['nombre'], FILTER_SANITIZE_STRING);
+        $aParam['descripcion']  = filter_var($aParam['descripcion'], FILTER_SANITIZE_STRING);
+        $aParam['obs']          = filter_var($aParam['obs'], FILTER_SANITIZE_STRING);
+        $aParam['id_ano']       = filter_var($aParam['id_ano'], FILTER_SANITIZE_STRING);
+        $aParam['id_pais']      = filter_var($aParam['id_pais'], FILTER_SANITIZE_STRING);
+        $aParam['id_sede']      = filter_var($aParam['id_sede'], FILTER_SANITIZE_STRING);
+        
+        // detalle del Foco - indicadores
+        $indicadores = explode(',',$aParam['indicadores']);
+        $indicadores = array_filter($indicadores);
+        
         $model  = Container::getModel("Foco");
+               
         $result = $model->ActualizarFoco($aParam);
         
         if($result)

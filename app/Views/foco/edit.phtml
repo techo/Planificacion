@@ -131,7 +131,7 @@
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th></th>
+                                                    <th hidden></th>
                                                     <th hidden></th>
                                                     <th>Indicador</th>
                                                     <th>Temporalidad</th>
@@ -172,7 +172,7 @@
 							</div>
 						</div>
 						<div class="actions clearfix paddingTop-20">
-							<button type="button" id="guardar-foco" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
+							<button type="button" id="actualizar-foco" class="btn btn-success btn-lg pull-right btn-salvar">Guardar</button>
 							<a href="/foco" class="btn btn-danger btn-lg pull-right">Cancelar</a>
 						</div>
 					</div>
@@ -190,7 +190,7 @@
 <script>
  $(document).ready(function(){
 	 $('#loading-techo').hide();
-	  $('.summernote').summernote();
+	 $('.summernote').summernote();
      //Indicadores
      $('#example').DataTable( {
     	 "language": {
@@ -215,8 +215,8 @@
          $(this).toggleClass('selected');
      } );
 
-     $("#guardar-foco").click(function() {
-    	 GuardarFoco(table.rows('.selected').data());
+     $("#actualizar-foco").click(function() {
+    	 ActualizarFoco(table.rows('.selected').data());
     	});
 });
 
