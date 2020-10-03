@@ -114,8 +114,40 @@ class FocoController extends BaseController
     
     public function show($id)
     {
+        $this->setPageTitle('Focos');
         $model = Container::getModel("Foco");
         $this->view->foco = $model->search($id);
+        
+        //Ano
+        $this->view->ano = $model->ListaAno();
+        
+        //Pais
+        $pais = $this->Paises();
+        
+        //Convert Array en Object
+        for($i=0; $i < count($pais); $i++)
+        {
+            $pais[$i] = (object) $pais[$i];
+        }
+        //Lista Paises
+        $this->view->pais = $pais;
+        
+        //Busca Sedes
+        $sede = $this->Sedes($this->view->foco->id_pais);
+        
+        //Convert Array en Object
+        for($i=0; $i < count($sede); $i++)
+        {
+            $sede[$i] = (object) $sede[$i];
+        }
+        //Lista Paises
+        $this->view->sede = $sede;
+        
+        //Todos Indicadores
+        $this->view->todos_indicadores = $model->CarregaIndicadores();
+        
+        //Indicadores que ya fueron elejidos anteriormente
+        $this->view->indicador_elejidos = $model->IndicadoresFoco($id);
         
         /* Render View Paises */
         $this->renderView('foco/edit', 'layout');

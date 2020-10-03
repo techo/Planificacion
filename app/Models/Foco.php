@@ -114,6 +114,29 @@ class Foco extends BaseModel
         return $result;
     }
     
+    public function search($id)
+    {
+        $query = "SELECT * FROM {$this->table} WHERE id=:id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function IndicadoresFoco($id)
+    {
+        $sql  = "";
+        $sql .= "SELECT  * FROM dfoco ";
+        $sql .= "WHERE dfoco.id_foco = $id ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
     public function delete($id)
     {
         $query .= "UPDATE {$this->table} SET ";
@@ -157,6 +180,26 @@ class Foco extends BaseModel
         $sql .= "INNER JOIN tipo ON tipo.id = indicador.id_tipo ";
         $sql .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
         $sql .= "WHERE indicador.deleted = 0 AND indicador.id_pais = 0 and indicador.situation = 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function ListaAno()
+    {
+        $sql  = "";
+        $sql .= "SELECT ";
+        $sql .= "id,";
+        $sql .= "ano, ";
+        $sql .= "situation, ";
+        $sql .= "id_creator, ";
+        $sql .= "id_updater, ";
+        $sql .= "date_insert, ";
+        $sql .= "date_update ";
+        $sql .= " FROM ano ";
+        $sql .= "WHERE deleted = 0 AND situation = 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
