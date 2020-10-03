@@ -141,23 +141,32 @@
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($this->view->todos_indicadores as $indicador): ?>
+                                                <?php $novo = true;?>
+                                                <?php $key = $indicador->id;?>
                                                 	<?php foreach ($this->view->indicador_elejidos as $elejido):?>
                                                 		<?php if($indicador->id == $elejido->id_indicador){?>
-                                                		<tr class="selected">
-                                                		<?php $selecionado = 1;?>
-                                                		<?php }else{?>
-                                                		<?php $selecionado = 0;?>
-                            							<tr class="">
-                            							<?php }?>
-                            							<td></td>
-                                                		<td hidden><?php echo($selecionado);?></td>
-                                                		<td hidden><?php echo($indicador->id);?></td>
-                                                		<td><?php echo($indicador->indicador);?></td>
-                                                		<td><?php echo($indicador->temporalidad);?></td>
-                                                		<td><?php echo($indicador->tipo);?></td>
-                                                		<td><?php echo($indicador->pilar);?></td>
-                                                		</tr>
-                                                	<?php endforeach; ?>	
+                                                				<tr class="selected">
+                                                				<?php $selecionado = 1; $novo = false;?>
+                                                				<td></td>
+                                                        		<td hidden><?php echo($selecionado);?></td>
+                                                        		<td hidden><?php echo($indicador->id);?></td>
+                                                        		<td><?php echo($indicador->indicador);?></td>
+                                                        		<td><?php echo($indicador->temporalidad);?></td>
+                                                        		<td><?php echo($indicador->tipo);?></td>
+                                                        		<td><?php echo($indicador->pilar);?></td>
+                                                        		</tr>
+                                                		<?php }?>
+                                                	<?php endforeach; ?>
+                                                	<?php if($novo){ ?>
+                                                    	    <td></td>
+                                                    	    <td hidden><?php echo(0);?></td>
+                                                    		<td hidden><?php echo($indicador->id);?></td>
+                                                    		<td><?php echo($indicador->indicador);?></td>
+                                                    		<td><?php echo($indicador->temporalidad);?></td>
+                                                    		<td><?php echo($indicador->tipo);?></td>
+                                                    		<td><?php echo($indicador->pilar);?></td>
+                                                    		</tr>	
+                                                    <?php }?>
                                             	<?php endforeach; ?>
                                             </tbody>
                                             <tfoot>

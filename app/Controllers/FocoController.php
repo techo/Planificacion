@@ -157,9 +157,6 @@ class FocoController extends BaseController
     {
         $aParam = (array) $aParam;
         
-        echo('<pre>');
-        die(print_r($aParam, true));
-        
         //Encabecado
         $aParam['nombre']       = filter_var($aParam['nombre'], FILTER_SANITIZE_STRING);
         $aParam['descripcion']  = filter_var($aParam['descripcion'], FILTER_SANITIZE_STRING);
@@ -171,6 +168,9 @@ class FocoController extends BaseController
         // detalle del Foco - indicadores
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
+        
+        echo('<pre>');
+        die(print_r($aParam, true));
         
         $model  = Container::getModel("Foco");
                
