@@ -117,8 +117,19 @@ function ActualizarFoco(indicadores)
 	$(indicadores).each(function(index) 
 	{
 		oData.indicadores += indicadores[index][2] + ',';
+		oData.indicadores  = oData.indicadores.replace('undefined','');
 		
-		oData.indicadores = oData.indicadores.replace('undefined','');
+		/*Ponderacion*/
+		var valor = 0;
+    	valor = SetaPonderacion(this[2])
+    	console.log(valor);
+    	
+    	if(valor == '')
+    	{
+    		valor = '0.00';
+    	}	
+    	oData.ponderacion += valor + ',';
+    	oData.ponderacion = oData.ponderacion.replace('undefined','');
 		
 	});
 	

@@ -156,7 +156,7 @@
                                                         		<td><?php echo($indicador->temporalidad);?></td>
                                                         		<td><?php echo($indicador->tipo);?></td>
                                                         		<td><?php echo($indicador->pilar);?></td>
-                                                        		<td><input type="ponderacion" name="ponderacion" value="<?php echo($elejido->ponderacion);?>"></td>
+                                                        		<td><input type="ponderacion" onkeyup="somenteNumeros(this);" name="ponderacion" value="<?php echo($elejido->ponderacion);?>" id="<?php echo($indicador->id);?>"></td>
                                                         		</tr>
                                                 		<?php }?>
                                                 	<?php endforeach; ?>
@@ -168,7 +168,7 @@
                                                     		<td><?php echo($indicador->temporalidad);?></td>
                                                     		<td><?php echo($indicador->tipo);?></td>
                                                     		<td><?php echo($indicador->pilar);?></td>
-                                                    		<td><input type="ponderacion" name="ponderacion" value="<?php echo('0.00');?>"></td>
+                                                    		<td><input type="ponderacion" onkeyup="somenteNumeros(this);" name="ponderacion" value="<?php echo('0.00');?>" id="<?php echo($indicador->id);?>"></td>
                                                     		</tr>	
                                                     <?php }?>
                                             	<?php endforeach; ?>
@@ -224,7 +224,7 @@
 	
      var table = $('#example').DataTable();
 
-     $('#example tbody').on( 'click', 'tr', function () {
+     $('#example tbody').on( 'dbclick', 'tr', function () {
          $(this).toggleClass('selected');
      } );
 
@@ -232,5 +232,14 @@
     	 ActualizarFoco(table.rows('.selected').data());
     	});
 });
+
+ function somenteNumeros(num) {
+     var er = /[^0-9.]/;
+     er.lastIndex = 0;
+     var campo = num;
+     if (er.test(campo.value)) {
+       campo.value = "";
+     }
+ }
 
 </script>

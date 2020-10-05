@@ -101,12 +101,12 @@ class FocoController extends BaseController
         //Id Encabezado Foco
         $id = $result;
         
-        for($j=0; $j < count($indicadores); $j++)
+        foreach ($indicadores as $key => $value)
         {
-            $indicador   = $indicadores[$j];
-            $ponderacion = $ponderacion[$j] ? $ponderacion[$j] : '0.00';
+            $indicador   = $value;
+            $nponderacion = $ponderacion[$key] ? $ponderacion[$key] : '0.00';
             
-            $result = $model->GuardarDetalleFoco($indicador, $id, $ponderacion);
+            $result = $model->GuardarDetalleFoco($indicador, $id, $nponderacion);
         }
         
         if($result)
@@ -178,6 +178,10 @@ class FocoController extends BaseController
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
         
+        // detalle del Foco - Podneracion
+        $ponderacion = explode(',',$aParam['ponderacion']);
+        $ponderacion = array_filter($ponderacion);
+        
         //Atualizar el encabezado focos
         $model  = Container::getModel("Foco");
         $result = $model->ActualizaFoco($aParam);
@@ -205,9 +209,9 @@ class FocoController extends BaseController
         
         if(!empty($adicionar))
         {
-            foreach ($adicionar as $value)
+            foreach ($adicionar as $key => $value)
             {
-                $result = $model->AddIndicador($value, $idFoco);
+                $result = $model->AddIndicador($value, $idFoco, $ponderacion[$key]);
             }
         }
         
@@ -325,5 +329,4 @@ class FocoController extends BaseController
         
         return $data;
     }
-    
 }
