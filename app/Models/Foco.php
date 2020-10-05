@@ -222,7 +222,7 @@ class Foco extends BaseModel
     {
         $sql  = "";
         $sql .= "SELECT  * FROM ano ";
-        $sql .= "WHERE deleted = 0 ";
+        $sql .= "WHERE deleted = 0 and situation = 1 ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
