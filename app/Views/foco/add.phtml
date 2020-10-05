@@ -69,12 +69,13 @@
 									</div>
 									<div class="col-lg-6">
             	 						<div class="form-group">
-											<label for="label">Obs</label>
-											<input type="text" class="form-control" name="obs" id="obs" value="<?php echo($this->view->foco->obs);?>">
+											<label for="label">Principales Obstaculos</label>
+											 <div class="summernote" id="obs">
+                                       		 </div>
 										</div>
 									</div>
 									<div class="col-lg-6">
-										<label for="label">Pr&oacute;ximos Pasos</label>
+										<label for="label">Principales Hitos</label>
             	 						 <div class="summernote" id="pasos">
                                         </div>
                 					</div>
@@ -89,6 +90,7 @@
                                                     <th>Temporalidad</th>
                                                     <th>Tipo</th>
                                                     <th>Pilar Estrat&eacute;gico</th>
+                                                    <th>Ponderacion</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -100,6 +102,7 @@
                                             		<td><?php echo($indicador->temporalidad);?></td>
                                             		<td><?php echo($indicador->tipo);?></td>
                                             		<td><?php echo($indicador->pilar);?></td>
+                                            		<td><input name="ponderacion" onkeyup="somenteNumeros(this);"  id="<?php echo($indicador->id);?>"></td>
                                             		</tr>
                                             	<?php endforeach; ?>
                                             </tbody>
@@ -162,5 +165,14 @@
     	 GuardarFoco(table.rows('.selected').data());
     	});
 });
+
+ function somenteNumeros(num) {
+     var er = /[^0-9.]/;
+     er.lastIndex = 0;
+     var campo = num;
+     if (er.test(campo.value)) {
+       campo.value = "";
+     }
+ }
 
 </script>

@@ -116,12 +116,13 @@
 									</div>
 									<div class="col-lg-6">
             	 						<div class="form-group">
-											<label for="label">Obs</label>
-											<input type="text" class="form-control" name="obs" id="obs" value="<?php echo($this->view->foco->obs);?>">
+											<label for="label">Principales Obstaculos</label>
+											<div class="summernote" id="obs"><?php echo($this->view->foco->obs)?>
+                                        </div>
 										</div>
 									</div>
 									<div class="col-lg-6">
-										<label for="label">Pr&oacute;ximos Pasos</label>
+										<label for="label">Principales Hitos</label>
             	 						 <div class="summernote" id="pasos"><?php echo($this->view->foco->pasos)?>
                                         </div>
                 					</div>
