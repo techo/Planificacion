@@ -90,7 +90,7 @@
                                                     <th>Temporalidad</th>
                                                     <th>Tipo</th>
                                                     <th>Pilar Estrat&eacute;gico</th>
-                                                    <th>Ponderacion</th>
+                                                    <th>Ponderaci&oacute;n</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -102,7 +102,7 @@
                                             		<td><?php echo($indicador->temporalidad);?></td>
                                             		<td><?php echo($indicador->tipo);?></td>
                                             		<td><?php echo($indicador->pilar);?></td>
-                                            		<td><input name="ponderacion" onkeyup="somenteNumeros(this);"  id="<?php echo($indicador->id);?>"></td>
+                                            		<td><input type="ponderacion" name="ponderacion" onkeyup="somenteNumeros(this);"  id="<?php echo($indicador->id);?>"></td>
                                             		</tr>
                                             	<?php endforeach; ?>
                                             </tbody>
@@ -157,7 +157,7 @@
 	
      var table = $('#example').DataTable();
 
-     $('#example tbody').on( 'click', 'tr', function () {
+     $('#example tbody').on( 'dbclick', 'tr', function () {
          $(this).toggleClass('selected');
      } );
 

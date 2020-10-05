@@ -29,24 +29,36 @@ $("#pais").change(function()
 
 function GuardarFoco(indicadores)
 {
-	$("#guardar-foco").attr("disabled", true);
-	$('#loading-techo').show();
-	var markupStr  = $('#pasos').summernote('code');
+	//$("#guardar-foco").attr("disabled", true);
+	//$('#loading-techo').show();
+	var markupStr   = $('#pasos').summernote('code');
+	var markupStr1  = $('#obs').summernote('code');
 	oData          = new Object();	
 	oData.nombre   = $('#nombre').val();
 	oData.descripcion = $('#descripcion').val();
 	oData.id_ano  = $('#ano').val();
 	oData.id_pais = $('#pais').val();
 	oData.id_sede = $('#sede').val();
-	oData.obs     = $('#obs').val();
+	oData.obs     = markupStr1;
 	oData.pasos   = markupStr;
 	
 	//Criar um Array com os Indicadores a serem gravados
 	$(indicadores).each(function(index) 
 	{
+		/*Indicadores*/
 		oData.indicadores += indicadores[index][1] + ',';
-		
 		oData.indicadores = oData.indicadores.replace('undefined','');
+		
+		/*Ponderacion*/
+		var valor = 0;
+    	valor = SetaPonderacion(this[1])
+    	
+    	if(valor == '')
+    	{
+    		valor = '0.00';
+    	}	
+    	oData.ponderacion += valor + ',';
+    	oData.ponderacion = oData.ponderacion.replace('undefined','');
 		
 	});
 	
@@ -90,13 +102,14 @@ function ActualizarFoco(indicadores)
 	$("#actualizar-foco").attr("disabled", true);
 	$('#loading-techo').show();
 	var markupStr  = $('#pasos').summernote('code');
+	var markupStr1  = $('#obs').summernote('code');
 	oData          = new Object();	
 	oData.nombre   = $('#nombre').val();
 	oData.descripcion = $('#descripcion').val();
 	oData.id_ano  = $('#ano').val();
 	oData.id_pais = $('#pais').val();
 	oData.id_sede = $('#sede').val();
-	oData.obs     = $('#obs').val();
+	oData.obs     = markupStr1;
 	oData.id      = $('#idfoco').val();
 	oData.pasos   = markupStr;
 	
@@ -142,4 +155,12 @@ function ActualizarFoco(indicadores)
 			}
 		}
 	});
+}
+
+function SetaPonderacion(id)
+{		
+	 var dados      = [""];
+	 dados['valor'] = $('#'+id).val();
+	 
+	 return dados['valor'];
 }

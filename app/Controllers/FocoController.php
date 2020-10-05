@@ -91,6 +91,10 @@ class FocoController extends BaseController
         $indicadores = explode(',',$aParam['indicadores']);
         $indicadores = array_filter($indicadores);
         
+        // detalle del Foco - Podneracion
+        $ponderacion = explode(',',$aParam['ponderacion']);
+        $ponderacion = array_filter($ponderacion);
+        
         $model  = Container::getModel("Foco");
         $result = $model->GuardarFoco($aParam);
         
@@ -99,8 +103,10 @@ class FocoController extends BaseController
         
         for($j=0; $j < count($indicadores); $j++)
         {
-            $indicador = $indicadores[$j];
-            $result = $model->GuardarDetalleFoco($indicador, $id);
+            $indicador   = $indicadores[$j];
+            $ponderacion = $ponderacion[$j] ? $ponderacion[$j] : '0.00';
+            
+            $result = $model->GuardarDetalleFoco($indicador, $id, $ponderacion);
         }
         
         if($result)

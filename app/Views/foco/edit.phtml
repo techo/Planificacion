@@ -138,6 +138,7 @@
                                                     <th>Temporalidad</th>
                                                     <th>Tipo</th>
                                                     <th>Pilar Estrat&eacute;gico</th>
+                                                    <th>Ponderaci&oacute;n</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -155,6 +156,7 @@
                                                         		<td><?php echo($indicador->temporalidad);?></td>
                                                         		<td><?php echo($indicador->tipo);?></td>
                                                         		<td><?php echo($indicador->pilar);?></td>
+                                                        		<td><input type="ponderacion" name="ponderacion" value="<?php echo($elejido->ponderacion);?>"></td>
                                                         		</tr>
                                                 		<?php }?>
                                                 	<?php endforeach; ?>
@@ -166,6 +168,7 @@
                                                     		<td><?php echo($indicador->temporalidad);?></td>
                                                     		<td><?php echo($indicador->tipo);?></td>
                                                     		<td><?php echo($indicador->pilar);?></td>
+                                                    		<td><input type="ponderacion" name="ponderacion" value="<?php echo('0.00');?>"></td>
                                                     		</tr>	
                                                     <?php }?>
                                             	<?php endforeach; ?>

@@ -94,13 +94,14 @@ class Foco extends BaseModel
         return $result;
     }
     
-    public function GuardarDetalleFoco($indicador, $id)
+    public function GuardarDetalleFoco($indicador, $id, $ponderacion)
     {
         $sql  = "";
         $sql .= "INSERT INTO dfoco (";
         $sql .= "id, ";
         $sql .= "id_foco, ";
         $sql .= "id_indicador, ";
+        $sql .= "ponderacion, ";
         $sql .= "id_creator, ";
         $sql .= "id_updater, ";
         $sql .= "date_insert, ";
@@ -108,6 +109,7 @@ class Foco extends BaseModel
         $sql .= " NULL, ";
         $sql .= "'". $id."', ";
         $sql .= "'". $indicador."', ";
+        $sql .= "". $ponderacion.", ";
         $sql .= "'". $_SESSION['Planificacion']['user_id']."', ";
         $sql .= " 0, ";
         $sql .= " NOW(), ";
