@@ -186,4 +186,7 @@ $route[] = ['/foco/edit', 'FocoController@edit'];
 $route[] = ['/foco/delete/{id}', 'FocoController@delete'];
 $route[] = ['/foco/SearchSede', 'FocoController@SearchSede'];
 
+/** Gestion y Tendencias **/
+$route[] = ['/gestion', 'GestionController@index'];
+
 return $route;

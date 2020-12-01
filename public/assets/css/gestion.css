@@ -1,0 +1,14 @@
+.custom-borda{
+	border: 1px solid #000;
+	margin-bottom: 20px;
+	padding: 10px;
+	color: #000;
+}
+
+.custom-padding-top{
+	padding-top: 15vh;
+}
+
+.custom-btn-dev{
+	cursor: not-allowed;
+}
