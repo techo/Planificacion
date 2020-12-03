@@ -55,6 +55,7 @@ $("#agrupar").change(function() {
 		$('#text-region').css('display','none');
 		$('#tipo').css('display','none');
 		$('#selectbox-sede').css('display','none');
+		$('#regiones').css('display','none');
 		//Ajax que monta SelectBox de paises
 		$.ajax({
 			type: "POST",
@@ -78,6 +79,7 @@ $("#agrupar").change(function() {
 		$('#text-region').css('display','none');
 		$('#tipo').css('display','none');
 		$('#selectbox-sede').css('display','none');
+		$('#regiones').css('display','none');
 		//Ajax que monta SelectBox de paises
 		$.ajax({
 			type: "POST",
@@ -98,13 +100,19 @@ $("#agrupar").change(function() {
 	else if(selecionado == 'Region')
 	{
 		$('#text-region').css('display','block');
+		$('#regiones').css('display','block');
 		$('#text-pais').css('display','none');
-		console.log('Region');
+		$('#tipo').css('display','none');
+		$('#selectbox-sede').css('display','none');
 	}
 	//Latam
 	else if(selecionado == 'Latam')
 	{
-		console.log('Latam');
+		$('#text-pais').css('display','none');
+		$('#text-region').css('display','none');
+		$('#tipo').css('display','none');
+		$('#selectbox-sede').css('display','none');
+		$('#regiones').css('display','none');
 	}
 	//Selecionar
 	else if(selecionado == '0')

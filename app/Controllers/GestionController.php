@@ -93,7 +93,7 @@ class GestionController extends BaseController
     {
         $aRet = $this->Paises();
         
-        $html .= '<select name="pais" id="pais">';
+        $html .= '<select class="form-control" name="pais" id="pais">';
         $html .= '<option value="0">-- SELECCIONE --</option>';
         foreach ($aRet as $pais)
         {
@@ -116,8 +116,8 @@ class GestionController extends BaseController
     {
         $aRet = $this->Sedes($idPais);
         
-        $html .= '</br><p><label for="sedes"><strong>Elija la Sede:</label></strong><p>';
-        $html .= '<select  id="sedes">';
+        $html .= '<p><label for="sedes"><strong>Elija la Sede:</label></strong><p>';
+        $html .= '<select class="form-control" id="sedes">';
         $html .= '<option value="0">-- SELECCIONE --</option>';
         foreach ($aRet as $sede)
         {

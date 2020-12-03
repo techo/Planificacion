@@ -7,23 +7,41 @@
     <script src="/assets/js/tabulator.js"></script>   
 </head>
 <body>
-	<div>
+	<div class="row">
 		<input type="hidden" class="form-control" id="id" value="">
 		<input type="hidden" class="form-control" id="pais" value="">
 		<input type="hidden" class="form-control" id="sede" value="">
-		<p><label><strong>Config. del Informe por Pilares:</strong></label><p>
-		<label><strong>Nivel de Agrupaci&oacute;n:</strong></label>
-		<select name="agrupar" id="agrupar">
-		  <option value="0">-- SELECCIONAR --</option>
-          <option value="Sede">Sede</option>
-          <option value="Pais">Pa&iacute;s</option>
-          <option value="Region">Regi&oacute;n</option>
-          <option value="Latam">Latam</option>
-        </select>
-        <p><label id="text-pais"><strong>Elija el Pa&iacute;s:</strong></label></p>
-        <p><label id="text-region"><strong>Elija la Regi&oacute;n:</strong></label></p>
-        <div id="tipo"></div>
-        <div id="selectbox-sede"></div>
+		<div class="col-xs-12">
+			<p><label><strong>Config. del Informe por Pilares:</strong></label><p>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<p><label><strong>Nivel de Agrupaci&oacute;n:</strong></label></p>
+			<select class="form-control" name="agrupar" id="agrupar">
+    		  <option value="0">-- SELECCIONAR --</option>
+              <option value="Sede">Sede</option>
+              <option value="Pais">Pa&iacute;s</option>
+              <option value="Region">Regi&oacute;n</option>
+              <option value="Latam">Latam</option>
+            </select>
+		</div>
+		
+		<div class="col-xs-12 col-md-4">
+			<p id="text-pais"><label><strong>Elija el Pa&iacute;s:</strong></label></p>
+            <p id="text-region"><label><strong>Elija la Regi&oacute;n:</strong></label></p>
+            <div id="tipo"></div>
+            <div hidden id="regiones">
+            	<select class="form-control" name="selectbox-region" id="selectbox-region">
+        		  <option value="0">-- SELECCIONAR --</option>
+                  <option value="cono_sur">Cono Sur Andina</option>
+                  <option value="centro_america">Centroam&eacute;rica y Caribe</option>
+                  <option value="centro_andina">Centro Andina Mexicana</option>
+                </select>
+        	</div>
+		</div>
+		
+		<div class="col-xs-12 col-md-4">
+			<div id="selectbox-sede"></div>
+		</div>
 	</div>
 	<br>
     <div id="table-pilares"></div>
