@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/assets/css/tabulator.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/assets/js/tabulator_core.js"></script>
+    <script src="/assets/js/tabulator.js"></script>   
+</head>
+<body>
+	<div>
+		<input type="hidden" class="form-control" id="id" value="">
+		<input type="hidden" class="form-control" id="pais" value="">
+		<input type="hidden" class="form-control" id="sede" value="">
+		<p><label><strong>Config. del Informe por Pilares:</strong></label><p>
+		<label><strong>Nivel de Agrupaci&oacute;n:</strong></label>
+		<select name="agrupar" id="agrupar">
+		  <option value="0">-- SELECCIONAR --</option>
+          <option value="Sede">Sede</option>
+          <option value="Pais">Pa&iacute;s</option>
+          <option value="Region">Regi&oacute;n</option>
+          <option value="Latam">Latam</option>
+        </select>
+        <p><label id="text-pais"><strong>Elija el Pa&iacute;s:</strong></label></p>
+        <p><label id="text-region"><strong>Elija la Regi&oacute;n:</strong></label></p>
+        <div id="tipo"></div>
+        <div id="selectbox-sede"></div>
+	</div>
+	<br>
+    <div id="table-pilares"></div>
+     <div id="loading-techo">
+    	<div class="loading"><img src="/loading.gif"></div>
+    </div>
+</body>
+<script type="text/javascript" src="/assets/js/gestion/pilares.js""></script>
+</html>
