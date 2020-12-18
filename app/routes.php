@@ -189,6 +189,7 @@ $route[] = ['/foco/SearchSede', 'FocoController@SearchSede'];
 /** Gestion y Tendencias **/
 $route[] = ['/gestion', 'GestionController@index'];
 $route[] = ['/visual/pilares', 'GestionController@pilares'];
+$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}', 'GestionController@DadosPais'];
 
 /** Genericos SelectBox **/
 $route[] = ['/selectbox/paises', 'GestionController@SelectBoxPais'];

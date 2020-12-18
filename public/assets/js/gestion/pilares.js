@@ -176,6 +176,8 @@ $( "#processar" ).click(function() {
 
 function Processar(tipo)
 {
+	let idAno = $('#ano').val();
+	
 	if(tipo == 'Sede')
 	{
 		let idPais = Global_idPais;
@@ -186,7 +188,18 @@ function Processar(tipo)
 	else if(tipo == 'Pais')
 	{
 		let idPais = Global_idPais;
-		console.log('Pais: ' + idPais);
+		//Ajax que manda dados para back-end
+		$.ajax({
+			type: "POST",
+			url: "/visual/pilares/pais/"+idPais+"/ano/"+idAno,
+			dataType: "json",
+			success: function(oData)
+			{	
+				console.log('sucesso!');
+			}
+		});
+		
+		
 	}	
 	else if(tipo == 'Region')
 	{

@@ -36,7 +36,10 @@ class GestionController extends BaseController
     public function pilares()
     {
         $this->setPageTitle('Visual por Pilares');
-        $model = Container::getModel("Gestion");
+        
+        //Busca Anos
+        $model = Container::getModel("TInforme");
+        $this->view->ano = $model->ListAnos();
         $this->renderView('gestion/pilares', 'layout');
     }
     
@@ -126,6 +129,110 @@ class GestionController extends BaseController
         $html .= '</select>';
         
         echo ($html);
+    }
+    
+    public function DadosPais($idPais,$idCPlanificacion)
+    {
+        $aParam['idCPlanificacion']  = $idCPlanificacion;
+        $aParam['idPais'] = $idPais;
+        
+        $model   = Container::getModel("Gestion");
+        $result = $model->DadosPais($aParam);
+        
+        $i = 0;
+        foreach($result as $k=>$v)
+        {
+            if($v->tipo == 'Acumulado')
+            {
+                $aRegistro[$i]['Indicador'] = $v->KPI;
+                $aRegistro[$i]['Tipo']      = $v->tipo;
+
+                $aRegistro[$i]['T1P']       = $v->Enero_Plan + $v->Febrero_Plan + $v->Marzo_Plan;
+                $aRegistro[$i]['T2P']       = $v->Abril_Plan + $v->Mayo_Plan    + $v->Junio_Plan;
+                $aRegistro[$i]['T3P']       = $v->Julio_Plan + $v->Agosto_Plan  + $v->Septiembre_Plan;
+                $aRegistro[$i]['T4P']       = $v->Octubre_Plan + $v->Noviembre_Plan + $v->Diciembre_Plan;
+                
+                $teste['Abril'] = $v->Abril_Plan;
+                $teste['Mayo']  = $v->Mayo_Plan;
+                $teste['Junio'] = $v->Junio_Plan;
+                
+            }
+            elseif($v->tipo == 'Ultimo')
+            {
+                $aRegistro[$i]['Indicador'] = $v->KPI;
+                $aRegistro[$i]['Tipo']      = $v->tipo;
+                /* Planejado Trimestre 1 Tipo Ultimo */
+                if($v->Enero_Plan)
+                {
+                    $aRegistro[$i]['T1P'] = $v->Enero_Marzo;
+                }
+                elseif($v->Febrero_Plan)
+                {
+                    $aRegistro[$i]['T1P'] = $v->Febrero_Plan;
+                }
+                elseif($v->Marzo_Plan)
+                {
+                    $aRegistro[$i]['T1P'] = $v->Marzo_Plan;
+                }
+                
+                /* Planejado Trimestre 2 Tipo Ultimo */
+                if($v->Abril_Plan)
+                {
+                    $aRegistro[$i]['T2P'] = $v->Abril_Plan;
+                }
+                elseif($v->Mayo_Plan)
+                {
+                    $aRegistro[$i]['T2P'] = $v->Mayo_Plan;
+                }
+                elseif($v->Junio_Plan)
+                {
+                    $aRegistro[$i]['T2P'] = $v->Junio_Plan;
+                }
+                
+                /* Planejado Trimestre 3 Tipo Ultimo */
+                if($v->Julio_Plan)
+                {
+                    $aRegistro[$i]['T3P'] = $v->Julio_Plan;
+                }
+                elseif($v->Agosto_Plan)
+                {
+                    $aRegistro[$i]['T3P'] = $v->Agosto_Plan;
+                }
+                elseif($v->Septiembre_Plan)
+                {
+                    $aRegistro[$i]['T3P'] = $v->Septiembre_Plan;
+                }
+                
+                /* Planejado Trimestre 3 Tipo Ultimo */
+                if($v->Octubre_Plan)
+                {
+                    $aRegistro[$i]['T4P'] = $v->Octubre_Plan;
+                }
+                elseif($v->Noviembre_Plan)
+                {
+                    $aRegistro[$i]['T4P'] = $v->Noviembre_Plan;
+                }
+                elseif($v->Diciembre_Plan)
+                {
+                    $aRegistro[$i]['T4P'] = $v->Diciembre_Plan;
+                }
+            }
+            
+            $i++;
+        }
+        
+        echo('<pre>');
+        die(print_r($aRegistro, true));
+        
+        
+        if($result)
+        {
+            echo json_encode(array("results" => true));
+        }
+        else
+        {
+            echo json_encode(array("results" => false));
+        }
     }
     
 }
