@@ -1,10 +1,18 @@
 window.onload = function() 
 {
+	var Global_idPais = 0;
+	
 	/*Ocultar Textos*/
 	$('#loading-techo').hide();
 	$('#text-sede').css('display','none');
 	$('#text-pais').css('display','none');
 	$('#text-region').css('display','none');
+	$('#processar').css('display','none');
+	/*Ocultar Grids*/
+	$('#table-sede').css('display','none');
+	$('#table-pais').css('display','none');
+	$('#table-region').css('display','none');
+	$('#table-latam').css('display','none');
 	
 	/*Dados da Table Exemplo*/
 	var tableDataNested = [
@@ -24,7 +32,7 @@ window.onload = function()
 	];
 	
 	/*Inicia a Table*/
-	var table = new Tabulator("#table-pilares", {
+	var table = new Tabulator("#table-sede", {
 	    height:"311px",
 	    data:tableDataNested,
 	    dataTree:true,
@@ -46,6 +54,12 @@ window.onload = function()
 $("#agrupar").change(function() {
 	
 	let selecionado = $('#agrupar').val();
+	
+	/* Exibr o Botao de Processar Dados*/
+	if(selecionado != 0)
+	{
+		$('#processar').css('display','block');
+	}	
 	
 	//Pais
 	if(selecionado == 'Pais')
@@ -120,6 +134,7 @@ $("#agrupar").change(function() {
 		$('#text-pais').css('display','none');
 		$('#text-region').css('display','none');
 		$('#tipo').css('display','none');
+		$('#sedes').css('display','none');
 	}
 });
 
@@ -130,6 +145,7 @@ $('#tipo').on('change',(event) =>
 	{
 		$('#loading-techo').show();
 		let idPais = event.target.value;
+		Global_idPais = idPais;
 		//Ajax que monta SelectBox de Sedes
 		$.ajax({
 			type: "POST",
@@ -145,6 +161,42 @@ $('#tipo').on('change',(event) =>
 				}
 			}
 		});
-	}	
+	}
+	else if($('#agrupar').val() == 'Pais')
+	{
+		Global_idPais = event.target.value;
+	}
 });
+
+/* Mostra Grid com Dados de Sedes */
+$( "#processar" ).click(function() {
+	let tipo = $('#agrupar').val();
+	Processar(tipo);
+});
+
+function Processar(tipo)
+{
+	if(tipo == 'Sede')
+	{
+		let idPais = Global_idPais;
+		let idSede = $( "#sedes" ).val();
+		console.log('Sede: ' + idSede);
+		console.log('Pais: ' + idPais);
+	}
+	else if(tipo == 'Pais')
+	{
+		let idPais = Global_idPais;
+		console.log('Pais: ' + idPais);
+	}	
+	else if(tipo == 'Region')
+	{
+		let idRegion = $( "#selectbox-region" ).val();
+		console.log('Region: ' + idRegion);
+	}
+	else if(tipo == 'Latam')
+	{
+		console.log('Latam');
+	}
+}
+
 
