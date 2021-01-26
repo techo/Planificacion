@@ -135,9 +135,23 @@ class GestionController extends BaseController
     {
         $aParam['idCPlanificacion']  = $idCPlanificacion;
         $aParam['idPais'] = $idPais;
+        $aParam['visual'] = 'Pais';
         
         $model   = Container::getModel("Gestion");
-        $result = $model->DadosPais($aParam);
+        $result = $model->Dados($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
+    
+    public function DadosSede($idPais,$idCPlanificacion, $idSede)
+    {
+        $aParam['idCPlanificacion']  = $idCPlanificacion;
+        $aParam['idPais'] = $idPais;
+        $aParam['idSede'] = $idSede;
+        $aParam['visual'] = 'Sede';
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Dados($aParam);
         
         echo json_encode(array("resultado" => $result));
     }
