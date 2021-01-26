@@ -4,50 +4,9 @@ window.onload = function()
 	
 	/*Ocultar Textos*/
 	$('#loading-techo').hide();
-	$('#text-sede').css('display','none');
-	$('#text-pais').css('display','none');
-	$('#text-region').css('display','none');
 	$('#processar').css('display','none');
 	/*Ocultar Grids*/
-	$('#table-sede').css('display','none');
-	$('#table-pais').css('display','none');
-	$('#table-region').css('display','none');
-	$('#table-latam').css('display','none');
-	
-	/*Dados da Table Exemplo*/
-	var tableDataNested = [
-	    {name:"Oli Bob", location:"United Kingdom", gender:"male", col:"red", dob:"14/04/1984", _children:[
-	        {name:"Mary May", location:"Germany", gender:"female", col:"blue", dob:"14/05/1982"},
-	        {name:"Christine Lobowski", location:"France", gender:"female", col:"green", dob:"22/05/1982"},
-	        {name:"Brendon Philips", location:"USA", gender:"male", col:"orange", dob:"01/08/1980", _children:[
-	            {name:"Margret Marmajuke", location:"Canada", gender:"female", col:"yellow", dob:"31/01/1999"},
-	            {name:"Frank Harbours", location:"Russia", gender:"male", col:"red", dob:"12/05/1966"},
-	        ]},
-	    ]},
-	    {name:"Jamie Newhart", location:"India", gender:"male", col:"green", dob:"14/05/1985"},
-	    {name:"Gemma Jane", location:"China", gender:"female", col:"red", dob:"22/05/1982", _children:[
-	        {name:"Emily Sykes", location:"South Korea", gender:"female", col:"maroon", dob:"11/11/1970"},
-	    ]},
-	    {name:"James Newman", location:"Japan", gender:"male", col:"red", dob:"22/03/1998"},
-	];
-	
-	/*Inicia a Table*/
-	var table = new Tabulator("#table-sede", {
-	    height:"311px",
-	    data:tableDataNested,
-	    dataTree:true,
-	    dataTreeStartExpanded:true,
-	    autoResize:true,
-	    movableColumns:true,
-		resizableRows:true,
-	    columns:[
-	    {title:"Name", field:"name", width:200, responsive:0},
-	    {title:"Location", field:"location", width:150},
-	    {title:"Gender", field:"gender", width:150, responsive:2},
-	    {title:"Favourite Color", field:"col", width:150},
-	    {title:"Date Of Birth", field:"dob", hozAlign:"center", sorter:"date", width:150},
-	    ],
-	});
+	$('#config').css('display','none');
 }
 
 /* Config dos SelectBox*/
@@ -171,6 +130,11 @@ $('#tipo').on('change',(event) =>
 /* Mostra Grid com Dados de Sedes */
 $( "#processar" ).click(function() {
 	let tipo = $('#agrupar').val();
+	$("#anual").prop('checked', false); 
+	$("#1").prop('checked', false); 
+	$("#2").prop('checked', false);
+	$("#3").prop('checked', false);
+	$("#4").prop('checked', false);
 	Processar(tipo);
 });
 
@@ -193,9 +157,183 @@ function Processar(tipo)
 			type: "POST",
 			url: "/visual/pilares/pais/"+idPais+"/ano/"+idAno,
 			dataType: "json",
-			success: function(oData)
-			{	
-				console.log('sucesso!');
+			success: function(resposta)
+			{
+				
+				var headerMenu = [
+					{
+						label:"<i class='fas fa-eye-slash'></i> Ocultar Columna",
+						action:function(e, column){
+							column.hide();
+						}
+					}
+				]
+				
+				var tabledata = [];
+				
+				tabledata = resposta['resultado'];
+				
+				$('#config').css('display','block');
+				
+				var table = new Tabulator("#example-table", {
+				    height:"500px",
+				    data:tabledata,
+				    movableRows:true,
+				    movableColumns:true,
+				    groupBy:"pilar",
+				    groupValues:[["Desarrollo Comunitario", "Promoción de la Conciencia y Acción Social", "Desarrollo Institucional", "Incidencia en Política"]],
+				    columns:[
+				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
+				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true},
+				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
+				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
+				        {// Anual
+							title:"Anual", field:"anual",
+							columns:[
+							{title:"Plan", field:"AnualP", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"Real", field:"AnualR", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"% (R/P)", field:"AnualC", hozAlign:"left", editor:false},
+							],
+						},
+						{// 1 Trimestre
+							title:"1 Trimestre", field:"1trimestre",
+							columns:[
+							{title:"Plan", field:"T1P", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"Real", field:"T1R", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"% (R/P)", field:"T1C", hozAlign:"left", editor:false},
+							],
+						},
+						{// 2 Trimestre
+							title:"2 Trimestre", field:"anual",
+							columns:[
+							{title:"Plan", field:"T2P", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"Real", field:"T2R", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"% (R/P)", field:"T2C", hozAlign:"left", editor:false},
+							],
+						},
+						{// 3 Trimestre
+							title:"3 Trimestre", field:"anual",
+							columns:[
+							{title:"Plan", field:"T3P", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"Real", field:"T3R", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"% (R/P)", field:"T3C", hozAlign:"left", editor:false},
+							],
+						},
+						{// 4 Trimestre
+							title:"4 Trimestre", field:"anual",
+							columns:[
+							{title:"Plan", field:"T4P", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"Real", field:"T4R", hozAlign:"left", editor:false, formatter:"money",validator:["numeric"], 
+								formatterParams:
+								{
+								    decimal:".",
+								    thousand:",",
+								    precision:2,
+								}
+							},
+							{title:"% (R/P)", field:"T4C", hozAlign:"left", editor:false},
+							],
+						},
+						],
+				});
+				
+				document.getElementById("anual").addEventListener("click", function()
+				{
+					table.toggleColumn('AnualP');
+					table.toggleColumn('AnualR');
+					table.toggleColumn('AnualC');
+				});
+				
+				document.getElementById("1").addEventListener("click", function()
+				{
+					table.toggleColumn('T1P');
+					table.toggleColumn('T1R');
+					table.toggleColumn('T1C');
+				});
+				
+				document.getElementById("2").addEventListener("click", function()
+				{
+					table.toggleColumn('T2P');
+					table.toggleColumn('T2R');
+					table.toggleColumn('T2C');
+				});
+				
+				document.getElementById("3").addEventListener("click", function()
+				{
+					table.toggleColumn('T3P');
+					table.toggleColumn('T3R');
+					table.toggleColumn('T3C');
+				});
+				
+				document.getElementById("4").addEventListener("click", function()
+				{
+					table.toggleColumn('T4P');
+					table.toggleColumn('T4R');
+					table.toggleColumn('T4C');
+				});
 			}
 		});
 		
