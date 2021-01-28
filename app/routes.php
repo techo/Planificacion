@@ -1,4 +1,5 @@
 <?php 
+
 /** Home **/
 $route[] = ['/', 'HomeController@index'];
 $route[] = ['/home/userlogado', 'HomeController@UserLogado'];
@@ -14,6 +15,13 @@ $route[] = ['/anos/save', 'AnosController@save'];
 $route[] = ['/anos/show/{id}', 'AnosController@show'];
 $route[] = ['/anos/edit', 'AnosController@edit'];
 $route[] = ['/anos/delete/{id}', 'AnosController@delete'];
+
+/** Gestion y Tendencias **/
+$route[] = ['/gestion', 'GestionController@index'];
+$route[] = ['/visual/pilares', 'GestionController@pilares'];
+$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}', 'GestionController@DadosPais'];
+$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}/sede/{idSede}', 'GestionController@DadosSede'];
+$route[] = ['/visual/pilares/region/', 'GestionController@DadosRegion'];
 
 /** Temporalidades **/
 $route[] = ['/temporalidades', 'TemporalidadesController@index'];
@@ -50,7 +58,6 @@ $route[] = ['/indicadores/save', 'IndicadoresController@save'];
 $route[] = ['/indicadores/show/{id}', 'IndicadoresController@show'];
 $route[] = ['/indicadores/edit', 'IndicadoresController@edit'];
 $route[] = ['/indicadores/delete/{id}', 'IndicadoresController@delete'];
-
 $route[] = ['/indicadores/redirect', 'IndicadoresController@redirect'];
 
 /** Crear Planificacion **/
@@ -62,7 +69,6 @@ $route[] = ['/cplanificacion/show/{id}', 'CPlanificacionController@show'];
 $route[] = ['/cplanificacion/edit', 'CPlanificacionController@edit'];
 $route[] = ['/cplanificacion/duplicar/{id}', 'CPlanificacionController@duplicar'];
 $route[] = ['/cplanificacion/delete/{id}', 'CPlanificacionController@delete'];
-
 $route[] = ['/cplanificacion/redirect', 'CPlanificacionController@redirect'];
 
 /** Planificar ano **/
@@ -71,7 +77,6 @@ $route[] = ['/planificacion/show/{id}', 'PlanificacionController@show'];/*old me
 $route[] = ['/planificacion/dados', 'PlanificacionController@carregardados'];/*old method DEPRECATED*/
 $route[] = ['/planificacion/listagem', 'PlanificacionController@listagem']; /*old method DEPRECATED*/
 $route[] = ['/planificacion/atualiza', 'PlanificacionController@atualiza'];
-
 $route[] = ['/planificacion/show/new/{id}', 'PlanificacionController@show2'];
 $route[] = ['/planificacion/colunas', 'PlanificacionController@Colunas'];
 $route[] = ['/planificacion/planificado', 'PlanificacionController@Planificado'];
@@ -185,12 +190,6 @@ $route[] = ['/foco/show/{id}', 'FocoController@show'];
 $route[] = ['/foco/edit', 'FocoController@edit'];
 $route[] = ['/foco/delete/{id}', 'FocoController@delete'];
 $route[] = ['/foco/SearchSede', 'FocoController@SearchSede'];
-
-/** Gestion y Tendencias **/
-$route[] = ['/gestion', 'GestionController@index'];
-$route[] = ['/visual/pilares', 'GestionController@pilares'];
-$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}', 'GestionController@DadosPais'];
-$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}/sede/{idSede}', 'GestionController@DadosSede'];
 
 /** Genericos SelectBox **/
 $route[] = ['/selectbox/paises', 'GestionController@SelectBoxPais'];

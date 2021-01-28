@@ -155,4 +155,39 @@ class GestionController extends BaseController
         
         echo json_encode(array("resultado" => $result));
     }
+    
+    public function DadosRegion($aDatos)
+    {
+        $idRegion = $aDatos->idRegion;
+        
+        $aParam['idCPlanificacion']  = $aDatos->idAno;
+        $aParam['idPaises'] = '';
+        $aParam['visual'] = 'Region';
+        
+        if($idRegion == 1)
+        {
+            // Andina
+            $aParam['idPaises'] = '7, 6, 21, 17, 9';
+        }
+        elseif($idRegion == 2)
+        {
+            // Cono Sur y Brasil
+            $aParam['idPaises'] = '4, 19, 16, 1';
+        }
+        elseif($idRegion == 3)
+        {
+            // Mexico, Centroamérica y el Caribe
+            $aParam['idPaises'] = '13, 3, 10, 11, 12, 18';
+        }
+        elseif($idRegion == 4)
+        {
+            // Chile
+            $aParam['idPaises'] =  '2';
+        }
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Dados($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
 }
