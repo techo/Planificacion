@@ -5,6 +5,8 @@ window.onload = function()
 	/*Ocultar Textos*/
 	$('#loading-techo').hide();
 	$('#processar').css('display','none');
+	$('#text-pais').css('display','none');
+	$('#text-region').css('display','none');
 	/*Ocultar Grids*/
 	$('#config').css('display','none');
 }
