@@ -531,7 +531,7 @@ function Processar(tipo)
 		$.ajax({
 			type: "POST",
 			data: {'idRegion' : idRegion, 'idAno' : idAno},
-			url: "/visual/pilares/region/",
+			url: "/visual/pilares/region",
 			dataType: "json",
 			success: function(resposta)
 			{
@@ -719,7 +719,7 @@ function Processar(tipo)
 		$.ajax({
 			type: "POST",
 			data: {'idAno' : idAno},
-			url: "/visual/pilares/latam/",
+			url: "/visual/pilares/latam",
 			dataType: "json",
 			success: function(resposta)
 			{

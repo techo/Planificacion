@@ -1,5 +1,13 @@
 <?php 
 
+/** Gestion y Tendencias **/
+$route[] = ['/gestion', 'GestionController@index'];
+$route[] = ['/visual/pilares', 'GestionController@pilares'];
+$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}', 'GestionController@DadosPais'];
+$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}/sede/{idSede}', 'GestionController@DadosSede'];
+$route[] = ['/visual/pilares/region', 'GestionController@DadosRegion'];
+$route[] = ['/visual/pilares/latam', 'GestionController@DadosLatam'];
+
 /** Home **/
 $route[] = ['/', 'HomeController@index'];
 $route[] = ['/home/userlogado', 'HomeController@UserLogado'];
@@ -15,14 +23,6 @@ $route[] = ['/anos/save', 'AnosController@save'];
 $route[] = ['/anos/show/{id}', 'AnosController@show'];
 $route[] = ['/anos/edit', 'AnosController@edit'];
 $route[] = ['/anos/delete/{id}', 'AnosController@delete'];
-
-/** Gestion y Tendencias **/
-$route[] = ['/gestion', 'GestionController@index'];
-$route[] = ['/visual/pilares', 'GestionController@pilares'];
-$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}', 'GestionController@DadosPais'];
-$route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}/sede/{idSede}', 'GestionController@DadosSede'];
-$route[] = ['/visual/pilares/region/', 'GestionController@DadosRegion'];
-$route[] = ['/visual/pilares/latam/', 'GestionController@DadosLatam'];
 
 /** Temporalidades **/
 $route[] = ['/temporalidades', 'TemporalidadesController@index'];
