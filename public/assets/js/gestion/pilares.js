@@ -174,11 +174,12 @@ function Processar(tipo)
 				    data:tabledata,
 				    movableRows:true,
 				    movableColumns:true,
+				    clipboard:true,
 				    groupBy:"pilar",
 				    groupValues:[["Desarrollo Comunitario", "Promoción de la Conciencia y Acción Social", "Desarrollo Institucional", "Incidencia en Política"]],
 				    columns:[
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
-				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true},
+				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
 				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
 				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
 				        {// Anual
@@ -363,11 +364,12 @@ function Processar(tipo)
 				    data:tabledata,
 				    movableRows:true,
 				    movableColumns:true,
+				    clipboard:true,
 				    groupBy:"pilar",
 				    groupValues:[["Desarrollo Comunitario", "Promoción de la Conciencia y Acción Social", "Desarrollo Institucional", "Incidencia en Política"]],
 				    columns:[
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
-				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true},
+				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
 				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
 				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
 				        {// Anual
@@ -552,11 +554,12 @@ function Processar(tipo)
 				    data:tabledata,
 				    movableRows:true,
 				    movableColumns:true,
+				    clipboard:true,
 				    groupBy:"pilar",
 				    groupValues:[["Desarrollo Comunitario", "Promoción de la Conciencia y Acción Social", "Desarrollo Institucional", "Incidencia en Política"]],
 				    columns:[
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
-				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true},
+				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
 				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
 				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
 				        {// Anual
