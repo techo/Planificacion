@@ -22,6 +22,7 @@ $route[] = ['/visual/pilares', 'GestionController@pilares'];
 $route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}', 'GestionController@DadosPais'];
 $route[] = ['/visual/pilares/pais/{idPais}/ano/{idAno}/sede/{idSede}', 'GestionController@DadosSede'];
 $route[] = ['/visual/pilares/region/', 'GestionController@DadosRegion'];
+$route[] = ['/visual/pilares/latam/', 'GestionController@DadosLatam'];
 
 /** Temporalidades **/
 $route[] = ['/temporalidades', 'TemporalidadesController@index'];
