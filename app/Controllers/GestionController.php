@@ -202,4 +202,68 @@ class GestionController extends BaseController
         
         echo json_encode(array("resultado" => $result));
     }
+    
+    public function focos()
+    {
+        $this->setPageTitle('Visual por Focos');
+        
+        //Busca Anos
+        $model = Container::getModel("TInforme");
+        $this->view->ano = $model->SelectBoxAnos();
+        $this->renderView('gestion/focos', 'layout');
+    }
+    
+    public function FocoPais($aDatos)
+    {
+        $aParam['idAno']  = $aDatos->idAno;
+        $aParam['idPais'] = $aDatos->idPais;
+        $aParam['visual'] = 'Pais';
+        
+        $model   = Container::getModel("Gestion");
+        $aFoco  = $model->FocoDados($aParam);
+        
+        $html = '';
+        $x = 0;
+        foreach ($aFoco as $foco)
+        {
+            $html.= '<div class="col-lg-12">';
+            $html.= '<div class="form-group">';
+            $html.= '<p><label for="label">Nombre:</label> ';
+            $html.= $foco->nombre. '</p>';
+            $html.= '<p><label for="label">Descripcion: </label> ';
+            $html.= $foco->descripcion.'</p>';
+            $html.= '<p><label for="label">Obs: </label> ';
+            $html.= $foco->obs.'</p>';
+            $html.= '<p><label for="label">Pasos: </label> ';
+            $html.= $foco->pasos.'</p>';
+            $html.= '</div>';
+            $html.= '</div>';
+            $html.= '<div id="foco'.$x.'">DADOS DA GRID</div><br>';
+            
+            /*Busco os Indicadores desse foco*/
+            $aRet  = $model->DetalleFoco($foco->id);
+            
+            // Encontra os indicadores que pertencem aos Focos do pais selecionado
+            foreach ($aRet as $dfoco)
+            {
+                $lista = $lista . $dfoco->id_indicador. ',';
+            }
+            
+            $aIndicadores = rtrim($lista, ",");
+            
+            $idCPlanificacion = $model->idCplanificacion($aDatos->idAno);
+            
+            // Lista de ids dos Indicadores
+            $aDados['indicadores'] = $aIndicadores;
+            $aDados['visual'] = 'Focos';
+            $aDados['idCPlanificacion'] = $idCPlanificacion[0]->id;
+            $aDados['idPais'] = $aDatos->idPais;
+            
+            $result[]  = $model->Dados($aDados);
+            
+            $x++;
+        }
+        
+        echo json_encode(array("resultado" => $result, "html" => $html));
+    }
 }

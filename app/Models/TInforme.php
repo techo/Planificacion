@@ -689,4 +689,18 @@ class TInforme extends BaseModel
         return $result;
     }
     
+    public function SelectBoxAnos()
+    {
+        $sql .= "SELECT ";
+        $sql .= "ano.id, ";
+        $sql .= "ano.ano ";
+        $sql .= " FROM ano ";
+        $sql .= "WHERE ano.deleted = 0";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        $stmt->closeCursor();
+        return $result;
+    }
 }

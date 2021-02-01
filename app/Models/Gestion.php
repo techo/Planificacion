@@ -100,6 +100,12 @@ class Gestion extends BaseModel
         $sql  .= "INNER JOIN indicador ON indicador.id = dplanificacion.id_indicador ";
         $sql  .= "INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
         $sql  .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
+        
+        if($aParam['visual'] == 'Focos')
+        {
+            $sql  .= "INNER JOIN dfoco ON dfoco.id_indicador = indicador.id ";
+        }
+        
         $sql  .= "WHERE dplanificacion.id_cplanificacion = {$aParam['idCPlanificacion']} ";
         
         if($aParam['visual'] == 'Pais' || $aParam['visual'] == 'Sede')
@@ -122,12 +128,65 @@ class Gestion extends BaseModel
             $sql  .= " AND dplanificacion.id_pais IN ({$aParam['idPaises']}) ";
         }
         
-        $sql  .= " AND dplanificacion.id_indicador IN (5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42) ";
+        if($aParam['visual'] == 'Focos')
+        {
+            $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} AND dplanificacion.id_indicador IN ({$aParam['indicadores']}) ";
+        }
+        else
+        {
+            $sql  .= " AND dplanificacion.id_indicador IN (5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42) ";
+        }
+        
         $sql  .= "GROUP BY dplanificacion.id_indicador) soma ";
         $sql  .= "GROUP BY id_indicador COLLATE utf8_unicode_ci";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function FocoDados($aParam)
+    {
+        $sql   = "SELECT ";
+        $sql  .= "foco.id, ";
+        $sql  .= "foco.nombre, ";
+        $sql  .= "foco.descripcion, ";
+        $sql  .= "foco.obs, ";
+        $sql  .= "foco.pasos ";
+        $sql  .= "FROM foco ";
+        if($aParam['visual'] == 'Pais')
+        {
+            $sql  .= "WHERE foco.id_pais = {$aParam['idPais']} AND foco.id_ano = {$aParam['idAno']} AND foco.deleted = 0";
+        }
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function DetalleFoco($idFocos)
+    {
+        $sql   = "SELECT * FROM dfoco WHERE dfoco.id_foco IN ({$idFocos})";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
+    public function idCplanificacion($idAno)
+    {
+        $sql .= "SELECT ";
+        $sql .= "cplanificacion.id";
+        $sql .= " FROM cplanificacion ";
+        $sql .= "WHERE cplanificacion.id_ano = {$idAno}";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
         $stmt->closeCursor();
         return $result;
     }
