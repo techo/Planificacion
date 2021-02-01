@@ -101,11 +101,6 @@ class Gestion extends BaseModel
         $sql  .= "INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
         $sql  .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
         
-        if($aParam['visual'] == 'Focos')
-        {
-            $sql  .= "INNER JOIN dfoco ON dfoco.id_indicador = indicador.id ";
-        }
-        
         $sql  .= "WHERE dplanificacion.id_cplanificacion = {$aParam['idCPlanificacion']} ";
         
         if($aParam['visual'] == 'Pais' || $aParam['visual'] == 'Sede')
@@ -139,6 +134,7 @@ class Gestion extends BaseModel
         
         $sql  .= "GROUP BY dplanificacion.id_indicador) soma ";
         $sql  .= "GROUP BY id_indicador COLLATE utf8_unicode_ci";
+        
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
