@@ -224,8 +224,28 @@ class GestionController extends BaseController
         
         $html = '';
         $x = 0;
+        $html.= '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
+        
         foreach ($aFoco as $foco)
         {
+          $html.= '<div class="panel panel-default">';
+          $html.= '<div class="panel-heading" role="tab" id="heading'.$x.'">';
+          $html.= '<h4 class="panel-title">';
+          $html.= '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$x.'" aria-expanded="false" aria-controls="collapse'.$x.'">'.$foco->nombre.'</a>';
+          $html.= '</h4>';
+          $html.= '</div>';
+          $html.= '<div id="collapse'.$x.'" class="panel-collapse" role="tabpanel" aria-labelledby="heading'.$x.'">';
+          $html.= '<div class="panel-body">';
+          $html.= '<p><label for="label">Nombre:</label>'.$foco->nombre.'</p>
+                   <p><label for="label">Descripcion: </label>'.$foco->descripcion.'</p>
+                   <p><label for="label">Obs: </label>'.$foco->obs.'</p>
+                   <p><label for="label">Pasos: </label>'.$foco->pasos.'</p>
+                   <div id="foco'.$x.'"></div><br>';
+          $html.= '</div>';
+          $html.= '</div>';
+          $html.= '</div>';
+          
+      /*      $html.= '<div>';
             $html.= '<div class="col-lg-12">';
             $html.= '<div class="form-group">';
             $html.= '<p><label for="label">Nombre:</label> ';
@@ -239,7 +259,8 @@ class GestionController extends BaseController
             $html.= '</div>';
             $html.= '</div>';
             $html.= '<div id="foco'.$x.'">DADOS DA GRID</div><br>';
-            
+            $html.= '</div>';
+        */    
             /*Busco os Indicadores desse foco*/
             $aRet  = $model->DetalleFoco($foco->id);
             
@@ -263,6 +284,8 @@ class GestionController extends BaseController
             
             $x++;
         }
+        
+        $html.= '</div>';
         
         echo json_encode(array("resultado" => $result, "html" => $html));
     }

@@ -499,6 +499,8 @@ function Processar(tipo)
 						table.toggleColumn('T4R');
 						table.toggleColumn('T4C');
 					});
+					
+					$("#collapse"+index).addClass("collapse");
 				  });
 			}
 		});
