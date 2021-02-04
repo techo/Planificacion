@@ -155,6 +155,8 @@ class Gestion extends BaseModel
             $sql  .= " AND dplanificacion.id_indicador IN (5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42) ";
         }
         
+        $sql  .= " AND indicador.id_pais = 0 ";
+        
         $sql  .= "GROUP BY dplanificacion.id_indicador) soma ";
         $sql  .= "GROUP BY id_indicador COLLATE utf8_unicode_ci";
         
