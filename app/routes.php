@@ -12,6 +12,12 @@ $route[] = ['/visual/focos', 'GestionController@focos'];
 $route[] = ['/visual/focos/pais', 'GestionController@FocoPais'];
 $route[] = ['/visual/focos/sede', 'GestionController@FocoSede'];
 
+$route[] = ['/visual/indicadores', 'GestionController@indicadores'];
+$route[] = ['/visual/indicadores/sede', 'GestionController@IndicadoresSede'];
+$route[] = ['/visual/indicadores/pais', 'GestionController@IndicadoresPais'];
+$route[] = ['/visual/indicadores/region', 'GestionController@IndicadoresRegion'];
+$route[] = ['/visual/indicadores/latam', 'GestionController@IndicadoresLatam'];
+
 /** Home **/
 $route[] = ['/', 'HomeController@index'];
 $route[] = ['/home/userlogado', 'HomeController@UserLogado'];

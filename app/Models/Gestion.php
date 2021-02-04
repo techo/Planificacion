@@ -103,36 +103,53 @@ class Gestion extends BaseModel
         
         $sql  .= "WHERE dplanificacion.id_cplanificacion = {$aParam['idCPlanificacion']} ";
         
+        /* Visual Pilares por Pais ou Sede */
         if($aParam['visual'] == 'Pais' || $aParam['visual'] == 'Sede')
         {
             $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} ";
         }
-        
+        /* Visual Pilares por Sede */
         if($aParam['visual'] == 'Sede')
         {
             $sql  .= " AND dplanificacion.id_sede = {$aParam['idSede']} ";
         }
-        
+        /* Visual Pilares por Region */
         if($aParam['visual'] == 'Region')
         {
             $sql  .= " AND dplanificacion.id_pais IN ({$aParam['idPaises']}) ";
         }
-        
+        /* Visual Pilares Latam */
         if($aParam['visual'] == 'Latam')
         {
             $sql  .= " AND dplanificacion.id_pais IN ({$aParam['idPaises']}) ";
         }
-        
+        /* Visual Focos Por Pais */
         if($aParam['visual'] == 'Focos')
         {
             $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} AND dplanificacion.id_indicador IN ({$aParam['indicadores']}) ";
         }
-        
+        /* Visual Focos Por Sede */
         if($aParam['visual'] == 'Focos_Sede')
         {
             $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} AND dplanificacion.id_sede = {$aParam['idSede']} AND dplanificacion.id_indicador IN ({$aParam['indicadores']}) ";
         }
+        /* Visual Indicadores Por Sede */
+        if($aParam['visual'] == 'Indicadores_Sede')
+        {
+            $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} AND dplanificacion.id_sede = {$aParam['idSede']} ";
+        }
+        /* Visual Indicadores Por Pais */
+        if($aParam['visual'] == 'Indicadores_Pais')
+        {
+            $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} ";
+        }
+        /* Visual Indicadores Por Region OU Latam */
+        if($aParam['visual'] == 'Indicadores_Region' || $aParam['visual'] == 'Indicadores_Latam')
+        {
+            $sql  .= " AND dplanificacion.id_pais IN ({$aParam['idPaises']}) ";
+        }
         
+        /* Visual por Pilares - Indicadores Setados por cada pilar */
         else
         {
             $sql  .= " AND dplanificacion.id_indicador IN (5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42) ";

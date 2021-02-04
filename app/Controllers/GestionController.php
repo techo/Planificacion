@@ -354,4 +354,86 @@ class GestionController extends BaseController
         
         echo json_encode(array("resultado" => $result, "html" => $html));
     }
+    
+    public function indicadores()
+    {
+        $this->setPageTitle('Visual por Indicadores');
+        
+        //Busca Anos
+        $model = Container::getModel("TInforme");
+        $this->view->ano = $model->ListAnos();
+        $this->renderView('gestion/indicadores', 'layout');
+    }
+    
+    public function IndicadoresSede($aDatos)
+    {
+        $aParam['idCPlanificacion']  = $aDatos->idAno;
+        $aParam['idPais'] = $aDatos->idPais;
+        $aParam['idSede'] = $aDatos->idSede;
+        $aParam['visual'] = 'Indicadores_Sede';
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Dados($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
+    
+    public function IndicadoresPais($aDatos)
+    {
+        $aParam['idCPlanificacion']  = $aDatos->idAno;
+        $aParam['idPais'] = $aDatos->idPais;
+        $aParam['visual'] = 'Indicadores_Pais';
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Dados($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
+    
+    public function IndicadoresRegion($aDatos)
+    {
+        $idRegion = $aDatos->idRegion;
+        
+        $aParam['idCPlanificacion']  = $aDatos->idAno;
+        $aParam['idPaises'] = '';
+        $aParam['visual'] = 'Indicadores_Region';
+        
+        if($idRegion == 1)
+        {
+            // Andina
+            $aParam['idPaises'] = '7, 6, 21, 17, 9';
+        }
+        elseif($idRegion == 2)
+        {
+            // Cono Sur y Brasil
+            $aParam['idPaises'] = '4, 19, 16, 1';
+        }
+        elseif($idRegion == 3)
+        {
+            // Mexico, Centroamérica y el Caribe
+            $aParam['idPaises'] = '13, 3, 10, 11, 12, 18';
+        }
+        elseif($idRegion == 4)
+        {
+            // Chile
+            $aParam['idPaises'] =  '2';
+        }
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Dados($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
+    
+    public function IndicadoresLatam($aDatos)
+    {
+        $aParam['idCPlanificacion']  = $aDatos->idAno;
+        $aParam['idPaises'] = '1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16,17, 18, 19, 21';
+        $aParam['visual'] = 'Indicadores_Latam';
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Dados($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
 }
