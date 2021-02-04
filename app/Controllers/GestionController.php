@@ -231,7 +231,7 @@ class GestionController extends BaseController
           $html.= '<div class="panel panel-default">';
           $html.= '<div class="panel-heading" role="tab" id="heading'.$x.'">';
           $html.= '<h4 class="panel-title">';
-          $html.= '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$x.'" aria-expanded="false" aria-controls="collapse'.$x.'">'.$foco->nombre.'</a>';
+          $html.= '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$x.'" aria-expanded="false" aria-controls="collapse'.$x.'"><i class="fa fa-arrow-right" aria-hidden="true"></i> '.$foco->nombre.'</a>';
           $html.= '</h4>';
           $html.= '</div>';
           $html.= '<div id="collapse'.$x.'" class="panel-collapse" role="tabpanel" aria-labelledby="heading'.$x.'">';
@@ -261,6 +261,71 @@ class GestionController extends BaseController
             $html.= '<div id="foco'.$x.'">DADOS DA GRID</div><br>';
             $html.= '</div>';
         */    
+            /*Busco os Indicadores desse foco*/
+            $aRet  = $model->DetalleFoco($foco->id);
+            
+            // Encontra os indicadores que pertencem aos Focos do pais selecionado
+            foreach ($aRet as $dfoco)
+            {
+                $lista = $lista . $dfoco->id_indicador. ',';
+            }
+            
+            $aIndicadores = rtrim($lista, ",");
+            
+            $idCPlanificacion = $model->idCplanificacion($aDatos->idAno);
+            
+            // Lista de ids dos Indicadores
+            $aDados['indicadores'] = $aIndicadores;
+            $aDados['visual'] = 'Focos';
+            $aDados['idCPlanificacion'] = $idCPlanificacion[0]->id;
+            $aDados['idPais'] = $aDatos->idPais;
+            
+            $result[]  = $model->Dados($aDados);
+            
+            $x++;
+        }
+        
+        $html.= '</div>';
+        
+        echo json_encode(array("resultado" => $result, "html" => $html));
+    }
+    
+    public function FocoSede($aDatos)
+    {
+        $aParam['idAno']  = $aDatos->idAno;
+        $aParam['idPais'] = $aDatos->idPais;
+        $aParam['idSede'] = $aDatos->idSede;
+        $aParam['visual'] = 'Focos_Sede';
+        
+        $model   = Container::getModel("Gestion");
+        $aFoco  = $model->FocoDados($aParam);
+        
+        $idCPlanificacion = $model->idCplanificacion($aDatos->idAno);
+        $aDados['idCPlanificacion'] = $idCPlanificacion[0]->id;
+        
+        $html = '';
+        $x = 0;
+        $html.= '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
+        
+        foreach ($aFoco as $foco)
+        {
+            $html.= '<div class="panel panel-default">';
+            $html.= '<div class="panel-heading" role="tab" id="heading'.$x.'">';
+            $html.= '<h4 class="panel-title">';
+            $html.= '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$x.'" aria-expanded="false" aria-controls="collapse'.$x.'"><i class="fa fa-arrow-right" aria-hidden="true"></i> '.$foco->nombre.'</a>';
+            $html.= '</h4>';
+            $html.= '</div>';
+            $html.= '<div id="collapse'.$x.'" class="panel-collapse" role="tabpanel" aria-labelledby="heading'.$x.'">';
+            $html.= '<div class="panel-body">';
+            $html.= '<p><label for="label">Nombre:</label>'.$foco->nombre.'</p>
+                   <p><label for="label">Descripcion: </label>'.$foco->descripcion.'</p>
+                   <p><label for="label">Obs: </label>'.$foco->obs.'</p>
+                   <p><label for="label">Pasos: </label>'.$foco->pasos.'</p>
+                   <div id="foco'.$x.'"></div><br>';
+            $html.= '</div>';
+            $html.= '</div>';
+            $html.= '</div>';
+            
             /*Busco os Indicadores desse foco*/
             $aRet  = $model->DetalleFoco($foco->id);
             

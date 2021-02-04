@@ -10,6 +10,7 @@ $route[] = ['/visual/pilares/latam', 'GestionController@DadosLatam'];
 
 $route[] = ['/visual/focos', 'GestionController@focos'];
 $route[] = ['/visual/focos/pais', 'GestionController@FocoPais'];
+$route[] = ['/visual/focos/sede', 'GestionController@FocoSede'];
 
 /** Home **/
 $route[] = ['/', 'HomeController@index'];

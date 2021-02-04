@@ -127,6 +127,12 @@ class Gestion extends BaseModel
         {
             $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} AND dplanificacion.id_indicador IN ({$aParam['indicadores']}) ";
         }
+        
+        if($aParam['visual'] == 'Focos_Sede')
+        {
+            $sql  .= " AND dplanificacion.id_pais = {$aParam['idPais']} AND dplanificacion.id_sede = {$aParam['idSede']} AND dplanificacion.id_indicador IN ({$aParam['indicadores']}) ";
+        }
+        
         else
         {
             $sql  .= " AND dplanificacion.id_indicador IN (5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42) ";
@@ -154,6 +160,11 @@ class Gestion extends BaseModel
         if($aParam['visual'] == 'Pais')
         {
             $sql  .= "WHERE foco.id_pais = {$aParam['idPais']} AND foco.id_ano = {$aParam['idAno']} AND foco.deleted = 0";
+        }
+        
+        if($aParam['visual'] == 'Focos_Sede')
+        {
+            $sql  .= "WHERE foco.id_pais = {$aParam['idPais']} AND foco.id_sede = {$aParam['idSede']} AND foco.id_ano = {$aParam['idAno']} AND foco.deleted = 0";
         }
         
         $stmt = $this->pdo->prepare($sql);
