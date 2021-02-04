@@ -173,7 +173,7 @@ function Processar(tipo)
 				$('#config').css('display','block');
 				
 				var table = new Tabulator("#example-table", {
-					height:"400px",
+					height:"350px",
 				    data:tabledata,
 				    movableRows:true,
 				    movableColumns:true,
@@ -365,7 +365,7 @@ function Processar(tipo)
 				$('#config').css('display','block');
 				
 				var table = new Tabulator("#example-table", {
-					height:"400px",
+					height:"350px",
 				    data:tabledata,
 				    movableRows:true,
 				    movableColumns:true,
@@ -557,7 +557,7 @@ function Processar(tipo)
 				$('#config').css('display','block');
 				
 				var table = new Tabulator("#example-table", {
-					height:"400px",
+					height:"350px",
 				    data:tabledata,
 				    movableRows:true,
 				    movableColumns:true,
@@ -747,7 +747,7 @@ function Processar(tipo)
 				$('#config').css('display','block');
 				
 				var table = new Tabulator("#example-table", {
-				    height:"400px",
+				    height:"350px",
 				    data:tabledata,
 				    movableRows:true,
 				    movableColumns:true,

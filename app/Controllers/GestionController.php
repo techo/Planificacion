@@ -135,6 +135,7 @@ class GestionController extends BaseController
     {
         $aParam['idCPlanificacion']  = $idCPlanificacion;
         $aParam['idPais'] = $idPais;
+        $aParam['indicadores'] = '5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42';
         $aParam['visual'] = 'Pais';
         
         $model   = Container::getModel("Gestion");
@@ -148,6 +149,7 @@ class GestionController extends BaseController
         $aParam['idCPlanificacion']  = $idCPlanificacion;
         $aParam['idPais'] = $idPais;
         $aParam['idSede'] = $idSede;
+        $aParam['indicadores'] = '5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42';
         $aParam['visual'] = 'Sede';
         
         $model   = Container::getModel("Gestion");
@@ -162,6 +164,7 @@ class GestionController extends BaseController
         
         $aParam['idCPlanificacion']  = $aDatos->idAno;
         $aParam['idPaises'] = '';
+        $aParam['indicadores'] = '5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42';
         $aParam['visual'] = 'Region';
         
         if($idRegion == 1)
@@ -195,6 +198,7 @@ class GestionController extends BaseController
     {
         $aParam['idCPlanificacion']  = $aDatos->idAno;
         $aParam['idPaises'] = '1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16,17, 18, 19, 21';
+        $aParam['indicadores'] = '5, 6, 9, 85, 271, 83, 7, 74, 268, 11, 59, 60, 12, 16, 17, 23, 15, 20, 22, 42';
         $aParam['visual'] = 'Latam';
         
         $model   = Container::getModel("Gestion");
