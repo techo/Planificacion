@@ -113,6 +113,7 @@ $( "#processar" ).click(function() {
 	$("#2").prop('checked', false);
 	$("#3").prop('checked', false);
 	$("#4").prop('checked', false);
+	$('#loading-techo').show();
 	Processar(tipo);
 });
 
@@ -312,6 +313,8 @@ function Processar(tipo)
 					
 					$("#collapse"+index).addClass("collapse");
 				  });
+				
+				$('#loading-techo').hide();
 			}
 		});
 		
@@ -508,6 +511,8 @@ function Processar(tipo)
 					
 					$("#collapse"+index).addClass("collapse");
 				  });
+				
+				$('#loading-techo').hide();
 			}
 		});
 	}	

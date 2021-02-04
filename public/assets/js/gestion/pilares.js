@@ -137,6 +137,7 @@ $( "#processar" ).click(function() {
 	$("#2").prop('checked', false);
 	$("#3").prop('checked', false);
 	$("#4").prop('checked', false);
+	$('#loading-techo').show();
 	Processar(tipo);
 });
 
@@ -331,6 +332,8 @@ function Processar(tipo)
 					table.toggleColumn('T4R');
 					table.toggleColumn('T4C');
 				});
+				
+				$('#loading-techo').hide();
 			}
 		});
 		
@@ -521,6 +524,8 @@ function Processar(tipo)
 					table.toggleColumn('T4R');
 					table.toggleColumn('T4C');
 				});
+				
+				$('#loading-techo').hide();
 			}
 		});
 	}	
@@ -711,6 +716,8 @@ function Processar(tipo)
 					table.toggleColumn('T4R');
 					table.toggleColumn('T4C');
 				});
+				
+				$('#loading-techo').hide();
 			}
 		});
 	}
@@ -899,6 +906,8 @@ function Processar(tipo)
 					table.toggleColumn('T4R');
 					table.toggleColumn('T4C');
 				});
+				
+				$('#loading-techo').hide();
 			}
 		});
 	}
