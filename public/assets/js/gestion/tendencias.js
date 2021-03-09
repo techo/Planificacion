@@ -564,8 +564,9 @@ function Processar(tipo)
 				    movableRows:true,
 				    movableColumns:true,
 				    clipboard:true,
-				    groupBy:"pilar",
-				    groupValues:[["Desarrollo Comunitario", "Promoción de la Conciencia y Acción Social", "Desarrollo Institucional", "Incidencia en Política"]],
+				    groupBy:"Ano",
+				    groupValues:[["2019", "2020", "2021"]],
+				    groupStartOpen: false,
 				    columns:[
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
 				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
@@ -753,8 +754,9 @@ function Processar(tipo)
 				    movableRows:true,
 				    movableColumns:true,
 				    clipboard:true,
-				    groupBy:"pilar",
-				    groupValues:[["Desarrollo Comunitario", "Promoción de la Conciencia y Acción Social", "Desarrollo Institucional", "Incidencia en Política"]],
+				    groupBy:"Ano",
+				    groupValues:[["2019", "2020", "2021"]],
+				    groupStartOpen: false,
 				    columns:[
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
 				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},

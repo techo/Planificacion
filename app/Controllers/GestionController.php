@@ -470,13 +470,43 @@ class GestionController extends BaseController
     
     public function TendenciaRegion($aDatos)
     {
-        echo('<pre>');
-        die(print_r($aDatos, true));
+        $idRegion  = $aDatos->idRegion;
+        
+        if($idRegion == 1)
+        {
+            // Andina
+            $aParam['idRegion'] = '7, 6, 21, 17, 9';
+        }
+        elseif($idRegion == 2)
+        {
+            // Cono Sur y Brasil
+            $aParam['idRegion'] = '4, 19, 16, 1';
+        }
+        elseif($idRegion == 3)
+        {
+            // Mexico, Centroamérica y el Caribe
+            $aParam['idRegion'] = '13, 3, 10, 11, 12, 18';
+        }
+        elseif($idRegion == 4)
+        {
+            // Chile
+            $aParam['idRegion'] =  '2';
+        }
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Tendencias($aParam);
+        
+        echo json_encode(array("resultado" => $result));
     }
     
-    public function TendenciaLatam($aDatos)
+    public function TendenciaLatam()
     {
-        echo('<pre>');
-        die(print_r($aDatos, true));
+        $aParam['idLatam'] = '1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16,17, 18, 19, 21';
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Tendencias($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+        
     }
 }

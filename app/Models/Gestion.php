@@ -334,6 +334,16 @@ class Gestion extends BaseModel
             $sql  .= "AND dplanificacion.id_sede = " . $aParam['idSede'];
         }
         
+        if($aParam['idRegion'])
+        {
+            $sql  .= "AND dplanificacion.id_pais IN ( " . $aParam['idRegion'] . " )";
+        }
+        
+        if($aParam['idLatam'])
+        {
+            $sql  .= "AND dplanificacion.id_pais IN ( " . $aParam['idLatam'] . " )";
+        }
+        
         $sql  .= " GROUP BY dplanificacion.id_indicador) soma ";
         $sql  .= " GROUP BY id_indicador COLLATE utf8_unicode_ci ";
         
@@ -460,6 +470,16 @@ class Gestion extends BaseModel
             $sql  .= "AND dplanificacion.id_sede = " . $aParam['idSede'];
         }
         
+        if($aParam['idRegion'])
+        {
+            $sql  .= "AND dplanificacion.id_pais IN ( " . $aParam['idRegion'] . " )";
+        }
+        
+        if($aParam['idLatam'])
+        {
+            $sql  .= "AND dplanificacion.id_pais IN ( " . $aParam['idLatam'] . " )";
+        }
+        
         $sql  .= " GROUP BY dplanificacion.id_indicador) soma ";
         $sql  .= " GROUP BY id_indicador COLLATE utf8_unicode_ci ";
         
@@ -584,6 +604,16 @@ class Gestion extends BaseModel
         if($aParam['idSede'])
         {
             $sql  .= "AND dplanificacion.id_sede = " . $aParam['idSede'];
+        }
+        
+        if($aParam['idRegion'])
+        {
+            $sql  .= "AND dplanificacion.id_pais IN ( " . $aParam['idRegion'] . " )";
+        }
+        
+        if($aParam['idLatam'])
+        {
+            $sql  .= "AND dplanificacion.id_pais IN ( " . $aParam['idLatam'] . " )";
         }
         
         $sql  .= " GROUP BY dplanificacion.id_indicador) soma ";
