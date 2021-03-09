@@ -440,4 +440,43 @@ class GestionController extends BaseController
         
         echo json_encode(array("resultado" => $result));
     }
+    
+    public function tendencias()
+    {
+        $this->setPageTitle('Gestion  y Tendencias');
+        $model = Container::getModel("Gestion");
+        $this->renderView('gestion/tendencias', 'layout');
+    }
+    
+    public function TendenciaSede($idSede)
+    {
+        $aParam['idSede'] = $idSede;
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Tendencias($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
+    
+    public function TendenciaPais($idPais)
+    {
+        $aParam['idPais'] = $idPais;
+        
+        $model   = Container::getModel("Gestion");
+        $result  = $model->Tendencias($aParam);
+        
+        echo json_encode(array("resultado" => $result));
+    }
+    
+    public function TendenciaRegion($aDatos)
+    {
+        echo('<pre>');
+        die(print_r($aDatos, true));
+    }
+    
+    public function TendenciaLatam($aDatos)
+    {
+        echo('<pre>');
+        die(print_r($aDatos, true));
+    }
 }

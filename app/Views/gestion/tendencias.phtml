@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/assets/css/tabulator.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/assets/js/tabulator_core.js"></script>
+    <script src="/assets/js/tabulator.js"></script>   
+</head>
+<body>
+	<div class="row">
+		<input type="hidden" class="form-control" id="id" value="">
+		<input type="hidden" class="form-control" id="pais" value="">
+		<input type="hidden" class="form-control" id="sede" value="">
+		<div class="col-xs-12">
+			<p><label><strong>Config. del Informe por Tendencias:</strong></label><p>
+		</div>
+		
+		<div class="col-xs-12 col-md-3">
+			<p><label><strong>Nivel de Agrupaci&oacute;n:</strong></label></p>
+			<select class="form-control" name="agrupar" id="agrupar">
+    		  <option value="0">-- SELECCIONAR --</option>
+              <option value="Sede">Sede</option>
+              <option value="Pais">Pa&iacute;s</option>
+              <option value="Region">Regi&oacute;n</option>
+              <option value="Latam">Latam</option>
+            </select>
+		</div>
+		
+		<div class="col-xs-12 col-md-3">
+			<p id="text-pais"><label><strong>Elija el Pa&iacute;s:</strong></label></p>
+            <p id="text-region"><label><strong>Elija la Regi&oacute;n:</strong></label></p>
+            <div id="tipo"></div>
+            <div hidden id="regiones">
+            	<select class="form-control" name="selectbox-region" id="selectbox-region">
+        		  <option value="0">-- SELECCIONAR --</option>
+                  <option value="1">Andina</option>
+                  <option value="2">Cono Sur y Brasil</option>
+                  <option value="3">Mexico, Centroamerica y el Caribe</option>
+                  <option value="4">Chile</option>
+                </select>
+        	</div>
+		</div>
+		
+		<div class="col-xs-12 col-md-3">
+			<div id="selectbox-sede"></div>
+		</div>
+	</div>
+	<br>
+	<button id="processar" type="button">Processar Datos</button>
+	<br>
+	<!-- Grid -->
+	<div id="config">
+		<label><strong>Ocultar / Mostrar:</strong></label>
+    	<input id="anual"  type="checkbox"> Anual
+    	<input id="1"     type="checkbox"> 1 Trimestre
+    	<input id="2"     type="checkbox"> 2 Trimestre
+    	<input id="3"     type="checkbox"> 3 Trimestre
+    	<input id="4"     type="checkbox"> 4 Trimestre
+	</div>
+    <div id="example-table"></div>
+     <div id="loading-techo">
+    	<div class="loading"><img src="/loading.gif"></div>
+    </div>
+</body>
+<script type="text/javascript" src="/assets/js/gestion/tendencias.js""></script>
+</html>

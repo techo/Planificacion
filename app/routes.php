@@ -18,6 +18,13 @@ $route[] = ['/visual/indicadores/pais', 'GestionController@IndicadoresPais'];
 $route[] = ['/visual/indicadores/region', 'GestionController@IndicadoresRegion'];
 $route[] = ['/visual/indicadores/latam', 'GestionController@IndicadoresLatam'];
 
+$route[] = ['/visual/tendencias', 'GestionController@tendencias'];
+$route[] = ['/visual/tendencias/pais/{idPais}/sede/{idSede}', 'GestionController@TendenciaSede'];
+$route[] = ['/visual/tendencias/pais/{idPais}', 'GestionController@TendenciaPais'];
+$route[] = ['/visual/tendencias/region', 'GestionController@TendenciaRegion'];
+$route[] = ['/visual/tendencias/latam', 'GestionController@TendenciaLatam'];
+
+
 /** Home **/
 $route[] = ['/', 'HomeController@index'];
 $route[] = ['/home/userlogado', 'HomeController@UserLogado'];
