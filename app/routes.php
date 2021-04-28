@@ -155,6 +155,8 @@ $route[] = ['/api', 'GambisController@api'];
 $route[] = ['/api/valores', 'GambisController@valores'];
 $route[] = ['/api/IndicesExcelencia', 'GambisController@IndicesExcelencia'];
 $route[] = ['/api/MX', 'GambisController@MX'];
+$route[] = ['/api/datastudio/ano/{Ano}', 'GambisController@DataStudio'];
+$route[] = ['/api/datastudio1/ano/{Ano}', 'GambisController@GraphicsData'];
 
 /** New Planificacion **/
 $route[] = ['/new', 'NewPlanificacionController@index'];
