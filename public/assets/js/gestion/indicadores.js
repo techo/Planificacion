@@ -190,7 +190,7 @@ function Processar(tipo)
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
 				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
 				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
-				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
+				        {title:"Pilar", field:"pilar", width:200, editor:false, headerMenu:headerMenu},
 				        {// Anual
 							title:"Anual", field:"anual",
 							columns:[
@@ -388,7 +388,7 @@ function Processar(tipo)
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
 				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
 				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
-				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
+				        {title:"Pilar", field:"pilar", width:200, editor:false, headerMenu:headerMenu},
 				        {// Anual
 							title:"Anual", field:"anual",
 							columns:[
@@ -585,7 +585,7 @@ function Processar(tipo)
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
 				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
 				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
-				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
+				        {title:"Pilar", field:"pilar", width:200, editor:false, headerMenu:headerMenu},
 				        {// Anual
 							title:"Anual", field:"anual",
 							columns:[
@@ -780,7 +780,7 @@ function Processar(tipo)
 				        {rowHandle:true, formatter:"handle", headerSort:false, frozen:true, width:30, minWidth:30},
 				        {title:"Indicador", field:"indicador", width:560, editor:false,frozen:true, headerFilter:"input"},
 				        {title:"Tipo", field:"tipo", width:100, editor:false, headerMenu:headerMenu},
-				        {title:"Pilar", field:"pilar", width:250, editor:false, visible:false},
+				        {title:"Pilar", field:"pilar", width:200, editor:false, headerMenu:headerMenu},
 				        {// Anual
 							title:"Anual", field:"anual",
 							columns:[
