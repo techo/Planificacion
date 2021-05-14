@@ -381,7 +381,7 @@ class GambisController extends BaseController
            // Enero
            if(!empty($linha['enero_plan']) || !empty($linha['enero_real']))
            {
-               $aNew[$i]['date']        = $ano.'01';
+               $aNew[$i]['date']        = '01/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['enero_plan'];
@@ -391,7 +391,7 @@ class GambisController extends BaseController
            //Febrero
            if(!empty($linha['febrero_plan']) || !empty($linha['febrero_real']))
            {
-               $aNew[$i]['date']        = $ano.'02';
+               $aNew[$i]['date']        ='02/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['febrero_plan'];
@@ -401,7 +401,7 @@ class GambisController extends BaseController
            //Marzo
            if(!empty($linha['marzo_plan']) || !empty($linha['marzo_real']))
            {
-               $aNew[$i]['date']        = $ano.'03';
+               $aNew[$i]['date']        = '03/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['marzo_plan'];
@@ -411,7 +411,7 @@ class GambisController extends BaseController
            //Abril
            if(!empty($linha['abril_plan']) || !empty($linha['abril_real']))
            {
-               $aNew[$i]['Date']        = $ano.'04';
+               $aNew[$i]['date']        = '04/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['abril_plan'];
@@ -421,7 +421,7 @@ class GambisController extends BaseController
            //Mayo
            if(!empty($linha['mayo_plan']) || !empty($linha['mayo_real']))
            {
-               $aNew[$i]['Date']        = $ano.'05';
+               $aNew[$i]['date']        = '05/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['mayo_plan'];
@@ -431,7 +431,7 @@ class GambisController extends BaseController
            //Junio
            if(!empty($linha['junio_plan']) || !empty($linha['junio_real']))
            {
-               $aNew[$i]['Date']        = $ano.'06';
+               $aNew[$i]['date']        = '06/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['junio_plan'];
@@ -441,7 +441,7 @@ class GambisController extends BaseController
            //Julio
            if(!empty($linha['julio_plan']) || !empty($linha['julio_real']))
            {
-               $aNew[$i]['Date']        = $ano.'07';
+               $aNew[$i]['date']        = '07/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['julio_plan'];
@@ -451,7 +451,7 @@ class GambisController extends BaseController
            //Agosto
            if(!empty($linha['agosto_plan']) || !empty($linha['agosto_real']))
            {
-               $aNew[$i]['Date']        = $ano.'08';
+               $aNew[$i]['date']        = '08/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['agosto_plan'];
@@ -461,7 +461,7 @@ class GambisController extends BaseController
            //Septiembre
            if(!empty($linha['septiembre_plan']) || !empty($linha['septiembre_real']))
            {
-               $aNew[$i]['Date']        = $ano.'09';
+               $aNew[$i]['date']        = '09/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['septiembre_plan'];
@@ -471,7 +471,7 @@ class GambisController extends BaseController
            //Octubre
            if(!empty($linha['octubre_plan']) || !empty($linha['octubre_real']))
            {
-               $aNew[$i]['Date']        = $ano.'10';
+               $aNew[$i]['date']        = '10/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['octubre_plan'];
@@ -481,7 +481,7 @@ class GambisController extends BaseController
            //Noviembre
            if(!empty($linha['noviembre_plan']) || !empty($linha['noviembre_real']))
            {
-               $aNew[$i]['Date']        = $ano.'11';
+               $aNew[$i]['date']        = '11/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['noviembre_plan'];
@@ -491,7 +491,7 @@ class GambisController extends BaseController
            //Diciembre
            if(!empty($linha['diciembre_plan']) || !empty($linha['diciembre_real']))
            {
-               $aNew[$i]['Date']        = $ano.'12';
+               $aNew[$i]['date']        = '12/'.$ano;
                $aNew[$i]['Country']     = $linha['pais'];
                $aNew[$i]['Kpi']         = $linha['indicador'];
                $aNew[$i]['Planificado'] = $linha['diciembre_plan'];
