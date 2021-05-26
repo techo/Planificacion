@@ -503,5 +503,118 @@ class GambisController extends BaseController
        $out = array_values($aNew);
        echo(json_encode($out));
    }
+   
+   public function GetOficial($request)
+   {
+       $aRequest = (array) $request;
+       
+       $aPaises = [1,3,4,6,7,8,9,10,11,12,13,15,16,17,18,19,21];
+       
+       $this->setPageTitle('API');
+       $model = Container::getModel("Gambis");
+       
+       //Agarra el ano corriente para buscar id de la planificacion actual
+       $ano = date("Y");
+       
+       // Año corriente
+       if($aRequest[0] == $ano)
+       {
+           $ano = date("Y");
+       }
+       else // Años Passados
+       {
+           $ano = $aRequest[0];
+       }
+       
+       $aRet = $model->GetAno($ano);
+       
+       if(empty($aRet))
+       {
+           echo('Planificacion del ano ' . $ano . ' no fue localizada!');
+       }
+       
+       $id = $aRet[0]->id;
+       
+       //Agarra id cPlanificacion
+       $aPlan = $model->GetPlanificacion($id);
+       
+       $aCompleto = array();
+       
+       foreach ($aPaises as $idpais)
+       {
+           $aDados = $model->OficialData($aPlan[0]->id, $idpais);
+           
+           for($i=0; $i < count($aDados); $i++)
+           {
+               
+             $linha = (array) $aDados[$i];
+             
+             $aNew[01]['country']           = $linha['pais'];
+             $aNew[01]['date']              = '01/'.$ano;
+             $aNew[01][$linha['indicador'] . ' - Planificado'] = $linha['enero_plan'] ? $linha['enero_plan'] : '0';
+             $aNew[01][$linha['indicador'] . ' - Realizado']   = $linha['enero_real'] ? $linha['enero_real'] : '0';
+             
+             $aNew[02]['country']           = $linha['pais'];
+             $aNew[02]['date']              = '02/'.$ano;
+             $aNew[02][$linha['indicador'] . ' - Planificado'] = $linha['febrero_plan'] ? $linha['febrero_plan'] : '0';
+             $aNew[02][$linha['indicador'] . ' - Realizado']   = $linha['febrero_real'] ? $linha['febrero_real'] : '0';
+             
+             $aNew[03]['country']           = $linha['pais'];
+             $aNew[03]['date']              = '03/'.$ano;
+             $aNew[03][$linha['indicador'] . ' - Planificado'] = $linha['marzo_plan'] ? $linha['marzo_plan'] : '0';
+             $aNew[03][$linha['indicador'] . ' - Realizado']   = $linha['marzo_real'] ? $linha['marzo_real'] : '0';
+             
+             $aNew[04]['country']           = $linha['pais'];
+             $aNew[04]['date']              = '04/'.$ano;
+             $aNew[04][$linha['indicador'] . ' - Planificado'] = $linha['abril_plan'] ? $linha['abril_plan'] : '0';
+             $aNew[04][$linha['indicador'] . ' - Realizado']   = $linha['abril_real'] ? $linha['abril_real'] : '0';
+             
+             $aNew[05]['country']           = $linha['pais'];
+             $aNew[05]['date']              = '05/'.$ano;
+             $aNew[05][$linha['indicador'] . ' - Planificado'] = $linha['mayo_plan'] ? $linha['mayo_plan'] : '0';
+             $aNew[05][$linha['indicador'] . ' - Realizado']   = $linha['mayo_real'] ? $linha['mayo_real'] : '0';
+             
+             $aNew[06]['country']           = $linha['pais'];
+             $aNew[06]['date']              = '06/'.$ano;
+             $aNew[06][$linha['indicador'] . ' - Planificado'] = $linha['junio_plan'] ? $linha['junio_plan'] : '0';
+             $aNew[06][$linha['indicador'] . ' - Realizado']   = $linha['junio_real'] ? $linha['junio_real'] : '0';
+             
+             $aNew[07]['country']           = $linha['pais'];
+             $aNew[07]['date']              = '07/'.$ano;
+             $aNew[07][$linha['indicador'] . ' - Planificado'] = $linha['julio_plan'] ? $linha['julio_plan'] : '0';
+             $aNew[07][$linha['indicador'] . ' - Realizado']   = $linha['julio_real'] ? $linha['julio_real'] : '0';
+             
+             $aNew[8]['country']           = $linha['pais'];
+             $aNew[8]['date']              = '08/'.$ano;
+             $aNew[8][$linha['indicador'] . ' - Planificado'] = $linha['agosto_plan'] ? $linha['agosto_plan'] : '0';
+             $aNew[8][$linha['indicador'] . ' - Realizado']   = $linha['agosto_real'] ? $linha['agosto_real'] : '0';
+             
+             $aNew[9]['country']           = $linha['pais'];
+             $aNew[9]['date']              = '09/'.$ano;
+             $aNew[9][$linha['indicador'] . ' - Planificado'] = $linha['septiembre_plan'] ? $linha['septiembre_plan'] : '0';
+             $aNew[9][$linha['indicador'] . ' - Realizado']   = $linha['septiembre_real'] ? $linha['septiembre_real'] : '0';
+             
+             $aNew[10]['country']           = $linha['pais'];
+             $aNew[10]['date']              = '10/'.$ano;
+             $aNew[10][$linha['indicador'] . ' - Planificado'] = $linha['octubre_plan'] ? $linha['octubre_plan'] : '0';
+             $aNew[10][$linha['indicador'] . ' - Realizado']   = $linha['octubre_real'] ? $linha['octubre_real'] : '0';
+             
+             $aNew[11]['country']           = $linha['pais'];
+             $aNew[11]['date']              = '11/'.$ano;
+             $aNew[11][$linha['indicador'] . ' - Planificado'] = $linha['noviembre_plan'] ? $linha['noviembre_plan'] : '0';
+             $aNew[11][$linha['indicador'] . ' - Realizado']   = $linha['noviembre_real'] ? $linha['noviembre_real'] : '0';
+             
+             $aNew[12]['country']           = $linha['pais'];
+             $aNew[12]['date']              = '12/'.$ano;
+             $aNew[12][$linha['indicador'] . ' - Planificado'] = $linha['diciembre_plan'] ? $linha['diciembre_plan'] : '0';
+             $aNew[12][$linha['indicador'] . ' - Realizado']   = $linha['diciembre_real'] ? $linha['diciembre_real'] : '0';
+           }
+           
+           $aCompleto = array_merge($aCompleto, $aNew);
+       }
+       
+       $out = array_values($aCompleto);
+       echo(json_encode($out));
+   }
     
 }
