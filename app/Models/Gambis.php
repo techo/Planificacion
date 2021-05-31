@@ -606,6 +606,7 @@ class Gambis extends BaseModel
         $sql  .= "INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
         $sql  .= "INNER JOIN pilar ON pilar.id = indicador.id_pilar ";
         $sql  .= " WHERE dplanificacion.id_cplanificacion = {$idcPlanificacion} AND dplanificacion.id_pais = {$idPais} and indicador.id_pais = 0";
+     //   $sql  .= " AND indicador.id = 5";
         $sql  .= " GROUP BY dplanificacion.id_indicador, dplanificacion.id_pais) soma";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
