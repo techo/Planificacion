@@ -528,9 +528,9 @@ class GambisController extends BaseController
        echo(json_encode($out));
        die();
      */  
-      // $aPaises = [1,3,4,6,7,8,9,10,11,12,13,15,16,17,18,19,21];
+      $aPaises = [1,3,4,6,7,8,9,10,11,12,13,15,16,17,18,19,21];
       
-       $aPaises = [1];
+//        $aPaises = [1];
        
        $this->setPageTitle('API');
        $model = Container::getModel("Gambis");
