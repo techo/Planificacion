@@ -166,6 +166,9 @@ $route[] = ['/new', 'NewPlanificacionController@index'];
 $route[] = ['/kpis2019', 'PowerBiController@index'];
 $route[] = ['/infografia2019', 'PowerBiController@inforgrafia2019'];
 
+/** Data Studio **/
+$route[] = ['/indicadores_pilar', 'PowerBiController@indicadorPilar'];
+
 /** MdG **/
 $route[] = ['/proposito', 'PropositoController@index'];
 $route[] = ['/proposito/agregar', 'PropositoController@save'];

@@ -45,4 +45,14 @@ class PowerBiController extends BaseController
         /* Render View Paises */
         $this->renderView('powerbi/infografia2019', 'layout');
     }
+    
+    public function indicadorPilar()
+    {
+        $this->setPageTitle('Data Studio - Indicador por Pilar');
+        # precisa obrigatorio pra funcionar ter uma model
+        $model = Container::getModel("Ano");
+        
+        /* Render View Paises */
+        $this->renderView('powerbi/indicadores_pilar', 'layout');
+    }
 }
