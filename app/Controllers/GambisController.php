@@ -578,61 +578,73 @@ class GambisController extends BaseController
                  $aNew[01]['dt']                   = $ano.'-01-01';
                  $aNew[01][$string.'_Planificado'] = $linha['enero_plan'] ? $linha['enero_plan'] : '0.00';
                  $aNew[01][$string.'_Realizado']   = $linha['enero_real'] ? $linha['enero_real'] : '0.00';
+                 $aNew[01][$string.'_date_update']  = $linha['date_update'];
                  
                  $aNew[02]['country']              = $linha['pais'];
                  $aNew[02]['dt']                   = $ano.'-02-01';
                  $aNew[02][$string.'_Planificado'] = $linha['febrero_plan'] ? $linha['febrero_plan'] : '0.00';
                  $aNew[02][$string.'_Realizado']   = $linha['febrero_real'] ? $linha['febrero_real'] : '0.00';
+                 $aNew[02][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[03]['country']              = $linha['pais'];
                  $aNew[03]['dt']                   = $ano.'-03-01';
                  $aNew[03][$string.'_Planificado'] = $linha['marzo_plan'] ? $linha['marzo_plan'] : '0.00';
                  $aNew[03][$string.'_Realizado']   = $linha['marzo_real'] ? $linha['marzo_real'] : '0.00';
+                 $aNew[03][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[04]['country']              = $linha['pais'];
                  $aNew[04]['dt']                   = $ano.'-04-01';
                  $aNew[04][$string.'_Planificado'] = $linha['abril_plan'] ? $linha['abril_plan'] : '0.00';
                  $aNew[04][$string.'_Realizado']   = $linha['abril_real'] ? $linha['abril_real'] : '0.00';
+                 $aNew[04][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[05]['country']              = $linha['pais'];
                  $aNew[05]['dt']                   = $ano.'-05-01';
                  $aNew[05][$string.'_Planificado'] = $linha['mayo_plan'] ? $linha['mayo_plan'] : '0.00';
                  $aNew[05][$string.'_Realizado']   = $linha['mayo_real'] ? $linha['mayo_real'] : '0.00';
+                 $aNew[05][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[06]['country']              = $linha['pais'];
                  $aNew[06]['dt']                   = $ano.'-06-01';
                  $aNew[06][$string.'_Planificado'] = $linha['junio_plan'] ? $linha['junio_plan'] : '0.00';
                  $aNew[06][$string.'_Realizado']   = $linha['junio_real'] ? $linha['junio_real'] : '0.00';
+                 $aNew[06][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[07]['country']              = $linha['pais'];
                  $aNew[07]['dt']                   = $ano.'-07-01';
                  $aNew[07][$string.'_Planificado'] = $linha['julio_plan'] ? $linha['julio_plan'] : '0.00';
                  $aNew[07][$string.'_Realizado']   = $linha['julio_real'] ? $linha['julio_real'] : '0.00';
+                 $aNew[07][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[8]['country']              = $linha['pais'];
                  $aNew[8]['dt']                   = $ano.'-08-01';
                  $aNew[8][$string.'_Planificado'] = $linha['agosto_plan'] ? $linha['agosto_plan'] : '0.00';
                  $aNew[8][$string.'_Realizado']   = $linha['agosto_real'] ? $linha['agosto_real'] : '0.00';
+                 $aNew[8][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[9]['country']              = $linha['pais'];
                  $aNew[9]['dt']                   = $ano.'-09-01';
                  $aNew[9][$string.'_Planificado'] = $linha['septiembre_plan'] ? $linha['septiembre_plan'] : '0.00';
                  $aNew[9][$string.'_Realizado']   = $linha['septiembre_real'] ? $linha['septiembre_real'] : '0.00';
+                 $aNew[9][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[10]['country']              = $linha['pais'];
                  $aNew[10]['dt']                   = $ano.'-10-01';
                  $aNew[10][$string.'_Planificado'] = $linha['octubre_plan'] ? $linha['octubre_plan'] : '0.00';
                  $aNew[10][$string.'_Realizado']   = $linha['octubre_real'] ? $linha['octubre_real'] : '0.00';
+                 $aNew[10][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[11]['country']              = $linha['pais'];
                  $aNew[11]['dt']                   = $ano.'-11-01';
                  $aNew[11][$string.'_Planificado'] = $linha['noviembre_plan'] ? $linha['noviembre_plan'] : '0.00';
                  $aNew[11][$string.'_Realizado']   = $linha['noviembre_real'] ? $linha['noviembre_real'] : '0.00';
+                 $aNew[11][$string.'_date_update'] = $linha['date_update'];
                  
                  $aNew[12]['country']              = $linha['pais'];
                  $aNew[12]['dt']                   = $ano.'-12-01';
                  $aNew[12][$string.'_Planificado'] = $linha['diciembre_plan'] ? $linha['diciembre_plan'] : '0.00';
                  $aNew[12][$string.'_Realizado']   = $linha['diciembre_real'] ? $linha['diciembre_real'] : '0.00';
+                 $aNew[12][$string.'_date_update'] = $linha['date_update'];
                  
                  
            }

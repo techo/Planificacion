@@ -541,7 +541,8 @@ class Gambis extends BaseModel
         $sql  .= "noviembre_plan, ";
         $sql  .= "noviembre_real, ";
         $sql  .= "diciembre_plan, ";
-        $sql  .= "diciembre_real ";
+        $sql  .= "diciembre_real, ";
+        $sql  .= "date_update ";
         $sql  .= "FROM ";
         $sql  .= "(SELECT ";
         $sql  .= " CASE
@@ -600,7 +601,8 @@ class Gambis extends BaseModel
         $sql  .= "SUM(dplanificacion.diciembre_real) AS diciembre_real, ";
         $sql  .= "indicador.indicador, ";
         $sql  .= "indicador.formato, ";
-        $sql  .= "tipo.tipo ";
+        $sql  .= "tipo.tipo, ";
+        $sql  .= "dplanificacion.date_update ";
         $sql  .= "FROM dplanificacion ";
         $sql  .= "INNER JOIN indicador ON indicador.id = dplanificacion.id_indicador ";
         $sql  .= "INNER JOIN tipo ON indicador.id_tipo = tipo.id ";
