@@ -617,4 +617,18 @@ class Gambis extends BaseModel
         return $result;
     }
     
+    public function DataUpdate($aParam)
+    {
+        
+        $sql  = "";
+        $sql .= "UPDATE dplanificacion SET ";
+        $sql .= "{$aParam['columna']} = '" . $aParam['valor']."'";
+        $sql .= "WHERE id_indicador = {$aParam['indicador']} AND id_pais = {$aParam['pais']} and id_sede = {$aParam['sede']} and id_cplanificacion = {$aParam['ano']}";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        $stmt->closeCursor();
+        return $result;
+    }
+    
 }

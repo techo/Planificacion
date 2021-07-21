@@ -24,7 +24,6 @@ $route[] = ['/visual/tendencias/pais/{idPais}', 'GestionController@TendenciaPais
 $route[] = ['/visual/tendencias/region', 'GestionController@TendenciaRegion'];
 $route[] = ['/visual/tendencias/latam', 'GestionController@TendenciaLatam'];
 
-
 /** Home **/
 $route[] = ['/', 'HomeController@index'];
 $route[] = ['/home/userlogado', 'HomeController@UserLogado'];
@@ -218,5 +217,8 @@ $route[] = ['/foco/SearchSede', 'FocoController@SearchSede'];
 /** Genericos SelectBox **/
 $route[] = ['/selectbox/paises', 'GestionController@SelectBoxPais'];
 $route[] = ['/selectbox/sedes/{idPais}', 'GestionController@SelectBoxSede'];
+
+/** Update Sistema de Comunidades **/
+$route[] = ['/comunidades?indicador={indicador}&pais={pais}&sede={sede}&valor={valor}&columna={columna}&ano={ano}', 'ComunidadesController@UpdateComunidades'];
 
 return $route;
