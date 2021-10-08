@@ -55,4 +55,14 @@ class PowerBiController extends BaseController
         /* Render View Paises */
         $this->renderView('powerbi/indicadores_pilar', 'layout');
     }
+    
+    public function cierre3trimestre()
+    {
+        $this->setPageTitle('Data Studio');
+        # precisa obrigatorio pra funcionar ter uma model
+        $model = Container::getModel("Ano");
+        
+        /* Render View Paises */
+        $this->renderView('powerbi/cierre3trimestre2021', 'layout');
+    }
 }
