@@ -101,7 +101,7 @@ class CPlanificacion extends BaseModel
         $sql .= " FROM {$this->table} ";
         $sql .= "INNER JOIN ano ano ON ano.id = {$this->table}.id_ano ";
         $sql .= "INNER JOIN dplanificacion ON dplanificacion.id_cplanificacion = {$this->table}.id ";
-        $sql .= "WHERE {$this->table}.deleted = 0  and dplanificacion.deleted = 0";
+        $sql .= "WHERE {$this->table}.deleted = 0  and dplanificacion.deleted = 0 AND ano.situation = 1";
         
         // Republica Dominicana que vai ver todas Sedes do Pais RD
         if($idPais == 18)
